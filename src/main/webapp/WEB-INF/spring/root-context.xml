@@ -24,7 +24,7 @@
 	    <property name="typeAliases">
 	  	<list>
 	  		<value>com.team04.domain.MemberVO</value>
-	
+	  		<value>com.team04.domain.ShopVO</value>
 	  	</list>
 	  </property>
 	 </bean>
