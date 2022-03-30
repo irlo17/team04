@@ -44,6 +44,7 @@ public class ShopController {
 	public String shopInsert(ShopVO shopVO) {
 		shopService.shopInsert(shopVO);
 		return "redirect:shopList.do";
+	}
 
 	//가게 리스트 출력
 	@RequestMapping("listing.do")
