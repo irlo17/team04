@@ -5,4 +5,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="shopDAO">
 
+
+
+<!-- 아직 미완성 필터창 검색값과인데 임의로 결과값을 넣음  -->
+<select id="shopGetList2">
+SELECT *
+FROM shop s, menu m
+WHERE   s.shop_food = '한식'
+        AND s.shop_address_si LIKE '%서울%'
+           AND s.shop_address_gu LIKE '%강남%'
+              AND s.shop_address_dong LIKE '%일원%'
+                 AND s.shop_price_range = '만원대'
+
+</select>
+
+	<!--  	
+		SQL 형태 : SELECT
+		이름 : shopGetList
+		받는 값(parameterType) : 없음
+		보내는 값(resultType) : ShopVO
+		사용 : 가게 전체 리스트를 검색하여 ShopVO형으로 보냄 
+	-->
+	<select id="shopGetList" resultType="ShopVO">
+		SELECT * FROM shop
+	</select>
+	
+	<!-- 
+		SQL 형태 : INSERT
+		이름 : shopInsert
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : 없음 ( Default -> int )
+		사용 : ShopVO에 담겨있는 내용을 DB에 Insert함
+	 -->
+	 <insert id="shopInsert" parameterType="ShopVO">
+	 	INSERT INTO shop (shop_number, shop_title, shop_tel
+                     , shop_price_range, shop_food, shop_park, shop_time
+                     , shop_holiday, shop_content
+                     , shop_create_date, shop_modify_date
+                     , shop_address, shop_address_si
+                     , shop_address_gu, shop_address_dong
+                     , shop_realfname
+                     )
+		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
+		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
+		             , #{shopHoliday}, #{shopContent}
+		             , sysdate, sysdate
+		             , #{shopAddress}, #{shopAddressSi}
+		             , #{shopAddressGu}, #{shopAddressDong}
+		             , #{shopRealfname}
+		             )
+	 </insert>
+
 </mapper>

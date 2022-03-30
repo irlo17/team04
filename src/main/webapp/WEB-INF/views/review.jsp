@@ -290,7 +290,7 @@ li.on {
 
 					<div class="col-md-4 inline-block">
 						<div style="font-weight: bold; font-size: 1.5em;"
-							class="shop_name">가게명: ${review.SHOPTITLE }</div>
+							class="shop_name">가게명: ${review.SHOPTITLE}</div>
 						<div class="review_img">
 							<img src="resources/img/listing/list-4.jpg" width="450">
 						</div>

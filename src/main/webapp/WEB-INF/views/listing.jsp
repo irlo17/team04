@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -363,8 +364,10 @@
           Nearby <i class="fa fa-sort-amount-asc"></i>
         </div>
       </div>
-
+	
+	
       <div class="listing__list">
+      <c:forEach items="${shopList}" var="shop">
         <div class="listing__item">
           <!-- 여기에 img값 가지고와야함 동적으로 -->
           <div
@@ -406,6 +409,7 @@
             </div>
           </div>
         </div>
+          </c:forEach>
 
         <div class="listing__item">
           <div
@@ -451,7 +455,7 @@
         </div>
 
      
-
+	
         <div class="listing__item">
           <div
             class="listing__item__pic set-bg"
@@ -494,6 +498,7 @@
             </div>
           </div>
         </div>
+      
 
         <div class="listing__item">
           <div
