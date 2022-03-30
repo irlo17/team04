@@ -6,7 +6,7 @@ response.sendRedirect("main.do"); %> --%>
 <!--승환  -->
 <a href="review.do">리뷰관리창</a>
 <hr />
-<a href="listingDetatils.do">가게상세페이지</a>
+<a href="listingDetails.do">가게상세페이지</a>
 <hr />
 <!--	안정은  -->
 <a href="main.do">메인</a>

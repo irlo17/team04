@@ -1,5 +1,6 @@
 package com.team04.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,27 +35,41 @@ public class ReviewController {
 		List<ReviewVO> list = reviewService.reviewGetList(logemail);
 		m.addAttribute("reviewList",list);
 		return "review";
-		
 	}
-	@RequestMapping("listingDetatils.do")
+	
+	@RequestMapping("listingDetails.do")
 	public String listingDetails() {
-		
-		
 		return "listingDetails";
 	}
 	
+	
+	/* 리턴형 없음 
+	 * 인자값을 
+	 *  ReviewVO vo와  HttpSession session 를 통해 이메일을 얻어
+	 *  hashmap을 넣어주고 인자값으로 전해주었다
+	 * */
+	
 	@RequestMapping("reviewUpdate.do")
-	public String reviewUpdate() {
+	public String reviewUpdate(ReviewVO vo, HttpSession session) {
+		
+		String logemail = (String) session.getAttribute("logemail");
+		
+		HashMap map = new HashMap();
+		map.put("reviewNumber", vo.getReviewNumber());
+		map.put("logemail", logemail);
+		map.put("ReviewVO", vo);
+		map.put("reviewContent", vo.getReviewContent());
 		
 		
-		return "listingDetatils";
+		reviewService.reviewUpdate(map);
+		return "redirect:review.do";
 	}
 	
 	@RequestMapping("reviewDelete.do")
-	public String reviewDelete() {
+	public String reviewDelete(ReviewVO vo) {
+		reviewService.reviewDelete(vo);
 		
-		
-		return "listingDetatils";
+		return "redirect:review.do";
 	}
 	
 	
