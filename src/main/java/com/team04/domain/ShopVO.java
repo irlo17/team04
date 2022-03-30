@@ -1,34 +1,55 @@
 package com.team04.domain;
 
+import java.io.File;
 import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class ShopVO {
 	
-	private int shopNumber;
-	private String shopTitle;
-	private String shopTel;
-	private String shopPriceRange;
-	private String shopFood;
-	private String shopPark;
-	private String shopTime;
-	private String shopHoliday;
-	private String shopContent;
-	private Date shopCreateDate;
-	private Date shopModifyDate;
-	private String shopAddress;
+	/* 멤버변수 시작 */
+	private int shopNumber;			// 가게번호
+	private String shopTitle;		// 상호명
+	private String shopTel;			// 가게 전화번호
+	private String shopPriceRange;	// 가격대
+	private String shopFood;		// 음식유형
+	private String shopPark;		// 주차여부
+	private String shopTime;		// 영업시간
+	private String shopHoliday;		// 휴일
+	private String shopContent;		// 가게설명
+	private Date shopCreateDate;	// 내용 입력 날짜
+	private Date shopModifyDate;	// 내용 수정 날짜
+	private String shopAddress;		// 가게 주소
+	
+	// 가게 주소 담을 변수
+	private String shopAddrDoro;
+	private String shopAddrJibun;
+	private String shopAddrDetail;
+	private String shopAddrCamgo;
+	
+	// 필터용 주소 입력
 	private String shopAddressSi;
 	private String shopAddressGu;
 	private String shopAddressDong;
+
+	// 저장된 파일 이름
 	private String shopRealfname;
-		
+	
+	// 파일 업로드를 위한 변수
+	MultipartFile shopFile;
+	/* 멤버변수 끝 */
+	
+	// 기본 생성자 - 인자없는
 	public ShopVO() {
 
 	}
-
+	
+	// 생성자 - 인자있는
 	public ShopVO(int shopNumber, String shopTitle, String shopTel, String shopPriceRange, String shopFood,
 			String shopPark, String shopTime, String shopHoliday, String shopContent, Date shopCreateDate,
 			Date shopModifyDate, String shopAddress, String shopAddressSi, String shopAddressGu, String shopAddressDong,
-			String shopRealfname) {
+			String shopRealfname, MultipartFile shopFile, 
+			String shopAddrDoro, String shopAddrJibun, String shopAddrDetail, String shopAddrCamgo) {
 		super();
 		this.shopNumber = shopNumber;
 		this.shopTitle = shopTitle;
@@ -46,8 +67,70 @@ public class ShopVO {
 		this.shopAddressGu = shopAddressGu;
 		this.shopAddressDong = shopAddressDong;
 		this.shopRealfname = shopRealfname;
+		this.shopFile = shopFile;
+		this.shopAddrDoro = shopAddrDoro;
+		this.shopAddrJibun = shopAddrJibun;
+		this.shopAddrDetail = shopAddrDetail;
+		this.shopAddrCamgo = shopAddrCamgo;
 	}
 	
+	// setter & getter
+	public MultipartFile getShopFile() {
+		return shopFile;
+	}
+	public void setShopFile(MultipartFile shopFile) {
+		this.shopFile = shopFile;
+		/* 파일 업로드 작업*/
+		if(!shopFile.isEmpty()) {
+			
+			// 실제로 저장되는 파일명
+			shopRealfname = shopFile.getOriginalFilename();
+			
+			// 저장
+			File shopF = new File("C:\\study\\spring\\semi\\semi\\src\\main\\webapp\\resources\\manager\\upload\\" + shopRealfname);
+			
+			// 예외처리
+			try {
+				shopFile.transferTo(shopF);
+			} catch (Exception e) {
+				e.toString();
+				e.printStackTrace();
+			}
+		}
+	}
+	/*주소 잠시 담아놓을 변수*/
+	public String getShopAddrDoro() {
+		return shopAddrDoro;
+	}
+
+	public void setShopAddrDoro(String shopAddrDoro) {
+		this.shopAddrDoro = shopAddrDoro;
+	}
+
+	public String getShopAddrJibun() {
+		return shopAddrJibun;
+	}
+
+	public void setShopAddrJibun(String shopAddrJibun) {
+		this.shopAddrJibun = shopAddrJibun;
+	}
+
+	public String getShopAddrDetail() {
+		return shopAddrDetail;
+	}
+
+	public void setShopAddrDetail(String shopAddrDetail) {
+		this.shopAddrDetail = shopAddrDetail;
+	}
+
+	public String getShopAddrCamgo() {
+		return shopAddrCamgo;
+	}
+
+	public void setShopAddrCamgo(String shopAddrCamgo) {
+		this.shopAddrCamgo = shopAddrCamgo;
+	}
+	/* 주소 잠시 담아둘 변수 */
 	public int getShopNumber() {
 		return shopNumber;
 	}
