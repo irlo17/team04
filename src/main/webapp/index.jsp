@@ -4,7 +4,7 @@ prefix="c" %> <%@ page session="false" %> <%-- <%
 response.sendRedirect("main.do"); %> --%>
 
 <!--승환  -->
-<a href="review.do?email=ciki@naver.com">리뷰관리창</a>
+<a href="review.do">리뷰관리창</a>
 <hr />
 <a href="listingDetatils.do">가게상세페이지</a>
 <hr />
