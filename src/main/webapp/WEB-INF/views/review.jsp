@@ -296,9 +296,11 @@ li.on {
 								<img src="resources/img/face/1.png" width="25" height="auto">
 								${review.REVIEWGRADE }
 
+
+								 <a href="reviewUpdate.do">
 								<button type="submit"
-									class="btn btn-primary modi_dele_button1 modi_dele_button">수정</button>
-								<button class="btn btn-danger modi_dele_button">삭제</button>
+									class="btn btn-primary modi_dele_button1 modi_dele_button" > 수정</button>  </a>
+									 <a href="reviewDelete.do"> <button class="btn btn-danger modi_dele_button">삭제</button> </a>
 							</div>
 
 							<textarea class=" hb300">${review.REVIEWCONTENT}</textarea>
