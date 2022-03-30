@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ShopController {
-	
-//	@RequestMapping("/{step}.do")
-//	public String viewPage(@PathVariable String step) {
-//		return step;
-//	}
+		
+	//가게 리스트 출력
+	@RequestMapping("listing.do")
+	public String shopList() {
+		
+		return "listing";
+	}
 
 }
