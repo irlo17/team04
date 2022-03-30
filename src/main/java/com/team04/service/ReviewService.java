@@ -1,5 +1,22 @@
 package com.team04.service;
 
-public interface ReviewService {
+import java.util.List;
 
+import com.team04.domain.ReviewVO;
+
+public interface ReviewService {
+	
+	
+	// 리뷰 수정
+	void reviewUpdate(ReviewVO vo);
+	
+	
+	//리뷰 삭제
+	void reviewDelete(ReviewVO vo);
+	
+	
+	//리뷰 목록조회
+	List<ReviewVO> reviewGetList(String email);
+	
+	
 }
