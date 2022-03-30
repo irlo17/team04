@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 아직 미완성 -->
 	<update id="reviewUpdate" parameterType="ReviewVO">
 	
-		UPDATE review SET review_content= ${reviewContent} WHERE review_number = ${reviewNumber} and 멤버이메일 = ${member_email 받아서 해야함} ;
+		UPDATE review SET review_content= ${reviewContent} WHERE review_number = ${reviewNumber} and member_email = ${memberEmail 받아서 해야함} ;
 	
 	</update>
 	
