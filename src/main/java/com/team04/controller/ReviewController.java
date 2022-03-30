@@ -36,12 +36,6 @@ public class ReviewController {
 		return "review";
 		
 	}
-	
-	
-	
-	
-	
-	
 	@RequestMapping("listingDetatils.do")
 	public String listingDetails() {
 		
@@ -49,7 +43,19 @@ public class ReviewController {
 		return "listingDetails";
 	}
 	
+	@RequestMapping("reviewUpdate.do")
+	public String reviewUpdate() {
+		
+		
+		return "listingDetatils";
+	}
 	
+	@RequestMapping("reviewDelete.do")
+	public String reviewDelete() {
+		
+		
+		return "listingDetatils";
+	}
 	
 	
 }
