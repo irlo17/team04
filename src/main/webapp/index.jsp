@@ -1,3 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <% response.sendRedirect("main.do"); %>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%-- <% response.sendRedirect("main.do"); %> --%>
+
+	
+
+	<a href="listing.do">가게리스트 바로가기</a>
+
+
+    
+    
+    
+    
+    
