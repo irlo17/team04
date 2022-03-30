@@ -65,9 +65,35 @@ public class ReviewController {
 		return "redirect:review.do";
 	}
 	
+	
+	
+	/* 리턴형 없음 
+	 * 인자값을 
+	 *  ReviewVO vo와  HttpSession session 를 통해 이메일을 얻어
+	 *  hashmap을 넣어주고 인자값으로 전해주었다
+	 *  ora-02292 에러 부모 pk가 자식 fk를 가지고 있어서 자식 테이블도 삭제하고 부모 테이블을 삭제해야한다. 그래서
+	 *  ALTER TABLE REPORT DROP CONSTRAINT FK_REVIEW_NUMBER; 로 fk날려주고
+	 *  ALTER TABLE REPORT
+		ADD CONSTRAINT FK_REVIEW_NUMBER
+		FOREIGN KEY ( REVIEW_NUMBER )
+		REFERENCES REVIEW ( REVIEW_NUMBER )
+		ON DELETE CASCADE; 		다시 fk를 설정해주고 삭제기능 가능
+
+	 *  
+	 * */
 	@RequestMapping("reviewDelete.do")
-	public String reviewDelete(ReviewVO vo) {
-		reviewService.reviewDelete(vo);
+	public String reviewDelete(ReviewVO vo, HttpSession session ) {
+		
+		String logemail = (String) session.getAttribute("logemail");
+		
+		HashMap map =new HashMap();
+		
+		map.put("logemail", logemail);
+		map.put("reviewNumber", vo.getReviewNumber());
+		
+		
+		
+		reviewService.reviewDelete(map);
 		
 		return "redirect:review.do";
 	}

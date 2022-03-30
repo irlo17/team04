@@ -28,9 +28,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void reviewDelete(ReviewVO vo) {
+	public void reviewDelete(HashMap map) {
 		// TODO Auto-generated method stub 작성해야함
-		reviewDAO.reviewDelete(vo);
+		reviewDAO.reviewDelete(map);
 		
 	}
 	

@@ -9,7 +9,7 @@ public interface ReviewDAO {
 
 	public void reviewUpdate( HashMap map);
 	
-	public void reviewDelete(ReviewVO vo);
+	public void reviewDelete(HashMap map);
 	
 	public List<ReviewVO> reviewGetList(String email);
 	

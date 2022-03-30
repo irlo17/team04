@@ -22,9 +22,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 		mybatis.update("reviewDAO.reviewUpdate",map);
 	}
 	
-	public void reviewDelete(ReviewVO vo) {
+	public void reviewDelete(HashMap map) {
 		System.out.println("===> Mybatis reviewDelete() 호출");
-		mybatis.delete("reviewDAO.reviewDelete",vo);
+		mybatis.delete("reviewDAO.reviewDelete",map);
 	}
 	
 	public List<ReviewVO> reviewGetList(String email){

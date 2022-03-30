@@ -13,7 +13,7 @@ public interface ReviewService {
 	
 	
 	//리뷰 삭제
-	void reviewDelete(ReviewVO vo);
+	void reviewDelete(HashMap map);
 	
 	
 	//리뷰 목록조회
