@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.form-group .error_box {
+	font-size: 12px;
+} 
+
+.btn_text{
+	font-size: 12px;
+}
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+
+.email_check{
+	display: inline-block;
+	margin-left: -15px;
+}
+
+.btn_check{
+ 	border: 1px solid transparent;
+}
+
+form-group .form-control.form-nickname {
+	width : 80%;
+}
+
+.error_box{
+	color:#dc3545;
+}
+
+.form-block {
+	margin-top: 100px;
+	padding: 100px, 300px, 100px, 300px;
+	
+}
+
+
+
