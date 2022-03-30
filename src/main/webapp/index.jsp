@@ -8,4 +8,8 @@
   <hr/>
   <a href="listingDetatils.do">가게상세페이지</a>
   <hr/>
+   <!--	안정은  -->  
+  <a href="main.do">메인</a>
+  <hr/>
+  
   
