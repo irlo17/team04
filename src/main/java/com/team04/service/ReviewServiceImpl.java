@@ -1,8 +1,45 @@
 package com.team04.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+import com.team04.dao.ReviewDAO;
+import com.team04.domain.ReviewVO;
+
+@Service("reviewService")
 public class ReviewServiceImpl implements ReviewService {
+	@Autowired
+	private ReviewDAO reviewDAO;
+	
+	
+	
+	public List<ReviewVO> reviewGetList(String email){
+		return reviewDAO.reviewGetList(email);
+	}
+
+	@Override
+	public void reviewUpdate(ReviewVO vo) {
+		// TODO Auto-generated method stub 작성해야함
+		
+	}
+
+	@Override
+	public void reviewDelete(ReviewVO vo) {
+		// TODO Auto-generated method stub 작성해야함
+		
+	}
+	
+	
+	/*
+	 * public List<ReviewVO> reviewGetList(HashMap map){
+	 * 
+	 * return ""; }
+	 */
+	
+	
 
 }
+
+
