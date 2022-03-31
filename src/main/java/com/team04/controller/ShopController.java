@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team04.domain.ShopVO;
+import com.team04.service.ShopService;
 import com.team04.service.ShopServiceImpl;
+
 
 // Shop(가게 테이블) Controller 
 @Controller
@@ -16,9 +18,8 @@ public class ShopController {
 
 	// ShopService내에 있는 함수를 사용하기 위한 멤버변수 선언
 	@Autowired
-	private ShopServiceImpl shopService;
-	
-	
+	private ShopService shopService;
+			
 	/**
 	 * 메소드명 : shopList()
 	 * 인자 : Model m (= 뷰페이지에 보내줄 값을 담을 객체)
@@ -48,8 +49,10 @@ public class ShopController {
 
 	//가게 리스트 출력
 	@RequestMapping("listing.do")
-	public String shopList() {
+	public String shopList(ShopVO vo, Model m) {
 		
+		List<ShopVO> list = shopService.shopGetList(vo);
+		m.addAttribute("shopList", list); //jsp쪽으로 보내는 키값
 		return "listing";
 	}
 

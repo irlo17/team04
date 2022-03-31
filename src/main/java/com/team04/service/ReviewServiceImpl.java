@@ -1,5 +1,6 @@
 package com.team04.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,16 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void reviewUpdate(ReviewVO vo) {
+	public void reviewUpdate(HashMap map) {
 		// TODO Auto-generated method stub 작성해야함
+		reviewDAO.reviewUpdate(map);
 		
 	}
 
 	@Override
-	public void reviewDelete(ReviewVO vo) {
+	public void reviewDelete(HashMap map) {
 		// TODO Auto-generated method stub 작성해야함
+		reviewDAO.reviewDelete(map);
 		
 	}
 	

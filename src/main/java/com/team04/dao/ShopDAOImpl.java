@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team04.domain.ShopVO;
 
+
 // Shop(가게 테이블) Repository 구현 클래스
 @Repository
 public class ShopDAOImpl implements ShopDAO{
@@ -17,6 +18,12 @@ public class ShopDAOImpl implements ShopDAO{
 	private SqlSessionTemplate mybatis;
 
 	@Override
+
+	public List<ShopVO> shopGetList(ShopVO vo) {
+		System.out.println("===> Mybatis shopGetList() 호출");
+		return mybatis.selectList("shopDAO.shopGetList", vo);
+	}
+
 	public void shopInsert(ShopVO shopVO) {
 		System.out.println("===> mybatis shopInsert()함수 호출");
 		mybatis.insert("shopDAO.shopInsert", shopVO);
@@ -51,6 +58,7 @@ public class ShopDAOImpl implements ShopDAO{
 	public List<ShopVO> shopGetList() {
 		System.out.println("===> mybatis shopGetList()함수 호출");
 		return mybatis.selectList("shopDAO.shopGetList");
+
 	}
 
 }

@@ -6,6 +6,8 @@ import com.team04.domain.ShopVO;
 
 // Shop(가게 테이블) Service 인터페이스
 public interface ShopService {
+	
+	List<ShopVO> shopGetList(ShopVO vo);
 
 	// 가게 추가
 	void shopInsert(ShopVO shopVO);

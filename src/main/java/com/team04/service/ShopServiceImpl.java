@@ -15,6 +15,11 @@ public class ShopServiceImpl implements ShopService{
 	// ShopDAOImpl 에 있는 함수를 사용하기 위한 멤버변수 선언
 	@Autowired
 	private ShopDAOImpl shopDAO;
+	
+	public List<ShopVO> shopGetList(ShopVO vo) {
+		
+		return shopDAO.shopGetList(vo);
+	}
 
 	/**
 	 * 메소드명 : shopInsert()

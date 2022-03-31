@@ -6,6 +6,9 @@ import com.team04.domain.ShopVO;
 
 // Shop(가게 테이블) Repository 인터페이스
 public interface ShopDAO {
+	
+	//가게 상세 리스트 페이지 조회
+	public List<ShopVO> shopGetList(ShopVO vo);
 
 	// 가게 추가
 	void shopInsert(ShopVO shopVO);
