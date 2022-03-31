@@ -23,7 +23,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO emailCheck(MemberVO vo) 
 	{
-		MemberVO result = memberDAO.emailCheck(vo);
 		return memberDAO.emailCheck(vo);
 	}
 
@@ -49,6 +48,30 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO loginCheck(MemberVO vo) 
 	{
 		return memberDAO.loginCheck(vo);
+	}
+
+	/**	비밀번호 찾기
+	 * 	- DB에서 회원 정보 찾기
+	 * 	- MemberDAO의 pwSearch() 호출
+	 * @param MemberVO vo 
+	 * @return MemberVO vo
+	 * 			- null O : 비밀번호 재설정 X 
+	 * 			- null X : 비밀전호 재설정 O
+	 */
+	@Override
+	public MemberVO pwSearch(MemberVO vo) {
+		return memberDAO.pwSearch(vo);
+	}
+
+	/** 비밀번호 변경
+	 *	- DB에 동일한 이메일을 가진 회원의 비밀번호를 변경 
+	 * 	- MemberDAO의 pwChange() 호출
+	 * @param MemberVO vo 
+	 * @return int ( 입력 성공 시 1을 리턴 )
+	 */
+	@Override
+	public int pwChange(MemberVO vo) {
+		return memberDAO.pwChange(vo);
 	}
 	
 }

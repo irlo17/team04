@@ -21,7 +21,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
-	private HttpSession mypageSess;
 	
 	/**	회원가입 
 	 * 	- 회원가입 form에 입력된 값들을 MemberVO에 넣고 넘기기
@@ -37,18 +36,17 @@ public class MemberController {
 	/**	email 중복 체크
 	 * 	- DB에 동일한 이메일이 있는지 확인
 	 * @param MemberVO vo (memberEmail)
-	 * @return String message : "N"이면 이메일 사용 불가능
+	 * @return String message : "Y"이면 이메일 사용 가능
 	 */
 	@RequestMapping(value="emailCheck.do", produces="application/text;charset=utf-8")
 	@ResponseBody
 	public String emailCheck(MemberVO vo) {
-		System.out.println("컨트롤러 : "+vo.getMemberEmail());
 		MemberVO result = memberService.emailCheck(vo);	// 사용가능한 이메일이면 null값이 넘어옴
 		String message = "";	// 이메일 사용 가능 여부를 담을 변수
 		
-		if(result != null) // 검색되는 레코드가 있으면 이메일 사용 불가능
+		if(result == null) // 검색되는 레코드가 없으면 이메일 사용 가능
 		{
-			message = "N";
+			message = "Y";
 		}
 		
 		return message;
@@ -80,20 +78,39 @@ public class MemberController {
 	
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
 	 * @return
-	 * 		- 세션에 로그인 정보 O : 마이페이지로 이동
 	 * 		- 세션에 로그인 정보 X : loginForm.do로 이동
+	 * 		- 세션에 로그인 정보 O : 마이페이지로 이동
 	 */
 	@RequestMapping("login.do")
 	public String login(HttpSession session) {
 		
-		if(session.getAttribute("lognick") != null) {
-			// (1) 세션에 로그인 정보 O 
-			return "redirect:main.do";	// 현재 마이페이지가 없기 때문에 main으로 이동
-		}
-			//(2) 세션에 로그인 정보 X 
+		if(session.getAttribute("lognick") == null) {
+			//(1) 세션에 로그인 정보 X 
 			return "redirect:loginForm.do";
+		}
+			// (2) 세션에 로그인 정보 O 
+			return "redirect:main.do";	// 현재 마이페이지가 없기 때문에 main으로 이동
 	}// end of login()
 	
+	@RequestMapping(value="pwSearch.do", produces="application/text;charset=utf-8")
+	@ResponseBody
+	public String pwSearch(MemberVO vo, HttpSession session) {
+		MemberVO result = memberService.pwSearch(vo);
+		String message = "";	// 회원 정보 유무를 담을 변수
+		if(result == null) {
+			// 회원정보가 없다는 뜻
+			message = "N";
+		}
+		session.setAttribute("email", vo.getMemberEmail());
+		
+		return message;
+	}
 	
+	@RequestMapping("pwChange.do")
+	public String pwChange(MemberVO vo, HttpSession session) {
+		vo.setMemberEmail(session.getAttribute("email").toString());
+		memberService.pwChange(vo);
+		return "redirect:loginForm.do";
+	}
 	
 }

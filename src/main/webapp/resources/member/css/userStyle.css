@@ -13,7 +13,7 @@ input[type=date]:focus::-webkit-datetime-edit {
     color: black !important;
 }
 
-.email_check{
+.email_check {
 	display: inline-block;
 	margin-left: -15px;
 }
