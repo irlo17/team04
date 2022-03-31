@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -17,9 +20,9 @@
    
  /*----------모달관련된거--------신고기능 */
 html,body {height:100%; margin:0; display: block;z-index: 100;}
-.mw {position:fixed;position:static;top:0;left:0;width:100%;height:100%;display:none;}
-.mw .bg {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;filter:alpha(opacity=50); z-index: 105000;}
-.mw .fg {position:absolute;top:50%;left:50%;width:400px;height:260px;margin:-100px 0 0 -200px;padding:20px;border:3px solid #ccc;background:#fff; z-index: 105000; }
+.mw {position:fixed;/* position:static */;top:30%;left:30%;width:100%;height:100%;display:none;z-index:99999;}
+.mw .bg {position:fixed;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;/* filter:alpha(opacity=50) */; z-index: 105000;}
+.mw .fg {position:absolute;top:40%;left:40%;width:400px;height:260px;margin:-100px 0 0 -200px;padding:20px;border:3px solid #ccc;background:#fff; z-index: 105000; }
         
         
         .modal-button{ background: #fff; border: 0; outline: 0; font-size: 15px;  color: #323232;} 
@@ -92,6 +95,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
 
 
 <body>
+  
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -120,11 +124,15 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
         </div>
     </header>
     <!-- Header Section End -->
-
+    
+    
     <!-- Listing Section Begin -->
     <section class="listing-hero set-bg" data-setbg="resources/img/listing/details/listing-hero.jpg">
        
+      
+           <c:forEach items="${shopInfo1}" var='shopInfo1'> 
         <div class="container">
+        
             <div class="row">
                 <div class="col-lg-8">
                     <div class="listing__hero__option">
@@ -132,11 +140,12 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             <img src="resources/img/listing/details/ld-icon.png" alt="">
                         </div>
                         <div class="listing__hero__text">
-                            <h2>Cosiana Sour Restaurant</h2>
+                            <h2>${shopInfo1.SHOPTITLE  }</h2>
+                       
                             <div class="listing__hero__widget">
                                
                             </div>
-                            <p><span class="icon_pin_alt"></span> 1012 Vesper Dr. Columbus, Georgia, United States</p>
+                            <p><span class="icon_pin_alt"></span> ${shopInfo1.SHOPADDRESS } </p>
                         </div>
                     </div>
                 </div>
@@ -148,26 +157,30 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                 </div>
             </div>
         </div>
+        </c:forEach>
     </section>
     <!-- Listing Section End -->
 
     <!-- Listing Details Section Begin -->
+    
     <section class="listing-details spad">
+   
         <div class="container">
             <div class="row">
+            
                 <div class="col-lg-8">
                     <div class="listing__details__text">
+                       <c:forEach items="${shopInfo1}" var='shopInfo1'> 
                         <div class="listing__details__about">
-                            <h4>Overview</h4>
-                            <p>Entries from over 70 countries cover every imaginable space; From ships to airports,
-                                museums to burger vans, from revered Michelin-starred establishments to the fleeting
-                                dynamism of pop-ups.</p>
-                            <p>The judges are the most influential global personalities from hospitality, design and
+                            <h4>가게 소개</h4>
+                             <p>${shopInfo1.SHOPCONTENT }</p>
+                           <!--  <p>The judges are the most influential global personalities from hospitality, design and
                                 lifestyle media and have previously included the Editor in Chief of Wallpaper*, Marcus
                                 Wareing and Thomas Heatherwick.
                                 The Awards are followed by over 40,000 of the most influential architects, designers,
-                                hospitality professionals and lifestyle media from around the globe.</p>
+                                hospitality professionals and lifestyle media from around the globe.</p> -->
                         </div>
+                        </c:forEach>
                         <div class="listing__details__gallery">
                             <h4>Gallery</h4>
                             <div class="listing__details__gallery__pic">
@@ -190,6 +203,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         </div>
                    
                        
+                         <c:forEach items="${reviewInfo}" var='reviewInfo'> 
                         <div class="listing__details__comment">
                             <h4>리뷰</h4>
                             <div class="listing__details__comment__item">
@@ -198,15 +212,13 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
-                                      <h>별로예요</h>
+                                      <h>${reviewInfo.REVIEWGRADE }</h>
                                       <img width='20' height='20' src="resources/img/face/1.png">
                                       
                                     </div>
                                     <span>March 22, 2019</span>
-                                    <h5>Marry Jane</h5>
-                                    <p>From ships to airports, museums to burger vans, from revered Michelin star
-                                        establish to the fleeting dynamism 
-                                        of pop-ups.</p>
+                                    <h5>${reviewInfo.REVIEWDATE }</h5>
+                                    <p>${reviewInfo.REVIEWCONTENT }</p>
                                         <img width="180" src="resources/img/listing/list-1.jpg">
                                         <img width="180" src="resources/img/listing/list-2.jpg">
                                         <img width="180" src="resources/img/listing/list-3.jpg">
@@ -230,6 +242,8 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                             </div>
                         </div>
+                        
+                        </c:forEach>
                         <div class="listing__details__review">
                             <h4>리뷰 작성</h4>
                             <form action="#" method="post">
@@ -258,6 +272,12 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         </div>
                     </div>
                 </div>
+                
+                
+               
+                
+                
+                 <c:forEach items="${shopInfo1}" var='shopInfo1'> 
                 <div class="col-lg-4">
                     <div class="listing__sidebar">
                         <div class="listing__sidebar__contact">
@@ -312,19 +332,27 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                            
                             </div>
                             <div class="listing__sidebar__contact__text">
-                                <h4>Contacts</h4>
+                            <br/>
+                                <h5>상세정보</h5>
+                                <br/>
                                 <ul>
-                                    <li><span class="icon_pin_alt"></span> 236 Littleton St. New Philadelphia, Ohio,
-                                        United States</li>
-                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                  
+                               
+                                
+                                	<li><span class=""><i class="fa fa-home"></i></span> ${shopInfo1.SHOPTITLE }<hr/></li> 
+                                	<li><span class=""><i class="fa fa-info-circle"></i></span> ${shopInfo1.SHOPHOLIDAY }<hr/></li>
+                                	<li><span class=""><i class="fa fa-calendar"></i></span> ${shopInfo1.SHOPTIME }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-krw"></i></span> ${shopInfo1.SHOPPRICERANGE }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-car"></i></span> ${shopInfo1.SHOPPARK }<hr/></li>
+                                    <li><span class="icon_pin_alt"></span> ${shopInfo1.SHOPADDRESS }<hr/></li>
+                                    <li><span class="icon_phone"></span> ${shopInfo1.SHOPTEL }<hr/></li>
+                                  	
                                 </ul>
                                
                             </div>
                             <div class="listing__sidebar__working__hours">
                             <h4>메뉴</h4>
                             <ul>
-                                <li>음식이름 <span>1억원</span></li>
+                                <li>${shopInfo1.MENUNAME } <span>${shopInfo1.MENUPRICE }</span></li>
                                 
                             </ul>
                         </div>
@@ -332,8 +360,11 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                        
                     </div>
                 </div>
+                 </c:forEach>
             </div>
         </div>
+               
+        
     </section>
     <hr/>
    
@@ -427,6 +458,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
     <script src="resources/js/jquery.slicknav.js"></script>
     <script src="resources/js/owl.carousel.min.js"></script>
     <script src="resources/js/main.js"></script>
+
 </body>
 
 </html>
