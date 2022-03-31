@@ -83,5 +83,15 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberSearch(MemberVO vo) {
 		return memberDAO.memberSearch(vo);
 	}
+
+	/**	회원 정보 수정
+	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 * @param MemberVO vo 
+	 * @return int ( 입력 성공 시 1을 리턴 )
+	 */
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		return memberDAO.memberUpdate(vo);
+	}
 	
 }
