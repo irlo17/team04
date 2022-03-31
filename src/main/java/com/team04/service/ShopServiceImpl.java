@@ -22,60 +22,72 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	/**
-	 * 메소드명 : shopInsert()
+	 * 메소드명 : shopInsertManager()
 	 * 인자 : ShopVO shopVO (= 스프링이 자동으로 ShopVO에 담은 값들을 받아옴)
 	 * 리턴형 : 없음
 	 * 사용 : 지번주소를 나누어서 각각 주소_시, 주소_구, 주소_동에 담고,
 	 * 		가게 주소를 도로명주소+상세주소로 담음
-	 * 		그리고 ShopDAOImpl에 있는 함수 shopInsert()를 호출하여,
+	 * 		그리고 ShopDAOImpl에 있는 함수 shopInsertManager()를 호출하여,
 	 * 		ShopVO에 담은 값들을 DB에 insert 하도록 하는 변수
 	 */
 	@Override
-	public void shopInsert(ShopVO shopVO) {
+	public void shopInsertManager(ShopVO shopVO) {
 		
 		// 작성된 지번주소를 변수에 담기
-		String jibun = shopVO.getShopAddrJibun();
+		String jibunManager = shopVO.getShopAddrJibunManager();
 		// 지번주소의 공백으로 자른 문자열을 배열에 하나씩 담기
-		String[] addr = jibun.split(" ");
+		String[] addrManager = jibunManager.split(" ");
 		// 시 = 광역시, 도(addr배열의 첫번째)
-		shopVO.setShopAddressSi(addr[0]);
+		shopVO.setShopAddressSi(addrManager[0]);
 		// 구 = 도에 속한 시, 광역시의 구(addr배열의 두번째)
-		shopVO.setShopAddressGu(addr[1]);
-		// 동 = 동 (작성된 참고사항을 동에 담기)
-		shopVO.setShopAddressDong(shopVO.getShopAddrCamgo());
+		shopVO.setShopAddressGu(addrManager[1]);
+		
 		// 작성된 도로명주소와 상세주소를 가게 주소로 담기
-		shopVO.setShopAddress(shopVO.getShopAddrDoro() + " " + shopVO.getShopAddrDetail());
+		shopVO.setShopAddress(shopVO.getShopAddrDoroManager() + " " + shopVO.getShopAddrDetailManager());
 		
 		// shopDAO에서 shopInsert함수 호출
-		shopDAO.shopInsert(shopVO);
+		shopDAO.shopInsertManager(shopVO);
 	}
 
 	@Override
-	public void shopUpdate(ShopVO shopVO) {
+	public void shopUpdateManager(ShopVO shopVO) {
 		
-	}
-
-	@Override
-	public void shopDelete(ShopVO shopVO) {
-		
-	}
-
-	@Override
-	public ShopVO shopGet(ShopVO shopVO) {
-		
-		return null;
 	}
 
 	/**
-	 * 메소드명 : shopGetList()
+	 * 메소드명 : shopDeleteManager()
+	 * 인자 : ShopVO shopVO (= shopNumber(PK)가 담긴 VO )
+	 * 리턴형 : 없음
+	 * 사용 : ShopDAOImpl에 있는 함수 shopDeleteManager()를 호출하여,
+	 * 		shopNumber(PK)가 같은 데이터를 삭제하는 함수
+	 */
+	@Override
+	public void shopDeleteManager(ShopVO shopVO) {
+		shopDAO.shopDeleteManager(shopVO);
+	}
+
+	/**
+	 * 메소드명 : shopGetManager()
+	 * 인자 : ShopVO shopVO (= shopNumber(PK)가 담긴 VO )
+	 * 리턴형 : 없음
+	 * 사용 : ShopDAOImpl에 있는 함수 shopGetManager()를 호출하여,
+	 * 		shopNumber(PK)가 같은 데이터를 검색하여 ShopVO형태로 리턴
+	 */
+	@Override
+	public ShopVO shopGetManager(ShopVO shopVO) {
+		return shopDAO.shopGetManager(shopVO);
+	}
+
+	/**
+	 * 메소드명 : shopGetListManager()
 	 * 인자 : 없음
 	 * 리턴형 : ShopVO를 담은 List
-	 * 사용 : ShopDAOImpl에 있는 함수 shopGetList()를 호출하여,
+	 * 사용 : ShopDAOImpl에 있는 함수 shopGetListManager()를 호출하여,
 	 * 		보내온 List형을 다시 리턴하는 함수
 	 */
 	@Override
-	public List<ShopVO> shopGetList() {
-		return shopDAO.shopGetList();
+	public List<ShopVO> shopGetListManager() {
+		return shopDAO.shopGetListManager();
 	}
 	
 	

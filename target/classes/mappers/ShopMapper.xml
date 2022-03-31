@@ -20,23 +20,23 @@ WHERE   s.shop_food = '한식'
 
 	<!--  	
 		SQL 형태 : SELECT
-		이름 : shopGetList
+		이름 : shopGetListManager
 		받는 값(parameterType) : 없음
 		보내는 값(resultType) : ShopVO
 		사용 : 가게 전체 리스트를 검색하여 ShopVO형으로 보냄 
 	-->
-	<select id="shopGetList" resultType="ShopVO">
+	<select id="shopGetListManager" resultType="ShopVO">
 		SELECT * FROM shop
 	</select>
 	
 	<!-- 
 		SQL 형태 : INSERT
-		이름 : shopInsert
+		이름 : shopInsertManager
 		받는 값 (parameterType) : ShopVO
 		보내는 값(resultType) : 없음 ( Default -> int )
 		사용 : ShopVO에 담겨있는 내용을 DB에 Insert함
 	 -->
-	 <insert id="shopInsert" parameterType="ShopVO">
+	 <insert id="shopInsertManager" parameterType="ShopVO">
 	 	INSERT INTO shop (shop_number, shop_title, shop_tel
                      , shop_price_range, shop_food, shop_park, shop_time
                      , shop_holiday, shop_content
@@ -54,5 +54,29 @@ WHERE   s.shop_food = '한식'
 		             , #{shopRealfname}
 		             )
 	 </insert>
+	 
+	 <!-- 
+		SQL 형태 : DELETE
+		이름 : shopDeleteManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : 없음 ( Default -> int )
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 삭제
+	 -->
+	 <delete id="shopDeleteManager" parameterType="ShopVO">
+	 	DELETE FROM shop
+      	WHERE shop_number= #{shopNumber}
+	 </delete>
+	 
+	 <!-- 
+		SQL 형태 : SELECT
+		이름 : shopGetManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : ShopVO
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 ShopVO에 담아 보냄
+	 -->
+	 <select id="shopGetManager" parameterType="ShopVO" resultType="ShopVO">
+	 	SELECT * FROM shop
+     	WHERE shop_number=#{shopNumber}
+	 </select>
 
 </mapper>

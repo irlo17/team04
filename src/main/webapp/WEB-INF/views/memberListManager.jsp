@@ -13,12 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>관리자페이지 - 가게리스트</title>
+        <title>관리자페이지 - 회원리스트</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- 내부 script -->
+        <!-- 내부 script -- 삭제버튼 구현 -->
         <script type="text/javascript">
         	function removeBtn() {
         		if(confirm("정말 삭제하시겠습니까?") == true) {
@@ -60,24 +60,24 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">메인</div>
-                            <a class="nav-link" href="dashboard.do">
+                            <a class="nav-link" href="dashboardManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 대시보드
                             </a>
                             <div class="sb-sidenav-menu-heading">목차</div>
-                            <a class="nav-link" href="charts.do">
+                            <a class="nav-link" href="chartsManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>
-                            <a class="nav-link" href="memberList.do">
+                            <a class="nav-link" href="memberListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopList.do">
+                            <a class="nav-link" href="shopListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
-                            <a class="nav-link" href="reportList.do">
+                            <a class="nav-link" href="reportListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고리스트
                             </a>
@@ -95,64 +95,54 @@
                 <main>
                 	<!-- 메인 위쪽 타이틀 -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">가게리스트</h1>
+                        <h1 class="mt-4">회원리스트</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="dashboard.do">대시보드</a></li>
-                            <li class="breadcrumb-item active">가게리스트</li>
+                            <li class="breadcrumb-item"><a href="dashboardManager.do">대시보드</a></li>
+                            <li class="breadcrumb-item active">회원리스트</li>
                         </ol>
-                        <!-- 가게 추가 버튼 -->
-                        <div class="row mb-3">
-	                        <div class="col-md-10"></div>
-	                        <div class="col-md-2">
-	                            <div class="d-grid"><a class="btn btn-success btn-block" href="shopInsertForm.do">가게추가</a></div>
-	                        </div>
-                        </div>
-                        <!-- 테이블 -->
                         <div class="card mb-4">
+                        	<!-- 테이블 -->
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                가게 전체 리스트
+                                회원 전체 리스트
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>번호</th>
-                                            <th>상호명</th>
-                                            <th>설명</th>
-                                            <th>생성날짜</th>
-                                            <th>수정날짜</th>
-                                            <th>주소</th>
-                                            <th>수정/삭제</th>
+                                            <th>이메일</th>
+                                            <th>닉네임</th>
+                                            <th>이름</th>
+                                            <th>생년월일</th>
+                                            <th>휴대전화</th>
+                                            <th>관리자여부</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>번호</th>
-                                            <th>상호명</th>
-                                            <th>설명</th>
-                                            <th>생성날짜</th>
-                                            <th>수정날짜</th>
-                                            <th>주소</th>
-                                            <th>수정/삭제</th>
+                                            <th>이메일</th>
+                                            <th>닉네임</th>
+                                            <th>이름</th>
+                                            <th>생년월일</th>
+                                            <th>휴대전화</th>
+                                            <th>관리자여부</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
-                                    <c:forEach items="${ shopList }" var="shop">
-                                        <tr>
-                                            <td>${ shop.shopNumber }</td>
-                                            <td>${ shop.shopTitle }</td>
-                                            <td>${ shop.shopContent }</td>
-                                            <td>${ shop.shopCreateDate }</td>
-                                            <td>${ shop.shopModifyDate }</td>
-                                            <td>${ shop.shopAddress }</td>
-                                            <td>
-                                            	<a class="btn btn-warning btn-sm" href="shopModifyForm.do">수정</a>
-                                            	<input type="button" value="삭제" onclick="removeBtn()" class="btn btn-danger btn-sm"/>
-                                            </td>
-                                        </tr>
+                                    <c:forEach items="${memberList}" var="member">
+                                    	<tr>
+                                    		<td>${member.memberEmail}</td>
+                                    		<td>${member.memberNickname}</td>
+                                    		<td>${member.memberName}</td>
+                                    		<td>${member.memberBirth}</td>
+                                    		<td>${member.memberTel}</td>
+                                    		<td>${member.memberAdmin}</td>
+                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn()"/></td>
+                                    	</tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>

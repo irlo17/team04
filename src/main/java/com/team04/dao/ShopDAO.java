@@ -11,18 +11,18 @@ public interface ShopDAO {
 	public List<ShopVO> shopGetList(ShopVO vo);
 
 	// 가게 추가
-	void shopInsert(ShopVO shopVO);
+	void shopInsertManager(ShopVO shopVO);
 	
 	// 가게 수정
-	void shopUpdate(ShopVO shopVO);
+	void shopUpdateManager(ShopVO shopVO);
 	
 	// 가게 삭제
-	void shopDelete(ShopVO shopVO);
+	void shopDeleteManager(ShopVO shopVO);
 	
 	// 가게 상세 조회
-	ShopVO shopGet(ShopVO shopVO);
+	ShopVO shopGetManager(ShopVO shopVO);
 	
 	// 가게 전체 리스트 조회
-	List<ShopVO> shopGetList();
+	List<ShopVO> shopGetListManager();
 	
 }

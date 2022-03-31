@@ -22,10 +22,9 @@ public class ShopVO {
 	private String shopAddress;		// 가게 주소
 	
 	// 가게 주소 담을 변수
-	private String shopAddrDoro;
-	private String shopAddrJibun;
-	private String shopAddrDetail;
-	private String shopAddrCamgo;
+	private String shopAddrDoroManager;		//도로명주소
+	private String shopAddrJibunManager;		//지번주소
+	private String shopAddrDetailManager;		//상세주소
 	
 	// 필터용 주소 입력
 	private String shopAddressSi;
@@ -49,7 +48,7 @@ public class ShopVO {
 			String shopPark, String shopTime, String shopHoliday, String shopContent, Date shopCreateDate,
 			Date shopModifyDate, String shopAddress, String shopAddressSi, String shopAddressGu, String shopAddressDong,
 			String shopRealfname, MultipartFile shopFile, 
-			String shopAddrDoro, String shopAddrJibun, String shopAddrDetail, String shopAddrCamgo) {
+			String shopAddrDoroManager, String shopAddrJibunManager, String shopAddrDetailManager) {
 		super();
 		this.shopNumber = shopNumber;
 		this.shopTitle = shopTitle;
@@ -68,10 +67,9 @@ public class ShopVO {
 		this.shopAddressDong = shopAddressDong;
 		this.shopRealfname = shopRealfname;
 		this.shopFile = shopFile;
-		this.shopAddrDoro = shopAddrDoro;
-		this.shopAddrJibun = shopAddrJibun;
-		this.shopAddrDetail = shopAddrDetail;
-		this.shopAddrCamgo = shopAddrCamgo;
+		this.shopAddrDoroManager = shopAddrDoroManager;
+		this.shopAddrJibunManager = shopAddrJibunManager;
+		this.shopAddrDetailManager = shopAddrDetailManager;
 	}
 	
 	// setter & getter
@@ -98,39 +96,35 @@ public class ShopVO {
 			}
 		}
 	}
-	/*주소 잠시 담아놓을 변수*/
-	public String getShopAddrDoro() {
-		return shopAddrDoro;
+	
+	/*주소 담을 변수*/
+	
+	public String getShopAddrDoroManager() {
+		return shopAddrDoroManager;
 	}
 
-	public void setShopAddrDoro(String shopAddrDoro) {
-		this.shopAddrDoro = shopAddrDoro;
+
+	public void setShopAddrDoroManager(String shopAddrDoroManager) {
+		this.shopAddrDoroManager = shopAddrDoroManager;
 	}
 
-	public String getShopAddrJibun() {
-		return shopAddrJibun;
+	public String getShopAddrJibunManager() {
+		return shopAddrJibunManager;
 	}
 
-	public void setShopAddrJibun(String shopAddrJibun) {
-		this.shopAddrJibun = shopAddrJibun;
+	public void setShopAddrJibunManager(String shopAddrJibunManager) {
+		this.shopAddrJibunManager = shopAddrJibunManager;
+	} 
+
+	public String getShopAddrDetailManager() {
+		return shopAddrDetailManager;
 	}
 
-	public String getShopAddrDetail() {
-		return shopAddrDetail;
+	public void setShopAddrDetailManager(String shopAddrDetailManager) {
+		this.shopAddrDetailManager = shopAddrDetailManager;
 	}
+	/*주소 담을 변수*/
 
-	public void setShopAddrDetail(String shopAddrDetail) {
-		this.shopAddrDetail = shopAddrDetail;
-	}
-
-	public String getShopAddrCamgo() {
-		return shopAddrCamgo;
-	}
-
-	public void setShopAddrCamgo(String shopAddrCamgo) {
-		this.shopAddrCamgo = shopAddrCamgo;
-	}
-	/* 주소 잠시 담아둘 변수 */
 	public int getShopNumber() {
 		return shopNumber;
 	}
