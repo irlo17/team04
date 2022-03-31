@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="BookmarkDAO">
+
+<!-- <select id="bookmarkGetList" resultType="BookmarkVO">
+select * from bookmark
+</select> -->
+
+<select id="bookmarkGetList" resultType="BookmarkVO" parameterType="hashmap" >
+
+SELECT b.list_number , b.list_name listName , m.member_nickname ,b.list_like 
+FROM bookmark b INNER JOIN member m
+ON b.member_email = m.member_email
+where b.list_display = 'yes' 
+
+<if test="searchCondition != null">
+				AND ${searchCondition} LIKE '%${searchKeyword}%'
+			</if>
+order by  b.list_date desc
+</select> 
+
+<update id="bookmarkUpdateLike"  parameterType="int">
+	update bookmark set list_like=list_like+1 where list_number=#{listNum}
+</update>
+
+<update id="bookmarkUpdateLikeMa"  parameterType="int">
+	update bookmark set list_like=list_like-1 where list_number=#{listNum}
+</update>
+
+
+
+
+
+</mapper>
