@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 이메일 중복 여부
 			- null O : 사용 가능한 이메일
 			- null X : 중복된 이메일 - 사용 불가능
+		마이페이지 회원정보에 출력될 회원의 레코드 검색
+			- 세션에 저장된 이메일을 조건으로 회원 검색
 	 -->
 	<select id="emailCheck"  resultType="MemberVO">
 		SELECT * FROM member
@@ -38,5 +40,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_email=#{memberEmail} AND member_password=#{memberPassword}
 		</where>
 	</select>
+	
+	<!-- 비밀번호 찾기 : 회원 정보가 있는지 확인 
+				- null O : 비밀번호 재설정 불가능
+				- null X : 비밀번호 재설정 페이지로 이동
+	-->
+	<select id="pwSearch" resultType="MemberVO">
+		SELECT * FROM member
+		<where>
+			member_email=#{memberEmail} AND member_name=#{memberName} 
+										AND member_tel=#{memberTel}
+		</where>
+	</select>
+	
+	<!-- 비밀번호 재설정 
+			- 이메일로 해당 회원의 정보를 찾은 후 비밀번호 update -->
+	<update id="pwChange" parameterType="MemberVO">
+		UPDATE member SET member_password = #{memberPassword}
+		<where>
+			member_email=#{memberEmail}
+		</where>
+	</update>
+	
 
 </mapper>
