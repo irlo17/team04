@@ -6,15 +6,33 @@ prefix="c" %> <%@ page session="false" %>
 <!--승환  -->
 <a href="review.do">리뷰관리창</a>
 <hr />
-<a href="listingDetails.do">가게상세페이지</a>
+<a href="listingDetails.do?shopNumber=1">가게상세페이지</a>
 <hr />
 <!--	안정은  -->
 <a href="main.do">메인</a>
-<hr />
-<!-- 양준석-->
-<a href="listing.do">가게리스트 바로가기</a>
 <hr />
 
 <!-- 권소연-->
 <a href="dashboard.do">관리자페이지</a>
 <hr />
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>링크보내기용</title>
+</head>
+<body>
+
+<!-- 양준석-->
+<form action="listing.do">
+<input name="query"/>
+<button type="submit">가게리스트 바로가기</button>   
+</form>
+<hr />
+    
+</body>
+</html>
