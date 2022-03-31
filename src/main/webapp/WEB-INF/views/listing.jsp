@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -367,7 +369,7 @@
 	
 	
       <div class="listing__list">
-      <c:forEach items="${shopList}" var="shop">
+      <c:forEach items="${shopPageList}" var="shop">
         <div class="listing__item">
           <!-- 여기에 img값 가지고와야함 동적으로 -->
           <div
@@ -381,7 +383,7 @@
           </div>
           <div class="listing__item__text">
             <div class="listing__item__text__inside">
-              <h5>Chinese Sausage Restaurant</h5>
+              <h5 class="shopTitle">${shop.shopTitle} </h5>
               <div class="listing__item__text__rating">
                 <!-- 이쪽에 별 대신 맛평가 들어가야함-->
                 <div class="listing__item__rating__star">
@@ -392,156 +394,26 @@
                   <span class="icon_star-half_alt"></span>
                 </div>
                 <!-- 가격대 가지고와야함-->
-                <h6>$40 - $70</h6>
+                <h6>${shop.shopPriceRange}</h6>
               </div>
               <ul>
                 <!--주소 이름 가지고와야함 ㅅㅂ-->
-                <li><span class="icon_pin_alt"></span> 서울시 강남구 일원동</li>
-                <li><span class="icon_phone"></span> 123-4567</li>
+                <span class="icon_pin_alt"></span><li class="shopAddress">${shop.shopAddress} </li>
+                <li><span class="icon_phone"></span> ${shop.shopTel}</li>
               </ul>
             </div>
             <div class="listing__item__text__info">
               <div class="listing__item__text__info__left">
                 <img src="./resources/img/listing/list_small_icon-1.png" alt="" />
-                <span>Restaurant</span>
+                <span>${shop.shopFood} </span>
               </div>
-              <div class="listing__item__text__info__right">Open Now</div>
+              <div class="listing__item__text__info__right">영업중인걸 어케 표시할까</div>
             </div>
           </div>
         </div>
           </c:forEach>
 
-        <div class="listing__item">
-          <div
-            class="listing__item__pic set-bg"
-            data-setbg="./resources/img/listing/list-2.jpg"
-          >
-            <img src="./resources/img/listing/list_icon-2.png" alt="" />
-            <div class="listing__item__pic__tag top_rate">Top Rate</div>
-            <div class="listing__item__pic__btns">
-              <a href="#"><span class="icon_zoom-in_alt"></span></a>
-              <a href="#"><span class="icon_heart_alt"></span></a>
-            </div>
-          </div>
-          <div class="listing__item__text">
-            <div class="listing__item__text__inside">
-              <h5>Shrimp floured and fried</h5>
-              <div class="listing__item__text__rating">
-                <div class="listing__item__rating__star">
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star-half_alt"></span>
-                </div>
-                <h6>$40 - $70</h6>
-              </div>
-              <ul>
-                <li>
-                  <span class="icon_pin_alt"></span> 1012 Vesper Dr. Columbus,
-                  Georgia(GA), United States
-                </li>
-                <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-              </ul>
-            </div>
-            <div class="listing__item__text__info">
-              <div class="listing__item__text__info__left">
-                <img src="./resources/img/listing/list_small_icon-2.png" alt="" />
-                <span>Food & Drink</span>
-              </div>
-              <div class="listing__item__text__info__right closed">Closed</div>
-            </div>
-          </div>
-        </div>
-
-     
-	
-        <div class="listing__item">
-          <div
-            class="listing__item__pic set-bg"
-            data-setbg="./resources/img/listing/list-5.jpg"
-          >
-            <img src="./resources/img/listing/list_icon-5.png" alt="" />
-            <div class="listing__item__pic__tag hot_deal">Hot Deal</div>
-            <div class="listing__item__pic__btns">
-              <a href="#"><span class="icon_zoom-in_alt"></span></a>
-              <a href="#"><span class="icon_heart_alt"></span></a>
-            </div>
-          </div>
-          <div class="listing__item__text">
-            <div class="listing__item__text__inside">
-              <h5>Tortoise grilled on salt</h5>
-              <div class="listing__item__text__rating">
-                <div class="listing__item__rating__star">
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star-half_alt"></span>
-                </div>
-                <h6>$40 - $70</h6>
-              </div>
-              <ul>
-                <li>
-                  <span class="icon_pin_alt"></span> 236 Littleton St. New
-                  Philadelphia, Ohio, United States
-                </li>
-                <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-              </ul>
-            </div>
-            <div class="listing__item__text__info">
-              <div class="listing__item__text__info__left">
-                <img src="./resources/img/listing/list_small_icon-4.png" alt="" />
-                <span>Shopping</span>
-              </div>
-              <div class="listing__item__text__info__right">Open Now</div>
-            </div>
-          </div>
-        </div>
-      
-
-        <div class="listing__item">
-          <div
-            class="listing__item__pic set-bg"
-            data-setbg="./resources/img/listing/list-6.jpg"
-          >
-            <img src="./resources/img/listing/list_icon-6.png" alt="" />
-            <div class="listing__item__pic__tag">Popular</div>
-            <div class="listing__item__pic__btns">
-              <a href="#"><span class="icon_zoom-in_alt"></span></a>
-              <a href="#"><span class="icon_heart_alt"></span></a>
-            </div>
-          </div>
-          <div class="listing__item__text">
-            <div class="listing__item__text__inside">
-              <h5>Fish cooked with fishsauce</h5>
-              <div class="listing__item__text__rating">
-                <div class="listing__item__rating__star">
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star-half_alt"></span>
-                </div>
-                <h6>$40 - $70</h6>
-              </div>
-              <ul>
-                <li>
-                  <span class="icon_pin_alt"></span> 2604 E Drachman St. Tucson,
-                  Arizona, United States
-                </li>
-                <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-              </ul>
-            </div>
-            <div class="listing__item__text__info">
-              <div class="listing__item__text__info__left">
-                <img src="./resources/img/listing/list_small_icon-3.png" alt="" />
-                <span>Hotel</span>
-              </div>
-              <div class="listing__item__text__info__right">Open Now</div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
     <!-- Listing Section End -->
@@ -588,15 +460,27 @@
       //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       var geocoder = new daum.maps.services.Geocoder();
-
-      //DB adddress 에 있는 값이 들어와야함
-      var listData = [
-        "서울특별시 강남구 일원동 광평로 10길 15",
-        "서울특별시 강남구 일원동",
-      ];
-
-      //DB shop_name이 들어와야함
-      var listShop = ["집", "오벤또"];
+	
+      
+      
+     var listData=[];
+     var listShop=[];
+      
+   		//DB에 있는 shopAddress가 들어옴
+      $(".shopAddress").each(function name(params) {
+    		var shopName = $(this).html();
+    		
+    		  listData.push(shopName);
+      })
+      
+      
+      	//DB에 있는 shopTitle이 들어옴
+      $(".shopTitle").each(function name(params) {
+    		var shopTitle = $(this).html();
+    		
+    		  listShop.push(shopTitle);
+      })
+      
 
       listData.forEach(function (addr, index) {
         geocoder.addressSearch(addr, function (result, status) {
