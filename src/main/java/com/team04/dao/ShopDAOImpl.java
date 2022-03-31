@@ -18,10 +18,10 @@ public class ShopDAOImpl implements ShopDAO{
 	private SqlSessionTemplate mybatis;
 
 	@Override
-
-	public List<ShopVO> shopGetList(ShopVO vo) {
-		System.out.println("===> Mybatis shopGetList() 호출");
-		return mybatis.selectList("shopDAO.shopGetList", vo);
+	//가게리스트 페이지에 가게들 출력
+	public List<ShopVO> shopPageGetList(String query) {
+		System.out.println("===> Mybatis shopPageGetList() 호출");
+		return mybatis.selectList("shopDAO.shopPageGetList", query);
 	}
 
 	public void shopInsert(ShopVO shopVO) {

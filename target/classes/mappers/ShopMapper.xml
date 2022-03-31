@@ -7,16 +7,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <!-- 아직 미완성 필터창 검색값과인데 임의로 결과값을 넣음  -->
-<select id="shopGetList2">
-SELECT *
-FROM shop s, menu m
+<!-- parameter : 받아오는 값 || result : 보내는 값 -->
+<select id="shopPageGetList"  parameterType="String" resultType="ShopVO">
+
+select *
+from shop s
+where s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||'%'  or s.shop_title LIKE '%'||#{query}||'%' 
+
+
+
+<!-- SELECT s.shop_food shopFood, s.shop_address_si shopAddressSi, s.shop_address_gu shopAddressGu, s.shop_address_dong shopAddressDong, s.shop_price_range shopPriceRange   
+FROM shop s
 WHERE   s.shop_food = '한식'
         AND s.shop_address_si LIKE '%서울%'
            AND s.shop_address_gu LIKE '%강남%'
               AND s.shop_address_dong LIKE '%일원%'
-                 AND s.shop_price_range = '만원대'
+                 AND s.shop_price_range = '만원대' -->
 
 </select>
+
+
+
 
 	<!--  	
 		SQL 형태 : SELECT
@@ -48,7 +59,7 @@ WHERE   s.shop_food = '한식'
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
 		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
 		             , #{shopHoliday}, #{shopContent}
-		             , sysdate, sysdate
+		             , TO_DATE(SYSDATE, 'RRRR-MM-DD'), TO_DATE(SYSDATE, 'RRRR-MM-DD')
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
 		             , #{shopRealfname}
