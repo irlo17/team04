@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	/* 세션값 가져오기 (닉네임) */
+	request.setCharacterEncoding("UTF-8");
+	String id = (String) session.getAttribute("lognick"); 
+	request.getSession().setAttribute("id", id);  
+	System.out.println(id);
+%>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -162,7 +173,8 @@ li a {
 
 li a.active {
 	background-color: lightpink;
-	color: white;
+	color: black;
+	text-align: center;
 }
 
 li a:hover:not(.active) {
@@ -220,7 +232,7 @@ li.on {
 		<div class="filter__title">
 
 
-			<li><i class="fa fa-user"></i> <a class="active " href="#home">닉네임</a></li>
+			<li><i class="fa fa-user"></i> <a class="active" href="#home" >${sessionScope.id }</a></li>
 
 		</div>
 		<hr />
