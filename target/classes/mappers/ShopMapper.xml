@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="shopDAO">
 
 
-
 <!-- 아직 미완성 필터창 검색값과인데 임의로 결과값을 넣음  -->
 <select id="shopGetList2">
 SELECT *
