@@ -7,18 +7,35 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 
-	private String memberEmail;
-	private String memberNickname;
-	private String memberPassword;
-	private String memberName;
-	private String memberBirth;
-	private String memberTel;
+	private String memberEmail;		// 이메일
+	private String memberNickname;	// 닉네임
+	private String memberPassword;	// 비밀번호
+	private String memberName;		// 이름
+	private String memberBirth;		// 생년월일
+	private String memberTel;		// 휴대전화
 	private String memberFname;		// 파일명
 	private String memberRealfname; // 저장된 파일이름
 	
-	MultipartFile memberFile;
+	MultipartFile memberFile;		// 회원의 프로필 사진 mypageMember.jsp <input type="file" name="memberFile">
 	
+	// 기본 생성자
+	public MemberVO() {}
 
+	// 생성자
+	public MemberVO(String memberEmail, String memberNickname, String memberPassword, String memberName,
+			String memberBirth, String memberTel, String memberFname, String memberRealfname,
+			MultipartFile memberFile) {
+		super();
+		this.memberEmail = memberEmail;
+		this.memberNickname = memberNickname;
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.memberBirth = memberBirth;
+		this.memberTel = memberTel;
+		this.memberFname = memberFname;
+		this.memberRealfname = memberRealfname;
+		this.memberFile = memberFile;
+	}
 	
 	// getter, setter
 	public MultipartFile getMemberFile() {
@@ -33,14 +50,14 @@ public class MemberVO {
 		 */
 		if(!memberFile.isEmpty()) // 파일이 들어왔을 때만 작업
 		{
-			this.memberFname = memberFile.getOriginalFilename();
+			this.memberFname = memberFile.getOriginalFilename(); // 사용자가 올리는 파일명
 			
 			// 실제로 저장되는 파일명
-			UUID memberUuid = UUID.randomUUID();
-			memberRealfname = memberUuid.toString()+"_"+memberFname;
+			UUID memberUUID = UUID.randomUUID();
+			memberRealfname = memberUUID.toString()+"_"+memberFname;
 			
-			// 저장
-			File memberF = new File("C:\\spring\\webwork\\team04\\src\\main\\webapp\\resources\\upload\\"+memberRealfname);
+			// 저장 C:\Users\admin\Documents\GitHub\team04
+			File memberF = new File("C:\\Users\\admin\\Documents\\GitHub\\team04\\src\\main\\webapp\\resources\\upload\\"+memberRealfname);
 			
 			//예외처리 필수
 			try {
@@ -52,6 +69,7 @@ public class MemberVO {
 	}
 	
 	
+
 	public String getMemberEmail() {
 		return memberEmail;
 	}
