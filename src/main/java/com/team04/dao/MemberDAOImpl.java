@@ -23,7 +23,7 @@ public class MemberDAOImpl implements MemberDAO{
 	 */
 	@Override
 	public MemberVO emailCheck(MemberVO vo) {
-		System.out.println("===> MemberMapper emailCheck 호출");
+		System.out.println("===> MemberMapper emailCheck 호출 (이메일 중복 검색");
 		return memberMybatis.selectOne("memberDAO.emailCheck", vo);
 	}
 
@@ -81,6 +81,20 @@ public class MemberDAOImpl implements MemberDAO{
 	public int pwChange(MemberVO vo) {
 		System.out.println("===> MemberMapper pwChange 호출");
 		return memberMybatis.update("memberDAO.pwChange", vo);
+	}
+
+
+	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
+	 * 	- DB에서 이메일이 동일한 회원의 정보 찾기
+	 *  - MemberMapper의 #emailCheck 호출
+	 *  	-> 이메일의 중복을 검색하는 emailCheck와 쿼리문이 동일하기 때문
+	 * @param MemberVO vo (memberEmail)
+	 * @return MemberVO vo : 해당 회원의 레코드
+	 */
+	@Override
+	public MemberVO memberSearch(MemberVO vo) {
+		System.out.println("===> MemberMapper emailCheck 호출 (회원 정보 검색)");
+		return memberMybatis.selectOne("memberDAO.emailCheck", vo);
 	}
 
 }

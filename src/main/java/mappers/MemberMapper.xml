@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 이메일 중복 여부
 			- null O : 사용 가능한 이메일
 			- null X : 중복된 이메일 - 사용 불가능
+		마이페이지 회원정보에 출력될 회원의 레코드 검색
+			- 세션에 저장된 이메일을 조건으로 회원 검색
 	 -->
 	<select id="emailCheck"  resultType="MemberVO">
 		SELECT * FROM member
@@ -59,5 +61,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_email=#{memberEmail}
 		</where>
 	</update>
+	
 
 </mapper>

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,8 +20,11 @@ public class MemberController {
 		return step;
 	}
 	
+	
 	@Autowired
 	private MemberService memberService;
+	
+	
 	
 	/**	회원가입 
 	 * 	- 회원가입 form에 입력된 값들을 MemberVO에 넣고 넘기기
@@ -31,7 +35,9 @@ public class MemberController {
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
 		return "redirect:loginForm.do";
-	}
+	}//end of memberInsert()
+	
+	
 	
 	/**	email 중복 체크
 	 * 	- DB에 동일한 이메일이 있는지 확인
@@ -50,7 +56,9 @@ public class MemberController {
 		}
 		
 		return message;
-	}
+	}//end of emailCheck()
+	
+	
 	
 	/**	로그인 하기
 	 * 	- DB에 입력된 레코드 중에서 이메일과 패스워드가 같은 레코드 검색
@@ -69,17 +77,18 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}else{
 			System.out.println("로그인 성공");
-			System.out.println(result.getMemberEmail());
 			session.setAttribute("lognick", result.getMemberNickname());
 			session.setAttribute("logemail", result.getMemberEmail());
 			return "redirect:main.do";
 		}
-	}
+	}//end of loginCheck()
+	
+	
 	
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
 	 * @return
 	 * 		- 세션에 로그인 정보 X : loginForm.do로 이동
-	 * 		- 세션에 로그인 정보 O : 마이페이지로 이동
+	 * 		- 세션에 로그인 정보 O : 마이페이지(회원정보)로 이동
 	 */
 	@RequestMapping("login.do")
 	public String login(HttpSession session) {
@@ -89,9 +98,16 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}
 			// (2) 세션에 로그인 정보 O 
-			return "redirect:main.do";	// 현재 마이페이지가 없기 때문에 main으로 이동
+			return "redirect:mypageMember.do";	
 	}// end of login()
 	
+	
+	
+	/** 비밀번호 찾기 
+	 * 	- DB에 입력한 이메일, 이름, 휴대전화와 값이 같은 레코드가 있는지 검색
+	 * @param MemberVO vo
+	 * @return String message : "N"이면 존재하지 않는 회원 -> 비밀번호 재설정 불가능
+	 */
 	@RequestMapping(value="pwSearch.do", produces="application/text;charset=utf-8")
 	@ResponseBody
 	public String pwSearch(MemberVO vo, HttpSession session) {
@@ -101,16 +117,46 @@ public class MemberController {
 			// 회원정보가 없다는 뜻
 			message = "N";
 		}
+		
+		/*	존재하는 회원이면 해당 이메일을 세션에 저장
+				- 추후에 저장한 이메일을 비밀번호 변경에서 사용함 */
 		session.setAttribute("email", vo.getMemberEmail());
 		
 		return message;
-	}
+	}//end of pwSearch()
 	
+	
+	
+	/** 비밀번호 재설정
+	 *  - 로그인 -> 비밀번호 찾기 (회원정보 검색) -> 비밀번호 재설정 페이지가 나옴
+	 * @param MemberVO vo : 패스워드 입력값이 넘어옴
+	 * 		- session을 통해서 이메일 정보를 가져옴
+	 * @return 비밀번호 변경이 완료되면 로그인폼 페이지로 넘어감
+	 */
 	@RequestMapping("pwChange.do")
 	public String pwChange(MemberVO vo, HttpSession session) {
 		vo.setMemberEmail(session.getAttribute("email").toString());
 		memberService.pwChange(vo);
 		return "redirect:loginForm.do";
-	}
+	}//end of pwChange()
 	
-}
+	
+	
+	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
+	 * - DB에서 이메일이 동일한 회원의 정보 찾기
+	 * 		- HttpSession 로그인한 이메일의 정보
+	 * 		- Model 화면에 출력하기 위해
+	 * 		- MemberVO member 결과로 나온 레코드의 정보를 담음
+	 * 		- MemberVO vo 이메일의 정보를 담고 mapper로 이동
+	 * @return
+	 */
+	@RequestMapping("mypageMember.do")
+	public String mypageMember(MemberVO vo, HttpSession session, Model model) {
+		vo.setMemberEmail(session.getAttribute("logemail").toString());
+		System.out.println(vo.getMemberEmail());
+		MemberVO member = memberService.memberSearch(vo);
+		model.addAttribute("MemberVO", member);
+		return "mypageMember";
+	}//end of mypageMember()
+	
+}//end of class
