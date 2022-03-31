@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -367,7 +369,7 @@
 	
 	
       <div class="listing__list">
-      <c:forEach items="${shopList}" var="shop">
+      <c:forEach items="${shopPageList}" var="shop">
         <div class="listing__item">
           <!-- 여기에 img값 가지고와야함 동적으로 -->
           <div
@@ -381,7 +383,7 @@
           </div>
           <div class="listing__item__text">
             <div class="listing__item__text__inside">
-              <h5>${shop.shopTitle} </h5>
+              <h5 class="shopTitle">${shop.shopTitle} </h5>
               <div class="listing__item__text__rating">
                 <!-- 이쪽에 별 대신 맛평가 들어가야함-->
                 <div class="listing__item__rating__star">
@@ -396,7 +398,7 @@
               </div>
               <ul>
                 <!--주소 이름 가지고와야함 ㅅㅂ-->
-                <li><span class="icon_pin_alt"></span> ${shop.shopAddress} </li>
+                <span class="icon_pin_alt"></span><li class="shopAddress">${shop.shopAddress} </li>
                 <li><span class="icon_phone"></span> ${shop.shopTel}</li>
               </ul>
             </div>
@@ -458,15 +460,27 @@
       //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       var geocoder = new daum.maps.services.Geocoder();
-
-      //DB adddress 에 있는 값이 들어와야함
-      var listData = [
-        "서울특별시 강남구 일원동 광평로 10길 15",
-        "서울특별시 강남구 일원동",
-      ];
-
-      //DB shop_name이 들어와야함
-      var listShop = ["집", "오벤또"];
+	
+      
+      
+     var listData=[];
+     var listShop=[];
+      
+   		//DB에 있는 shopAddress가 들어옴
+      $(".shopAddress").each(function name(params) {
+    		var shopName = $(this).html();
+    		
+    		  listData.push(shopName);
+      })
+      
+      
+      	//DB에 있는 shopTitle이 들어옴
+      $(".shopTitle").each(function name(params) {
+    		var shopTitle = $(this).html();
+    		
+    		  listShop.push(shopTitle);
+      })
+      
 
       listData.forEach(function (addr, index) {
         geocoder.addressSearch(addr, function (result, status) {
