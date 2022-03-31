@@ -55,6 +55,12 @@
        });
        
        
+  /*      
+       $('.modi_dele_button').onclick(function() {
+		$(this).location.href='review'
+	})
+        */
+       
     
 </script>
 
@@ -118,11 +124,14 @@
 }
 /*수정, 삭제 버튼 오른쪽으로 옮기기*/
 .modi_dele_button1 {
-	margin-left: 283px;
+	margin-left: 378px;
 }
+
+
 
 .max-width1 {
 	max-width: 80%;
+	margin-top:65px;
 }
 
 /*가게명*/
@@ -290,21 +299,24 @@ li.on {
 						</div>
 					</div>
 					<div class="col-md-3 inline-block max-width1">
-						<form>
+						<form action= 'reviewUpdate.do?reviewNumber=${review.REVIEWNUMBER }' method="post">
 							<!-- to-do 이미지 사용자마다 다르게 해야함 -->
 							<div class="text-left img_button">
-								<img src="resources/img/face/1.png" width="25" height="auto">
+								<div><img src="resources/img/face/1.png" width="25" height="auto">
 								${review.REVIEWGRADE }
+								</div>
 
-
-								 <a href="reviewUpdate.do">
-								<button type="submit"
-									class="btn btn-primary modi_dele_button1 modi_dele_button" > 수정</button>  </a>
-									 <a href="reviewDelete.do"> <button class="btn btn-danger modi_dele_button">삭제</button> </a>
+								<div>
+								 <button type="submit" 
+									class="btn btn-primary modi_dele_button1 modi_dele_button" > 수정</button> 
+									 <a href="reviewDelete.do?reviewNumber=${review.REVIEWNUMBER }"><input type='button'class="btn btn-danger modi_dele_button" size='6' value="삭제"></a>
+									 </div>
 							</div>
 
-							<textarea class=" hb300">${review.REVIEWCONTENT}</textarea>
+							<textarea class=" hb300" name = 'reviewContent'>${review.REVIEWCONTENT}</textarea>
+							
 						</form>
+						
 					</div>
 				</div>
 			</c:forEach>

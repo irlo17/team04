@@ -5,18 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="reviewDAO">
 
-	<!-- 아직 미완성 -->
-	<update id="reviewUpdate" parameterType="ReviewVO">
 	
-		UPDATE review SET review_content= ${reviewContent} WHERE review_number = ${reviewNumber} and member_email = ${memberEmail 받아서 해야함} ;
+	<update id="reviewUpdate"  parameterType="hashmap" >
+	
+		UPDATE review SET review_content= '${reviewContent}' WHERE review_number = #{reviewNumber} and member_email = #{logemail} 
 	
 	</update>
 	
-	<!--  아직 미완성-->
-	<delete id="reviewDelete" parameterType="ReviewVO">
+	<!--  아직 미완성-->				<!-- 파라미터 타입 ReviewVO도 가능함 -->
+	<delete id="reviewDelete" parameterType="hashmap">
 	
-			DELETE FROM review WHERE email = ${email 받아서 해야함 세션} and 
-			review_number = ${reviewNumber};
+			DELETE FROM review WHERE member_email = #{logemail} and 
+			review_number = #{reviewNumber}
 			
 	</delete>
 	
