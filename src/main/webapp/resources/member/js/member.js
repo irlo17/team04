@@ -8,10 +8,13 @@ var RegexPW = /^[a-z0-9_-]{6,18}$/;
 var RegexName = /^[가-힣]+$/;
 var RegexTel = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{3,4})$/;
 
-//중복검사 확인 여부
+// 이메일 중복검사 확인 여부
 var emailCheak = false;
 
-/*
+// 에러박스 문구
+var blank = "필수 입력 사항입니다.";
+
+/*********************************************************************
 	이메일 중복 버튼 클릭 이벤트
 */
 $('#btn_emailCheak').click(function(){
@@ -21,7 +24,7 @@ $('#btn_emailCheak').click(function(){
 	// 입력값이 없을 때 에러박스
 	if(memberEmail == ''){
 
-		$('label[for="memberEmail"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberEmail"] .error_box').html(blank);
 		return false;
 
 	}
@@ -57,7 +60,7 @@ $('#btn_emailCheak').click(function(){
 }); // end of $('#btn_emailCheak').click
 
 
-/*
+/*********************************************************************
 	회원가입 버튼 클릭 -> 필수 입력 사항 + 유효성 검사
 */
 $('#btn_signUp').click(function(){
@@ -73,7 +76,7 @@ $('#btn_signUp').click(function(){
 	
 	/* 닉네임 */
 	if(memberNickname == ''){
-		$('label[for="memberNickname"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberNickname"] .error_box').html(blank);
 		$('#memberNickname').focus();
     		return;
 		}else{
@@ -91,7 +94,7 @@ $('#btn_signUp').click(function(){
 	
 	/* 이메일 */
 	if(memberEmail == ''){
-		$('label[for="memberEmail"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberEmail"] .error_box').html(blank);
 		$('#memberEmail').focus();
     		return;
 		}else{
@@ -108,7 +111,7 @@ $('#btn_signUp').click(function(){
 	
 	/* 비밀번호 */
 	if(memberPassword == ''){
-		$('label[for="memberPassword"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberPassword"] .error_box').html(blank);
 		$('#memberPassword').focus();
     		return;
 		}else{
@@ -117,7 +120,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영어 대소문자와 숫자를 포함하여 작성해주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문(대소문자)과 숫자를 혼합하여 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -142,7 +145,7 @@ $('#btn_signUp').click(function(){
 	
 	/* 이름 */
 	if(memberName == ''){
-		$('label[for="memberName"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberName"] .error_box').html(blank);
 		$('#memberName').focus();
     		return;
 		}else{
@@ -158,7 +161,7 @@ $('#btn_signUp').click(function(){
 		
 	/* 생년월일 */
 	if(memberBirth == ''){
-		$('label[for="memberBirth"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberBirth"] .error_box').html(blank);
 		$('#memberBirth').focus();
     		return;
 		}else{
@@ -169,7 +172,7 @@ $('#btn_signUp').click(function(){
 	
 	/* 휴대전화 */
 	if(memberTel == ''){
-		$('label[for="memberTel"] .error_box').html("필수 입력 사항입니다.");
+		$('label[for="memberTel"] .error_box').html(blank);
 		$('#memberTel').focus();
     		return false;
 		}else{
@@ -203,27 +206,26 @@ $('#btn_signUp').click(function(){
 		document.member_frm.submit();
 	}
 });
+/*********************************************************************
+	로그인 버튼 클릭
+*/
 $('#btnLogin').click(function(){
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
 	
 	/* 이메일 */
 	if(memberEmail == ''){
-		$('label[for="memberEmail"] .error_box').html("필수 입력 사항입니다.");
 		$('#memberEmail').focus();
     		return;
-		}else{
-		$('label[for="memberEmail"] .error_box').html("");
-		}	
+		}
 	
 	/* 비밀번호 */
 	if(memberPassword == ''){
-		$('label[for="memberPassword"] .error_box').html("필수 입력 사항입니다.");
 		$('#memberPassword').focus();
     		return;
-		}else{
-		$('label[for="memberPassword"] .error_box').html("");
 		}
+		
+	alert('로그인 성공!');
 	document.loginForm.submit();
 	
 }); //end of #btnLogin 

@@ -21,6 +21,7 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	private HttpSession mypageSess;
 	
 	/**	회원가입 
 	 * 	- 회원가입 form에 입력된 값들을 MemberVO에 넣고 넘기기
@@ -45,12 +46,13 @@ public class MemberController {
 		MemberVO result = memberService.emailCheck(vo);	// 사용가능한 이메일이면 null값이 넘어옴
 		String message = "";	// 이메일 사용 가능 여부를 담을 변수
 		
-		if(result != null) { // 검색되는 레코드가 있으면 이메일 사용 불가능
+		if(result != null) // 검색되는 레코드가 있으면 이메일 사용 불가능
+		{
 			message = "N";
-		}//end of if
+		}
 		
 		return message;
-	}//end of emailCheck()
+	}
 	
 	/**	로그인 하기
 	 * 	- DB에 입력된 레코드 중에서 이메일과 패스워드가 같은 레코드 검색
@@ -72,21 +74,23 @@ public class MemberController {
 			System.out.println(result.getMemberEmail());
 			session.setAttribute("lognick", result.getMemberNickname());
 			session.setAttribute("logemail", result.getMemberEmail());
-
 			return "redirect:main.do";
-		}//end of if
-	}// end of loginCheck()
+		}
+	}
 	
-	// main 페이지에서 .login-btn 버튼을 눌렀을 때
+	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
+	 * @return
+	 * 		- 세션에 로그인 정보 O : 마이페이지로 이동
+	 * 		- 세션에 로그인 정보 X : loginForm.do로 이동
+	 */
 	@RequestMapping("login.do")
 	public String login(HttpSession session) {
-
+		
 		if(session.getAttribute("lognick") != null) {
-			// (1) 세션에 로그인 정보가 있을 때 ("Y") : 마이페이지로 이동한다.
+			// (1) 세션에 로그인 정보 O 
 			return "redirect:main.do";	// 현재 마이페이지가 없기 때문에 main으로 이동
 		}
-		
-			// (2) 세션에 아무런 정보가 없을 때 : 로그인 창이 뜬다.
+			//(2) 세션에 로그인 정보 X 
 			return "redirect:loginForm.do";
 	}// end of login()
 	
