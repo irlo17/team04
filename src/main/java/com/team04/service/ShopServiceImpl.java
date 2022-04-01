@@ -16,9 +16,9 @@ public class ShopServiceImpl implements ShopService{
 	@Autowired
 	private ShopDAOImpl shopDAO;
 	
-	public List<ShopVO> shopGetList(ShopVO vo) {
+	public List<ShopVO> shopPageGetList(String query) {
 		
-		return shopDAO.shopGetList(vo);
+		return shopDAO.shopPageGetList(query);
 	}
 
 	/**

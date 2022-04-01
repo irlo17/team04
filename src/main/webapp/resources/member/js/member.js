@@ -48,9 +48,9 @@ $('#btn_emailCheak').click(function(){
     		if(result == 'Y'){
 	        		$('label[for="memberEmail"] .error_box').css('color','#28a745');
 	        		$('label[for="memberEmail"] .error_box').html("사용 가능한 이메일입니다.");
+	        		emailCheak = true;
 				}else{
 	        		$('label[for="memberEmail"] .error_box').html("사용할 수 없는 이메일입니다.");
-	        		emailCheak = true;
 				}
     	},
     	error : function(err){
@@ -311,4 +311,100 @@ $('#btnPwChange').click(function(){
 	
 }); // end of #btnPwChange
 
+$('#btnMemberUpdate').click(function(){
+	
+	// input에 입력된 값을 공백제거하고 변수에 담기
+	var memberNickname = $.trim($("#memberNickname").val());
+	var memberPassword = $.trim($("#memberPassword").val());
+	var passwordCheck = $.trim($("#passwordCheck").val());
+	var memberName = $.trim($("#memberName").val());
+	var memberBirth = $.trim($("#memberBirth").val());
+	var memberTel = $.trim($("#memberTel").val());
+	
+	
+	/* 닉네임 */
+	if(memberNickname == ''){
+		$('label[for="memberNickname"] .error_box').html(blank);
+		$('#memberNickname').focus();
+    		return;
+		}else{
+		$('label[for="memberNickname"] .error_box').html("");
+		}		
+	
+	if( !RegexNick.test(memberNickname) ){
+
+		$('label[for="memberNickname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
+		return;
+	}else{
+		$('label[for="memberNickname"] .error_box').html("");
+		}
+	
+	if(memberPassword != ""){
+	
+	/* 비밀번호 */
+
+	if( !RegexPW.test(memberPassword) ){
+
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문(대소문자)과 숫자를 혼합하여 작성해 주십시오.");
+		return;
+	}else{
+		$('label[for="memberPassword"] .error_box').html("");
+		}
+	
+	/* 비밀번호 재확인 */
+
+	/* 비밀번호 일치 여부 확인 */
+	if(memberPassword != passwordCheck){
+		$('label[for="passwordCheck"] .error_box').html("비밀번호가 일치하지 않습니다.");
+		$('#passwordCheck').focus();
+		return;
+	}
+	}// end of if(비밀번호 입력 여부)
+	
+	/* 이름 */
+	if(memberName == ''){
+		$('label[for="memberName"] .error_box').html(blank);
+		$('#memberName').focus();
+    		return;
+		}else{
+		$('label[for="memberName"] .error_box').html("");
+		}
+	if( !RegexName.test(memberName) ){
+
+		$('label[for="memberName"] .error_box').html("이름 형식이 올바르지 않습니다.");
+		return;
+	}else{
+		$('label[for="memberName"] .error_box').html("");
+		}
+		
+	/* 생년월일 */
+	if(memberBirth == ''){
+		$('label[for="memberBirth"] .error_box').html(blank);
+		$('#memberBirth').focus();
+    		return;
+		}else{
+		$('label[for="memberBirth"] .error_box').html("");
+		}
+	
+		
+	/* 휴대전화 */
+	if(memberTel == ''){
+		$('label[for="memberTel"] .error_box').html(blank);
+		$('#memberTel').focus();
+    		return false;
+		}else{
+		$('label[for="memberTel"] .error_box').html("");
+		}
+		
+	if( !RegexTel.test(memberTel) ){
+
+		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다.");
+		return;
+	}else{
+		$('label[for="memberTel"] .error_box').html("");
+		}
+	
+	
+	 document.memberUpdateForm.submit();
+})
 

@@ -28,4 +28,14 @@ public interface MemberDAO {
 	 *  - DB에 동일한 이메일을 가진 회원의 비밀번호를 변경 
 	 */
 	int pwChange(MemberVO vo);
+	
+	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
+	 * - DB에서 이메일이 동일한 회원의 정보 찾기
+	 */
+	MemberVO memberSearch(MemberVO vo);
+	
+	/**	회원 정보 수정
+	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 */
+	int memberUpdate(MemberVO vo);
 }

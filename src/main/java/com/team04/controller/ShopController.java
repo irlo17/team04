@@ -2,9 +2,12 @@ package com.team04.controller;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,7 +20,8 @@ import com.team04.service.ShopService;
 // Shop(가게 테이블) Controller 
 @Controller
 public class ShopController {
-
+	
+	
 	// ShopService내에 있는 함수를 사용하기 위한 멤버변수 선언
 	@Autowired
 	private ShopService shopService;
@@ -39,7 +43,7 @@ public class ShopController {
 		List<ShopVO> list = shopService.shopGetListManager();
 		m.addAttribute("shopListManager", list);
 		return "shopListManager";
-	}
+
 	
 	/**
 	 * 요청 : shopModifyFormManager.do
@@ -91,6 +95,7 @@ public class ShopController {
 	}
 	
 	
+
 	@RequestMapping("shopUpdateManager.do")
 	public String shopUpdateManager(ShopVO shopVO) {
 		
@@ -98,11 +103,12 @@ public class ShopController {
 	}
 
 	//가게 리스트 출력
+	//가게 리스트페이지에서 가게 출력
 	@RequestMapping("listing.do")
-	public String shopList(ShopVO vo, Model m) {
+	public String shopPageList(String query, ModelMap m) {
 		
-		List<ShopVO> list = shopService.shopGetList(vo);
-		m.addAttribute("shopList", list); //jsp쪽으로 보내는 키값
+		List<ShopVO> list = shopService.shopPageGetList(query);
+		m.addAttribute("shopPageList", list); //jsp쪽으로 보내는 키값
 		return "listing";
 	}
 
