@@ -398,7 +398,7 @@
               </div>
               <ul>
                 <!--주소 이름 가지고와야함 ㅅㅂ-->
-                <span class="icon_pin_alt"></span><li class="shopAddress">${shop.shopAddress} </li>
+                <li class="shopAddress"><span class="icon_pin_alt"></span>${shop.shopAddress} </li>
                 <li><span class="icon_phone"></span> ${shop.shopTel}</li>
               </ul>
             </div>
@@ -468,7 +468,7 @@
       
    		//DB에 있는 shopAddress가 들어옴
       $(".shopAddress").each(function name(params) {
-    		var shopName = $(this).html();
+    		var shopName = $(this).text();
     		
     		  listData.push(shopName);
       })
