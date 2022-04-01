@@ -93,11 +93,18 @@ public class ShopController {
 	}
 	
 	
-
+	/**
+	 * 요청 : shopUpdateManager.do
+	 * 메소드명 : shopUpdateManager()
+	 * 인자 : ShopVO shopVO (= 파라메터값 저장)
+	 * 리턴형 : String (= 뷰페이지명)
+	 * 사용 : ShopService에 있는 함수 shopUpdateManager()를 호출하여,
+	 * 		DB에 shopNumber가 맞는 데이터를 수정
+	 */
 	@RequestMapping("shopUpdateManager.do")
 	public String shopUpdateManager(ShopVO shopVO) {
-		
-		return "";
+		shopService.shopUpdateManager(shopVO);
+		return "redirect:shopListManager.do";
 	}
 
 	//가게 리스트 출력

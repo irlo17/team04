@@ -89,5 +89,25 @@ WHERE   s.shop_food = '한식'
 	 	SELECT * FROM shop
      	WHERE shop_number=#{shopNumber}
 	 </select>
+	 
+	 <!-- 
+		SQL 형태 : UPDATE
+		이름 : shopUpdateManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : 없음
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 수정
+	 -->
+	 <update id="shopUpdateManager">
+	 	UPDATE shop
+		SET shop_title=#{shopTitle}, shop_tel=#{shopTel}
+		       , shop_price_range=#{shopPriceRange}
+		       , shop_food=#{shopFood}, shop_park=#{shopPark}
+		       , shop_time=#{shopTime}
+		       , shop_holiday=#{shopHoliday}
+		       , shop_content=#{shopContent}
+		       , shop_modify_date=sysdate
+		       , shop_realfname=#{shopRealfname, jdbcType=VARCHAR}
+		WHERE shop_number=#{shopNumber}
+	 </update>
 
 </mapper>

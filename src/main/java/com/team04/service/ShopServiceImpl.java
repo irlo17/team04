@@ -55,9 +55,16 @@ public class ShopServiceImpl implements ShopService{
 		shopDAO.shopInsertManager(shopVO);
 	}
 
+	/**
+	 * 메소드명 : shopUpdateManager()
+	 * 인자 : ShopVO shopVO (= 파라메터 )
+	 * 리턴형 : 없음
+	 * 사용 : ShopDAO에 있는 함수 shopUpdateManager()를 호출하여,
+	 * 		shopNumber(PK)가 같은 데이터를 수정
+	 */
 	@Override
 	public void shopUpdateManager(ShopVO shopVO) {
-		
+		shopDAO.shopUpdateManager(shopVO);
 	}
 
 	/**

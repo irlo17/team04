@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>관리자페이지 - 회원리스트 - 가게수정</title>
+        <title>관리자페이지 - 가게리스트 - 가게수정</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
@@ -70,7 +70,7 @@
                        	value += $('#inputMenuPrice').val();
                        	value += '/><label for="inputMenuPrice">메뉴가격</label></div></div>';
                        	value += '<div class="col-md-2"><div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>';
-                       	value += '</div></div>';.
+                       	value += '</div></div>';
         				
         				$('.menuInner').append(value);
         				
@@ -159,7 +159,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4 jb-1000">가게 수정</h3></div>
                                     <div class="card-body">
                                     	<!-- form -->
-                                        <form action="shopUpdateManager.do" method="post" enctype="multipart/form-data">
+                                        <form action="shopUpdateManager.do?shopNumber=${ shopManager.shopNumber }" method="post" enctype="multipart/form-data">
                                         	<div class="form-floating mb-3">
                                                 <input class="form-control" id="inputShopName" type="text" placeholder="상호명" name="shopTitle" value="${ shopManager.shopTitle }"/>
                                                 <label for="inputShopName">상호명</label>
@@ -223,7 +223,7 @@
                                             </div>
                                             <div class="form-group mb-3">
 											    <label for="exampleInputFile" class="jb-600">파일 업로드</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											    <input type="file" id="exampleInputFile" name="shopFile" value="${ shopManager.shopFile }">
+											    <input type="file" id="exampleInputFile" name="shopFile">
 											</div>
 											<!-- 메뉴 -->
 											<div class="row mb-3">

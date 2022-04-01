@@ -36,10 +36,17 @@ public class ShopDAOImpl implements ShopDAO{
 		mybatis.insert("shopDAO.shopInsertManager", shopVO);
 	}
 
+	/**
+	 * 메소드명 : shopUpdateManager()
+	 * 인자 : ShopVO shopVO (= 파라메터 저장)
+	 * 리턴형 : 없음
+	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopUpdateManager를 호출하여
+	 * 		DB에 shopNumber(PK)가 같은 것을 수정
+	 */
 	@Override
 	public void shopUpdateManager(ShopVO shopVO) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("===> mybatis shopUpdateManager()함수 호출");
+		mybatis.update("shopDAO.shopUpdateManager", shopVO);
 	}
 
 	/**
