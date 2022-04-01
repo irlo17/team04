@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="listingDetailsDAO">
+
+
+
+	<select id="listingDetailsGetList" parameterType="string" resultType="hashmap">
+<!-- 		SELECT *
+		FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
+		,r.REVIEW_GRADE, r.REVIEW_CONTENT
+		,r.SHOP_NUMBER, r.MEMBER_EMAIL
+		,r.REVIEW_FNAME, r.REVIEW_REALFNAME
+		,s.SHOP_TITLE, s.SHOP_TEL, s.SHOP_PRICE_RANGE
+		,s.SHOP_FOOD, s.SHOP_PARK, s.SHOP_TIME
+		,s.SHOP_HOLIDAY, s.SHOP_CONTENT, s.SHOP_CREATE_DATE
+		,s.SHOP_MODIFY_DATE, s.SHOP_ADDRESS, s.SHOP_ADDRESS_SI
+		,s.SHOP_ADDRESS_GU, s.SHOP_ADDRESS_DONG, s.SHOP_REALFNAME
+		FROM review r left outer join shop s
+		on r.shop_number = s.shop_number) rs
+		ON m.shop_number = rs.shop_number
+		WHERE m.shop_number = #{shopNumber } -->
+
+
+
+<!-- 리뷰 목록 -->
+SELECT rs.REVIEW_NUMBER reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
+,rs.REVIEW_CONTENT reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail 
+,rs.REVIEW_FNAME reviewFname, rs.REVIEW_REALFNAME reviewRealfname
+,rs.SHOP_TITLE shopTitle, rs.SHOP_TEL shopTel, rs.SHOP_PRICE_RANGE shopPriceRange
+,rs.SHOP_FOOD shopFood, rs.SHOP_PARK shopPark, rs.SHOP_TIME shopTime
+,rs.SHOP_HOLIDAY shopHoliday, rs.SHOP_CONTENT shopContent, rs.SHOP_CREATE_DATE shopCreateDate
+,rs.SHOP_MODIFY_DATE shopModifyDate, rs.SHOP_ADDRESS shopAddress, rs.SHOP_ADDRESS_SI shopAddressSi
+,rs.SHOP_ADDRESS_GU shopAddressGu, rs.SHOP_ADDRESS_DONG shopAddressDong, rs.SHOP_REALFNAME shopRealfname
+,m.menu_name menuName, m.menu_price menuPrice
+FROM menu m left outer join (SELECT  r.REVIEW_NUMBER, r.REVIEW_DATE
+                            ,r.REVIEW_GRADE, r.REVIEW_CONTENT
+                            ,r.SHOP_NUMBER, r.MEMBER_EMAIL
+                            ,r.REVIEW_FNAME, r.REVIEW_REALFNAME
+                            ,s.SHOP_TITLE, s.SHOP_TEL, s.SHOP_PRICE_RANGE
+                            ,s.SHOP_FOOD, s.SHOP_PARK, s.SHOP_TIME
+                            ,s.SHOP_HOLIDAY, s.SHOP_CONTENT, s.SHOP_CREATE_DATE
+                            ,s.SHOP_MODIFY_DATE, s.SHOP_ADDRESS, s.SHOP_ADDRESS_SI
+                            ,s.SHOP_ADDRESS_GU, s.SHOP_ADDRESS_DONG, s.SHOP_REALFNAME
+                            FROM review r left outer join shop s
+                            on r.shop_number = s.shop_number
+                            ORDER BY REVIEW_DATE DESC) rs
+ON m.shop_number = rs.shop_number
+WHERE m.shop_number = #{shopNumber }
+	</select>
+	
+	<select id="listingDetailsShopInfo" parameterType="string" resultType="hashmap">
+	
+	
+	
+	<!-- 가게 정보 가져오기 -->
+SELECT  s.SHOP_NUMBER shopNumber ,s.SHOP_TITLE shopTitle, s.SHOP_TEL shopTel, s.SHOP_PRICE_RANGE shopPriceRange
+		,s.SHOP_FOOD shopFood, s.SHOP_PARK shopPark, s.SHOP_TIME shopTime
+		,s.SHOP_HOLIDAY shopHoliday, s.SHOP_CONTENT shopContent, s.SHOP_CREATE_DATE shopCreateDate
+		,s.SHOP_MODIFY_DATE shopModifyDate, s.SHOP_ADDRESS shopAddress, s.SHOP_ADDRESS_SI shopAddressSi
+		,s.SHOP_ADDRESS_GU shopAddressGu, s.SHOP_ADDRESS_DONG shopAddressDong, s.SHOP_REALFNAME shopRealfname
+		,m.menu_name menuName, m.menu_price menuPrice
+FROM     menu m inner join shop s
+ON  m.shop_number = s.shop_number
+where s.SHOP_NUMBER  = #{shopNumber }
+	
+	</select>
+	
+	<insert id="listingDetailsReviewInsert" parameterType="hashmap">
+	
+	INSERT INTO review  ( review_number, review_date, review_grade, review_content , shop_number , member_email 
+							, review_fname , review_realfname ) 
+	VALUES ( review_number_seq.nextval , SYSDATE, '${reviewGrade}' , #{reviewContent,jdbcType=VARCHAR}  ,#{shopNumber}  , '${logemail}'  
+					, '${reviewFname}' , '${reviewRealfname}' )
+	
+	</insert>
+
+
+
+
+
+</mapper>
