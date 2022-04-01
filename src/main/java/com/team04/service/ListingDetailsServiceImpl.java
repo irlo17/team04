@@ -31,6 +31,11 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 		 listingDetailsDAO.listingDetailsReviewInsert(map);
 		 
 	 }
+	 
+	 public List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber) {
+		 
+		 return listingDetailsDAO.listingDetailsOnlyShopInfo(shopNumber);
+	 }
 		
 	
 }

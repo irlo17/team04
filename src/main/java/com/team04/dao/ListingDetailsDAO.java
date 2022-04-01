@@ -15,5 +15,7 @@ public interface ListingDetailsDAO {
 	
 	public void listingDetailsReviewInsert(HashMap map);
 		
-	
+	public List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber);
+		 
+	 
 }

@@ -14,4 +14,8 @@ public interface ListingDetailsService {
 	 
 	  void listingDetailsReviewInsert(HashMap map) ;
 	
+	  List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber);
+			 
+		 
+	  
 }
