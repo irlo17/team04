@@ -27,5 +27,17 @@
 	 	FROM menu
 	 	WHERE shop_number=#{shopNumber}
 	 </select>
+	 
+	 <!-- 
+		SQL 형태 : DELETE
+		이름 : menuDeleteManager
+		받는 값 (parameterType) : MenuVO
+		보내는 값(resultType) : 없음 (Default -> int)
+		사용 : Menu테이블에 담겨진 데이터들 중 shopNumber와 menuName이 같은 데이터 삭제
+	 -->
+	 <delete id="menuDeleteManager" parameterType="MenuVO">
+	 	DELETE FROM menu
+     	WHERE shop_number=#{shopNumber} AND menu_name=#{menuName}
+	 </delete>
 
 </mapper>

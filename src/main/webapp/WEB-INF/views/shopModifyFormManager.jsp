@@ -83,6 +83,10 @@
         		}); */
         		
         	}
+        	
+        	function menuDeleteManager(sNum, mName) {
+        		location.href="menuDeleteManager.do?shopNumber="+ sNum +"&menuName=" + mName;
+        	}
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -245,7 +249,7 @@
 	                                           <c:forEach items="${ menuListManager }" var="menuManager">
 	                                           <div class="row mb-3">
 												<div class="col-md-1">
-													<label class="jb-600"></label>
+													<label class="jb-600"><input type="hidden" value="${ menuManager.shopNumber }"/></label>
 												</div>
 	                                               <div class="col-md-5">
 	                                                   <div class="form-floating mb-3 mb-md-0">
@@ -260,7 +264,7 @@
 	                                                   </div>
 	                                               </div>
 	                                               <div class="col-md-2">
-	                                                   <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>
+	                                                   <div class="d-grid"><input type="button" class="btn btn-warning btn-lg btn-block" value="삭제" onclick="menuDeleteManager(${menuManager.shopNumber}, ${ menuManager.menuName })"/></div>
 	                                               </div>
 	                                           </div>
 	                                           </c:forEach>

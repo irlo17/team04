@@ -34,10 +34,16 @@ public class MenuServiceImpl implements MenuService {
 
 	}
 
+	/*
+	 * 함수명 : menuDeleteManager()
+	 * 인자 : MenuVO menuVO (= 메뉴 테이블 값이 담김)
+	 * 리턴값 : 없음
+	 * 사용 : MenuVO에 담긴 shopNumber와 menuName이 같은 데이터를 delete하도록
+	 * 		MenuDAO의 menuDeleteManager()함수 호출함
+	 */
 	@Override
 	public void menuDeleteManager(MenuVO menuVO) {
-		// TODO Auto-generated method stub
-
+		menuDAO.menuDeleteManager(menuVO);
 	}
 
 	@Override
@@ -46,6 +52,13 @@ public class MenuServiceImpl implements MenuService {
 		return null;
 	}
 
+	/*
+	 * 함수명 : menuGetListManager()
+	 * 인자 : MenuVO menuVO (= 메뉴 테이블 값이 담김)
+	 * 리턴값 : 없음
+	 * 사용 : MenuVO에 담긴 shopNumber와 같은 list검색 후 그 값을 리턴하는
+	 * 		MenuDAO의 menuGetListManager()함수 호출함
+	 */
 	@Override
 	public List<MenuVO> menuGetListManager(MenuVO menuVO) {
 		return menuDAO.menuGetListManager(menuVO);

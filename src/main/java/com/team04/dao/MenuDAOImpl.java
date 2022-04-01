@@ -16,6 +16,13 @@ public class MenuDAOImpl implements MenuDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	/*
+	 * 함수명 : menuInsertManager()
+	 * 인자 : MenuVO menuVO (= 파라메터 값 저장된 VO)
+	 * 리턴값 : 없음
+	 * 사용 : MenuVO에 담긴 내용을 DB에 insert하기 위해
+	 * 		menuMapper의 menuInsertManager호출함
+	 */
 	@Override
 	public void menuInsertManager(MenuVO menuVO) {
 		System.out.println("===> mybatis menuInsertManager()함수 호출");
@@ -28,10 +35,17 @@ public class MenuDAOImpl implements MenuDAO {
 
 	}
 
+	/*
+	 * 함수명 : menuDeleteManager()
+	 * 인자 : MenuVO menuVO (= 파라메터 값 저장된 VO)
+	 * 리턴값 : 없음
+	 * 사용 : MenuVO에 담긴 shopNumber와 menuName이 같은 데이터를 delete하기 위해
+	 * 		menuMapper의 menuDeleteManager호출함
+	 */
 	@Override
 	public void menuDeleteManager(MenuVO menuVO) {
-		// TODO Auto-generated method stub
-
+		System.out.println("===> mybatis menuDeleteManager()함수 호출");
+		mybatis.delete("menuDAO.menuDeleteManager", menuVO);
 	}
 
 	@Override
@@ -40,6 +54,13 @@ public class MenuDAOImpl implements MenuDAO {
 		return null;
 	}
 
+	/*
+	 * 함수명 : menuGetListManager()
+	 * 인자 : MenuVO menuVO (= 파라메터 값 저장된 VO)
+	 * 리턴값 : List<MenuVO> (= 검색 된 값)
+	 * 사용 : menuVO에 담긴 shopNumber와 같은 데이터를 검색하기위해
+	 * 		menuMapper의 menuGetListManager를 호출하여 List<MenuVO>에 담아 리턴하는 함수
+	 */
 	@Override
 	public List<MenuVO> menuGetListManager(MenuVO menuVO) {
 		System.out.println("===> mybatis menuGetListManager()함수 요청됨");

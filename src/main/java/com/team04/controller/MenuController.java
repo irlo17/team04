@@ -21,7 +21,7 @@ public class MenuController {
 	/*
 	 * 요청 : menuInsertManager.do
 	 * 메소드명 : menuInsertManager()
-	 * 인자 : 
+	 * 인자 : MenuVO menuVO (= 파라메터 저장)
 	 * 리턴형 : String (= 뷰페이지명)
 	 * 사용 : menu에 insert하도록 menuService의 menuInsertManager()함수 호출
 	 * 		그와 동시에 뷰페이지에 메뉴 전체 리스트를 보내줌
@@ -57,6 +57,21 @@ public class MenuController {
 //		 }
 //		 
 //		String a = jsonArray.toString();
+		
+		return "redirect:shopModifyFormManager.do?shopNumber=" + menuVO.getShopNumber();
+	}
+	
+	/*
+	 * 요청 : menuDeleteManager.do
+	 * 메소드명 : menuDeleteManager()
+	 * 인자 : MenuVO menuVO (= 파라메터 저장)
+	 * 리턴형 : String (= 뷰페이지명)
+	 * 사용 : menuService의 menuDeleteManager()함수 호출하여
+	 * 		shopNumber와 menuName가 같은 데이터를 삭제하고 수정페이지로 돌아감
+	 */
+	@RequestMapping("menuDeleteManager.do")
+	public String menuDeleteManager(MenuVO menuVO) {
+		menuService.menuDeleteManager(menuVO);
 		
 		return "redirect:shopModifyFormManager.do?shopNumber=" + menuVO.getShopNumber();
 	}
