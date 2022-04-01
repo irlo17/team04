@@ -48,5 +48,15 @@ form-group .form-control.form-nickname {
     object-fit: cover;
 }
 
+.modalMemberDelete{
+	position : absolute;
+	width : 50%;
+	height: 50%;
+	background-color: #f8fafb;
+	top : 200px;
+	left: 100px;
+	display: none;
+	
+}
 
 
