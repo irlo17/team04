@@ -30,7 +30,7 @@
 	  		<value>com.team04.domain.ShopVO</value>
 			<value>com.team04.domain.BookmarkVO</value>
 			<value>com.team04.domain.MemberVO</value>
-			<value>com.team04.domain.DefaultMylistVO</value>
+			<value>com.team04.domain.MylistVO</value>
 
 	  	</list>
 	  </property>
