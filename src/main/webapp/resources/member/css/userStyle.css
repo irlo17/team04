@@ -30,10 +30,8 @@ form-group .form-control.form-nickname {
 	color:#dc3545;
 }
 
-.form-block {
-	margin-top: 100px;
-	padding: 100px, 300px, 100px, 300px;
-	
+.formBlock{
+	padding: 300px;
 }
 
 .box {
@@ -47,16 +45,4 @@ form-group .form-control.form-nickname {
     height: 100%;
     object-fit: cover;
 }
-
-.modalMemberDelete{
-	position : absolute;
-	width : 50%;
-	height: 50%;
-	background-color: #f8fafb;
-	top : 200px;
-	left: 100px;
-	display: none;
-	
-}
-
 

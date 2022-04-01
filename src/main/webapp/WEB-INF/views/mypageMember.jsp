@@ -48,13 +48,9 @@
 <!-- member/css 추가 -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="./resources/member/fonts/icomoon/style.css">
-<link rel="stylesheet"
-	href="./resources/member/css/owl.carousel.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./resources/member/fonts/icomoon/style.css">
+<link rel="stylesheet" href="./resources/member/css/owl.carousel.min.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="./resources/member/css/bootstrap.min.css">
 <!-- Style -->
@@ -147,15 +143,10 @@
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-
 			<hr />
 			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->
-				<li><a href="logout.do">로그아웃</a></li>
+				<a href="logout.do">로그아웃</a>
 
 			</div>
 
@@ -165,7 +156,7 @@
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri col-md-12">
 		<div class="frm">
-			<div class="form-block">
+			<div class="form-block formBlock">
 				<h3>내 정보 수정</h3>
 
 				<!-- FORM -->
@@ -232,10 +223,6 @@
 					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
 					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
 					<input type="submit" value="회원탈퇴" id="btnMemberDelete" class="btn btn-pill text-white btn-block btn-danger">
-					<div class="modalMemberDelete">
-						<div class="modal_cotent" title="">
-						</div>
-					</div>
 				</form>
 			</div>
 		</div>
