@@ -15,7 +15,7 @@ import com.team04.domain.MemberVO;
 import com.team04.service.MemberService;
 
 /**
- * @author admin
+ * @author 안정은
  *
  */
 @Controller
