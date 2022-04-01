@@ -42,5 +42,14 @@ import com.team04.domain.MylistVO;
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);
 	
 	public List<MylistVO> bookmarkGetMylistDetail(String listNumber);
-	  
+	
+	public BookmarkVO bookmarkGetDetail(String listNumber);
+	
+	public void bookmarkModify (BookmarkVO vo) ;
+	
+	public void bookmarkDelete(String listNumber);
+	
+	public void mylistInsert(MylistVO vo);
+	
+	public void mylistDelete(MylistVO vo);
 	} 

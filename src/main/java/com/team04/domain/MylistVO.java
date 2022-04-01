@@ -13,6 +13,7 @@ public class MylistVO {
 	private String shopFood;		// 음식유형
 	private String shopAddressSi;
 	private String shopRealfname;
+	private String listName;
 	
 	
 	
@@ -22,7 +23,7 @@ public class MylistVO {
 	}
 	
 	public MylistVO(int listNumber, int shopNumber, String shopTitle, String shopTel, String shopPriceRange,
-			String shopFood, String shopAddressSi, String shopRealfname) {
+			String shopFood, String shopAddressSi, String shopRealfname, String listName) {
 		super();
 		this.listNumber = listNumber;
 		this.shopNumber = shopNumber;
@@ -32,6 +33,8 @@ public class MylistVO {
 		this.shopFood = shopFood;
 		this.shopAddressSi = shopAddressSi;
 		this.shopRealfname = shopRealfname;
+		this.listName = listName;
+		
 	}
 
 
@@ -109,6 +112,14 @@ public class MylistVO {
  
 	public void setShopRealfname(String shopRealfname) {
 		this.shopRealfname = shopRealfname;
+	}
+
+	public String getListName() {
+		return listName;
+	}
+
+	public void setListName(String listName) {
+		this.listName = listName;
 	}
 	
 	

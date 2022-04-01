@@ -50,4 +50,29 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public List<MylistVO> bookmarkGetMylistDetail(String listNumber){
 		return bookmarkDAO.bookmarkGetMylistDetail(listNumber);
 	}
+
+	
+	public BookmarkVO bookmarkGetDetail(String listNumber) {
+		System.out.println("service단 호출");
+		return bookmarkDAO.bookmarkGetDetail(listNumber);
+	} 
+	 
+	public void bookmarkModify(BookmarkVO vo) {
+		bookmarkDAO.bookmarkModify(vo);
+	}
+	
+	public void bookmarkDelete(String listNumber) {
+		bookmarkDAO.bookmarkDelete(listNumber);
+	}
+	
+	public void mylistInsert(MylistVO vo) {
+		bookmarkDAO.mylistInsert(vo);
+	}
+	
+	public void mylistDelete(MylistVO vo) {
+		bookmarkDAO.mylistDelete(vo);
+	}
+
+
+
 }

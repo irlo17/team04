@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<% String number=request.getParameter("listNumber"); %> 
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -79,7 +80,9 @@ position: relative; left:400px; }
 
 .blog__item__pic{width:555px;height:310px;}
 </style>
+<script type="text/javascript">
 
+</script>
 </head>
 
 <body class="ov-hid">
@@ -145,10 +148,11 @@ position: relative; left:400px; }
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
+	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
+	<a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
+	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a> 
+	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 	
-	<a href="UpdateLike.do?listNumber= ${bookmark.listNumber} " name="btn1" class="btn1"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
-	<a href="modify.html"><input type="button" value='리스트 수정' class="btn btn-success"></a>
-	<a href="detailmodify.html"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 	 </div>
 			<section class="blog-section spad">
         <div class="container">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -37,12 +39,6 @@
 <link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
 
-
-
-
-
-
-
 <style type="text/css">
 .nuguri {
 	/*  margin-top: 150px;
@@ -73,9 +69,8 @@
 	position: relative;
 	left:20%;
 }
-[type="checkbox"]{width:20px; height: 20px;}
-/* #my{margin-top:50px; 
-position: relative; left:400px; } */
+[type="checkbox"]{width:20px; height: 20px; }
+
 
 #btnl{padding:20px; float: right;}
 
@@ -93,12 +88,22 @@ position: relative; left:400px; } */
 $(function(){
     $("#popbutton").click(function(){
         $('div.modal').modal();
+    });
+    
+	$('#btnShopList').click(function(){
+     if($(".shopNumber").is(":checked")) {
+    	// 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
+     	
+    }; 
+	});
+    
+    $(".btn-warning").click(function(){
+    	document.fo1.submit();
+    	
+    	
     })
+    
 })
-
-
-
-
 
 </script>
 </head>
@@ -179,8 +184,8 @@ $(function(){
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<a href=""><input type="button" value='가게목록 삭제' class='btn btn-info'></a>
-	<button class="btn btn-info" data-target="#layerpop" data-toggle="modal">가게목록 이동</button>
+	<a href="mylistDelete?"><input type="button" value='가게목록 삭제' class='btn btn-info'></a>
+	<button class="btn btn-info" id="btnShopList" data-target="#layerpop" data-toggle="modal" >가게목록 이동</button>
 	 </div>
 			<section class="blog-section spad">
         <div class="container">
@@ -189,123 +194,32 @@ $(function(){
                 <div class="col-lg-12">
                    
                     <div class="row">
-                  <form id="fo1">
+                     <form id="" action="" method="post" name="numberList">
+                    <c:forEach items="${bookmarkModify }" var="bookmark" varStatus="status">
+                  
+                 
+                  <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
                          <div class="col-lg-6 col-md-6">
-                           <input type="checkbox">
                            
                             <div class="blog__item">
                             
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-1.jpg"></div>
+                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
                                 <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-burger"></i>서울</li>
-                                        <li>중식</li>
+                                    <ul class="blog__item__tags">  
+                                        <li><i class="fa-solid fa-utensils"></i>${bookmark.shopAddressSi}</li>
+                                        <li>${bookmark.shopFood}</li>
                                     </ul>
-                                    <h5>차이나당<a href="#"></a></h5>
+                                    <h5>${bookmark.shopTitle}<a href="#"></a></h5>
                                     <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> 호두마루</li>
-                                    </ul>
-                                </div>
-                            </div>
-                           
-                        </div> 
-                        </form>
-                        <form id="fo2">
-                        <div class="col-lg-6 col-md-6">
-                         <input type="checkbox">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-2.jpg">
-                                    <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-bowl-food"></i> Videos</li>
-                                        <li>Restaurant</li>
-                                    </ul>
-                                    <h5><a href="#">Florida Bar Removes Famous Dollar Bill Decor</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
+                                        <li><i class="fa-solid fa-square-phone"></i> ${bookmark.shopTel}</li>
+                                        <li><i class="fa-solid fa-won-sign"></i> ${bookmark.shopPriceRange }</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <form id="fo3">
-                        <div class="col-lg-6 col-md-6">
-                            <input type="checkbox">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-3.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-fish-fins"></i> Hotel</li>
-                                    </ul>
-                                    <h5><a href="#">'Junior detectives' help Roseville, Calif police</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                      </form>
-                      <form id="fo4">
-                        <div class="col-lg-6 col-md-6">
-                          <input type="checkbox">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-4.jpg">
-                                    <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-champagne-glasses"></i></i> Restaurant</li>
-                                    </ul>
-                                    <h5><a href="#">Dog Rescues Florida Woman After Her iPad Catches</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                        <form id="fo5">
-                        <div class="col-lg-6 col-md-6">
-                        <input type="checkbox">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-5.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-cheese"></i> Videos</li>
-                                    </ul>
-                                    <h5><a href="#">Citrus Heights Snack Man Helps Feed The Homeless</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                       </form>
-                       <form id="fo6"> 
-                        <div class="col-lg-6 col-md-6">
-                        <input type="checkbox">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-6.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-pizza-slice"></i> Travel</li>
-                                    </ul>
-                                    <h5><a href="#">Homeless woman’s viral subway opera performance</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
+                       
+                      </c:forEach>
+	                  </form>
                     </div>
                   
                 <div class="blog__pagination">
@@ -324,7 +238,7 @@ $(function(){
     </section>
 	</section>
 
-<!--modal  -->
+<!--modal------------------------------------------------------------------------------>
 <div class="modal fade" id="layerpop" >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -346,46 +260,24 @@ $(function(){
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 					<tr class="active">
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content Column content</td>
+						<th scope="row">&nbsp;&nbsp;<input type="radio" name="listNumber" value='${bookmark.listNumber }'></th>
+						<td>${bookmark.listName}</td>
 					</tr>
-					<tr>
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
-					<tr class="success">
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
-					<tr class="info">
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
-					<tr>
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
-					<tr class="warning">
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="num" value=''></th>
-						<td>Column content</td>
-					</tr>
+				</c:forEach>	
 
 				</tbody>
 			</table>   
-            
       </div>
       <!-- Footer -->
       <div class="modal-footer">
-        <input type="submit" value="이동" class="btn btn-warning">
+        <input type="button" value="이동" class="btn btn-warning">
       </div>
     </div>
   </div>
 </div>
+     
 
 
 

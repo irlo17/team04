@@ -67,5 +67,32 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistDetail",listNumber);
 	}
 	
+	public BookmarkVO bookmarkGetDetail(String listNumber) {
+		System.out.println("===> Mybatis bookmarkGetDetail() 호출"); 
+		return mybatis.selectOne("BookmarkDAO.bookmarkGetDetail",listNumber);
+	}
 	
+	@Override
+	public void bookmarkModify (BookmarkVO vo) {
+		System.out.println("===> Mybatis bookmarkModify() 호출"); 
+		mybatis.update("BookmarkDAO.bookmarkModify",vo);
+	}
+
+	public void bookmarkDelete(String listNumber) {
+		System.out.println("===> Mybatis bookmarkDelete() 호출"); 
+		mybatis.delete("BookmarkDAO.bookmarkDelete",listNumber);
+	}
+	
+	public void mylistInsert(MylistVO vo) {
+		System.out.println("===> Mybatis mylistInsert() 호출"); 
+		mybatis.insert("BookmarkDAO.mylistInsert",vo);		
+	}
+	
+	public void mylistDelete(MylistVO vo) {
+		System.out.println("===> Mybatis mylistDelete() 호출"); 
+		mybatis.delete("BookmarkDAO.mylistDelete",vo);		
+	}
+	
+	
+
 }

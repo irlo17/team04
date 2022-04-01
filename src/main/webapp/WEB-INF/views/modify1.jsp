@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -169,19 +170,19 @@ tr{text-align:left;}
 	<section class=" nice-scroll nuguri">
 			
 			
-	<form id='frm' name='frm' method='post' action= "BoardModify.jsp">
+	<form id='frm' name='frm' method='post' action= "ModifyListname.do">
 	<h4 id='mo'> <span class="glyphicon glyphicon-check" aria-hidden="true"></span>  리스트 수정하기 </h4><br/><br/>
 	<table id='tb'>
 	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-	&nbsp;&nbsp;제  목 : </td><td>&nbsp;<input id='tx' name="title" type='text' value='' ></td></tr>
-	
-	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;공개여부 : </td><td>&nbsp;&nbsp;<input type="radio" value='off' name='display' checked>공개&nbsp;&nbsp;
-			 <input type="radio" value='on' name='display'>비공개</td></tr>
-	</table>
+	&nbsp;&nbsp;제  목 : </td><td>&nbsp;<input id='tx' name="listName" type='text' value='${bookmark.listName}' /></td></tr>
+																					
+	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;공개여부 : </td><td>&nbsp;&nbsp;<input type="radio" value='yes' name='listDisplay' checked>공개&nbsp;&nbsp;
+			 <input type="radio" value='no' name='listDisplay'>비공개</td></tr>
+	</table> 
 	<br/><br/>
-			<input type='hidden' name="seq" value=""><br/><br/>
+			<input type='hidden' name="listNumber" value="${bookmark.listNumber}"><br/><br/>
 	<input type='submit' value='수정' class="btn btn-warning"> 
-	<input type='button' value='삭제' class="btn btn-danger">
+	<a href="deleteBookmark.do?listNumber=${bookmark.listNumber}"><input type='button' value='삭제' class="btn btn-danger"></a>
 	
 	
 	</form>

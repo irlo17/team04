@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
@@ -79,5 +80,57 @@ public class BookmarkController {
 		  model.addAttribute("bookmarkList", list); 
 		  return "mylistDetail";
 	  }
+	  
+	  @RequestMapping("modify1.do")
+	  public String bookmarkModify(String listNumber, Model model ) {
+		 
+			BookmarkVO vo= bookmarkService.bookmarkGetDetail(listNumber);
+			model.addAttribute("bookmark", vo); 
+		  
+		  return "modify1";
+	  }
+	  
+	  @RequestMapping("ModifyListname.do")
+	  public String bookmarkModifylistName(BookmarkVO vo) {
+		  
+		  System.out.println(vo.getListNumber());
+		  bookmarkService.bookmarkModify(vo);
+		  
+		  return "redirect:mylist.do";
+	  }
+	  
+	  @RequestMapping("deleteBookmark.do")
+	  public String bookmarkDelete(String listNumber) {
+		
+		  bookmarkService.bookmarkDelete(listNumber);
+		  
+		  return "redirect:mylist.do";
+	  }
+	  
+	  @RequestMapping("detailModify.do")
+	  public String mylistModifydetail(String listNumber,Model model,HttpSession session) {
+		  String memberEmail=(String)session.getAttribute("logemail");
+		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetail(listNumber);
+		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
+		  model.addAttribute("bookmarkModify", list1); 
+		  model.addAttribute("bookmarkList", list2); 
+		  
+		return("detailModify");  
+	  }
+	  
+	  @RequestMapping("mylistUpdate.do")
+	  public String mylistUpdate(MylistVO vo) {
+		  bookmarkService.mylistInsert(vo);
+		  
+		return "redirect:detailModify.do";  
+	  }
+	 
+	  @RequestMapping("mylistDelete.do")
+	  public String mylistDelete(MylistVO vo) {
+		  bookmarkService.mylistDelete(vo);
+		  
+			return "redirect:detailModify.do";  
+		  }
+	  
 	  
 }

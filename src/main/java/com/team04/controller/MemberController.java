@@ -15,10 +15,10 @@ import com.team04.service.MemberService;
 @Controller
 public class MemberController {
 	
-	@RequestMapping("/{step}.do")
-	public String viewPage(@PathVariable String step) {
-		return step;
-	}
+	/*
+	 * @RequestMapping("/{step}.do") public String viewPage(@PathVariable String
+	 * step) { return step; }
+	 */
 	
 	
 	@Autowired
