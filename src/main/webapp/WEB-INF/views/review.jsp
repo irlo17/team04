@@ -131,11 +131,13 @@
 .dogdog {
 	display: flex;
 	align-items: center;
-	margin-bottom: 3px
+	margin-bottom: 3px;
+	border-radius: 40px; 
+	background: ivory;
 }
 /*수정, 삭제 버튼 오른쪽으로 옮기기*/
 .modi_dele_button1 {
-	margin-left: 378px;
+	margin-left: 370px;
 }
 
 
@@ -307,7 +309,19 @@ li.on {
 						<div style="font-weight: bold; font-size: 1.5em;"
 							class="shop_name">가게명: ${review.SHOPTITLE}</div>
 						<div class="review_img">
-							<img src="resources/img/listing/list-4.jpg" width="450">
+						
+						<c:set var="email" value="${sessionScope.logemail}" />
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.logemail eq review.MEMBEREMAIL}">
+                                        <img width="350" height="300"  src="resources/reviewUpload/${review.REVIEWFNAME }">
+                                        </c:when>
+                                        <c:otherwise>
+                                      
+                                        </c:otherwise>
+                                   </c:choose>
+						
+							
+							
 						</div>
 					</div>
 					<div class="col-md-3 inline-block max-width1">

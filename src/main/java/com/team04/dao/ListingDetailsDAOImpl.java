@@ -34,7 +34,10 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO{
 				mybatis.insert("listingDetailsDAO.listingDetailsReviewInsert",map);
 			}
 	
-	
+			public List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber) {
+				 
+				return  mybatis.selectList("listingDetailsDAO.listingDetailsOnlyShopInfo",shopNumber);
+			 }
 	
 	
 }
