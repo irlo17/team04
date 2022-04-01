@@ -160,4 +160,18 @@ public class MemberController {
 		return "mypageMember";
 	}//end of mypageMember()
 	
+	
+	
+	
+	/**	회원 정보 수정
+	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 * @param MemberVO vo
+	 * @return mypageMember.애
+	 */
+	@RequestMapping("memberUpdate.do")
+	public String memberUpdate(MemberVO vo) {
+		memberService.memberUpdate(vo);
+		return "redirect:mypageMember.do";
+	}//end if memberUpdate()
+	
 }//end of class
