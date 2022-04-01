@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<% String number=request.getParameter("listNumber"); %> 
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,6 +27,7 @@
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/flaticon.css" type="text/css">
@@ -73,8 +76,13 @@
 position: relative; left:400px; }
 #btnl{padding:20px; float: right;}
 .fa-solid{font-size: 20px;}
-</style>
+.glyphicon{color:red; font-size:30px; right:20px;}
 
+.blog__item__pic{width:555px;height:310px;}
+</style>
+<script type="text/javascript">
+
+</script>
 </head>
 
 <body class="ov-hid">
@@ -140,8 +148,11 @@ position: relative; left:400px; }
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<a href="modify.html"><input type="button" value='리스트 수정' class="btn btn-success"></a>
-	<a href="detailmodify.html"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
+	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
+	<a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
+	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a> 
+	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
+	
 	 </div>
 			<section class="blog-section spad">
         <div class="container">
@@ -149,102 +160,24 @@ position: relative; left:400px; }
                 <div class="col-lg-12">
                     
                     <div class="row">
+                    <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-1.jpg"></div>
+                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
                                 <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-burger"></i>서울</li>
-                                        <li>중식</li>
+                                    <ul class="blog__item__tags">  
+                                        <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
+                                        <li>${bookmark.shopFood}</li>
                                     </ul>
-                                    <h5>차이나당<a href="#"></a></h5>
+                                    <h5>${bookmark.shopTitle}<a href="#"></a></h5>
                                     <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> 호두마루</li>
+                                        <li><i class="fa-solid fa-square-phone"></i> ${bookmark.shopTel}</li>
+                                        <li><i class="fa-solid fa-won-sign"></i></i> ${bookmark.shopPriceRange }</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-2.jpg">
-                                    <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-bowl-food"></i> Videos</li>
-                                        <li>Restaurant</li>
-                                    </ul>
-                                    <h5><a href="#">Florida Bar Removes Famous Dollar Bill Decor</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-3.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-fish-fins"></i> Hotel</li>
-                                    </ul>
-                                    <h5><a href="#">'Junior detectives' help Roseville, Calif police</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-4.jpg">
-                                    <a href="https://www.youtube.com/watch?v=8EJ3zbKTWQ8" class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                </div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-champagne-glasses"></i></i> Restaurant</li>
-                                    </ul>
-                                    <h5><a href="#">Dog Rescues Florida Woman After Her iPad Catches</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-5.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-cheese"></i> Videos</li>
-                                    </ul>
-                                    <h5><a href="#">Citrus Heights Snack Man Helps Feed The Homeless</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="img/blog/bp-6.jpg"></div>
-                                <div class="blog__item__text">
-                                    <ul class="blog__item__tags">
-                                        <li><i class="fa-solid fa-pizza-slice"></i> Travel</li>
-                                    </ul>
-                                    <h5><a href="#">Homeless woman’s viral subway opera performance</a></h5>
-                                    <ul class="blog__item__widget">
-                                        <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                        <li><i class="fa fa-user"></i> John Smith</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                      </c:forEach>
                     </div>
                 <div class="blog__pagination">
                         <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
@@ -271,6 +204,7 @@ position: relative; left:400px; }
 
 
 	<!-- Js Plugins -->
+	<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
 	<script src="./resources/js/jquery-3.3.1.min.js"></script>
 	<script src="./resources/js/bootstrap.min.js"></script>
 	<script src="./resources/js/jquery.nice-select.min.js"></script>
@@ -281,7 +215,7 @@ position: relative; left:400px; }
 	<script src="./resources/js/jquery.slicknav.js"></script>
 	<script src="./resources/js/owl.carousel.min.js"></script>
 	<script src="./resources/js/main.js"></script>
-<script src="https://kit.fontawesome.com/2173f645ed.js" crossorigin="anonymous"></script>
+
 
 
 </body>

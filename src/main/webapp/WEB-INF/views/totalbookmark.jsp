@@ -56,6 +56,7 @@
 	left:35%; width:500px; margin-top:300px;}
 	.form{position:relative; left:35%}
 	td{text-align: center;}
+	.row100 head{font-size: 20px;}
 	</style>
 	
 </head>
@@ -144,7 +145,6 @@
 									<td class="cell100 column2"><c:out value="${bookmark.listName }"/></td>
 									<td class="cell100 column3">${bookmark.memberNickname }</td>
 									<td class="cell100 column4">${bookmark.listLike }</td>
-									<td class="cell100 column5"><a href=" UpdateLike.do?listNumber=${bookmark.listNumber} " name="btn" class="btn"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a></td>
 								</tr>
 							</c:forEach>
 								
@@ -232,7 +232,7 @@
 			})
 		});
 		
-		$('.glyphicon-heart-empty').click(function(){	
+		/* $('.glyphicon-heart-empty').click(function(){	
 			alert('ok')
 	
 		 $(this).removeClass("glyphicon-heart-empty"); 
@@ -242,7 +242,7 @@
 		
 		
 		
-		} )	
+		} )	 */
 	
 	
 	

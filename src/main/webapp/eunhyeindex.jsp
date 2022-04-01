@@ -15,6 +15,7 @@
 <a href='mylistDetail.do'>나의 즐겨찾기 상세</a><hr/>
 <a href='detailModify.do'>상세페이지 수정</a><hr/>
 <a href='totalbookmark.do'>모두의 즐겨찾기</a><hr/>
+<a href='modify1.do?listNumber=2'>리스트명 수정</a><hr/>
 <hr/>
 
 

@@ -30,10 +30,8 @@ form-group .form-control.form-nickname {
 	color:#dc3545;
 }
 
-.form-block {
-	margin-top: 100px;
-	padding: 100px, 300px, 100px, 300px;
-	
+.formBlock{
+	padding: 300px;
 }
 
 .box {
@@ -48,5 +46,7 @@ form-group .form-control.form-nickname {
     object-fit: cover;
 }
 
-
+.formInt{
+	border-bottom: 1px solid #ccc;
+}
 
