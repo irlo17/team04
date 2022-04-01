@@ -1,5 +1,6 @@
 package com.team04.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 	 public List<ShopVO> listingDetailsShopInfo(String shopNumber){
 		 
 		 return listingDetailsDAO.listingDetailsShopInfo(shopNumber);
+	 }
+	 
+	 public void listingDetailsReviewInsert(HashMap map) {
+		 listingDetailsDAO.listingDetailsReviewInsert(map);
+		 
 	 }
 		
 	
