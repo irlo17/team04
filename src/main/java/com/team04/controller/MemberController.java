@@ -1,5 +1,6 @@
 package com.team04.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,19 +8,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team04.domain.MemberVO;
 import com.team04.service.MemberService;
 
+/**
+ * @author admin
+ *
+ */
 @Controller
 public class MemberController {
 	
-	@RequestMapping("/{step}.do")
-	public String viewPage(@PathVariable String step) {
-		return step;
-	}
 	
+	  @RequestMapping("/{step}.do")
+	  public String viewPage(@PathVariable String step) { 
+		  return step; 
+		  }
+	 
 	
 	@Autowired
 	private MemberService memberService;
@@ -34,7 +41,9 @@ public class MemberController {
 	@RequestMapping("memberInsert.do")
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
+		
 		return "redirect:loginForm.do";
+	
 	}//end of memberInsert()
 	
 	
@@ -50,10 +59,10 @@ public class MemberController {
 		MemberVO result = memberService.emailCheck(vo);	// 사용가능한 이메일이면 null값이 넘어옴
 		String message = "";	// 이메일 사용 가능 여부를 담을 변수
 		
-		if(result == null) // 검색되는 레코드가 없으면 이메일 사용 가능
-		{
+		if(result == null) { // 검색되는 레코드가 없으면 이메일 사용 가능
+		
 			message = "Y";
-		}
+		}// end of if
 		
 		return message;
 	}//end of emailCheck()
@@ -75,12 +84,15 @@ public class MemberController {
 		if(result == null){
 			System.out.println("로그인 실패");
 			return "redirect:loginForm.do";
+		
 		}else{
 			System.out.println("로그인 성공");
 			session.setAttribute("lognick", result.getMemberNickname());
 			session.setAttribute("logemail", result.getMemberEmail());
+		
 			return "redirect:main.do";
-		}
+		}//end of if
+		
 	}//end of loginCheck()
 	
 	
@@ -99,6 +111,7 @@ public class MemberController {
 		}
 			// (2) 세션에 로그인 정보 O 
 			return "redirect:mypageMember.do";	
+	
 	}// end of login()
 	
 	
@@ -123,6 +136,7 @@ public class MemberController {
 		session.setAttribute("email", vo.getMemberEmail());
 		
 		return message;
+	
 	}//end of pwSearch()
 	
 	
@@ -137,7 +151,9 @@ public class MemberController {
 	public String pwChange(MemberVO vo, HttpSession session) {
 		vo.setMemberEmail(session.getAttribute("email").toString());
 		memberService.pwChange(vo);
+	
 		return "redirect:loginForm.do";
+	
 	}//end of pwChange()
 	
 	
@@ -156,7 +172,9 @@ public class MemberController {
 		System.out.println(vo.getMemberEmail());
 		MemberVO member = memberService.memberSearch(vo);
 		model.addAttribute("MemberVO", member);
+	
 		return "mypageMember";
+	
 	}//end of mypageMember()
 	
 	
@@ -165,12 +183,51 @@ public class MemberController {
 	/**	회원 정보 수정
 	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
 	 * @param MemberVO vo
-	 * @return mypageMember.애
+	 * @return mypageMember.do
 	 */
 	@RequestMapping("memberUpdate.do")
 	public String memberUpdate(MemberVO vo) {
 		memberService.memberUpdate(vo);
+		
 		return "redirect:mypageMember.do";
+	
 	}//end if memberUpdate()
+	
+	
+	
+	/** 로그아웃
+	 * 	- 세션에 저장된 회원의 이메일과 닉네임을 삭제
+	 * @return 메인 페이지로 이동
+	 */
+	@RequestMapping(value="logout.do", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("logemail") + "님 로그아웃");
+		session.invalidate();
+		
+		return "main";
+		
+	}//end of logout()
+	
+	
+	
+	/**
+	 * @param MemberVO vo 
+	 * 			- input hidden으로 넘어온 이메일과 패스워드 정보로 회원의 레코드 삭제
+	 * 			- 세션에 저장된 로그인 정보 삭제
+	 * @return 메일 페이지로 이동
+	 */
+	@RequestMapping("memberDelete.do")
+	public String memberDelete(MemberVO vo,HttpServletRequest request) {
+		memberService.memberDelete(vo);
+		System.out.println(vo.getMemberEmail() + "님 회원 탈퇴 성공");
+		HttpSession session = request.getSession();
+		session.invalidate(); // 세션에 저장된 로그인 정보를 삭제
+		
+		return "main";	// 회원 탈퇴 시 메인 페이지로 이동
+		
+	}//end of memberDelete()
+	
+	
 	
 }//end of class

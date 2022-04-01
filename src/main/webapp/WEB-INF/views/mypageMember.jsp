@@ -135,6 +135,29 @@
 
 		</div>
 
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+			<hr />
+			<div class="cate_4">
+				<!--  <h4>로그아웃</h4>-->
+				<li><a href="logout.do">로그아웃</a></li>
+
+			</div>
 
 	</div>
 	<!-- Filter End -->
@@ -198,10 +221,21 @@
 						<input type="file" class="form-control" id="memberFile" name="memberFile" required> <span class="error_box"></span>
 					</div>
 
-
-					<input type="button" value="회원정보수정" id="btnMemberUpdate"
-						class="btn btn-pill text-white btn-block btn-danger">
-
+					<input type="button" value="회원정보수정" id="btnMemberUpdate" class="btn btn-pill text-white btn-block btn-danger">
+					<br/>
+					<br/>
+					<br/>
+					
+					
+				</form>
+				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
+					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
+					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
+					<input type="submit" value="회원탈퇴" id="btnMemberDelete" class="btn btn-pill text-white btn-block btn-danger">
+					<div class="modalMemberDelete">
+						<div class="modal_cotent" title="">
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

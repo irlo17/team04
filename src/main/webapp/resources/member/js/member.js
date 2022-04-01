@@ -406,5 +406,8 @@ $('#btnMemberUpdate').click(function(){
 	
 	
 	 document.memberUpdateForm.submit();
+}) //end of #btnMemberUpdate
+$('#btnMemberDelete').click(function(){
+  	alert('확인');
+	$('.modalMemberDelete').fadeIn()
 })
-

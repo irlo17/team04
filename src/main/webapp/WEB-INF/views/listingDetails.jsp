@@ -3,6 +3,13 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
     
+    <%
+    	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+    %>
+   
+    
+    
+    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -63,6 +70,9 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
             
         });
         
+     /*    var selected = $('#gradeSelect option:selected').val(); */
+        
+     /*    console.log($('#gradeSelect option:selected').val()); */
         
         
        
@@ -246,28 +256,27 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         </c:forEach>
                         <div class="listing__details__review">
                             <h4>리뷰 작성</h4>
-                            <form action="#" method="post">
+                            <form action="reviewInsert.do?" method="post" enctype="multipart/form-data">
+                            <input type ='hidden'  name= 'shopNumber' value='<%=shopNumber %>'/>
                                <!-- <input type="text" placeholder="Name">
                                 <input type="text" placeholder="Email">-->
-                                <textarea placeholder="Review"></textarea>
+                                <textarea placeholder="Review" name = 'reviewContent'></textarea>
                                 
                                 
-                                <select name=''>
-                                  <option value='' selected>-- 맛평가 --</option>
-                                  <option value=''>맛있어요</option>
-                                  <option value=''>보통이에요</option>
-                                  <option value=''>맛없어요</option>
+                                <select name='reviewGrade' id='gradeSelect'>
+                                  <option value='맛있어요' selected>-- 맛평가 --</option>
+                                  <option value='맛있어요'>맛있어요</option>
+                                  <option value='보통이에요'>보통이에요</option>
+                                  <option value='맛없어요'>맛없어요</option>
                                 </select>
                                 
                       <br/><br/>          
                       <br/><br/>          
                             
 					<h4>add image</h4>
-					<input type="file" name='file' accept= 'image/*'
-					 bgcolor="orange">
-				
+				<input type="file" name='file'  accept= 'image/*' />
                                 
-                                <button type="submit" class="site-btn">Submit Now</button>
+                                <button type="submit" class="site-btn">작성</button>
                             </form>
                         </div>
                     </div>

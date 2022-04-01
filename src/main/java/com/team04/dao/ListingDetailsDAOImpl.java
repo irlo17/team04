@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,6 +29,10 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO{
 		 return mybatis.selectList("listingDetailsDAO.listingDetailsShopInfo",shopNumber);
 	 }
 		
+			
+			public void listingDetailsReviewInsert(HashMap map) {
+				mybatis.insert("listingDetailsDAO.listingDetailsReviewInsert",map);
+			}
 	
 	
 	
