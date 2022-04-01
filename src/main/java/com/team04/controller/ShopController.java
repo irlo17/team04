@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team04.domain.MenuVO;
 import com.team04.domain.ShopVO;
+import com.team04.service.MenuService;
 import com.team04.service.ShopService;
-import com.team04.service.ShopServiceImpl;
 
 
 // Shop(가게 테이블) Controller 
@@ -20,6 +21,10 @@ public class ShopController {
 	// ShopService내에 있는 함수를 사용하기 위한 멤버변수 선언
 	@Autowired
 	private ShopService shopService;
+	
+	// MenuService내에 있는 함수를 사용하기 위한 멤버변수 선언
+	@Autowired
+	private MenuService menuService;
 			
 	/**
 	 * 요청 : shopListManager.do
@@ -47,6 +52,9 @@ public class ShopController {
 	@RequestMapping(value="shopModifyFormManager.do", method=RequestMethod.GET)
 	public String shopModifyFormManager(ShopVO shopVO, Model m) {
 		m.addAttribute("shopManager", shopService.shopGetManager(shopVO));
+		MenuVO menuVO = new MenuVO();
+		menuVO.setShopNumber(shopVO.getShopNumber());
+		m.addAttribute("menuListManager", menuService.menuGetListManager(menuVO));
 		return "shopModifyFormManager";
 	}
 	
@@ -80,6 +88,13 @@ public class ShopController {
 		shopService.shopDeleteManager(shopVO);
 		
 		return "redirect:shopListManager.do";
+	}
+	
+	
+	@RequestMapping("shopUpdateManager.do")
+	public String shopUpdateManager(ShopVO shopVO) {
+		
+		return "";
 	}
 
 	//가게 리스트 출력

@@ -8,18 +8,18 @@ import com.team04.domain.MenuVO;
 public interface MenuDAO {
 
 	// 메뉴 추가
-	void menuInsert(MenuVO menuVO);
+	void menuInsertManager(MenuVO menuVO);
 	
 	// 메뉴 수정
-	void menuUpdate(MenuVO menuVO);
+	void menuUpdateManager(MenuVO menuVO);
 	
 	// 메뉴 삭제
-	void menuDelete(MenuVO menuVO);
+	void menuDeleteManager(MenuVO menuVO);
 	
 	// 메뉴 상세 조회
-	MenuVO menuGet(MenuVO menuVO);
+	MenuVO menuGetManager(MenuVO menuVO);
 	
 	// 메뉴 전체 리스트 조회
-	List<MenuVO> menuGetList(MenuVO menuVO);
+	List<MenuVO> menuGetListManager(MenuVO menuVO);
 	
 }

@@ -17,6 +17,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
+        
         <!-- 내부 CSS -->
         <style type="text/css">
         	.jb-600 {
@@ -31,6 +32,35 @@
         </style>
         
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- 내부 JS -->
+        <script type="text/javascript">
+        	function menuInsertManager(sNum) {
+        		//alert("확인");
+        		//var param = {shopNumber : sNum, menuName : $("#inputMenuName").val(), menuPrice : $("#inputMenuPrice").val()};
+        		var mName = $("#inputMenuName").val();
+        		var mPrice = $("#inputMenuPrice").val();
+        		$.ajax({
+        			type : 'post',
+        			data : { shopNumber : sNum,
+        					menuName : mName, 
+        					menuPrice : mPrice },
+        			url : 'menuInsertManager.do',
+        			dataType : 'html',
+        			success : function(data) {
+						$(data).each(function(){
+							alert(this.shopNumber + "/" + this.menuName + "/" + this.menuPrice);
+						});
+        			},
+        			error : function(err){
+        				alert(err);
+        				console.log(err);
+        			}
+        		});
+        		
+        	}
+        </script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
@@ -147,15 +177,16 @@
                                             </div>
                                             <div class="row mb-3">
                                             	<div class="col-md-10 col-md-offset-10">
-                                                <label class="radio-inline" for="shopHoliday">
-                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 화&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 토&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday"/> 일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="radio-inline" for="holiday">
+                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="월"/> 월&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="화"/> 화&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="수"/> 수&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="목"/> 목&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="금"/> 금&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="토"/> 토&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="일"/> 일&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="없음"/> 없음&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                                 </div>
                                             </div>
@@ -185,29 +216,31 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" >추가</a></div>
+                                                    <div class="d-grid"><input type="button" value="추가" class="btn btn-warning btn-lg btn-block" onclick="menuInsertManager(${ shopManager.shopNumber })"/></div>
                                                 </div>
                                             </div>
+                                            <c:forEach items="${ menuListManager }" var="menuManager">
                                             <div class="row mb-3">
 												<div class="col-md-1">
 													<label class="jb-600"></label>
 												</div>
                                                 <div class="col-md-5">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputMenuName" type="text" placeholder="메뉴명"/>
+                                                        <input class="form-control" id="inputMenuName" type="text" placeholder="메뉴명" value="${ menuManager.menuName }"/>
                                                         <label for="inputMenuName">메뉴명</label>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-4">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputMenuPrice" type="text" placeholder="메뉴가격" />
+                                                        <input class="form-control" id="inputMenuPrice" type="text" placeholder="메뉴가격" value="${ menuManager.menuPrice }"/>
                                                         <label for="inputMenuPrice">메뉴가격</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" >삭제</a></div>
+                                                    <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>
                                                 </div>
                                             </div>
+                                            </c:forEach>
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid"><input type="submit" value="수정" class="btn btn-warning btn-block" /></div>
                                             </div>

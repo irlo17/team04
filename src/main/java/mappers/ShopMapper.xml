@@ -47,11 +47,11 @@ WHERE   s.shop_food = '한식'
                      )
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
 		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
-		             , #{shopHoliday}, #{shopContent}
+		             , #{shopHoliday}, #{shopContent, jdbcType=VARCHAR}
 		             , sysdate, sysdate
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
-		             , #{shopRealfname}
+		             , #{shopRealfname, jdbcType=VARCHAR}
 		             )
 	 </insert>
 	 

@@ -181,14 +181,15 @@
                                             <div class="row mb-3">
                                             	<div class="col-md-10 col-md-offset-10">
                                                 <label class="radio-inline" for="holiday">
-                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="월"/> 월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="화"/> 화&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="수"/> 수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="목"/> 목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="금"/> 금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="토"/> 토&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="일"/> 일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="월"/> 월&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="화"/> 화&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="수"/> 수&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="목"/> 목&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="금"/> 금&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="토"/> 토&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="일"/> 일&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="없음"/> 없음&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                                 </div>
                                             </div>

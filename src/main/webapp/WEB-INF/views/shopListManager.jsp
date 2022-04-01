@@ -35,7 +35,6 @@
     				// 취소를 누를 경우 리턴
     				return;
     			}
-        			
         	}
         </script>
     </head>

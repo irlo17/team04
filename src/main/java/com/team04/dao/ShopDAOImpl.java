@@ -51,7 +51,7 @@ public class ShopDAOImpl implements ShopDAO{
 	 */
 	@Override
 	public void shopDeleteManager(ShopVO shopVO) {
-		System.out.println("===> mybais shopDeleteManager()함수 호출");
+		System.out.println("===> mybatis shopDeleteManager()함수 호출");
 		mybatis.delete("shopDAO.shopDeleteManager", shopVO);
 	}
 

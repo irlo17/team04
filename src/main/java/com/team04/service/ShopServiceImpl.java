@@ -43,7 +43,13 @@ public class ShopServiceImpl implements ShopService{
 		shopVO.setShopAddressGu(addrManager[1]);
 		
 		// 작성된 도로명주소와 상세주소를 가게 주소로 담기
-		shopVO.setShopAddress(shopVO.getShopAddrDoroManager() + " " + shopVO.getShopAddrDetailManager());
+		if(!shopVO.getShopAddrDetailManager().isEmpty()) {
+			// 상세주소가 비어있지 않을 경우 도로명주소와 상세주소를 함께 담고,
+			shopVO.setShopAddress(shopVO.getShopAddrDoroManager() + " " + shopVO.getShopAddrDetailManager());
+		} else {
+			// 그렇지않다면 도로명 주소만 담도록 함
+			shopVO.setShopAddress(shopVO.getShopAddrDoroManager());
+		}
 		
 		// shopDAO에서 shopInsert함수 호출
 		shopDAO.shopInsertManager(shopVO);
