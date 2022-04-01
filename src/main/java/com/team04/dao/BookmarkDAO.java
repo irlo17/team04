@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.MylistVO;
 
 
 
@@ -22,12 +23,6 @@ import com.team04.domain.BookmarkVO;
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
 	
 	
-	
-
-	
-	 
-	
-	
 	/** 전체 즐겨찾기 목록 좋아요
 	 * :하트 클릭시 좋아요 수 증가
 	 * BookmarkVO vo로 제목과 글번호를 가져와 수 증가.
@@ -42,4 +37,19 @@ import com.team04.domain.BookmarkVO;
 	 */
 	public void bookmarkUpdateLikeMa(int num);
 	
-	}
+	public List<BookmarkVO> bookmarkGetBestList();
+	
+	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);
+	
+	public List<MylistVO> bookmarkGetMylistDetail(String listNumber);
+	
+	public BookmarkVO bookmarkGetDetail(String listNumber);
+	
+	public void bookmarkModify (BookmarkVO vo) ;
+	
+	public void bookmarkDelete(String listNumber);
+	
+	public void mylistInsert(MylistVO vo);
+	
+	public void mylistDelete(MylistVO vo);
+	} 

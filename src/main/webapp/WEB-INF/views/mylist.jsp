@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -155,72 +157,25 @@ margin-bottom:50px;
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 					<tr class="active">
-						<th scope="row">1</th>
-						<td>Column content Column content</td>
-						<td>Column content Column content</td>
-						<td>Column content Column content</td>
-						
+						<th scope="row">${status.count}</th>
+						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
+						<td>${bookmark.listDisplay }</td>
+						<td>${bookmark.listLike}</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr class="success">
-						<th scope="row">3</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr class="info">
-						<th scope="row">5</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr>
-						<th scope="row">6</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr class="warning">
-						<th scope="row">7</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-
-					<tr>
-						<th scope="row">8</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
-					<tr class="danger">
-						<th scope="row">9</th>
-						<td>Column content</td>
-						<td>Column content</td>
-						<td>Column content</td>
-						
-					</tr>
+				</c:forEach>
+				
 				</tbody>
 			</table>
+
+
+
+
+
+
+
+
 
 			<div class="blog__pagination">
 				<a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a> 
