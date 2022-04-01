@@ -58,8 +58,13 @@ WHERE   s.shop_food = '한식'
                      )
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
 		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
+<<<<<<< HEAD
 		             , #{shopHoliday}, #{shopContent, jdbcType=VARCHAR}
 		             , sysdate, sysdate
+=======
+		             , #{shopHoliday}, #{shopContent}
+		             , TO_DATE(SYSDATE, 'RRRR-MM-DD'), TO_DATE(SYSDATE, 'RRRR-MM-DD')
+>>>>>>> main
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
 		             , #{shopRealfname, jdbcType=VARCHAR}

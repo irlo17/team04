@@ -41,23 +41,46 @@
         		//var param = {shopNumber : sNum, menuName : $("#inputMenuName").val(), menuPrice : $("#inputMenuPrice").val()};
         		var mName = $("#inputMenuName").val();
         		var mPrice = $("#inputMenuPrice").val();
-        		$.ajax({
+        		
+        		location.href = "menuInsertManager.do?shopNumber=" + sNum + "&menuName=" + mName + "&menuPrice=" + mPrice;
+        		
+        		/* $.ajax({
         			type : 'post',
         			data : { shopNumber : sNum,
         					menuName : mName, 
         					menuPrice : mPrice },
         			url : 'menuInsertManager.do',
-        			dataType : 'html',
+        			dataType : 'text',
         			success : function(data) {
-						$(data).each(function(){
-							alert(this.shopNumber + "/" + this.menuName + "/" + this.menuPrice);
-						});
+        				alert("ok");
+        				console.log(data);
+        				
+        				var obj = JSON.parse(data);
+        				
+        				console.log(obj[1].shopNumber);
+        				console.log(obj[1].menuName);
+        				console.log(obj[1].menuPrice);
+        				
+        				var value = '<div class="row mb-3"><div class="col-md-1"><label class="jb-600"></label></div>';
+                       	value += '<div class="col-md-5"><div class="form-floating mb-3 mb-md-0">';
+                       	value += '<input class="form-control menuName" type="text" placeholder="메뉴명" value=';
+                       	value += $('#inputMenuName').val();
+                       	value += '/><label for="inputMenuName">메뉴명</label></div></div>';
+                       	value += '<div class="col-md-4"><div class="form-floating mb-3 mb-md-0"><input class="form-control menuPrice" type="text" placeholder="메뉴가격" value=';
+                       	value += $('#inputMenuPrice').val();
+                       	value += '/><label for="inputMenuPrice">메뉴가격</label></div></div>';
+                       	value += '<div class="col-md-2"><div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>';
+                       	value += '</div></div>';.
+        				
+        				$('.menuInner').append(value);
+        				
+        				
         			},
         			error : function(err){
-        				alert(err);
+        				alert("err");
         				console.log(err);
         			}
-        		});
+        		}); */
         		
         	}
         </script>
@@ -219,28 +242,28 @@
                                                     <div class="d-grid"><input type="button" value="추가" class="btn btn-warning btn-lg btn-block" onclick="menuInsertManager(${ shopManager.shopNumber })"/></div>
                                                 </div>
                                             </div>
-                                            <c:forEach items="${ menuListManager }" var="menuManager">
-                                            <div class="row mb-3">
+	                                           <c:forEach items="${ menuListManager }" var="menuManager">
+	                                           <div class="row mb-3">
 												<div class="col-md-1">
 													<label class="jb-600"></label>
 												</div>
-                                                <div class="col-md-5">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputMenuName" type="text" placeholder="메뉴명" value="${ menuManager.menuName }"/>
-                                                        <label for="inputMenuName">메뉴명</label>
-                                                    </div>
-                                                </div>
-                                                 <div class="col-md-4">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputMenuPrice" type="text" placeholder="메뉴가격" value="${ menuManager.menuPrice }"/>
-                                                        <label for="inputMenuPrice">메뉴가격</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>
-                                                </div>
-                                            </div>
-                                            </c:forEach>
+	                                               <div class="col-md-5">
+	                                                   <div class="form-floating mb-3 mb-md-0">
+	                                                       <input class="form-control menuName" type="text" placeholder="메뉴명" value="${ menuManager.menuName }" readonly="readonly"/>
+	                                                       <label for="inputMenuName">메뉴명</label>
+	                                                   </div>
+	                                               </div>
+	                                                <div class="col-md-4">
+	                                                   <div class="form-floating mb-3 mb-md-0">
+	                                                       <input class="form-control menuPrice" type="text" placeholder="메뉴가격" value="${ menuManager.menuPrice }" readonly="readonly"/>
+	                                                       <label for="inputMenuPrice">메뉴가격</label>
+	                                                   </div>
+	                                               </div>
+	                                               <div class="col-md-2">
+	                                                   <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${ shopManger.shopNumber }&menuName=${ menuManager.menuName }">삭제</a></div>
+	                                               </div>
+	                                           </div>
+	                                           </c:forEach>
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid"><input type="submit" value="수정" class="btn btn-warning btn-block" /></div>
                                             </div>
