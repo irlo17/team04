@@ -46,5 +46,7 @@ form-group .form-control.form-nickname {
     object-fit: cover;
 }
 
-.content .contents .form-group input, .content .bg .form-group input
+.formInt{
+	border-bottom: 1px solid #ccc;
+}
 

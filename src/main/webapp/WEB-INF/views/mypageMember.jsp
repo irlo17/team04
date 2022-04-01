@@ -165,51 +165,51 @@
 					<!-- NICKNAME -->
 					<div class="form-group first">
 						<label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
-						<input type="text" class="form-control form_nick" id="memberNickname" name="memberNickname" value="${MemberVO.memberNickname }" >
+						<input type="text" class="form-control form_nick formInt" id="memberNickname" name="memberNickname" value="${MemberVO.memberNickname }" >
 					</div>
 
 					<!-- EMAIL -->
 					<div class="form-group first">
 						<div class="email_check col-md-9">
 							<label for="memberEmail">이메일</label> 
-							<input type="text" class="form-control" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
+							<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
 						</div>
 					</div>
 
 					<!-- PW -->
 					<div class="form-group">
 						<label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
-						<input type="password" class="form-control" id="memberPassword" name="memberPassword">
+						<input type="password" class="form-control formInt" id="memberPassword" name="memberPassword">
 					</div>
 
 					<!-- PW CHECK -->
 					<div class="form-group last mb-4">
 						<label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
-						<input type="password" class="form-control" id="passwordCheck">
+						<input type="password" class="form-control formInt" id="passwordCheck">
 					</div>
 
 					<!-- NAME -->
 					<div class="form-group first">
 						<label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
-						<input type="text" class="form-control" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
+						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
 					</div>
 
 					<!-- BIRTH -->
 					<div class="form-group first">
 						<label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
-						<input type="date" class="form-control" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" > 
+						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" > 
 					</div>
 
 
 					<!-- TEL -->
 					<div class="form-group first">
 						<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
-						<input type="tel" class="form-control" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
+						<input type="tel" class="form-control formInt" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
 					</div>
 
 					<!-- 프로필 사진 -->
 					<div class="form-group first">
-						<input type="file" class="form-control" id="memberFile" name="memberFile" required> <span class="error_box"></span>
+						<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
 					</div>
 
 					<input type="button" value="회원정보수정" id="btnMemberUpdate" class="btn btn-pill text-white btn-block btn-danger">
