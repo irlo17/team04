@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.team04.dao.BookmarkDAOImpl;
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.MylistVO;
 
 @Service("bookmarkService")
 public class BookmarkServiceImpl implements BookmarkService {
@@ -37,5 +38,41 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.bookmarkUpdateLike(listNum);
 
 	}
+	
+	@Override
+	public List<BookmarkVO> bookmarkGetBestList(){
+		return bookmarkDAO.bookmarkGetBestList();
+	}
+ 
+	public List<BookmarkVO> bookmarkGetMylist(String memberEmail){
+		return bookmarkDAO.bookmarkGetMylist(memberEmail);
+	}
+	public List<MylistVO> bookmarkGetMylistDetail(String listNumber){
+		return bookmarkDAO.bookmarkGetMylistDetail(listNumber);
+	}
+
+	
+	public BookmarkVO bookmarkGetDetail(String listNumber) {
+		System.out.println("service단 호출");
+		return bookmarkDAO.bookmarkGetDetail(listNumber);
+	} 
+	 
+	public void bookmarkModify(BookmarkVO vo) {
+		bookmarkDAO.bookmarkModify(vo);
+	}
+	
+	public void bookmarkDelete(String listNumber) {
+		bookmarkDAO.bookmarkDelete(listNumber);
+	}
+	
+	public void mylistInsert(MylistVO vo) {
+		bookmarkDAO.mylistInsert(vo);
+	}
+	
+	public void mylistDelete(MylistVO vo) {
+		bookmarkDAO.mylistDelete(vo);
+	}
+
+
 
 }

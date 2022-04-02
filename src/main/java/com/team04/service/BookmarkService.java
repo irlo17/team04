@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.MylistVO;
 
 public interface BookmarkService {
 
@@ -12,6 +13,19 @@ public interface BookmarkService {
 	public void bookmarkUpdateLike(int listNum);
 	
 	public void bookmarkUpdateLikeMa(int listNum);
+	
+	public List<BookmarkVO> bookmarkGetBestList();
 		
-		
+	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);	
+	public List<MylistVO> bookmarkGetMylistDetail(String listNumber);	
+	
+	public BookmarkVO bookmarkGetDetail(String listNumber);
+	 
+	public void bookmarkModify(BookmarkVO vo);
+	
+	public void bookmarkDelete(String listNumber);
+	
+	public void mylistInsert(MylistVO vo);
+	
+	public void mylistDelete(MylistVO vo);
 }

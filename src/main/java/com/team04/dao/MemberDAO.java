@@ -33,4 +33,14 @@ public interface MemberDAO {
 	 * - DB에서 이메일이 동일한 회원의 정보 찾기
 	 */
 	MemberVO memberSearch(MemberVO vo);
+	
+	/**	회원 정보 수정
+	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 */
+	int memberUpdate(MemberVO vo);
+	
+	/** 회원 탈퇴
+	 * 	- DB에 동일한 이메일과 패스워드를 가진 회원의 레코드를 삭제
+	 */
+	int memberDelete(MemberVO vo);
 }

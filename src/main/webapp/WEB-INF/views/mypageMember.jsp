@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="memberFile"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -47,13 +48,9 @@
 <!-- member/css 추가 -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="./resources/member/fonts/icomoon/style.css">
-<link rel="stylesheet"
-	href="./resources/member/css/owl.carousel.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./resources/member/fonts/icomoon/style.css">
+<link rel="stylesheet" href="./resources/member/css/owl.carousel.min.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="./resources/member/css/bootstrap.min.css">
 <!-- Style -->
@@ -98,12 +95,31 @@
 	<!-- Filter Begin -->
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
-			<h5>
-				<i class="fa fa-user"></i> 닉네임
+			<div class="box">
+				<memberFile:choose>
+					<memberFile:when test="${ empty MemberVO.memberFname }">
+						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+					</memberFile:when>
+					<memberFile:otherwise>
+						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+					</memberFile:otherwise>
+				</memberFile:choose>
+			
+			</div>
+			<h5 class="nick">
+				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		<hr />
-		<br />
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 
 		<div class="">
 			<h4>회원정보</h4>
@@ -123,6 +139,24 @@
 
 		</div>
 
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<hr />
+			<div class="cate_4">
+				<!--  <h4>로그아웃</h4>-->
+				<a href="logout.do">로그아웃</a>
+
+			</div>
 
 	</div>
 	<!-- Filter End -->
@@ -130,84 +164,72 @@
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri col-md-12">
 		<div class="frm">
-			<div class="form-block">
-				<h3>내 정보 수정</h3>
+			<div class="form-block formBlock">
+				<h1 class="memberTitle">내 정보 수정</h1>
 
 				<!-- FORM -->
-				<form action="memberUpdate.do" method="post"
-					enctype="multipart/form-data">
-
+				<form action="memberUpdate.do" method="post" id="memberUpdateForm" name="memberUpdateForm" enctype="multipart/form-data">
+					
 					<!-- NICKNAME -->
 					<div class="form-group first">
-						<label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;
-							&nbsp;<span class="error_box"></span>
-						</label> <input type="text" class="form-control form_nick"
-							id="memberNickname" name="memberNickname"
-							value="${MemberVO.memberNickname }" autofocus required>
-						<span class="error_box"></span>
+						<label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<input type="text" class="form-control form_nick formInt" id="memberNickname" name="memberNickname" value="${MemberVO.memberNickname }" >
 					</div>
 
 					<!-- EMAIL -->
 					<div class="form-group first">
-						<div class="email_check col-md-9">
-							<label for="memberEmail">이메일&nbsp; &nbsp; &nbsp; &nbsp;</label> 
-							<input type="text" class="form-control" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" required>
-						</div>
+						<label for="memberEmail">이메일</label> 
+						<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
 					</div>
 
 					<!-- PW -->
 					<div class="form-group">
-						<label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;
-							&nbsp;<span class="error_box"></span>
-						</label> <input type="password" class="form-control" id="memberPassword"
-							name="memberPassword">
-						<span class="error_box"></span>
+						<label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<input type="password" class="form-control formInt" id="memberPassword" name="memberPassword">
 					</div>
 
 					<!-- PW CHECK -->
 					<div class="form-group last mb-4">
-						<label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;
-							&nbsp;<span class="error_box"></span>
-						</label> <input type="password" class="form-control" id="passwordCheck">
+						<label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<input type="password" class="form-control formInt" id="passwordCheck">
 					</div>
 
 					<!-- NAME -->
 					<div class="form-group first">
-						<label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span
-							class="error_box"></span></label> <input type="text" class="form-control"
-							id="memberName" name="memberName"
-							value="${MemberVO.memberName }" required> <span
-							class="error_box"></span>
+						<label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
 					</div>
 
 					<!-- BIRTH -->
 					<div class="form-group first">
-						<label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span
-							class="error_box"></span></label> <input type="date" class="form-control"
-							id="memberBirth" name="memberBirth"
-							value="${MemberVO.memberBirth }" required> <span
-							class="error_box"></span>
+						<label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" > 
 					</div>
 
 
 					<!-- TEL -->
 					<div class="form-group first">
-						<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span
-							class="error_box"></span></label> <input type="tel" class="form-control"
-							id="memberTel" name="memberTel" value="${MemberVO.memberTel }"
-							required> <span class="error_box"></span>
+						<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<input type="tel" class="form-control formInt" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
 					</div>
 
 					<!-- 프로필 사진 -->
 					<div class="form-group first">
-						<input type="file" class="form-control" id="memberFile"
-							name="memberFile" required> <span class="error_box"></span>
+						<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
 					</div>
 
-
-					<input type="button" value="회원정보수정"
-						class="btn btn-pill text-white btn-block btn-danger">
-
+					<input type="button" value="회원정보수정" id="btnMemberUpdate" class="btn btn-pill text-white btn-block btn-danger">
+					<br/>
+					<br/>
+					<br/>
+					
+					
+				</form>
+				
+				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
+					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
+					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
+					<input type="submit" value="회원탈퇴" id="btnMemberDelete" class="btn btn-pill text-white btn-block btn-danger">
 				</form>
 			</div>
 		</div>
@@ -230,10 +252,11 @@
 	<script src="./resources/js/main.js"></script>
 
 	<!-- member.js -->
-	<script src="./resources/member/js/popper.min.js"></script>
-	<script src="./resources/member/js/bootstrap.min.js"></script>
-	<script src="./resources/member/js/main.js"></script>
-	<script src="./resources/member/js/member.js"></script>
+	<script src="./resources/member/js/jquery-3.3.1.min.js"></script>
+    <script src="./resources/member/js/popper.min.js"></script>
+    <script src="./resources/member/js/bootstrap.min.js"></script>
+    <script src="./resources/member/js/main.js"></script>
+    <script src="./resources/member/js/member.js"></script>
 </body>
 
 </html>

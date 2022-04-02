@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
+    <%
+    	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+    %>
+   
+    
+    
+    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -11,15 +21,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Directing | Template</title>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     
 
     <style type="text/css">
     
    
  /*----------모달관련된거--------신고기능 */
 html,body {height:100%; margin:0; display: block;z-index: 100;}
-.mw {position:fixed;position:static;top:0;left:0;width:100%;height:100%;display:none;}
-.mw .bg {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;filter:alpha(opacity=50); z-index: 105000;}
-.mw .fg {position:absolute;top:50%;left:50%;width:400px;height:260px;margin:-100px 0 0 -200px;padding:20px;border:3px solid #ccc;background:#fff; z-index: 105000; }
+.mw {position:fixed;/* position:static */;top:30%;left:30%;width:100%;height:100%;display:none;z-index:99999;}
+.mw .bg {position:fixed;top:0;left:0;width:100%;height:100%;background:#000;opacity:.5;/* filter:alpha(opacity=50) */; z-index: 105000;}
+.mw .fg {position:absolute;top:40%;left:40%;width:400px;height:260px;margin:-100px 0 0 -200px;padding:20px;border:3px solid #ccc;background:#fff; z-index: 105000; }
         
         
         .modal-button{ background: #fff; border: 0; outline: 0; font-size: 15px;  color: #323232;} 
@@ -35,6 +46,10 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
             width: 365px;
             height: 150px;
         }
+        
+      
+        
+        
          /*----------모달관련된거--------신고기능 */
 </style>
     
@@ -60,6 +75,9 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
             
         });
         
+     /*    var selected = $('#gradeSelect option:selected').val(); */
+        
+     /*    console.log($('#gradeSelect option:selected').val()); */
         
         
        
@@ -92,6 +110,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
 
 
 <body>
+  
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -120,11 +139,15 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
         </div>
     </header>
     <!-- Header Section End -->
-
+    
+    
     <!-- Listing Section Begin -->
     <section class="listing-hero set-bg" data-setbg="resources/img/listing/details/listing-hero.jpg">
        
+      
+         <c:forEach items="${shopInfoList}" var='shopInfoList'> 
         <div class="container">
+        
             <div class="row">
                 <div class="col-lg-8">
                     <div class="listing__hero__option">
@@ -132,11 +155,12 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             <img src="resources/img/listing/details/ld-icon.png" alt="">
                         </div>
                         <div class="listing__hero__text">
-                            <h2>Cosiana Sour Restaurant</h2>
+                            <h2>${shopInfoList.SHOPTITLE  }</h2>
+                       
                             <div class="listing__hero__widget">
                                
                             </div>
-                            <p><span class="icon_pin_alt"></span> 1012 Vesper Dr. Columbus, Georgia, United States</p>
+                            <p><span class="icon_pin_alt"></span> ${shopInfoList.SHOPADDRESS } </p>
                         </div>
                     </div>
                 </div>
@@ -148,33 +172,59 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                 </div>
             </div>
         </div>
+        </c:forEach>
     </section>
     <!-- Listing Section End -->
 
     <!-- Listing Details Section Begin -->
+    
     <section class="listing-details spad">
+   
         <div class="container">
             <div class="row">
+            
                 <div class="col-lg-8">
                     <div class="listing__details__text">
+                        <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                         <div class="listing__details__about">
-                            <h4>Overview</h4>
-                            <p>Entries from over 70 countries cover every imaginable space; From ships to airports,
-                                museums to burger vans, from revered Michelin-starred establishments to the fleeting
-                                dynamism of pop-ups.</p>
-                            <p>The judges are the most influential global personalities from hospitality, design and
+                            <h4>가게 소개</h4>
+                             <p>${shopInfoList.SHOPCONTENT }</p>
+                           <!--  <p>The judges are the most influential global personalities from hospitality, design and
                                 lifestyle media and have previously included the Editor in Chief of Wallpaper*, Marcus
                                 Wareing and Thomas Heatherwick.
                                 The Awards are followed by over 40,000 of the most influential architects, designers,
-                                hospitality professionals and lifestyle media from around the globe.</p>
+                                hospitality professionals and lifestyle media from around the globe.</p> -->
                         </div>
+                        </c:forEach>
                         <div class="listing__details__gallery">
                             <h4>Gallery</h4>
+                            
+                            
+                               <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                             <div class="listing__details__gallery__pic">
+                            
                                 <div class="listing__details__gallery__item">
-                                    <img class="listing__details__gallery__item__large"
+                                
+                                
+                                <c:set var="shopNumber" value="<%= shopNumber %>" />
+                             
+                                    <c:choose>
+                                    	<c:when test="${	shopNumber eq shopInfoList.SHOPNUMBER}">
+                                    	 <img class="listing__details__gallery__item__large" width="100%" height="450"
+                                        src="resources/manager/upload/${shopInfoList.SHOPREALFNAME }" alt="">
+                                        </c:when>
+                                        <c:otherwise>
+                                      
+                                        </c:otherwise>
+                                   </c:choose>
+						
+                                
+                                  <!--   <img class="listing__details__gallery__item__large"
                                         src="resources/img/listing/details/listing-details-1.jpg" alt="">
                                     <span><i class="fa fa-camera"></i> 170 Image</span>
+                                     -->
+                                    
+                                    
                                 </div>
                                 <div class="listing__details__gallery__slider owl-carousel">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
@@ -187,8 +237,20 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                         src="resources/img/listing/details/thumb-4.jpg" alt="">
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
                    
+                   
+                  <%--  <c:choose>
+                   		<c:when test="${reviewInfo.SHOPNUMBER }"></c:when>
+                   
+                   
+                   </c:choose> --%>
+                   
+                       
+                         <c:forEach items="${reviewInfo}" var='reviewInfo'> 
+                         <c:choose>
+                         	<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
                        
                         <div class="listing__details__comment">
                             <h4>리뷰</h4>
@@ -198,18 +260,34 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
-                                      <h>별로예요</h>
-                                      <img width='20' height='20' src="resources/img/face/1.png">
+                                     ${reviewInfo.REVIEWGRADE }
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '맛있어요' }">
+                                       <i class="fa fa-thumbs-up tasteGrade" aria-hidden="true"></i>
+                                      </c:if>
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '보통이에요' }">
+                                      <i class="fa fa-meh-o tasteGrade" aria-hidden="true"></i>
+                                      </c:if>
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '맛없어요' }">
+                                      <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                      </c:if>
                                       
+                                     
                                     </div>
-                                    <span>March 22, 2019</span>
-                                    <h5>Marry Jane</h5>
-                                    <p>From ships to airports, museums to burger vans, from revered Michelin star
-                                        establish to the fleeting dynamism 
-                                        of pop-ups.</p>
-                                        <img width="180" src="resources/img/listing/list-1.jpg">
-                                        <img width="180" src="resources/img/listing/list-2.jpg">
-                                        <img width="180" src="resources/img/listing/list-3.jpg">
+                                    <span>${reviewInfo.REVIEWDATE }</span>
+                                    <h6>리뷰 내용:</h6>
+                                    <p>${reviewInfo.REVIEWCONTENT }</p>
+                                    
+                                    <c:set var="email" value="${sessionScope.logemail}" />
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.logemail eq reviewInfo.MEMBEREMAIL}">
+                                        <img width="180" height="120" src="resources/reviewUpload/${reviewInfo.REVIEWFNAME }">
+                                        </c:when>
+                                        <c:otherwise>
+                                      <!--   <img width="180" src="resources/img/listing/list-2.jpg">
+                                        <img width="180" src="resources/img/listing/list-3.jpg"> -->
+                                        </c:otherwise>
+                                   </c:choose>
+                                        
                                     <ul>
                                        <!-- <li><i class="fa fa-hand-o-right"></i> Like</li>-->
                                         <li><i class="fa fa-share-square-o"></i>    <button type="text" class="modal-button" onClick="document.getElementById('mw_temp').style.display='block'">신고하기</button>     
@@ -230,46 +308,96 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        </c:when>
+                        
+                        
+                        <c:otherwise>
+                        <c:choose>
+                        	<c:when test="${  reviewInfo.REVIEWNUMBER == '0'}">
+                        
+                        <div class="listing__details__comment">
+                            <h4>리뷰</h4>
+                            <div class="listing__details__comment__item">
+                                <div class="listing__details__comment__item__pic">
+                                    <img src="resources/img/listing/details/comment.png" alt="">
+                                </div>
+                                <div class="listing__details__comment__item__text">
+                                    <div class="listing__details__comment__item__rating">
+                                    <!--   <h6>리뷰가 없습니다.ㅠㅠ</h6>
+                                      <img width='20' height='20' src="resources/img/face/1.png"> -->
+                                      
+                                    </div>
+                                    <!-- <span>아직 리뷰가 없습니다.</span> -->
+                                    <h5>리뷰 내용</h5>
+                                    <p>리뷰남긴 손님이 없습니다.</p>
+                                    
+                                   
+                         
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        </c:when>
+                        </c:choose>
+                        </c:otherwise>
+                        
+                          </c:choose>
+                        </c:forEach>
+                        
+                        
+                        
+                        
                         <div class="listing__details__review">
-                            <h4>리뷰 작성</h4>
-                            <form action="#" method="post">
+                            <h>리뷰 작성</h>
+                            <form action="reviewInsert.do?" method="post" enctype="multipart/form-data">
+                            <input type ='hidden'  name= 'shopNumber' value='<%=shopNumber %>'/>
                                <!-- <input type="text" placeholder="Name">
                                 <input type="text" placeholder="Email">-->
-                                <textarea placeholder="Review"></textarea>
+                                <textarea placeholder="Review" name = 'reviewContent'></textarea>
                                 
                                 
-                                <select name=''>
-                                  <option value='' selected>-- 맛평가 --</option>
-                                  <option value=''>맛있어요</option>
-                                  <option value=''>보통이에요</option>
-                                  <option value=''>맛없어요</option>
+                                <select name='reviewGrade' id='gradeSelect'>
+                                  <option value='맛있어요' selected>-- 맛평가 --</option>
+                                  <option value='맛있어요'>맛있어요</option>
+                                  <option value='보통이에요'>보통이에요</option>
+                                  <option value='맛없어요'>맛없어요</option>
                                 </select>
                                 
                       <br/><br/>          
                       <br/><br/>          
                             
 					<h4>add image</h4>
-					<input type="file" name='file' accept= 'image/*'
-					 bgcolor="orange">
-				
+				<input type="file" name='file'  accept= 'image/*' />
                                 
-                                <button type="submit" class="site-btn">Submit Now</button>
+                                <button type="submit" class="site-btn">작성</button>
                             </form>
                         </div>
                     </div>
                 </div>
+                
+                
+               
+                
+                
                 <div class="col-lg-4">
                     <div class="listing__sidebar">
                         <div class="listing__sidebar__contact">
+                         
                             <div class="listing__sidebar__contact__map">
                             
                                 <div id="map" style="width: 100%; height: 14em"></div>
-
+									
                                 <script
                                   type="text/javascript"
                                   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"
                                 ></script>
+                                <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                                 <script>
+                          
+                                
+                                
                                   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
                                     mapOption = {
                                       center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -281,7 +409,8 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             var geocoder = new kakao.maps.services.Geocoder();
                             
                                   geocoder.addressSearch(
-                                    "서울시 강남구 일원동 광평로 10길 15",
+                                		  
+                                     "서울시 강남구 일원동 광평로 10길 15" ,
                                     function (result, status) {
                                       // 정상적으로 검색이 완료됐으면
                                       if (status === kakao.maps.services.Status.OK) {
@@ -307,33 +436,59 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                   );
                             
                                 </script>
-                            
+                             </c:forEach>
 
                            
                             </div>
+                           
+                            
+                            
                             <div class="listing__sidebar__contact__text">
-                                <h4>Contacts</h4>
+                             <c:forEach items="${shopInfoList}" var='shopInfoList'> 
+                            <br/>
+                                <h5>상세정보</h5>
+                                <br/>
                                 <ul>
-                                    <li><span class="icon_pin_alt"></span> 236 Littleton St. New Philadelphia, Ohio,
-                                        United States</li>
-                                    <li><span class="icon_phone"></span> (+12) 345-678-910</li>
-                                  
-                                </ul>
                                
+                                
+                                	<li><span class=""><i class="fa fa-home"></i></span> ${shopInfoList.SHOPTITLE }<hr/></li> 
+                                	<li><span class=""><i class="fa fa-info-circle"></i></span>쉬는날: ${shopInfoList.SHOPHOLIDAY }<hr/></li>
+                                	<li><span class=""><i class="fa fa-calendar"></i></span> ${shopInfoList.SHOPTIME }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-krw"></i></span> ${shopInfoList.SHOPPRICERANGE }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-car"></i></span> ${shopInfoList.SHOPPARK }<hr/></li>
+                                    <li><span class="icon_pin_alt"></span> ${shopInfoList.SHOPADDRESS }<hr/></li>
+                                    <li><span class="icon_phone"></span> ${shopInfoList.SHOPTEL }<hr/></li>
+                                  	
+                                </ul>
+                                	<input type='hidden' id='shopLocation' value='${shopInfoList.SHOPADDRESS}'/>
+                                 </c:forEach>
                             </div>
+                          
                             <div class="listing__sidebar__working__hours">
+                         
                             <h4>메뉴</h4>
+                             <c:forEach items="${menuInfo}" var='menuInfo'> 
                             <ul>
-                                <li>음식이름 <span>1억원</span></li>
+                                <li>${menuInfo.MENUNAME } <span>${menuInfo.MENUPRICE }</span></li>
                                 
                             </ul>
+                              </c:forEach>
                         </div>
                         </div>
                        
+                       
+                       
                     </div>
+                    
+                    
                 </div>
+                
+                
+               
             </div>
         </div>
+               
+        
     </section>
     <hr/>
    
@@ -427,6 +582,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
     <script src="resources/js/jquery.slicknav.js"></script>
     <script src="resources/js/owl.carousel.min.js"></script>
     <script src="resources/js/main.js"></script>
+
 </body>
 
 </html>

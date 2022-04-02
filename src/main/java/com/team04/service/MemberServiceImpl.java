@@ -12,6 +12,8 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDAOImpl memberDAO;
 
+	
+	
 	/**	email 중복 체크
 	 * 	- DB에 동일한 이메일이 있는지 레코드 검색
 	 * 	- MemberDAO의 emailCheck() 호출
@@ -21,11 +23,12 @@ public class MemberServiceImpl implements MemberService{
 	 * 			- "N" : 사용 불가능한 이메일 (중복된 이메일)
 	 */
 	@Override
-	public MemberVO emailCheck(MemberVO vo) 
-	{
+	public MemberVO emailCheck(MemberVO vo) {
 		return memberDAO.emailCheck(vo);
 	}
 
+	
+	
 	/**	회원가입
 	 *  - DB에 회원의 정보를 입력
 	 * 	- MemberDAO의 memberInsert() 호출
@@ -33,10 +36,12 @@ public class MemberServiceImpl implements MemberService{
 	 * @return int ( 입력 성공 시 1을 리턴 )
 	 */
 	@Override
-	public int memberInsert(MemberVO vo) 
-	{
+	public int memberInsert(MemberVO vo) {
 		return memberDAO.memberInsert(vo);
 	}
+	
+	
+	
 	
 	/** 로그인
 	 *	- DB에 입력된 이메일과 비밀번호가 일치하는 레코드 검색
@@ -45,11 +50,13 @@ public class MemberServiceImpl implements MemberService{
 	 * @return MemberVO vo
 	 */
 	@Override
-	public MemberVO loginCheck(MemberVO vo) 
-	{
+	public MemberVO loginCheck(MemberVO vo) {
 		return memberDAO.loginCheck(vo);
 	}
 
+	
+	
+	
 	/**	비밀번호 찾기
 	 * 	- DB에서 회원 정보 찾기
 	 * 	- MemberDAO의 pwSearch() 호출
@@ -63,6 +70,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.pwSearch(vo);
 	}
 
+	
+	
+	
 	/** 비밀번호 변경
 	 *	- DB에 동일한 이메일을 가진 회원의 비밀번호를 변경 
 	 * 	- MemberDAO의 pwChange() 호출
@@ -74,6 +84,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.pwChange(vo);
 	}
 
+	
+	
+	
 	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
 	 * - DB에서 이메일이 동일한 회원의 정보 찾기
 	 * @param MemberVO vo : memberEmail
@@ -82,6 +95,31 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO memberSearch(MemberVO vo) {
 		return memberDAO.memberSearch(vo);
+	}
+
+	
+	
+	
+	/**	회원 정보 수정
+	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 * @param MemberVO vo 
+	 * @return int ( 입력 성공 시 1을 리턴 )
+	 */
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		return memberDAO.memberUpdate(vo);
+	}
+
+	
+	
+	/** 회원 탈퇴
+	 *  - DB에 동일한 이메일과 패스워드를 가진 회원의 레코드를 삭제
+	 * @param MemberVO vo 
+	 * @return int ( 입력 성공 시 1을 리턴 )
+	 */
+	@Override
+	public int memberDelete(MemberVO vo) {
+		return memberDAO.memberDelete(vo);
 	}
 	
 }

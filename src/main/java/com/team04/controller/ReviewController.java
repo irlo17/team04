@@ -37,10 +37,10 @@ public class ReviewController {
 		return "review";
 	}
 	
-	@RequestMapping("listingDetails.do")
-	public String listingDetails() {
-		return "listingDetails";
-	}
+	/*
+	 * @RequestMapping("listingDetails.do") public String listingDetails() { return
+	 * "listingDetails"; }
+	 */
 	 
 	
 	/* 리턴형 없음 
