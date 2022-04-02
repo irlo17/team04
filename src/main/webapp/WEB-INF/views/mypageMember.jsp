@@ -106,12 +106,20 @@
 				</memberFile:choose>
 			
 			</div>
-			<h5>
-				<i class="fa fa-user"></i> 닉네임
+			<h5 class="nick">
+				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		<hr />
-		<br />
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 
 		<div class="">
 			<h4>회원정보</h4>
@@ -157,11 +165,11 @@
 	<section class=" nice-scroll nuguri col-md-12">
 		<div class="frm">
 			<div class="form-block formBlock">
-				<h3>내 정보 수정</h3>
+				<h1 class="memberTitle">내 정보 수정</h1>
 
 				<!-- FORM -->
 				<form action="memberUpdate.do" method="post" id="memberUpdateForm" name="memberUpdateForm" enctype="multipart/form-data">
-
+					
 					<!-- NICKNAME -->
 					<div class="form-group first">
 						<label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
@@ -170,10 +178,8 @@
 
 					<!-- EMAIL -->
 					<div class="form-group first">
-						<div class="email_check col-md-9">
-							<label for="memberEmail">이메일</label> 
-							<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
-						</div>
+						<label for="memberEmail">이메일</label> 
+						<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
 					</div>
 
 					<!-- PW -->
@@ -219,6 +225,7 @@
 					
 					
 				</form>
+				
 				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
 					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
 					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
