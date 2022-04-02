@@ -14,15 +14,38 @@ select *
 from shop s
 where s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||'%'  or s.shop_title LIKE '%'||#{query}||'%' 
 
+</select>
 
+<select id="shopPageFilterGetList" parameterType="hashmap" resultType="ShopVO">
 
-<!-- SELECT s.shop_food shopFood, s.shop_address_si shopAddressSi, s.shop_address_gu shopAddressGu, s.shop_address_dong shopAddressDong, s.shop_price_range shopPriceRange   
+SELECT *   
 FROM shop s
-WHERE   s.shop_food = '한식'
-        AND s.shop_address_si LIKE '%서울%'
-           AND s.shop_address_gu LIKE '%강남%'
-              AND s.shop_address_dong LIKE '%일원%'
-                 AND s.shop_price_range = '만원대' -->
+WHERE s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||'%'  or s.shop_title LIKE '%'||#{query}||'%'
+<if test='foodKind.koreanFood != null' >
+AND s.shop_food LIKE '%'||#{foodKind.koreanFood}||'%'
+</if>
+<if test='foodKind.japaneseFood != null' >
+AND s.shop_food LIKE '%'||#{foodKind.japaneseFood}||'%'
+</if>
+<if test='foodKind.chineseFood != null' >
+AND s.shop_food LIKE '%'||#{foodKind.chineseFood}||'%'
+</if>
+<if test='foodKind.westernFood != null' >
+AND s.shop_food LIKE '%'||#{foodKind.westernFood}||'%'
+</if>
+<if test='foodKind.worldFood != null' >
+AND s.shop_food LIKE '%'||#{foodKind.worldFood}||'%'
+</if>
+<if test='foodKind.buffet != null' >
+AND s.shop_food LIKE '%'||#{foodKind.buffet}||'%'
+</if>
+<if test='foodKind.cafe != null' >
+AND s.shop_food LIKE '%'||#{foodKind.cafe}||'%'
+</if>
+<if test='foodKind.pup != null' >
+AND s.shop_food LIKE '%'||#{foodKind.pup}||'%'
+</if>
+
 
 </select>
 
