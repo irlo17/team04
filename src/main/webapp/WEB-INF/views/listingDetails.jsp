@@ -250,7 +250,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                        
                          <c:forEach items="${reviewInfo}" var='reviewInfo'> 
                          <c:choose>
-                         	<c:when test="${reviewInfo.REVIEWNUMBER ne null }">
+                         	<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
                        
                         <div class="listing__details__comment">
                             <h4>리뷰</h4>
@@ -314,7 +314,8 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         
                         
                         <c:otherwise>
-                        	<c:if test="${ empty reviewInfo.REVIEWNUMBER }">
+                        <c:choose>
+                        	<c:when test="${  reviewInfo.REVIEWNUMBER == '0'}">
                         
                         <div class="listing__details__comment">
                             <h4>리뷰</h4>
@@ -338,7 +339,8 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                             </div>
                         </div>
-                        </c:if>
+                        </c:when>
+                        </c:choose>
                         </c:otherwise>
                         
                           </c:choose>
