@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team04.dao.ListingDetailsDAO;
+import com.team04.domain.MylistVO;
 import com.team04.domain.ShopVO;
 
 @Service("listingDetailsService")
@@ -37,5 +38,17 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 		 return listingDetailsDAO.listingDetailsOnlyShopInfo(shopNumber);
 	 }
 		
+	 public void listingDetailsAddList(HashMap map) {
+			/* System.out.println("넌 서비스란다" + map.get("shopNumber")); */
+		 listingDetailsDAO.listingDetailsAddList(map);
+	 }
+	 
+	public List<MylistVO> listingDetailsTotalList(String logemail){
+		return listingDetailsDAO.listingDetailsTotalList(logemail);
+	}
+	
+	 
+	 
+	 
 	
 }

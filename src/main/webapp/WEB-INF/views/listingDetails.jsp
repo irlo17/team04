@@ -5,6 +5,7 @@
     
     <%
     	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+    
     %>
    
     
@@ -70,9 +71,43 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                
                
            })
-    
-            
-            
+           
+           
+           
+           
+           /*	가게 상세페이지에서 추가하기 버튼을 눌렀을때	
+           		가게 번호를 가져오고 처리
+           		type : 포스트방식
+           		datatype: text
+           		
+           */
+        $('#listAdd').click(function(){
+        	  var shopNumber = $(this).attr('value');
+        	  alert(shopNumber);
+        
+        	   let param = { shopNumber :  shopNumber}
+               $.ajax({
+               url:	'listingDetailsAddList.do',
+           
+               type:	'post',
+               datatype: 'text',
+               data :	param,
+               success : function(data){
+               	
+            	   alert("추가 되었습니다.")
+            	   $('#listAdd').html(data)
+            	
+               },
+               
+               error : function(err){
+               	
+               	alert('이미 추가된 가게입니다.');
+   				
+               	
+               }
+               });
+        	  
+           });
         });
         
      /*    var selected = $('#gradeSelect option:selected').val(); */
@@ -164,15 +199,24 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         </div>
                     </div>
                 </div>
+               
                 <div class="col-lg-4">
                     <div class="listing__hero__btns">
-                      
-                        <a href="#" class="primary-btn"><i class="fa fa-bookmark"></i> 추가하기</a>
+					 	    <button class="primary-btn" id="listAdd" value= "${shopInfoList.SHOPNUMBER }" ><i class="fa fa-bookmark"></i>추가하기</button>
+					 	      
                     </div>
                 </div>
+                
             </div>
         </div>
+        
+        
+        
+        
         </c:forEach>
+        
+        
+        
     </section>
     <!-- Listing Section End -->
 

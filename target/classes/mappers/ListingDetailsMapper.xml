@@ -80,8 +80,6 @@ ON  m.shop_number = s.shop_number
 where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</select>
-	
-	
 	<!--  리뷰작성-->
 	<insert id="listingDetailsReviewInsert" parameterType="hashmap">
 	
@@ -92,6 +90,42 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</insert>
 
+<!-- 	<insert id="listingDetailsAddList" parameterType="hashmap">
+	insert into mylist (LIST_NUMBER listNumber , SHOP_NUMBER shopNumber)
+	values ( (   	SELECT List_number listNumber
+            		FROM bookmark
+            		WHERE member_email = '${logemail}' and  defult_list = 'yes'), 2)
+            		
+            		
+	
+	
+	</insert> -->
+	
+	
+	<insert id="listingDetailsAddList" parameterType="hashmap">
+	insert into mylist(
+	list_number, 
+	shop_number 
+	)values (
+	(SELECT list_number listNumber
+			   FROM bookmark
+			   WHERE member_email = '${logemail}' and defult_list = 'yes')
+	, #{shopNumber})
+            		
+	
+	</insert>
+	
+	<select id="listingDetailsTotalList" parameterType="string" resultType="hashmap">
+	
+	SELECT distinct shop_number shopNumber,List_number listNumber
+		FROM mylist
+		WHERE LIST_NUMBER in (SELECT list_number
+                    FROM bookmark
+                    WHERE member_email = #{logemail})
+                   
+	</select>
+	
+	
 	
 
 
