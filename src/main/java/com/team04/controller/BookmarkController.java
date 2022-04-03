@@ -72,6 +72,19 @@ public class BookmarkController {
 		  return "mylist";
 	  }
 	  
+	  
+	  @RequestMapping("bookmarkDetail.do")
+	  private String bookmarkGetDetail(String listNumber,Model model ) {
+		  
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+		  model.addAttribute("bookmarkList", list); 
+		  return "bookmarkDetail";
+	  }
+	  
+	  
+	  
+	  
+	  
 	  @RequestMapping("mylistDetail.do")
 	  private String bookmarkGetMylistDetail(String listNumber,Model model ) {
 		  
