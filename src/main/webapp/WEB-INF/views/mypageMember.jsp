@@ -129,7 +129,7 @@
 
 
 		<div class="">
-			<h4>즐겨찾기</h4>
+			<h4><a href='mylist.do'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
@@ -169,6 +169,25 @@
 
 				<!-- FORM -->
 				<form action="memberUpdate.do" method="post" id="memberUpdateForm" name="memberUpdateForm" enctype="multipart/form-data">
+					
+					
+					<!-- 프로필 사진 -->
+					<div class="form-group first">
+						<div class="box email_check col-md-4" >
+							<memberFile:choose>
+								<memberFile:when test="${ empty MemberVO.memberFname }">
+									<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+								</memberFile:when>
+								<memberFile:otherwise>
+									<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+								</memberFile:otherwise>
+							</memberFile:choose>
+						</div>
+						<div class="email_check col-md-8" >
+							<label for="memberFile">프로필 사진</label> 
+							<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
+						</div>
+					</div>
 					
 					<!-- NICKNAME -->
 					<div class="form-group first">
@@ -212,24 +231,23 @@
 						<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="tel" class="form-control formInt" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
 					</div>
+					
 
-					<!-- 프로필 사진 -->
-					<div class="form-group first">
-						<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
-					</div>
-
+					<br/>
+					<br/>
 					<input type="button" value="회원정보수정" id="btnMemberUpdate" class="btn btn-pill text-white btn-block btn-danger">
 					<br/>
 					<br/>
 					<br/>
-					
-					
+					<hr/>
+					<br/>
 				</form>
-				
 				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
 					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
 					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
-					<input type="submit" value="회원탈퇴" id="btnMemberDelete" class="btn btn-pill text-white btn-block btn-danger">
+					<div class="btnMemberDelete">
+					<input type="submit" value="회원탈퇴" id="btnMemberDelete">
+					</div>
 				</form>
 			</div>
 		</div>
