@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
@@ -73,6 +72,19 @@ public class BookmarkController {
 		  return "mylist";
 	  }
 	  
+	  
+	  @RequestMapping("bookmarkDetail.do")
+	  private String bookmarkGetDetail(String listNumber,Model model ) {
+		  
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+		  model.addAttribute("bookmarkList", list); 
+		  return "bookmarkDetail";
+	  }
+	  
+	  
+	  
+	  
+	  
 	  @RequestMapping("mylistDetail.do")
 	  private String bookmarkGetMylistDetail(String listNumber,Model model ) {
 		  
@@ -103,19 +115,20 @@ public class BookmarkController {
 	  public String bookmarkDelete(String listNumber) {
 		
 		  bookmarkService.bookmarkDelete(listNumber);
+		 //int pageTotalCount= bookmarkService.totalbookmarkPage();
 		  
 		  return "redirect:mylist.do";
 	  }
 	  
 	  @RequestMapping("detailModify.do")
 	  public String mylistModifydetail(String listNumber,Model model,HttpSession session) {
-		  String memberEmail=(String)session.getAttribute("logemail");
+		  String memberEmail= (String)session.getAttribute("logemail");
 		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetail(listNumber);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
 		  model.addAttribute("bookmarkModify", list1); 
 		  model.addAttribute("bookmarkList", list2); 
 		  
-		return("detailModify");  
+		return "detailModify";  
 	  }
 	  
 	  @RequestMapping("mylistUpdate.do")
@@ -132,5 +145,18 @@ public class BookmarkController {
 			return "redirect:detailModify.do";  
 		  }
 	  
+	  @RequestMapping("addPageView.do")
+	  public String addPageView() {
+		  
+		  return "mylistadd";
+	  }
 	  
+	  @RequestMapping("mylistadd.do")
+	  public String mylistAdd(BookmarkVO vo, HttpSession session) {
+		  vo.setMemberEmail((String)session.getAttribute("logemail"));
+		  bookmarkService.mylistAdd(vo);
+		  
+		  return "redirect:mylist.do";
+	  }
+
 }

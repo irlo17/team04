@@ -31,40 +31,68 @@ public class ShopDAOImpl implements ShopDAO{
 		return mybatis.selectList("shopDAO.shopPageFilterGetList", map);
 	}
 
-	public void shopInsert(ShopVO shopVO) {
-		System.out.println("===> mybatis shopInsert()함수 호출");
-		mybatis.insert("shopDAO.shopInsert", shopVO);
-	}
-
-	@Override
-	public void shopUpdate(ShopVO shopVO) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void shopDelete(ShopVO shopVO) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ShopVO shopGet(ShopVO shopVO) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 메소드명 : shopInsertManager()
+	 * 인자 : ShopVO shopVO (= form태그에 붙여진 파라메터를 담아둔 VO)
+	 * 리턴형 : 없음
+	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopInsertManager를 호출하여
+	 * 		DB에 ShopVO내용을 저장
+	 */
+	public void shopInsertManager(ShopVO shopVO) {
+		System.out.println("===> mybatis shopInsertManager()함수 호출");
+		mybatis.insert("shopDAO.shopInsertManager", shopVO);
 	}
 
 	/**
-	 * 메소드명 : shopGetList()
+	 * 메소드명 : shopUpdateManager()
+	 * 인자 : ShopVO shopVO (= 파라메터 저장)
+	 * 리턴형 : 없음
+	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopUpdateManager를 호출하여
+	 * 		DB에 shopNumber(PK)가 같은 것을 수정
+	 */
+	@Override
+	public void shopUpdateManager(ShopVO shopVO) {
+		System.out.println("===> mybatis shopUpdateManager()함수 호출");
+		mybatis.update("shopDAO.shopUpdateManager", shopVO);
+	}
+
+	/**
+	 * 메소드명 : shopDeleteManager()
+	 * 인자 : ShopVO shopVO (= shopNumber(PK)가 담긴 값)
+	 * 리턴형 : 없음
+	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopDeleteManager를 호출하여
+	 * 		DB에 shopNumber(PK)가 같은 것을 삭제
+	 */
+	@Override
+	public void shopDeleteManager(ShopVO shopVO) {
+		System.out.println("===> mybatis shopDeleteManager()함수 호출");
+		mybatis.delete("shopDAO.shopDeleteManager", shopVO);
+	}
+
+	/**
+	 * 메소드명 : shopDeleteManager()
+	 * 인자 : ShopVO shopVO (= shopNumber(PK)가 담긴 값)
+	 * 리턴형 : 없음
+	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopGetManager를 호출하여
+	 * 		DB에 shopNumber(PK)가 같은 것을 ShopVO형태로 담아 가지고 옴
+	 */
+	@Override
+	public ShopVO shopGetManager(ShopVO shopVO) {
+		System.out.println("===> mybatis shopGetManager() 함수 호출");
+		return mybatis.selectOne("shopDAO.shopGetManager", shopVO);
+	}
+
+	/**
+	 * 메소드명 : shopGetListManager()
 	 * 인자 : 없음
 	 * 리턴형 : ShopVO를 담은 List
 	 * 사용 : ShopMapper(이름 : shopDAO)에 있는 shopGetList를 호출
 	 * 		즉, 가게 전체 리스트를 조회하여 리턴하는 함수
 	 */
 	@Override
-	public List<ShopVO> shopGetList() {
-		System.out.println("===> mybatis shopGetList()함수 호출");
-		return mybatis.selectList("shopDAO.shopGetList");
+	public List<ShopVO> shopGetListManager() {
+		System.out.println("===> mybatis shopGetListManager()함수 호출");
+		return mybatis.selectList("shopDAO.shopGetListManager");
 
 	}
 

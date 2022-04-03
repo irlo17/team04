@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>관리자페이지 - 회원리스트 - 가게추가</title>
+        <title>관리자페이지 - 가게리스트 - 가게추가</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
@@ -61,24 +61,24 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">메인</div>
-                            <a class="nav-link" href="dashboard.do">
+                            <a class="nav-link" href="dashboardManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 대시보드
                             </a>
                             <div class="sb-sidenav-menu-heading">목차</div>
-                            <a class="nav-link" href="charts.do">
+                            <a class="nav-link" href="chartManagers.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>
-                            <a class="nav-link" href="memberList.do">
+                            <a class="nav-link" href="memberListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopList.do">
+                            <a class="nav-link" href="shopListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
-                            <a class="nav-link" href="reportList.do">
+                            <a class="nav-link" href="reportListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고리스트
                             </a>
@@ -102,10 +102,10 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4 jb-1000">가게 추가</h3></div>
                                     <div class="card-body">
                                     	<!-- form
-                                    		요청 : shopInsert.do
+                                    		요청 : shopInsertManager.do
                                     		사용 : 파일 업로드 추가
                                     	-->
-                                        <form action="shopInsert.do" method="post" enctype="multipart/form-data">
+                                        <form action="shopInsertManager.do" method="post" enctype="multipart/form-data">
                                         	<!-- 각 항목에 name 추가 (= ShopVO의 멤버변수와 이름 동일) -->
                                         	<div class="form-floating mb-3">
                                                 <input class="form-control" id="inputShopName" type="text" placeholder="상호명" name="shopTitle"/>
@@ -114,7 +114,7 @@
                                             <div class="row mb-3">
                                                 <div class="col-md-9">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="sample4_postcode" type="text" placeholder="Disabled input" />
+                                                        <input class="form-control" id="sample4_postcode" type="text" placeholder="우편번호" readonly="readonly"/>
                                                         <label for="inputFirstName">우편번호</label>
                                                     </div>
                                                 </div>
@@ -124,20 +124,20 @@
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="sample4_roadAddress" type="text" placeholder="Disabled input" name="shopAddrDoro"/>
+                                                <input class="form-control" id="sample4_roadAddress" type="text" placeholder="도로명주소" name="shopAddrDoroManager" readonly="readonly"/>
                                                 <label for="inputShopAddressDtail">도로명주소</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="sample4_jibunAddress" type="text" placeholder="Disabled input" name="shopAddrJibun"/>
+                                                <input class="form-control" id="sample4_jibunAddress" type="text" placeholder="지번주소" name="shopAddrJibunManager" readonly="readonly"/>
                                                 <label for="inputShopAddressDtail">지번주소</label>
                                             </div>
                                             <span id="guide" style="color:#999;display:none"></span>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="sample4_detailAddress" type="text" placeholder="Disabled input" name="shopAddrDetail"/>
+                                                <input class="form-control" id="sample4_detailAddress" type="text" placeholder="상세주소" name="shopAddrDetailManager" />
                                                 <label for="inputShopAddressDtail">상세주소</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="sample4_extraAddress" type="text" placeholder="Disabled input" name="shopAddrCamgo"/>
+                                                <input class="form-control" id="sample4_extraAddress" type="text" placeholder="참고항목" name="shopAddressDong" readonly="readonly"/>
                                                 <label for="inputShopAddressDtail">참고항목</label>
                                             </div>
                                             <div class="form-floating mb-3">
@@ -181,14 +181,15 @@
                                             <div class="row mb-3">
                                             	<div class="col-md-10 col-md-offset-10">
                                                 <label class="radio-inline" for="holiday">
-                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="월"/> 월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="화"/> 화&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="수"/> 수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="목"/> 목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="금"/> 금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="토"/> 토&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="checkbox" name="shopHoliday" value="일"/> 일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                	<label class="jb-600">휴일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="월"/> 월&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="화"/> 화&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="수"/> 수&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="목"/> 목&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="금"/> 금&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="토"/> 토&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="일"/> 일&nbsp;&nbsp;&nbsp;&nbsp;
+	                                                <input type="checkbox" name="shopHoliday" value="없음"/> 없음&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </label>
                                                 </div>
                                             </div>

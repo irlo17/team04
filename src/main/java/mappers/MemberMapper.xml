@@ -30,6 +30,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				)
 	</insert>
 	
+	<!-- 디폴트 마이 리스트 생성 -->
+	<insert id="memberDefaultList" parameterType="MemberVO">
+		INSERT INTO bookmark(LIST_NUMBER, LIST_NAME, LIST_DISPLAY
+							, LIST_LIKE, MEMBER_EMAIL, LIST_DATE
+							, DEFULT_LIST) 
+		VALUES (list_number_seq.nextval, #{memberNickname},'no'
+				,0,#{memberEmail},sysdate
+				,'yes')
+	
+	</insert>
+	
 	<!-- 로그인 가능 여부
 				- null O : 사용 가능한 이메일
 				- null X : 중복된 이메일 - 사용 불가능
@@ -85,6 +96,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM member 
 		<where>
 			member_email = #{memberEmail} AND member_password = #{memberPassword}
+		</where>
+	</delete>
+	
+	<!-- 관리자 회원탈퇴 -->
+	<delete id="memberDeleteManager" parameterType="MemberVO">
+		DELETE FROM member 
+		<where>
+			member_email = #{memberEmail}
 		</where>
 	</delete>
 </mapper>

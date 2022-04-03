@@ -1,6 +1,8 @@
 package com.team04.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,11 @@ public class MemberController {
 	@RequestMapping("memberInsert.do")
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
-
+		memberService.memberDefaultList(vo);
+		
 		return "redirect:loginForm.do";
 
 	}//end of memberInsert()
-
 
 
 	/**	email 중복 체크
@@ -75,7 +77,9 @@ public class MemberController {
 	 * 	- 하나의 레코드가 검색되어야함
 	 * @param MemberVO vo (memberEmail, memberPassword)
 	 * @return (페이지 이동)
-	 * 		- 로그인 성공	: HttpSession에 검색된 이메일과 닉네임을 저장
+	 * 		- 로그인 성공
+	 * 			(1) 관리자가 아닐 때 : 검색된 이메일과 닉네임을 HttpSession에 저장 -> main.do로 이동
+	 * 			(2) 관리자일 때 : 검색된 이메일과 닉네임을 HttpSession에 저장
 	 * 		- 로그인 실패
 	 */
 	@RequestMapping("loginCheck.do")
@@ -87,15 +91,37 @@ public class MemberController {
 			return "redirect:loginForm.do";
 
 		}else{
-			System.out.println("로그인 성공");
-			session.setAttribute("lognick", result.getMemberNickname());
-			session.setAttribute("logemail", result.getMemberEmail());
-
-			return "redirect:main.do";
-		}//end of if
+			if(result.getMemberAdmin().equals("N")) {
+				System.out.println("로그인 성공");
+				session.setAttribute("lognick", result.getMemberNickname());
+				session.setAttribute("logemail", result.getMemberEmail());
+				
+				return "redirect:main.do";
+			}else {
+				System.out.println("로그인 성공");
+				session.setAttribute("lognick", result.getMemberNickname());
+				session.setAttribute("logemail", result.getMemberEmail());
+				session.setAttribute("admin", result.getMemberAdmin());
+				return "redirect:memberListManager.do";
+			}//end of if(2) - 관리자 유무
+		}//end of if(1)
 
 	}//end of loginCheck()
 
+	
+	@RequestMapping("rememberEmail.do")
+	public String rememberEmail(MemberVO vo, HttpServletResponse response) {
+		
+		Cookie cookie = new Cookie("memberEmail",vo.getMemberEmail());
+		cookie.setDomain("localhost");
+		cookie.setPath("/");
+		// 30초간 저장
+		cookie.setMaxAge(30*60);
+		cookie.setSecure(true);
+		response.addCookie(cookie);
+		
+		return "redirect:main.do";
+	}
 
 
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
@@ -127,13 +153,14 @@ public class MemberController {
 	public String pwSearch(MemberVO vo, HttpSession session) {
 		MemberVO result = memberService.pwSearch(vo);
 		String message = "";	// 회원 정보 유무를 담을 변수
+		
 		if(result == null) {
 			// 회원정보가 없다는 뜻
 			message = "N";
 		}
 
 		/*	존재하는 회원이면 해당 이메일을 세션에 저장
-				- 추후에 저장한 이메일을 비밀번호 변경에서 사용함 */
+				- 추후에 저장한 이메일을 비밀번호 재설정에서 사용함 */
 		session.setAttribute("email", vo.getMemberEmail());
 
 		return message;
@@ -198,37 +225,47 @@ public class MemberController {
 
 	/** 로그아웃
 	 * 	- 세션에 저장된 회원의 이메일과 닉네임을 삭제
-	 * @return 메인 페이지로 이동
+	 * @return 
+	 * 		- 메인
 	 */
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("logemail") + "님 로그아웃");
-		session.invalidate();
-
-		return "main";
-
+			System.out.println(session.getAttribute("logemail") + "님 로그아웃");
+			session.invalidate();
+			
+			return "main";
 	}//end of logout()
 
 
 
-	/**
+	/** 회원 탈퇴
+	 * 	- DB에 저장된 회원의 레코드를 삭제
 	 * @param MemberVO vo
 	 * 			- input hidden으로 넘어온 이메일과 패스워드 정보로 회원의 레코드 삭제
 	 * 			- 세션에 저장된 로그인 정보 삭제
-	 * @return 메일 페이지로 이동
+	 * @return 메인페이지로 이동
 	 */
 	@RequestMapping("memberDelete.do")
 	public String memberDelete(MemberVO vo,HttpServletRequest request) {
 		memberService.memberDelete(vo);
 		System.out.println(vo.getMemberEmail() + "님 회원 탈퇴 성공");
 		HttpSession session = request.getSession();
+		
 		session.invalidate(); // 세션에 저장된 로그인 정보를 삭제
 
 		return "main";	// 회원 탈퇴 시 메인 페이지로 이동
 
 	}//end of memberDelete()
 
+	// 관리자 -> 회원탈퇴
+	@RequestMapping("memberDeleteManager.do")
+	public String memberDeleteManager(MemberVO vo) {
+		memberService.memberDeleteManager(vo);
+		
+		return "memberListManager";
+	}
+	
 
 
 }//end of class
