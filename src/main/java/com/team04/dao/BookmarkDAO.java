@@ -54,4 +54,6 @@ import com.team04.domain.MylistVO;
 	public void mylistDelete(MylistVO vo);
 	
 	public int totalbookmarkCount();
+	
+	public void mylistAdd(BookmarkVO vo);
 	} 

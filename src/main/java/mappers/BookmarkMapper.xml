@@ -98,4 +98,9 @@ ON b.member_email = m.member_email
 where b.list_display = 'yes'
 order by  list_date desc
 </select>
+
+<insert id="MylistInsert" parameterType="BookmarkVO">
+insert into bookmark(list_number,list_name,list_display,list_like,member_email,list_date,defult_list) 
+values(list_number_seq.nextval,#{listName},#{listDisplay},0,'eq@naver.com',sysdate,'no')
+</insert>
 </mapper>

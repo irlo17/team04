@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
@@ -103,7 +102,7 @@ public class BookmarkController {
 	  public String bookmarkDelete(String listNumber) {
 		
 		  bookmarkService.bookmarkDelete(listNumber);
-		  bookmarkService.TotalbookmarkPaging();
+		 int pageTotalCount= bookmarkService.totalbookmarkPage();
 		  
 		  return "redirect:mylist.do";
 	  }
@@ -116,7 +115,7 @@ public class BookmarkController {
 		  model.addAttribute("bookmarkModify", list1); 
 		  model.addAttribute("bookmarkList", list2); 
 		  
-		return("detailModify");  
+		return "detailModify";  
 	  }
 	  
 	  @RequestMapping("mylistUpdate.do")
@@ -133,5 +132,18 @@ public class BookmarkController {
 			return "redirect:detailModify.do";  
 		  }
 	  
+	  @RequestMapping("addPageView.do")
+	  public String addPageView() {
+		  
+		  return "mylistadd";
+	  }
 	  
+	  @RequestMapping("mylistadd.do")
+	  public String mylistAdd(BookmarkVO vo) {
+		  
+		  bookmarkService.mylistAdd(vo);
+		  
+		  return "redirect:mylist.do";
+	  }
+
 }

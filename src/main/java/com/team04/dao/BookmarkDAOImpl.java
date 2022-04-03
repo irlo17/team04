@@ -98,4 +98,11 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		return mybatis.selectOne("BookmarkDAO.TotalbookmarkCount");
 	}
 
+	/** mylistAdd 나의 즐겨찾기 목록 추가
+	 * 
+	 */
+	public void mylistAdd(BookmarkVO vo) {
+		
+		mybatis.insert("BookmarkDAO.MylistInsert",vo);
+	}
 }
