@@ -3,6 +3,7 @@ package com.team04.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.team04.domain.MylistVO;
 import com.team04.domain.ShopVO;
 
 public interface ListingDetailsService {
@@ -13,5 +14,12 @@ public interface ListingDetailsService {
 	
 	 
 	  void listingDetailsReviewInsert(HashMap map) ;
+	
+	  List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber);
+			 
+	void listingDetailsAddList( HashMap map );
+
+	
+	List<MylistVO> listingDetailsTotalList(String logemail);
 	
 }

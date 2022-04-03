@@ -1,5 +1,6 @@
 package com.team04.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.ShopVO;
@@ -11,6 +12,8 @@ public interface ShopService {
 	//가게 리스트 페이지에 가게 출력
 	List<ShopVO> shopPageGetList(String query);
 
+	List<ShopVO> shopPageFilterGetList(HashMap map);
+	
 	
 	/*
 	 * 관리자 페이지
@@ -29,6 +32,10 @@ public interface ShopService {
 	ShopVO shopGetManager(ShopVO shopVO);
 	
 	// 가게 전체 리스트 조회
+
 	List<ShopVO> shopGetListManager();
+
+
+
 	
 }

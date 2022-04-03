@@ -1,5 +1,6 @@
 package com.team04.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import com.team04.domain.MenuVO;
+import com.team04.domain.FoodKindVO;
 import com.team04.domain.ShopVO;
 import com.team04.service.MenuService;
 import com.team04.service.ShopService;
@@ -116,5 +119,22 @@ public class ShopController {
 		m.addAttribute("shopPageList", list); //jsp쪽으로 보내는 키값
 		return "listing";
 	}
+	
+	@RequestMapping("listingFilter.do")
+	public String shopPageFilterGetList(String query, FoodKindVO vo, Model m) {
+		
+		HashMap map = new HashMap();
+		
+		map.put("query", query);
+		map.put("foodKind", vo);
+		
+		
+		List<ShopVO> list = shopService.shopPageFilterGetList(map);
+		m.addAttribute("shopPageList", list);
+		
+		return "listing";
+	}
+	
+	
 
 }

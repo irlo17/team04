@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,8 +21,14 @@ public class ShopDAOImpl implements ShopDAO{
 	@Override
 	//가게리스트 페이지에 가게들 출력
 	public List<ShopVO> shopPageGetList(String query) {
-		System.out.println("===> Mybatis shopPageGetList() 호출");
+		System.out.println("넌 다오란다 ===> Mybatis shopPageGetList() 호출");
 		return mybatis.selectList("shopDAO.shopPageGetList", query);
+	}
+	
+	public List<ShopVO> shopPageFilterGetList(HashMap map) {
+		System.out.println("넌 다오란다 ===> Mybatis shopPageFilterGetList 호출");
+		System.out.println("다오???" + map.get("foodKind"));
+		return mybatis.selectList("shopDAO.shopPageFilterGetList", map);
 	}
 
 	/**

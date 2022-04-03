@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.ShopVO;
@@ -9,6 +10,9 @@ public interface ShopDAO {
 	
 	//가게 상세 리스트 페이지 조회
 	public List<ShopVO> shopPageGetList(String query);
+	
+	//가게 상세 리스트 필터값 까지 된거...
+	public List<ShopVO> shopPageFilterGetList(HashMap map);
 
 	// 가게 추가
 	void shopInsertManager(ShopVO shopVO);
