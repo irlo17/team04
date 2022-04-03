@@ -43,8 +43,12 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 		 listingDetailsDAO.listingDetailsAddList(map);
 	 }
 	 
-	public List<MylistVO> listingDetailsTotalList(String logemail){
-		return listingDetailsDAO.listingDetailsTotalList(logemail);
+	public List<MylistVO> listingDetailsTotalList(HashMap map){
+		return listingDetailsDAO.listingDetailsTotalList(map);
+	}
+	
+	public Integer listingDetailsShopListCount(HashMap map){
+		return listingDetailsDAO.listingDetailsShopListCount(map);
 	}
 	
 	 

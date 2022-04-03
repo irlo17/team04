@@ -91,23 +91,23 @@ FROM shop s
 
 	<!--  	
 		SQL 형태 : SELECT
-		이름 : shopGetList
+		이름 : shopGetListManager
 		받는 값(parameterType) : 없음
 		보내는 값(resultType) : ShopVO
 		사용 : 가게 전체 리스트를 검색하여 ShopVO형으로 보냄 
 	-->
-	<select id="shopGetList" resultType="ShopVO">
+	<select id="shopGetListManager" resultType="ShopVO">
 		SELECT * FROM shop
 	</select>
 	
 	<!-- 
 		SQL 형태 : INSERT
-		이름 : shopInsert
+		이름 : shopInsertManager
 		받는 값 (parameterType) : ShopVO
 		보내는 값(resultType) : 없음 ( Default -> int )
 		사용 : ShopVO에 담겨있는 내용을 DB에 Insert함
 	 -->
-	 <insert id="shopInsert" parameterType="ShopVO">
+	 <insert id="shopInsertManager" parameterType="ShopVO">
 	 	INSERT INTO shop (shop_number, shop_title, shop_tel
                      , shop_price_range, shop_food, shop_park, shop_time
                      , shop_holiday, shop_content
@@ -118,12 +118,56 @@ FROM shop s
                      )
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
 		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
-		             , #{shopHoliday}, #{shopContent}
-		             , TO_DATE(SYSDATE, 'RRRR-MM-DD'), TO_DATE(SYSDATE, 'RRRR-MM-DD')
+		             , #{shopHoliday}, #{shopContent, jdbcType=VARCHAR}
+		             , sysdate, sysdate
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
-		             , #{shopRealfname}
+		             , #{shopRealfname, jdbcType=VARCHAR}
 		             )
 	 </insert>
+	 
+	 <!-- 
+		SQL 형태 : DELETE
+		이름 : shopDeleteManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : 없음 ( Default -> int )
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 삭제
+	 -->
+	 <delete id="shopDeleteManager" parameterType="ShopVO">
+	 	DELETE FROM shop
+      	WHERE shop_number= #{shopNumber}
+	 </delete>
+	 
+	 <!-- 
+		SQL 형태 : SELECT
+		이름 : shopGetManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : ShopVO
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 ShopVO에 담아 보냄
+	 -->
+	 <select id="shopGetManager" parameterType="ShopVO" resultType="ShopVO">
+	 	SELECT * FROM shop
+     	WHERE shop_number=#{shopNumber}
+	 </select>
+	 
+	 <!-- 
+		SQL 형태 : UPDATE
+		이름 : shopUpdateManager
+		받는 값 (parameterType) : ShopVO
+		보내는 값(resultType) : 없음
+		사용 : ShopVO에 담겨있는 shopNumber와 맞는 데이터를 수정
+	 -->
+	 <update id="shopUpdateManager">
+	 	UPDATE shop
+		SET shop_title=#{shopTitle}, shop_tel=#{shopTel}
+		       , shop_price_range=#{shopPriceRange}
+		       , shop_food=#{shopFood}, shop_park=#{shopPark}
+		       , shop_time=#{shopTime}
+		       , shop_holiday=#{shopHoliday}
+		       , shop_content=#{shopContent}
+		       , shop_modify_date=sysdate
+		       , shop_realfname=#{shopRealfname, jdbcType=VARCHAR}
+		WHERE shop_number=#{shopNumber}
+	 </update>
 
 </mapper>
