@@ -23,7 +23,7 @@ prefix="c" %> <%@ page session="false" %>
 <hr />
 
 <!-- 권소연-->
-<a href="dashboard.do">관리자페이지</a>
+<a href="dashboardManager.do">관리자페이지</a>
 <hr />
 
 
