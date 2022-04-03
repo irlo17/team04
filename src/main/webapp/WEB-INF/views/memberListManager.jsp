@@ -20,15 +20,22 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- 내부 script -- 삭제버튼 구현 -->
         <script type="text/javascript">
-        	function removeBtn() {
-        		if(confirm("정말 삭제하시겠습니까?") == true) {
-    				alert("삭제되었습니다.");
-    				//document.frm.submit();
-    			} else {
-    				return;
-    			}
-        			
-        	}
+		    // 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
+		   	function removeBtn(num) {
+		   		// num이 받아졌는지 확인
+		   		console.log(num);
+		   		// 확인/취소 alert창 띄우기
+		   		if(confirm("정말 삭제하시겠습니까?") == true) {
+		   			// 확인을 누를 경우 요청과 함께 값을 보내기
+		   			//location.href=".do?shopNumber=" + num;
+		   			// 삭제 확인 메세지 띄우기
+					alert("삭제되었습니다.");
+					//document.frm.submit();
+				} else {
+					// 취소를 누를 경우 리턴
+					return;
+				}
+		   	}
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -141,7 +148,7 @@
                                     		<td>${member.memberBirth}</td>
                                     		<td>${member.memberTel}</td>
                                     		<td>${member.memberAdmin}</td>
-                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn()"/></td>
+                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn(${member.memberEmail})"/></td>
                                     	</tr>
                                     </c:forEach>
                                     </tbody>
