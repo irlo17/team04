@@ -5,6 +5,7 @@
     
     <%
     	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+    
     %>
    
     
@@ -21,6 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Directing | Template</title>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     
 
     <style type="text/css">
     
@@ -45,6 +47,10 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
             width: 365px;
             height: 150px;
         }
+        
+      
+        
+        
          /*----------모달관련된거--------신고기능 */
 </style>
     
@@ -65,9 +71,43 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                
                
            })
-    
-            
-            
+           
+           
+           
+           
+           /*	가게 상세페이지에서 추가하기 버튼을 눌렀을때	
+           		가게 번호를 가져오고 처리
+           		type : 포스트방식
+           		datatype: text
+           		
+           */
+        $('#listAdd').click(function(){
+        	  var shopNumber = $(this).attr('value');
+        	  alert(shopNumber);
+        
+        	   let param = { shopNumber :  shopNumber}
+               $.ajax({
+               url:	'listingDetailsAddList.do',
+           
+               type:	'post',
+               datatype: 'text',
+               data :	param,
+               success : function(data){
+               	
+            	   alert("추가 되었습니다.")
+            	   $('#listAdd').html(data)
+            	
+               },
+               
+               error : function(err){
+               	
+               	alert('이미 추가된 가게입니다.');
+   				
+               	
+               }
+               });
+        	  
+           });
         });
         
      /*    var selected = $('#gradeSelect option:selected').val(); */
@@ -140,7 +180,7 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
     <section class="listing-hero set-bg" data-setbg="resources/img/listing/details/listing-hero.jpg">
        
       
-           <c:forEach items="${shopInfo1}" var='shopInfo1'> 
+         <c:forEach items="${shopInfoList}" var='shopInfoList'> 
         <div class="container">
         
             <div class="row">
@@ -150,24 +190,33 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             <img src="resources/img/listing/details/ld-icon.png" alt="">
                         </div>
                         <div class="listing__hero__text">
-                            <h2>${shopInfo1.SHOPTITLE  }</h2>
+                            <h2>${shopInfoList.SHOPTITLE  }</h2>
                        
                             <div class="listing__hero__widget">
                                
                             </div>
-                            <p><span class="icon_pin_alt"></span> ${shopInfo1.SHOPADDRESS } </p>
+                            <p><span class="icon_pin_alt"></span> ${shopInfoList.SHOPADDRESS } </p>
                         </div>
                     </div>
                 </div>
+               
                 <div class="col-lg-4">
                     <div class="listing__hero__btns">
-                      
-                        <a href="#" class="primary-btn"><i class="fa fa-bookmark"></i> 추가하기</a>
+					 	    <button class="primary-btn" id="listAdd" value= "${shopInfoList.SHOPNUMBER }" ><i class="fa fa-bookmark"></i>추가하기</button>
+					 	      
                     </div>
                 </div>
+                
             </div>
         </div>
+        
+        
+        
+        
         </c:forEach>
+        
+        
+        
     </section>
     <!-- Listing Section End -->
 
@@ -180,10 +229,10 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
             
                 <div class="col-lg-8">
                     <div class="listing__details__text">
-                       <c:forEach items="${shopInfo1}" var='shopInfo1'> 
+                        <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                         <div class="listing__details__about">
                             <h4>가게 소개</h4>
-                             <p>${shopInfo1.SHOPCONTENT }</p>
+                             <p>${shopInfoList.SHOPCONTENT }</p>
                            <!--  <p>The judges are the most influential global personalities from hospitality, design and
                                 lifestyle media and have previously included the Editor in Chief of Wallpaper*, Marcus
                                 Wareing and Thomas Heatherwick.
@@ -193,11 +242,33 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                         </c:forEach>
                         <div class="listing__details__gallery">
                             <h4>Gallery</h4>
+                            
+                            
+                               <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                             <div class="listing__details__gallery__pic">
+                            
                                 <div class="listing__details__gallery__item">
-                                    <img class="listing__details__gallery__item__large"
+                                
+                                
+                                <c:set var="shopNumber" value="<%= shopNumber %>" />
+                             
+                                    <c:choose>
+                                    	<c:when test="${	shopNumber eq shopInfoList.SHOPNUMBER}">
+                                    	 <img class="listing__details__gallery__item__large" width="100%" height="450"
+                                        src="resources/manager/upload/${shopInfoList.SHOPREALFNAME }" alt="">
+                                        </c:when>
+                                        <c:otherwise>
+                                      
+                                        </c:otherwise>
+                                   </c:choose>
+						
+                                
+                                  <!--   <img class="listing__details__gallery__item__large"
                                         src="resources/img/listing/details/listing-details-1.jpg" alt="">
                                     <span><i class="fa fa-camera"></i> 170 Image</span>
+                                     -->
+                                    
+                                    
                                 </div>
                                 <div class="listing__details__gallery__slider owl-carousel">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
@@ -210,10 +281,21 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                         src="resources/img/listing/details/thumb-4.jpg" alt="">
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
+                   
+                   
+                  <%--  <c:choose>
+                   		<c:when test="${reviewInfo.SHOPNUMBER }"></c:when>
+                   
+                   
+                   </c:choose> --%>
                    
                        
                          <c:forEach items="${reviewInfo}" var='reviewInfo'> 
+                         <c:choose>
+                         	<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
+                       
                         <div class="listing__details__comment">
                             <h4>리뷰</h4>
                             <div class="listing__details__comment__item">
@@ -222,16 +304,34 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
-                                      <h>${reviewInfo.REVIEWGRADE }</h>
-                                      <img width='20' height='20' src="resources/img/face/1.png">
+                                     ${reviewInfo.REVIEWGRADE }
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '맛있어요' }">
+                                       <i class="fa fa-thumbs-up tasteGrade" aria-hidden="true"></i>
+                                      </c:if>
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '보통이에요' }">
+                                      <i class="fa fa-meh-o tasteGrade" aria-hidden="true"></i>
+                                      </c:if>
+                                      <c:if test="${reviewInfo.REVIEWGRADE eq '맛없어요' }">
+                                      <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                      </c:if>
                                       
+                                     
                                     </div>
-                                    <span>March 22, 2019</span>
-                                    <h5>${reviewInfo.REVIEWDATE }</h5>
+                                    <span>${reviewInfo.REVIEWDATE }</span>
+                                    <h6>리뷰 내용:</h6>
                                     <p>${reviewInfo.REVIEWCONTENT }</p>
-                                        <img width="180" src="resources/img/listing/list-1.jpg">
-                                        <img width="180" src="resources/img/listing/list-2.jpg">
-                                        <img width="180" src="resources/img/listing/list-3.jpg">
+                                    
+                                    <c:set var="email" value="${sessionScope.logemail}" />
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.logemail eq reviewInfo.MEMBEREMAIL}">
+                                        <img width="180" height="120" src="resources/reviewUpload/${reviewInfo.REVIEWFNAME }">
+                                        </c:when>
+                                        <c:otherwise>
+                                      <!--   <img width="180" src="resources/img/listing/list-2.jpg">
+                                        <img width="180" src="resources/img/listing/list-3.jpg"> -->
+                                        </c:otherwise>
+                                   </c:choose>
+                                        
                                     <ul>
                                        <!-- <li><i class="fa fa-hand-o-right"></i> Like</li>-->
                                         <li><i class="fa fa-share-square-o"></i>    <button type="text" class="modal-button" onClick="document.getElementById('mw_temp').style.display='block'">신고하기</button>     
@@ -253,9 +353,48 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             </div>
                         </div>
                         
+                        
+                        </c:when>
+                        
+                        
+                        <c:otherwise>
+                        <c:choose>
+                        	<c:when test="${  reviewInfo.REVIEWNUMBER == '0'}">
+                        
+                        <div class="listing__details__comment">
+                            <h4>리뷰</h4>
+                            <div class="listing__details__comment__item">
+                                <div class="listing__details__comment__item__pic">
+                                    <img src="resources/img/listing/details/comment.png" alt="">
+                                </div>
+                                <div class="listing__details__comment__item__text">
+                                    <div class="listing__details__comment__item__rating">
+                                    <!--   <h6>리뷰가 없습니다.ㅠㅠ</h6>
+                                      <img width='20' height='20' src="resources/img/face/1.png"> -->
+                                      
+                                    </div>
+                                    <!-- <span>아직 리뷰가 없습니다.</span> -->
+                                    <h5>리뷰 내용</h5>
+                                    <p>리뷰남긴 손님이 없습니다.</p>
+                                    
+                                   
+                         
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        </c:when>
+                        </c:choose>
+                        </c:otherwise>
+                        
+                          </c:choose>
                         </c:forEach>
+                        
+                        
+                        
+                        
                         <div class="listing__details__review">
-                            <h4>리뷰 작성</h4>
+                            <h>리뷰 작성</h>
                             <form action="reviewInsert.do?" method="post" enctype="multipart/form-data">
                             <input type ='hidden'  name= 'shopNumber' value='<%=shopNumber %>'/>
                                <!-- <input type="text" placeholder="Name">
@@ -286,19 +425,23 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                
                 
                 
-                 <c:forEach items="${shopInfo1}" var='shopInfo1'> 
                 <div class="col-lg-4">
                     <div class="listing__sidebar">
                         <div class="listing__sidebar__contact">
+                         
                             <div class="listing__sidebar__contact__map">
                             
                                 <div id="map" style="width: 100%; height: 14em"></div>
-
+									
                                 <script
                                   type="text/javascript"
                                   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"
                                 ></script>
+                                <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                                 <script>
+                          
+                                
+                                
                                   var mapContainer = document.getElementById("map"), // 지도를 표시할 div
                                     mapOption = {
                                       center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -310,7 +453,8 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                             var geocoder = new kakao.maps.services.Geocoder();
                             
                                   geocoder.addressSearch(
-                                    "서울시 강남구 일원동 광평로 10길 15",
+                                		  
+                                     "서울시 강남구 일원동 광평로 10길 15" ,
                                     function (result, status) {
                                       // 정상적으로 검색이 완료됐으면
                                       if (status === kakao.maps.services.Status.OK) {
@@ -336,40 +480,55 @@ html,body {height:100%; margin:0; display: block;z-index: 100;}
                                   );
                             
                                 </script>
-                            
+                             </c:forEach>
 
                            
                             </div>
+                           
+                            
+                            
                             <div class="listing__sidebar__contact__text">
+                             <c:forEach items="${shopInfoList}" var='shopInfoList'> 
                             <br/>
                                 <h5>상세정보</h5>
                                 <br/>
                                 <ul>
                                
                                 
-                                	<li><span class=""><i class="fa fa-home"></i></span> ${shopInfo1.SHOPTITLE }<hr/></li> 
-                                	<li><span class=""><i class="fa fa-info-circle"></i></span> ${shopInfo1.SHOPHOLIDAY }<hr/></li>
-                                	<li><span class=""><i class="fa fa-calendar"></i></span> ${shopInfo1.SHOPTIME }<hr/></li>
-                                	<li> <span class=""><i class="fa fa-krw"></i></span> ${shopInfo1.SHOPPRICERANGE }<hr/></li>
-                                	<li> <span class=""><i class="fa fa-car"></i></span> ${shopInfo1.SHOPPARK }<hr/></li>
-                                    <li><span class="icon_pin_alt"></span> ${shopInfo1.SHOPADDRESS }<hr/></li>
-                                    <li><span class="icon_phone"></span> ${shopInfo1.SHOPTEL }<hr/></li>
+                                	<li><span class=""><i class="fa fa-home"></i></span> ${shopInfoList.SHOPTITLE }<hr/></li> 
+                                	<li><span class=""><i class="fa fa-info-circle"></i></span>쉬는날: ${shopInfoList.SHOPHOLIDAY }<hr/></li>
+                                	<li><span class=""><i class="fa fa-calendar"></i></span> ${shopInfoList.SHOPTIME }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-krw"></i></span> ${shopInfoList.SHOPPRICERANGE }<hr/></li>
+                                	<li> <span class=""><i class="fa fa-car"></i></span> ${shopInfoList.SHOPPARK }<hr/></li>
+                                    <li><span class="icon_pin_alt"></span> ${shopInfoList.SHOPADDRESS }<hr/></li>
+                                    <li><span class="icon_phone"></span> ${shopInfoList.SHOPTEL }<hr/></li>
                                   	
                                 </ul>
-                               
+                                	<input type='hidden' id='shopLocation' value='${shopInfoList.SHOPADDRESS}'/>
+                                 </c:forEach>
                             </div>
+                          
                             <div class="listing__sidebar__working__hours">
+                         
                             <h4>메뉴</h4>
+                             <c:forEach items="${menuInfo}" var='menuInfo'> 
                             <ul>
-                                <li>${shopInfo1.MENUNAME } <span>${shopInfo1.MENUPRICE }</span></li>
+                                <li>${menuInfo.MENUNAME } <span>${menuInfo.MENUPRICE }</span></li>
                                 
                             </ul>
+                              </c:forEach>
                         </div>
                         </div>
                        
+                       
+                       
                     </div>
+                    
+                    
                 </div>
-                 </c:forEach>
+                
+                
+               
             </div>
         </div>
                

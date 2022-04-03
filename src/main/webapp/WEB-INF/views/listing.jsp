@@ -176,7 +176,7 @@
       </div>
       <hr />
       <div class="filter__search">
-        <input type="text" placeholder="검색값" />
+        <input id= "search" type="text" placeholder="검색값" value="${param.query}"/>
       </div>
       <div class="filter__select">
         <select>
@@ -352,7 +352,43 @@
               </div>
             </div>
             <hr />
-            <input type="button" value="검색" />
+            <form action="listingFilter.do">
+            
+           		<input id="query" name="query" value="${param.query}" /> 	
+              <input
+                type="submit"
+                class="btn btn-pop-up pop-up-search"
+                value="검색"
+              />
+              <input
+                id="koreanFoodInput"
+                name="koreanFood"
+              
+              />
+              <input
+                id="japaneseFoodInput"
+                name="japaneseFood"
+                
+              />
+              <input
+                id="chineseFoodInput"
+                name="chineseFood"
+                hidden="hidden"
+              />
+              <input
+                id="westernFoodInput"
+                name="westernFood"
+                hidden="hidden"
+              />
+              <input
+                id="worldFoodInput"
+                name="worldFood"
+                hidden="hidden"
+              />
+              <input id="buffetInput" name="buffet" hidden="hidden" />
+              <input id="cafeInput" name="cafe" hidden="hidden" />
+              <input id="pupInput" name="pup" hidden="hidden" />
+            </form>
           </div>
         </div>
       </div>
@@ -398,7 +434,7 @@
               </div>
               <ul>
                 <!--주소 이름 가지고와야함 ㅅㅂ-->
-                <span class="icon_pin_alt"></span><li class="shopAddress">${shop.shopAddress} </li>
+                <li class="shopAddress"><span class="icon_pin_alt"></span>${shop.shopAddress} </li>
                 <li><span class="icon_phone"></span> ${shop.shopTel}</li>
               </ul>
             </div>
@@ -468,7 +504,7 @@
       
    		//DB에 있는 shopAddress가 들어옴
       $(".shopAddress").each(function name(params) {
-    		var shopName = $(this).html();
+    		var shopName = $(this).text();
     		
     		  listData.push(shopName);
       })

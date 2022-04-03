@@ -3,6 +3,7 @@ package com.team04.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.team04.domain.MylistVO;
 import com.team04.domain.ShopVO;
 
 
@@ -15,5 +16,11 @@ public interface ListingDetailsDAO {
 	
 	public void listingDetailsReviewInsert(HashMap map);
 		
+	public List<ShopVO> listingDetailsOnlyShopInfo(String shopNumber);
+		
+	public void listingDetailsAddList(HashMap map);
+	 
+	public List<MylistVO> listingDetailsTotalList(String logemail);
+	
 	
 }

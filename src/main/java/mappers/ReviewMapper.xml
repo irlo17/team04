@@ -4,15 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reviewDAO">
-
 	
+	<!-- 리뷰 수정기능 -->
 	<update id="reviewUpdate"  parameterType="hashmap" >
 	
 		UPDATE review SET review_content= '${reviewContent}' WHERE review_number = #{reviewNumber} and member_email = #{logemail} 
 	
 	</update>
 	
-	<!--  아직 미완성-->				<!-- 파라미터 타입 ReviewVO도 가능함 -->
+	<!--  리뷰 삭제 기능-->				<!-- 파라미터 타입 ReviewVO도 가능함 -->
 	<delete id="reviewDelete" parameterType="hashmap">
 	
 			DELETE FROM review WHERE member_email = #{logemail} and 

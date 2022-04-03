@@ -8,36 +8,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="listingDetailsDAO">
 
 
+	<!-- 오직 가게정보만 담겨있따 -->
+	<select id="listingDetailsOnlyShopInfo" parameterType="string" resultType="hashmap">
+		Select SHOP_NUMBER shopNumber, SHOP_TITLE shopTitle, SHOP_TEL shopTel, SHOP_PRICE_RANGE shopPriceRange
+, SHOP_FOOD shopFood , SHOP_PARK shopPark , SHOP_TIME shopTime , SHOP_HOLIDAY shopHoliday , SHOP_CONTENT shopContent , SHOP_CREATE_DATE shopCreateDate
+, SHOP_MODIFY_DATE shopModifyDate , SHOP_ADDRESS shopAddress , SHOP_ADDRESS_SI shopAddressSi , SHOP_ADDRESS_GU shopAddressGu , SHOP_ADDRESS_DONG shopAddressDong , SHOP_REALFNAME shopRealfname
+		from shop
+		where SHOP_NUMBER= #{shopNumber}
+
+</select>
+
+
+	
+	
+
 
 	<select id="listingDetailsGetList" parameterType="string" resultType="hashmap">
-<!-- 		SELECT *
-		FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
-		,r.REVIEW_GRADE, r.REVIEW_CONTENT
-		,r.SHOP_NUMBER, r.MEMBER_EMAIL
-		,r.REVIEW_FNAME, r.REVIEW_REALFNAME
-		,s.SHOP_TITLE, s.SHOP_TEL, s.SHOP_PRICE_RANGE
-		,s.SHOP_FOOD, s.SHOP_PARK, s.SHOP_TIME
-		,s.SHOP_HOLIDAY, s.SHOP_CONTENT, s.SHOP_CREATE_DATE
-		,s.SHOP_MODIFY_DATE, s.SHOP_ADDRESS, s.SHOP_ADDRESS_SI
-		,s.SHOP_ADDRESS_GU, s.SHOP_ADDRESS_DONG, s.SHOP_REALFNAME
-		FROM review r left outer join shop s
-		on r.shop_number = s.shop_number) rs
-		ON m.shop_number = rs.shop_number
-		WHERE m.shop_number = #{shopNumber } -->
 
 
-
-<!-- 리뷰 목록 -->
-SELECT rs.REVIEW_NUMBER reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
+<!-- 리뷰 목록 용도로 쓸거-->
+SELECT distinct NVL(rs.REVIEW_NUMBER,0) reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
 ,rs.REVIEW_CONTENT reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail 
 ,rs.REVIEW_FNAME reviewFname, rs.REVIEW_REALFNAME reviewRealfname
-,rs.SHOP_TITLE shopTitle, rs.SHOP_TEL shopTel, rs.SHOP_PRICE_RANGE shopPriceRange
-,rs.SHOP_FOOD shopFood, rs.SHOP_PARK shopPark, rs.SHOP_TIME shopTime
-,rs.SHOP_HOLIDAY shopHoliday, rs.SHOP_CONTENT shopContent, rs.SHOP_CREATE_DATE shopCreateDate
-,rs.SHOP_MODIFY_DATE shopModifyDate, rs.SHOP_ADDRESS shopAddress, rs.SHOP_ADDRESS_SI shopAddressSi
-,rs.SHOP_ADDRESS_GU shopAddressGu, rs.SHOP_ADDRESS_DONG shopAddressDong, rs.SHOP_REALFNAME shopRealfname
-,m.menu_name menuName, m.menu_price menuPrice
-FROM menu m left outer join (SELECT  r.REVIEW_NUMBER, r.REVIEW_DATE
+FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
+                            ,r.REVIEW_GRADE, r.REVIEW_CONTENT
+                            ,r.SHOP_NUMBER, r.MEMBER_EMAIL
+                            ,r.REVIEW_FNAME, r.REVIEW_REALFNAME
+                            FROM review r left outer join shop s
+                            on r.shop_number = s.shop_number
+                            ORDER BY REVIEW_DATE DESC) rs
+ON m.shop_number = rs.shop_number
+WHERE m.shop_number= #{shopNumber } 
+
+
+
+
+
+
+<!-- SELECT distinct rs.REVIEW_NUMBER reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
+,rs.REVIEW_CONTENT reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail 
+,rs.REVIEW_FNAME reviewFname, rs.REVIEW_REALFNAME reviewRealfname
+FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
                             ,r.REVIEW_GRADE, r.REVIEW_CONTENT
                             ,r.SHOP_NUMBER, r.MEMBER_EMAIL
                             ,r.REVIEW_FNAME, r.REVIEW_REALFNAME
@@ -50,14 +61,14 @@ FROM menu m left outer join (SELECT  r.REVIEW_NUMBER, r.REVIEW_DATE
                             on r.shop_number = s.shop_number
                             ORDER BY REVIEW_DATE DESC) rs
 ON m.shop_number = rs.shop_number
-WHERE m.shop_number = #{shopNumber }
+WHERE m.shop_number = #{shopNumber }  -->
 	</select>
 	
 	<select id="listingDetailsShopInfo" parameterType="string" resultType="hashmap">
 	
 	
 	
-	<!-- 가게 정보 가져오기 -->
+	<!-- 가게 정보 가져오는데 메뉴판 뛰어줄때쓸꺼 -->
 SELECT  s.SHOP_NUMBER shopNumber ,s.SHOP_TITLE shopTitle, s.SHOP_TEL shopTel, s.SHOP_PRICE_RANGE shopPriceRange
 		,s.SHOP_FOOD shopFood, s.SHOP_PARK shopPark, s.SHOP_TIME shopTime
 		,s.SHOP_HOLIDAY shopHoliday, s.SHOP_CONTENT shopContent, s.SHOP_CREATE_DATE shopCreateDate
@@ -69,7 +80,7 @@ ON  m.shop_number = s.shop_number
 where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</select>
-	
+	<!--  리뷰작성-->
 	<insert id="listingDetailsReviewInsert" parameterType="hashmap">
 	
 	INSERT INTO review  ( review_number, review_date, review_grade, review_content , shop_number , member_email 
@@ -79,7 +90,43 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</insert>
 
-
+<!-- 	<insert id="listingDetailsAddList" parameterType="hashmap">
+	insert into mylist (LIST_NUMBER listNumber , SHOP_NUMBER shopNumber)
+	values ( (   	SELECT List_number listNumber
+            		FROM bookmark
+            		WHERE member_email = '${logemail}' and  defult_list = 'yes'), 2)
+            		
+            		
+	
+	
+	</insert> -->
+	
+	
+	<insert id="listingDetailsAddList" parameterType="hashmap">
+	insert into mylist(
+	list_number, 
+	shop_number 
+	)values (
+	(SELECT list_number listNumber
+			   FROM bookmark
+			   WHERE member_email = '${logemail}' and defult_list = 'yes')
+	, #{shopNumber})
+            		
+	
+	</insert>
+	
+	<select id="listingDetailsTotalList" parameterType="string" resultType="hashmap">
+	
+	SELECT distinct shop_number shopNumber,List_number listNumber
+		FROM mylist
+		WHERE LIST_NUMBER in (SELECT list_number
+                    FROM bookmark
+                    WHERE member_email = #{logemail})
+                   
+	</select>
+	
+	
+	
 
 
 

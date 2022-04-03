@@ -1,5 +1,6 @@
 package com.team04.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,15 @@ public class ShopServiceImpl implements ShopService{
 		
 		return shopDAO.shopPageGetList(query);
 	}
+	
+	//가게리스트 필터까지 검색해서 불러오는거 ㅅㅂ 왜안되
+	@Override
+	public List<ShopVO> shopPageFilterGetList(HashMap map) {
+		// TODO Auto-generated method stub
+		System.out.println("넌 필터 서비스란다");
+		return shopDAO.shopPageFilterGetList(map);
+	}
+	
 
 	/**
 	 * 메소드명 : shopInsert()
@@ -77,7 +87,8 @@ public class ShopServiceImpl implements ShopService{
 	public List<ShopVO> shopGetList() {
 		return shopDAO.shopGetList();
 	}
-	
+
+
 	
 
 }
