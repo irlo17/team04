@@ -32,8 +32,8 @@ form-group .form-control.form-nickname {
 
 .formBlock{
 	margin-top : 150px;
-	margin-right : 400px;
-	margin-left : 400px;
+	margin-right : 300px;
+	margin-left : 300px;
 	margin-bottom: 100px;
 	border-radius: 20px
 }
@@ -44,8 +44,6 @@ form-group .form-control.form-nickname {
     border-radius: 70%;
     overflow: hidden;
     border: 5px solid #f8fafb;
-    
-    
 }
 
 .filter__title{
@@ -75,4 +73,19 @@ form-group .form-control.form-nickname {
 	margin-top:20px;
 	text-align: center;
 }
+.btnMemberDelete{
+	position:relative;
+}
 
+#btnMemberDelete{
+	color : #d3d3d3;
+	border: 1px solid transparent;
+	background-color: white;
+	position:absolute; 
+	bottom:0;
+	right:0;
+}
+
+#memberFile{
+	/* width: 70%; */
+}

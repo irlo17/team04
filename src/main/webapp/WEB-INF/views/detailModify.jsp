@@ -90,11 +90,12 @@ $(function(){
         $('div.modal').modal();
     });
     
+    	// 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
 	$('#btnShopList').click(function(){
      if($(".shopNumber").is(":checked")) {
-    	// 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
+     	var shopNumber = $(".shopNumber").val(); 
      	
-    }; 
+   	 }//end of if
 	});
     
     $(".btn-warning").click(function(){

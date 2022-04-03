@@ -109,7 +109,7 @@ public class BookmarkController {
 	  
 	  @RequestMapping("detailModify.do")
 	  public String mylistModifydetail(String listNumber,Model model,HttpSession session) {
-		  String memberEmail=(String)session.getAttribute("logemail");
+		  String memberEmail= (String)session.getAttribute("logemail");
 		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetail(listNumber);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
 		  model.addAttribute("bookmarkModify", list1); 

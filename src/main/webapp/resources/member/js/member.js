@@ -1,4 +1,15 @@
 
+// 생년월일 max를 오늘 날짜로 지정하기
+ var today = new Date();
+ var day = today.getDate();
+ var monty = today.getMonth()+1;
+ var year = today.getFullYear();
+
+if(day<10){ day = '0'+ day}
+if(monty<10){ monty = '0' + monty}
+today = year + "-" + monty + "-" + day;
+document.getElementById('memberBirth').setAttribute("max", today);
+
 /**
 *	유효성 검사 정규식
  */
@@ -86,7 +97,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexNick.test(memberNickname) ){
 
-		$('label[for="memberNickname"] .error_box').html("닉네임 형식이 올바르지 않습니다.");
+		$('label[for="memberNickname"] .error_box').html("한글, 영문 그리고 숫자만 입력 가능합니다.");
 		return;
 	}else{
 		$('label[for="memberNickname"] .error_box').html("");
@@ -121,7 +132,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문(대소문자)과 숫자를 혼합하여 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -154,7 +165,7 @@ $('#btn_signUp').click(function(){
 		}
 	if( !RegexName.test(memberName) ){
 
-		$('label[for="memberName"] .error_box').html("이름 형식이 올바르지 않습니다.");
+		$('label[for="memberName"] .error_box').html("한글만 입력 가능합니다.");
 		return;
 	}else{
 		$('label[for="memberName"] .error_box').html("");
@@ -207,29 +218,56 @@ $('#btn_signUp').click(function(){
 		document.member_frm.submit();
 	}
 });
+
+
 /*********************************************************************
 	[ 로그인 페이지 ]
 	로그인 버튼 클릭
 */
 $('#btnLogin').click(function(){
+
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
 	
+
 	/* 이메일 */
 	if(memberEmail == ''){
+		$('label[for="memberEmail"] .error_box').html(blank);
 		$('#memberEmail').focus();
     		return;
-		}
+		}else{
+		$('label[for="memberEmail"] .error_box').html("");
+		}	
 	
 	/* 비밀번호 */
 	if(memberPassword == ''){
+		$('label[for="memberPassword"] .error_box').html(blank);
 		$('#memberPassword').focus();
     		return;
+		}else{
+		$('label[for="memberPassword"] .error_box').html("");
 		}
-		
+	
+	// 이메일 기억하기 버튼을 눌렀을 때
+	if( $("#rememberEmail").is(':checked') ){
+		$.ajax({
+			url : 'rememberEmail.do',
+			data : { memberEmail : $('#memberEmail').val() },
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			success : function(result){
+				alert('이메일 기억하기 성공!')
+			},
+			error : function(err){
+				alert('실패');
+				console.log(err);
+			}
+		});//end of ajax
+	}//end of if
+	
 	document.loginForm.submit();
 	
 }); //end of #btnLogin 
+
 
 /*********************************************************************
 	[ 비밀번호 재설정 페이지(1) ]
@@ -268,6 +306,8 @@ $('#btnPwSearch').click(function(){
     	}
     }); //end of ajax
 }) // end of #btnPwSearch
+
+
 
 // [ 비밀번호 재설정 페이지(2) ]
 $('#btnPwChange').click(function(){
@@ -310,6 +350,7 @@ $('#btnPwChange').click(function(){
 	document.pwChangeForm.submit();
 	
 }); // end of #btnPwChange
+
 
 $('#btnMemberUpdate').click(function(){
 	
@@ -407,6 +448,7 @@ $('#btnMemberUpdate').click(function(){
 	
 	 document.memberUpdateForm.submit();
 }) //end of #btnMemberUpdate
+
 $('#btnMemberDelete').click(function(){
   	alert('확인');
 	$('.modalMemberDelete').fadeIn()
