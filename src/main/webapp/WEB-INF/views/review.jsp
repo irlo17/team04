@@ -131,11 +131,13 @@
 .dogdog {
 	display: flex;
 	align-items: center;
-	margin-bottom: 3px
+	margin-bottom: 3px;
+	border-radius: 40px; 
+	background: ivory;
 }
 /*수정, 삭제 버튼 오른쪽으로 옮기기*/
 .modi_dele_button1 {
-	margin-left: 378px;
+	margin-left: 370px;
 }
 
 
@@ -171,7 +173,7 @@ li a {
 	text-decoration: none;
 }
 
-li a.active {
+ a.active {
 	background-color: lightpink;
 	color: black;
 	text-align: center;
@@ -186,9 +188,36 @@ li.on {
 	color: #555;
 }
 
-.ul_nav {
+/* .ul_nav {
 	background: #fff;
+} */
+
+.box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
 }
+
+
+.nick{
+  margin-top: -20px;
+   text-align: center;
+}
+
+.filter__title{
+    position: absolute;
+     top: 25%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+}
+
+.profile{
+	    max-width: 120%;
+	    
+}
+
+
 /*---------왼쪽 네비바 관련-0-----*/
 </style>
 
@@ -230,32 +259,55 @@ li.on {
 	<!--왼쪽 네비바-->
 	<div class="filter nice-scroll col-md-3 categori">
 		<div class="filter__title">
-
-
-			<li><i class="fa fa-user"></i> <a class="active" href="#home" >${sessionScope.id }</a></li>
-
-		</div>
-		<hr />
+         <div class="box">
+            <c:choose>
+               <c:when test="${ empty MemberVO.memberFname }">
+                  <img class="memberFile profile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+               </c:when>
+               <c:otherwise>
+                  <img class="memberFile profile" src="./resources/upload/${MemberVO.memberRealfname }">
+               </c:otherwise>
+            </c:choose>
+         	
+         </div>
+        <br/>
+        <br/>
+         <h5 class="nick">
+            ${sessionScope.lognick }
+         </h5>
+      </div>
+		
 		<br />
-
-		<ul class="ul_nav">
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	
+		
+	
+	
 
 			<div class="cate_1">
 				<!-- <h4>회원정보</h4>-->
-				<li><a href="#news">회원정보</a></li>
+			<h4>회원정보</h4>
 			</div>
 			<hr />
 
 
 			<div class="cate_2">
 				<!--   <h4>즐겨찾기</h4>-->
-				<li><a href="#contact">즐겨찾기</a></li>
+			<h4>즐겨찾기</h4>
 			</div>
 			<hr />
 
 			<div class="cate_3">
 				<!--   <h4>리뷰관리</h4>-->
-				<li><a href="#about">리뷰관리</a></li>
+				<h4>리뷰관리</h4>
 			</div>
 
 			<br />
@@ -278,10 +330,10 @@ li.on {
 			<hr />
 			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->
-				<li><a href="#about">로그아웃</a></li>
+				<a href="logout.do">로그아웃</a>
 
 			</div>
-		</ul>
+	
 
 	</div>
 	<!-- Filter End -->
@@ -307,7 +359,19 @@ li.on {
 						<div style="font-weight: bold; font-size: 1.5em;"
 							class="shop_name">가게명: ${review.SHOPTITLE}</div>
 						<div class="review_img">
-							<img src="resources/img/listing/list-4.jpg" width="450">
+						
+						<c:set var="email" value="${sessionScope.logemail}" />
+                                    <c:choose>
+                                    	<c:when test="${sessionScope.logemail eq review.MEMBEREMAIL}">
+                                        <img width="350" height="300"   src="resources/reviewUpload/${review.REVIEWFNAME }">
+                                        </c:when>
+                                        <c:otherwise>
+                                      
+                                        </c:otherwise>
+                                   </c:choose>
+						
+							
+							
 						</div>
 					</div>
 					<div class="col-md-3 inline-block max-width1">

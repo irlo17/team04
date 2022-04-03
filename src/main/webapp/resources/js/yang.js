@@ -22,64 +22,83 @@ $("#closeImg").click(function name(params) {
 $("#koreanFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/koreanFood.png") {
     $("#koreanFood").attr("src", "./resources/img/modal/koreanFoodClick.png");
+    $("#koreanFoodInput").val("한식");
   } else {
     $("#koreanFood").attr("src", "./resources/img/modal/koreanFood.png");
+    $("#koreanFoodInput").val("");
   }
 });
 
 $("#japaneseFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/japaneseFood.png") {
-    $("#japaneseFood").attr("src", "./resources/img/modal/japaneseFoodClick.png");
+    $("#japaneseFood").attr(
+      "src",
+      "./resources/img/modal/japaneseFoodClick.png"
+    );
+    $("#japaneseFoodInput").val("일식");
   } else {
     $("#japaneseFood").attr("src", "./resources/img/modal/japaneseFood.png");
+    $("#japaneseFoodInput").val("");
   }
 });
 
 $("#chineseFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/chineseFood.png") {
     $("#chineseFood").attr("src", "./resources/img/modal/chineseFoodClick.png");
+    $("#chineseFoodInput").val("중식");
   } else {
     $("#chineseFood").attr("src", "./resources/img/modal/chineseFood.png");
+    $("#chineseFoodInput").val("");
   }
 });
 
 $("#westernFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/westernFood.png") {
     $("#westernFood").attr("src", "./resources/img/modal/westernFoodClick.png");
+    $("#westernFoodInput").val("양식");
   } else {
     $("#westernFood").attr("src", "./resources/img/modal/westernFood.png");
+    $("#westernFoodInput").val("");
   }
 });
 
 $("#worldFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/worldFood.png") {
     $("#worldFood").attr("src", "./resources/img/modal/worldFoodClick.png");
+    $("#worldFoodInput").val("세계음식");
   } else {
     $("#worldFood").attr("src", "./resources/img/modal/worldFood.png");
+    $("#worldFoodInput").val("");
   }
 });
 
 $("#buffet").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/buffet.png") {
     $("#buffet").attr("src", "./resources/img/modal/buffetClick.png");
+    $("#buffetInput").val("뷔페");
   } else {
     $("#buffet").attr("src", "./resources/img/modal/buffet.png");
+    $("#buffetInput").val("");
   }
 });
 
 $("#cafe").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/cafe.png") {
     $("#cafe").attr("src", "./resources/img/modal/cafeClick.png");
+    $("#cafeInput").val("카페");
   } else {
     $("#cafe").attr("src", "./resources/img/modal/cafe.png");
+    $("#cafeInput").val("");
   }
 });
 
 $("#pup").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/pup.png") {
     $("#pup").attr("src", "./resources/img/modal/pupClick.png");
+    $("#pupInput").val("주점");
   } else {
     $("#pup").attr("src", "./resources/img/modal/pup.png");
+    $("#pupInput").val("");
   }
 });
 
@@ -93,3 +112,7 @@ $("#gangbook").click(function name(params) {
   $(".region > .gangnam").css("display", "none");
   $(".gangbook").css("display", "block");
 });
+
+
+
+
