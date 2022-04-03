@@ -20,7 +20,9 @@ public interface ListingDetailsDAO {
 		
 	public void listingDetailsAddList(HashMap map);
 	 
-	public List<MylistVO> listingDetailsTotalList(String logemail);
+	public List<MylistVO> listingDetailsTotalList(HashMap map);
+	
+	public Integer listingDetailsShopListCount(HashMap map);
 	
 	
 }

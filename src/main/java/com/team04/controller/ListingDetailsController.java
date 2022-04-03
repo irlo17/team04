@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.codec.multipart.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,9 @@ public class ListingDetailsController {
 	@Autowired
 	private ListingDetailsService listingDetailsService;
 
+	/*
+	 * @RequestMapping("mylist.do") public String mylist() { return "mylist"; }
+	 */
 	
 	
 		
@@ -46,8 +50,20 @@ public class ListingDetailsController {
 		/* 오직 가게정보만 담김 */
 		List<ShopVO> shopInfoList = listingDetailsService.listingDetailsOnlyShopInfo(shopNumber);
 		m.addAttribute("shopInfoList", shopInfoList);
-		List<MylistVO> totalList= listingDetailsService.listingDetailsTotalList(logemail);
+
+
+		HashMap map3 = new HashMap();
+		map3.put("shopNumber", shopNumber);
+		map3.put("logemail", logemail);
+		List<MylistVO> totalList= listingDetailsService.listingDetailsTotalList(map3);
 		m.addAttribute("totalList",totalList);
+	
+		
+		HashMap map = new HashMap();
+		map.put("logemail", logemail);
+		Integer shopListCount = listingDetailsService.listingDetailsShopListCount(map);
+		m.addAttribute("shopListCount",shopListCount);
+		
 		
 		return "listingDetails";
 	}
@@ -74,18 +90,43 @@ public class ListingDetailsController {
 		
 		listingDetailsService.listingDetailsReviewInsert(map);
 		
-		// 리뷰 작성후 페이지 이동하면 가게 정보 메뉴판 리뷰 목록이 안보여지기 때문에 한번더 실행해줌
-		// 이것은 오적 리뷰목록을 보기위해서
-		List<ShopVO> list = listingDetailsService.listingDetailsGetList(shopNumber);
-		m.addAttribute("reviewInfo", list);
+	
+		
 		/* 메뉴판 보여줄려고 사용 */
 		List<ShopVO> mlist = listingDetailsService.listingDetailsShopInfo(shopNumber);
 		m.addAttribute("menuInfo", mlist);
 		/* 오직 가게정보만 담김 */
 		List<ShopVO> shopInfoList = listingDetailsService.listingDetailsOnlyShopInfo(shopNumber);
 		m.addAttribute("shopInfoList", shopInfoList);
-		List<MylistVO> totalList= listingDetailsService.listingDetailsTotalList(logemail);
+		
+		HashMap map3 = new HashMap();
+		map3.put("shopNumber", shopNumber);
+		map3.put("logemail", logemail);
+		List<MylistVO> totalList= listingDetailsService.listingDetailsTotalList(map3);
 		m.addAttribute("totalList",totalList);
+		
+		
+		/*이것은 사용을 안함*/
+		HashMap map2 = new HashMap();
+		map.put("logemail", logemail);
+		Integer shopListCount = listingDetailsService.listingDetailsShopListCount(map2);
+		m.addAttribute("shopListCount",shopListCount);
+		
+		
+		
+		// 리뷰 작성후 페이지 이동하면 가게 정보 메뉴판 리뷰 목록이 안보여지기 때문에 한번더 실행해줌
+		// 이것은 오적 리뷰목록을 보기위해서
+		List<ShopVO> list = listingDetailsService.listingDetailsGetList(shopNumber);
+		m.addAttribute("reviewInfo", list);
+		
+		
+	
+		
+		
+		
+		
+		
+		
 		
 		return "listingDetails";
 	}

@@ -20,6 +20,8 @@ public interface ListingDetailsService {
 	void listingDetailsAddList( HashMap map );
 
 	
-	List<MylistVO> listingDetailsTotalList(String logemail);
+	List<MylistVO> listingDetailsTotalList(HashMap map);
+	
+	Integer listingDetailsShopListCount(HashMap map);
 	
 }
