@@ -87,4 +87,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_email = #{memberEmail} AND member_password = #{memberPassword}
 		</where>
 	</delete>
+	
+	<!-- 관리자 회원탈퇴 -->
+	<delete id="memberDeleteManager" parameterType="MemberVO">
+		DELETE FROM member 
+		<where>
+			member_email = #{memberEmail}
+		</where>
+	</delete>
 </mapper>

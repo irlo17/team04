@@ -45,4 +45,9 @@ public interface MemberService {
 	 * 	- DB에 동일한 이메일과 패스워드를 가진 회원의 레코드를 삭제
 	 */
 	public int memberDelete(MemberVO vo);
+	
+	
+	/** 관리자 회원 탈퇴
+	 */
+	public int memberDeleteManager(MemberVO vo);
 }

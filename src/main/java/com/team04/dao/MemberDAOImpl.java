@@ -131,4 +131,12 @@ public class MemberDAOImpl implements MemberDAO{
 		return memberMybatis.delete("memberDAO.memberDelete", vo);
 	}
 
+
+
+	@Override
+	public int memberDeleteManager(MemberVO vo) {
+		System.out.println("===> MemberMapper memberDelete 호출");	
+		return memberMybatis.delete("memberDAO.memberDeleteManager", vo);
+	}
+
 }

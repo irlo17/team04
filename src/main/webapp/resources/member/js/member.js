@@ -1,14 +1,4 @@
 
-// 생년월일 max를 오늘 날짜로 지정하기
- var today = new Date();
- var day = today.getDate();
- var monty = today.getMonth()+1;
- var year = today.getFullYear();
-
-if(day<10){ day = '0'+ day}
-if(monty<10){ monty = '0' + monty}
-today = year + "-" + monty + "-" + day;
-document.getElementById('memberBirth').setAttribute("max", today);
 
 /**
 *	유효성 검사 정규식
@@ -171,6 +161,17 @@ $('#btn_signUp').click(function(){
 		$('label[for="memberName"] .error_box').html("");
 		}
 		
+	// 생년월일 max를 오늘 날짜로 지정하기
+ 	var today = new Date();
+ 	var day = today.getDate();
+ 	var monty = today.getMonth()+1;
+ 	var year = today.getFullYear();
+
+	if(day<10){ day = '0'+ day}
+	if(monty<10){ monty = '0' + monty}
+	today = year + "-" + monty + "-" + day;
+	document.getElementById('memberBirth').setAttribute("max", today);
+		
 	/* 생년월일 */
 	if(memberBirth == ''){
 		$('label[for="memberBirth"] .error_box').html(blank);
@@ -224,8 +225,9 @@ $('#btn_signUp').click(function(){
 	[ 로그인 페이지 ]
 	로그인 버튼 클릭
 */
-$('#btnLogin').click(function(){
 
+$('#btnLogin').click(function(){
+	alert("확인");
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
 	
@@ -247,23 +249,7 @@ $('#btnLogin').click(function(){
 		}else{
 		$('label[for="memberPassword"] .error_box').html("");
 		}
-	
-	// 이메일 기억하기 버튼을 눌렀을 때
-	if( $("#rememberEmail").is(':checked') ){
-		$.ajax({
-			url : 'rememberEmail.do',
-			data : { memberEmail : $('#memberEmail').val() },
-			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-			success : function(result){
-				alert('이메일 기억하기 성공!')
-			},
-			error : function(err){
-				alert('실패');
-				console.log(err);
-			}
-		});//end of ajax
-	}//end of if
-	
+
 	document.loginForm.submit();
 	
 }); //end of #btnLogin 
@@ -418,6 +404,18 @@ $('#btnMemberUpdate').click(function(){
 		$('label[for="memberName"] .error_box').html("");
 		}
 		
+	// 생년월일 max를 오늘 날짜로 지정하기
+ 	var today = new Date();
+ 	var day = today.getDate();
+ 	var monty = today.getMonth()+1;
+ 	var year = today.getFullYear();
+
+	if(day<10){ day = '0'+ day}
+	if(monty<10){ monty = '0' + monty}
+	today = year + "-" + monty + "-" + day;
+	document.getElementById('memberBirth').setAttribute("max", today);
+	
+	
 	/* 생년월일 */
 	if(memberBirth == ''){
 		$('label[for="memberBirth"] .error_box').html(blank);
@@ -453,3 +451,5 @@ $('#btnMemberDelete').click(function(){
   	alert('확인');
 	$('.modalMemberDelete').fadeIn()
 })
+
+
