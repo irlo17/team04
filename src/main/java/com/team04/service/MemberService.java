@@ -18,6 +18,10 @@ public interface MemberService {
 	 */
 	public int memberInsert(MemberVO vo);
 	
+	/** 회원가입과 동시에 디폴트 리스트 생성
+	 */
+	public int memberDefaultList(MemberVO vo);
+	
 	
 	/** 로그인
 	 * 	- DB에 입력된 이메일과 비밀번호가 일치하는 레코드 검색
@@ -50,6 +54,7 @@ public interface MemberService {
 	public int memberDelete(MemberVO vo);
 	
 	
+
 	// ----- 관리자페이지 -----
 	/* ***관리자페이지 전체 회원리스트 출력
 	 * 		- DB에 있는 회원 리스트를 모두 가져옴
@@ -60,4 +65,9 @@ public interface MemberService {
 	 * 		- DB에서 월별 회원가입 수 리스트
 	 */
 	public List<ChartsVO> memberDateListManager();
+
+	/** 관리자 회원 탈퇴
+	 */
+	public int memberDeleteManager(MemberVO vo);
+
 }

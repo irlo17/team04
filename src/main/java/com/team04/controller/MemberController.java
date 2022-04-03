@@ -51,11 +51,11 @@ public class MemberController {
 	@RequestMapping("memberInsert.do")
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
-
+		memberService.memberDefaultList(vo);
+		
 		return "redirect:loginForm.do";
 
 	}//end of memberInsert()
-
 
 
 	/**	email 중복 체크
@@ -84,7 +84,9 @@ public class MemberController {
 	 * 	- 하나의 레코드가 검색되어야함
 	 * @param MemberVO vo (memberEmail, memberPassword)
 	 * @return (페이지 이동)
-	 * 		- 로그인 성공	: 검색된 이메일과 닉네임을 HttpSession에 저장
+	 * 		- 로그인 성공
+	 * 			(1) 관리자가 아닐 때 : 검색된 이메일과 닉네임을 HttpSession에 저장 -> main.do로 이동
+	 * 			(2) 관리자일 때 : 검색된 이메일과 닉네임을 HttpSession에 저장
 	 * 		- 로그인 실패
 	 */
 	@RequestMapping("loginCheck.do")
@@ -96,12 +98,20 @@ public class MemberController {
 			return "redirect:loginForm.do";
 
 		}else{
-			System.out.println("로그인 성공");
-			session.setAttribute("lognick", result.getMemberNickname());
-			session.setAttribute("logemail", result.getMemberEmail());
-
-			return "redirect:main.do";
-		}//end of if
+			if(result.getMemberAdmin().equals("N")) {
+				System.out.println("로그인 성공");
+				session.setAttribute("lognick", result.getMemberNickname());
+				session.setAttribute("logemail", result.getMemberEmail());
+				
+				return "redirect:main.do";
+			}else {
+				System.out.println("로그인 성공");
+				session.setAttribute("lognick", result.getMemberNickname());
+				session.setAttribute("logemail", result.getMemberEmail());
+				session.setAttribute("admin", result.getMemberAdmin());
+				return "redirect:memberListManager.do";
+			}//end of if(2) - 관리자 유무
+		}//end of if(1)
 
 	}//end of loginCheck()
 
@@ -134,7 +144,7 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}
 			// (2) 세션에 로그인 정보 O
-			return "redirect:mypageMember.do";
+			return "redirect:mylist.do";
 
 	}// end of login()
 
@@ -222,16 +232,16 @@ public class MemberController {
 
 	/** 로그아웃
 	 * 	- 세션에 저장된 회원의 이메일과 닉네임을 삭제
-	 * @return 메인 페이지로 이동
+	 * @return 
+	 * 		- 메인
 	 */
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("logemail") + "님 로그아웃");
-		session.invalidate();
-
-		return "main";
-
+			System.out.println(session.getAttribute("logemail") + "님 로그아웃");
+			session.invalidate();
+			
+			return "main";
 	}//end of logout()
 
 
@@ -241,13 +251,14 @@ public class MemberController {
 	 * @param MemberVO vo
 	 * 			- input hidden으로 넘어온 이메일과 패스워드 정보로 회원의 레코드 삭제
 	 * 			- 세션에 저장된 로그인 정보 삭제
-	 * @return 메일 페이지로 이동
+	 * @return 메인페이지로 이동
 	 */
 	@RequestMapping("memberDelete.do")
 	public String memberDelete(MemberVO vo,HttpServletRequest request) {
 		memberService.memberDelete(vo);
 		System.out.println(vo.getMemberEmail() + "님 회원 탈퇴 성공");
 		HttpSession session = request.getSession();
+		
 		session.invalidate(); // 세션에 저장된 로그인 정보를 삭제
 
 		return "main";	// 회원 탈퇴 시 메인 페이지로 이동
@@ -270,6 +281,13 @@ public class MemberController {
 	public String memberListManager(Model m) {
 		
 		m.addAttribute("memberList", memberService.memberGetListManager());
+		return "memberListManager";
+	}
+	
+	// 관리자 -> 회원탈퇴
+	@RequestMapping("memberDeleteManager.do")
+	public String memberDeleteManager(MemberVO vo) {
+		memberService.memberDeleteManager(vo);
 		
 		return "memberListManager";
 	}

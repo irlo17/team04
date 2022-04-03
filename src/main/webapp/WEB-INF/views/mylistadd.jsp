@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -26,7 +25,8 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
@@ -38,7 +38,6 @@
 <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 
 
 
@@ -49,7 +48,7 @@
             margin-left: 100px;
             margin-right: 100px; */
 	/* text-align: center;*/
-	 padding: 100px; 
+	padding: 200px;
 }
 
 .inline-block {
@@ -65,46 +64,62 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	 padding: 100px; 
+	padding: 100px;
 }
 
 .ov-hid .blog__pagination {
-	text-align: center;
+	padding: 50px;
+	position: relative;
+	left:250px;
+}
+#my{margin-top:50px; 
+position: relative; left:400px; }
 
-} 
-#my{text-align: center;
-margin-bottom:50px;
+#mo{text-align: center;}
+	
+	
+#frm{border:1px solid gray; 
+box-shadow: 5px 5px 5px 5px lightgray;
+width:600px; 
+height:400px; 
+margin-left:200px; 
+text-align: center; 
+padding:50px;
+font-size: 15px;
 }
 
-.table{width:100%; }
-.btn-success{position: relative; left:90%;}
-
+#tx{width:400px; text-align:left; background-color: #f8fafb;}
+#tb{width:600px;height:100px; }
+tr{text-align:left;}
 </style>
 
 </head>
 
 <body class="ov-hid">
-
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-		
+
 	<!-- Header Section Begin -->
 	<header class="header header--normal">
-		<div class="container-fluid" >
-			<div class="row" >
-				<div class="col-lg-3 col-md-3" >
-					<div class="header__logo" >
+
+		<div class="container-fluid">
+		
+			<div class="row">
+			
+				<div class="col-lg-3 col-md-3">
+					<div class="header__logo">
 						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
 					</div>
 				</div>
-				<div class="col-lg-9 col-md-9" >
-					<div class="header__nav" >
+				
+				<div class="col-lg-9 col-md-9">
+					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
+						<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="#" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -112,10 +127,10 @@ margin-bottom:50px;
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-	
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
+
 	<div class="filter nice-scroll col-md-3">
 		<div class="filter__title">
 			<h5>
@@ -124,54 +139,56 @@ margin-bottom:50px;
 		</div>
 		<hr />
 		<br />
+
+
+
 		<div class="">
-			<h4>
-				<a href="mypageMember.do">회원정보</a>
-			</h4>
+			<h4>회원정보</h4>
+
 		</div>
 		<hr />
+
+
 		<div class="">
 			<h4>
-				<a href="mylist.do">즐겨찾기</a>
+				<a href="./mylist.html">즐겨찾기</a>
 			</h4>
+
 		</div>
 		<hr />
+
 		<div class="">
-		<h4>
-				<a href="review.do">리뷰관리</a>
-		</h4>
+			<h4>리뷰관리</h4>
+
 		</div>
+
+
 	</div>
 	<!-- Filter End -->
 
-
 	<!-- Listing Section Begin -->
-	<section class="nice-scroll nuguri">
+	<section class=" nice-scroll nuguri">
 			
-		<div class="listing__text__top col-md-12 dogdog">
-		<div id="my"><h4 id='ga'><i class="fa-solid fa-apple-whole"></i>  나만의 즐겨찾기 목록</h4></div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>리스트제목</th>
-						<th>공개여부</th>
-						<th>좋아요 수</th>
-						
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
-					<tr class="active">
-						<th scope="row">${status.count}</th>
-						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
-						<td>${bookmark.listDisplay }</td>
-						<td>${bookmark.listLike}</td>
-					</tr>
-				</c:forEach>
-				
-				</tbody>
-			</table>
+			
+	<form id='frm' name='frm' method='post' action= "mylistadd.do">
+	<h4 id='mo'> <span class="glyphicon glyphicon-check" aria-hidden="true"></span>  즐겨찾기 리스트 추가하기 </h4><br/><br/>
+	<table id='tb'>
+	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+	&nbsp;&nbsp;제  목 : </td><td>&nbsp;<input id='tx' name="listName" type='text'  /></td></tr>
+																					
+	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;공개여부 : </td><td>&nbsp;&nbsp;<input type="radio" value='yes' name='listDisplay' checked>공개&nbsp;&nbsp;
+			 <input type="radio" value='no' name='listDisplay'>비공개</td></tr>
+	</table> 
+	<br/><br/>
+			
+	<input type='submit' value='추가' class="btn btn-warning"> 
+	
+	
+	</form>
+			
+			
+			
+	</section>
 
 
 
@@ -179,18 +196,6 @@ margin-bottom:50px;
 
 
 
-
-				<a href="addPageView.do"><input type="button" class="btn btn-success" value="리스트 추가"></a>
-
-			<div class="blog__pagination">
-				<a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a> 
-				    <a href="#">1</a> 
-					<a href="#">2</a> 
-					<a href="#">3</a> 
-					<a href="#">Next<i class="fa fa-long-arrow-right"></i></a>
-				</div>
-			</div>
-		</section>
 
 
 
@@ -206,7 +211,8 @@ margin-bottom:50px;
 	<script src="./resources/js/jquery.slicknav.js"></script>
 	<script src="./resources/js/owl.carousel.min.js"></script>
 	<script src="./resources/js/main.js"></script>
-<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
+<script src="https://kit.fontawesome.com/2173f645ed.js" crossorigin="anonymous"></script>
+
 
 
 </body>

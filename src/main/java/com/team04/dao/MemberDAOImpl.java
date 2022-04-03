@@ -164,4 +164,20 @@ public class MemberDAOImpl implements MemberDAO{
 		return memberMybatis.selectList("memberDAO.memberDateListManager");
 	}
 
+
+
+	@Override
+	public int memberDeleteManager(MemberVO vo) {
+		System.out.println("===> MemberMapper memberDelete 호출");	
+		return memberMybatis.delete("memberDAO.memberDeleteManager", vo);
+	}
+
+
+
+	@Override
+	public int memberDefaultList(MemberVO vo) {
+		System.out.println("===> MemberMapper memberDefaultList 호출");	
+		return memberMybatis.insert("memberDAO.memberDefaultList", vo);
+	}
+
 }

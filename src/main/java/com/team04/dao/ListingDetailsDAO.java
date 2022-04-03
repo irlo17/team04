@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.MylistVO;
+import com.team04.domain.ReportVO;
 import com.team04.domain.ShopVO;
 
 
@@ -20,7 +21,9 @@ public interface ListingDetailsDAO {
 		
 	public void listingDetailsAddList(HashMap map);
 	 
-	public List<MylistVO> listingDetailsTotalList(String logemail);
+	public List<MylistVO> listingDetailsTotalList(HashMap map);
 	
+	public Integer listingDetailsShopListCount(HashMap map);
 	
+	public List<ReportVO> listingDetailsReport(HashMap map);
 }

@@ -108,7 +108,7 @@ position: relative; left:400px; }
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -129,18 +129,22 @@ position: relative; left:400px; }
 		<hr />
 		<br />
 		<div class="">
-			<h4>회원정보</h4>
+			<h4>
+				<a href="mypageMember.do">회원정보</a>
+			</h4>
 
 		</div>
 		<hr />
 		<div class="">
 			<h4>
-				<a href="./mylist.html">즐겨찾기</a>
+				<a href="mylist.do">즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+				<a href="review.do">리뷰관리</a>
+		</h4>
 		</div>
 	</div>
 	<!-- Filter End -->

@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 , SHOP_FOOD shopFood , SHOP_PARK shopPark , SHOP_TIME shopTime , SHOP_HOLIDAY shopHoliday , SHOP_CONTENT shopContent , SHOP_CREATE_DATE shopCreateDate
 , SHOP_MODIFY_DATE shopModifyDate , SHOP_ADDRESS shopAddress , SHOP_ADDRESS_SI shopAddressSi , SHOP_ADDRESS_GU shopAddressGu , SHOP_ADDRESS_DONG shopAddressDong , SHOP_REALFNAME shopRealfname
 		from shop
-		where SHOP_NUMBER= #{shopNumber}
+		where SHOP_NUMBER= #{shopNumber,jdbcType=INTEGER}
 
 </select>
 
@@ -38,30 +38,9 @@ FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
                             on r.shop_number = s.shop_number
                             ORDER BY REVIEW_DATE DESC) rs
 ON m.shop_number = rs.shop_number
-WHERE m.shop_number= #{shopNumber } 
+WHERE m.shop_number= #{shopNumber,jdbcType=INTEGER } 
 
 
-
-
-
-
-<!-- SELECT distinct rs.REVIEW_NUMBER reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
-,rs.REVIEW_CONTENT reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail 
-,rs.REVIEW_FNAME reviewFname, rs.REVIEW_REALFNAME reviewRealfname
-FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
-                            ,r.REVIEW_GRADE, r.REVIEW_CONTENT
-                            ,r.SHOP_NUMBER, r.MEMBER_EMAIL
-                            ,r.REVIEW_FNAME, r.REVIEW_REALFNAME
-                            ,s.SHOP_TITLE, s.SHOP_TEL, s.SHOP_PRICE_RANGE
-                            ,s.SHOP_FOOD, s.SHOP_PARK, s.SHOP_TIME
-                            ,s.SHOP_HOLIDAY, s.SHOP_CONTENT, s.SHOP_CREATE_DATE
-                            ,s.SHOP_MODIFY_DATE, s.SHOP_ADDRESS, s.SHOP_ADDRESS_SI
-                            ,s.SHOP_ADDRESS_GU, s.SHOP_ADDRESS_DONG, s.SHOP_REALFNAME
-                            FROM review r left outer join shop s
-                            on r.shop_number = s.shop_number
-                            ORDER BY REVIEW_DATE DESC) rs
-ON m.shop_number = rs.shop_number
-WHERE m.shop_number = #{shopNumber }  -->
 	</select>
 	
 	<select id="listingDetailsShopInfo" parameterType="string" resultType="hashmap">
@@ -77,7 +56,7 @@ SELECT  s.SHOP_NUMBER shopNumber ,s.SHOP_TITLE shopTitle, s.SHOP_TEL shopTel, s.
 		,m.menu_name menuName, m.menu_price menuPrice
 FROM     menu m inner join shop s
 ON  m.shop_number = s.shop_number
-where s.SHOP_NUMBER  = #{shopNumber }
+where s.SHOP_NUMBER  = #{shopNumber,jdbcType=INTEGER }
 	
 	</select>
 	<!--  리뷰작성-->
@@ -95,10 +74,6 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	values ( (   	SELECT List_number listNumber
             		FROM bookmark
             		WHERE member_email = '${logemail}' and  defult_list = 'yes'), 2)
-            		
-            		
-	
-	
 	</insert> -->
 	
 	
@@ -115,19 +90,35 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</insert>
 	
-	<select id="listingDetailsTotalList" parameterType="string" resultType="hashmap">
 	
-	SELECT distinct shop_number shopNumber,List_number listNumber
+	<!-- 사용자가 그 가게를 추가 했는지 알기위한 쿼리문 -->
+	<select id="listingDetailsTotalList" parameterType="hashmap" resultType="hashmap">
+	
+	SELECT distinct nvl(max(shop_number),0) shopNumber
 		FROM mylist
 		WHERE LIST_NUMBER in (SELECT list_number
                     FROM bookmark
-                    WHERE member_email = #{logemail})
-                   
+                    WHERE member_email = #{logemail}) and shop_number = #{shopNumber,jdbcType=INTEGER}
+                   order by shop_number asc
 	</select>
 	
 	
 	
-
+	<select id="listingDetailsShopListCount" parameterType="hashmap" resultType="int">
+		
+		SELECT count(*)/2 as shopNumber
+		from MYlist m, (SELECT member_email
+       					 FROM BOOKMARK
+       					 WHERE member_email = '${logemail}'	) s
+	</select>
+	
+	<insert id="listingDetailsReport" parameterType="hashmap">
+		insert into report (report_number , report_content , review_number)   
+		values (REPORT_NUMBER_SEQ.nextval,  '${reportContent}'   , #{reviewNumber} )
+		
+	
+	</insert> 
+	
 
 
 </mapper>

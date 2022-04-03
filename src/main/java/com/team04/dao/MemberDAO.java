@@ -47,6 +47,7 @@ public interface MemberDAO {
 	 */
 	int memberDelete(MemberVO vo);
 	
+
 	
 	
 	// ----- 관리자페이지 -----
@@ -59,4 +60,9 @@ public interface MemberDAO {
 	 * 	- DB에 저장된 회원가입한 월별 갯수 가져오기
 	 */
 	public List<ChartsVO> memberDateListManager();
+
+	int memberDeleteManager(MemberVO vo);
+	
+	int memberDefaultList(MemberVO vo);
+
 }

@@ -245,7 +245,7 @@ li.on {
 
 						<div class="header__menu__right">
 							<!--   <a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>-->
-							<a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -294,20 +294,20 @@ li.on {
 
 			<div class="cate_1">
 				<!-- <h4>회원정보</h4>-->
-			<h4>회원정보</h4>
+			<a href="mypageMember.do"><h4>회원정보</h4></a>
 			</div>
 			<hr />
 
 
 			<div class="cate_2">
 				<!--   <h4>즐겨찾기</h4>-->
-			<h4>즐겨찾기</h4>
+			<a href="mylist.do"><h4>즐겨찾기</h4></a>
 			</div>
 			<hr />
 
 			<div class="cate_3">
 				<!--   <h4>리뷰관리</h4>-->
-				<h4>리뷰관리</h4>
+				<a href="review.do"><h4>리뷰관리</h4></a>
 			</div>
 
 			<br />
@@ -322,11 +322,7 @@ li.on {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-
+		
 			<hr />
 			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->

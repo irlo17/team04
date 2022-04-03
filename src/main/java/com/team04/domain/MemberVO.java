@@ -13,6 +13,7 @@ public class MemberVO {
 	private String memberName;		// 이름
 	private String memberBirth;		// 생년월일
 	private String memberTel;		// 휴대전화
+	private String memberAdmin;		// 관리자 유무
 	private String memberFname;		// 파일명
 	private String memberRealfname; // 저장된 파일이름
 	
@@ -34,17 +35,20 @@ public class MemberVO {
 		this.memberName = memberName;
 		this.memberBirth = memberBirth;
 		this.memberTel = memberTel;
+		this.memberAdmin = memberAdmin;
 		this.memberFname = memberFname;
 		this.memberRealfname = memberRealfname;
 		this.memberFile = memberFile;
 		this.memberAdmin = memberAdmin;
 	}
 	
+	
 	// getter, setter
 	public MultipartFile getMemberFile() {
 		return memberFile;
 	}
 	
+
 	public void setMemberFile(MultipartFile memberFile) {
 		this.memberFile = memberFile;
 		
@@ -72,7 +76,6 @@ public class MemberVO {
 	}
 	
 	
-
 	
 	public String getMemberAdmin() {
 		return memberAdmin;

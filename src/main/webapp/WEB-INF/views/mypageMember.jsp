@@ -122,8 +122,9 @@
 		<br/>
 
 		<div class="">
-			<h4>회원정보</h4>
-
+			<h4>
+				<a href="mypageMember.do">회원정보</a>
+			</h4>
 		</div>
 		<hr />
 
@@ -135,7 +136,9 @@
 		<hr />
 
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+				<a href="review.do">리뷰관리</a>
+		</h4>
 
 		</div>
 
