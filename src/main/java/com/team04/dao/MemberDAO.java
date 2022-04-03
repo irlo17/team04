@@ -43,4 +43,6 @@ public interface MemberDAO {
 	 * 	- DB에 동일한 이메일과 패스워드를 가진 회원의 레코드를 삭제
 	 */
 	int memberDelete(MemberVO vo);
+	
+	int memberDeleteManager(MemberVO vo);
 }
