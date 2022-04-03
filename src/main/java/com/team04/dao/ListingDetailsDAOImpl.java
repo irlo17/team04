@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team04.domain.MylistVO;
+import com.team04.domain.ReportVO;
 import com.team04.domain.ShopVO;
 
 @Repository("listingDetailsDAO")
@@ -53,4 +54,9 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO {
 	public Integer listingDetailsShopListCount(HashMap map){
 		return mybatis.selectOne("listingDetailsDAO.listingDetailsShopListCount",map);
 	}
+	
+	public List<ReportVO> listingDetailsReport(HashMap map){
+		return mybatis.selectList("listingDetailsDAO.listingDetailsReport",map);
+	}
+	
 }

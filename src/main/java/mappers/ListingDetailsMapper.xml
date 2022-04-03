@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 , SHOP_FOOD shopFood , SHOP_PARK shopPark , SHOP_TIME shopTime , SHOP_HOLIDAY shopHoliday , SHOP_CONTENT shopContent , SHOP_CREATE_DATE shopCreateDate
 , SHOP_MODIFY_DATE shopModifyDate , SHOP_ADDRESS shopAddress , SHOP_ADDRESS_SI shopAddressSi , SHOP_ADDRESS_GU shopAddressGu , SHOP_ADDRESS_DONG shopAddressDong , SHOP_REALFNAME shopRealfname
 		from shop
-		where SHOP_NUMBER= #{shopNumber}
+		where SHOP_NUMBER= #{shopNumber,jdbcType=INTEGER}
 
 </select>
 
@@ -38,7 +38,7 @@ FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
                             on r.shop_number = s.shop_number
                             ORDER BY REVIEW_DATE DESC) rs
 ON m.shop_number = rs.shop_number
-WHERE m.shop_number= #{shopNumber } 
+WHERE m.shop_number= #{shopNumber,jdbcType=INTEGER } 
 
 
 	</select>
@@ -56,7 +56,7 @@ SELECT  s.SHOP_NUMBER shopNumber ,s.SHOP_TITLE shopTitle, s.SHOP_TEL shopTel, s.
 		,m.menu_name menuName, m.menu_price menuPrice
 FROM     menu m inner join shop s
 ON  m.shop_number = s.shop_number
-where s.SHOP_NUMBER  = #{shopNumber }
+where s.SHOP_NUMBER  = #{shopNumber,jdbcType=INTEGER }
 	
 	</select>
 	<!--  리뷰작성-->
@@ -98,7 +98,7 @@ where s.SHOP_NUMBER  = #{shopNumber }
 		FROM mylist
 		WHERE LIST_NUMBER in (SELECT list_number
                     FROM bookmark
-                    WHERE member_email = #{logemail}) and shop_number = #{shopNumber}
+                    WHERE member_email = #{logemail}) and shop_number = #{shopNumber,jdbcType=INTEGER}
                    order by shop_number asc
 	</select>
 	
@@ -110,11 +110,15 @@ where s.SHOP_NUMBER  = #{shopNumber }
 		from MYlist m, (SELECT member_email
        					 FROM BOOKMARK
        					 WHERE member_email = '${logemail}'	) s
+	</select>
+	
+	<insert id="listingDetailsReport" parameterType="hashmap">
+		insert into report (report_number , report_content , review_number)   
+		values (REPORT_NUMBER_SEQ.nextval,  '${reportContent}'   , #{reviewNumber} )
 		
 	
+	</insert> 
 	
-	</select>
-
 
 
 </mapper>
