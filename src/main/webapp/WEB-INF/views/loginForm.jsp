@@ -20,7 +20,7 @@
     
     <!-- userStyle : 안정은 -->
     <link rel="stylesheet" href="./resources/member/css/userStyle.css">
-
+	
     <title>Login</title>
   </head>
   <body>
@@ -55,7 +55,7 @@
                   
                   <div class="d-flex mb-5 align-items-center">
                     <label class="control control--checkbox mb-0"><span class="caption">이메일 기억하기</span>
-                      <input type="checkbox"/>
+                      <input type="checkbox" id="rememberEmail"/>
                       <div class="control__indicator"></div>
                     </label>
                     <span class="ml-auto"><a href="pwSearchForm.do" class="forgot-pass">비밀번호 찾기</a></span> 
@@ -91,8 +91,6 @@
       </div>
     </div>
   </div>
-
-  
     <script src="./resources/member/js/jquery-3.3.1.min.js"></script>
     <script src="./resources/member/js/popper.min.js"></script>
     <script src="./resources/member/js/bootstrap.min.js"></script>

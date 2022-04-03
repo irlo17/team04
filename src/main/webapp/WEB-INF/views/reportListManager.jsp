@@ -13,22 +13,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>관리자페이지 - 회원리스트</title>
+        <title>관리자페이지 - 신고리스트</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- 내부 script -- 삭제버튼 구현 -->
+        <!-- 내부 script - 삭제버튼 구현 -->
         <script type="text/javascript">
-        	function removeBtn() {
-        		if(confirm("정말 삭제하시겠습니까?") == true) {
-    				alert("삭제되었습니다.");
-    				//document.frm.submit();
-    			} else {
-    				return;
-    			}
-        			
-        	}
+        function removeBtn() {
+    		if(confirm("정말 삭제하시겠습니까?") == true) {
+				alert("삭제되었습니다.");
+				//document.frm.submit();
+			} else {
+				return;
+			}
+    			
+    	}
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -56,28 +56,28 @@
         <!-- 왼쪽 슬라이드 네비바 -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-light id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">메인</div>
-                            <a class="nav-link" href="dashboard.do">
+                            <a class="nav-link" href="dashboardManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 대시보드
                             </a>
                             <div class="sb-sidenav-menu-heading">목차</div>
-                            <a class="nav-link" href="charts.do">
+                            <a class="nav-link" href="chartsManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>
-                            <a class="nav-link" href="memberList.do">
+                            <a class="nav-link" href="memberListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopList.do">
+                            <a class="nav-link" href="shopListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
-                            <a class="nav-link" href="reportList.do">
+                            <a class="nav-link" href="reportListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고리스트
                             </a>
@@ -95,57 +95,50 @@
                 <main>
                 	<!-- 메인 위쪽 타이틀 -->
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">회원리스트</h1>
+                        <h1 class="mt-4">신고리스트</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="dashboard.do">대시보드</a></li>
-                            <li class="breadcrumb-item active">회원리스트</li>
+                            <li class="breadcrumb-item"><a href="dashboardManager.do">대시보드</a></li>
+                            <li class="breadcrumb-item active">신고리스트</li>
                         </ol>
+                        <!-- 테이블 영역 -->
                         <div class="card mb-4">
-                        	<!-- 테이블 -->
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                회원 전체 리스트
+                                신고 리스트
                             </div>
                             <div class="card-body">
+                            <form action="" name="frm">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>이메일</th>
-                                            <th>닉네임</th>
-                                            <th>이름</th>
-                                            <th>생년월일</th>
-                                            <th>휴대전화</th>
-                                            <th>관리자여부</th>
+                                            <th>신고번호</th>
+                                            <th>리뷰번호</th>
+                                            <th>신고내용</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>이메일</th>
-                                            <th>닉네임</th>
-                                            <th>이름</th>
-                                            <th>생년월일</th>
-                                            <th>휴대전화</th>
-                                            <th>관리자여부</th>
+                                            <th>신고번호</th>
+                                            <th>리뷰번호</th>
+                                            <th>신고내용</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
-                                    <c:forEach items="${memberList}" var="member">
-                                    	<tr>
-                                    		<td>${member.memberEmail}</td>
-                                    		<td>${member.memberNickname}</td>
-                                    		<td>${member.memberName}</td>
-                                    		<td>${member.memberBirth}</td>
-                                    		<td>${member.memberTel}</td>
-                                    		<td>${member.memberAdmin}</td>
-                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn()"/></td>
-                                    	</tr>
+                                    <c:forEach items="${reportList}" var="report">
+                                        <tr>
+                                            <td>${ report.reportNumber }</td>
+                                            <td>${ report.reviewNumber }</td>
+                                            <td>${ report.reportContent }</td>
+                                            <td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn()"/></td>
+                                        </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                                </form>
                             </div>
                         </div>
                     </div>
