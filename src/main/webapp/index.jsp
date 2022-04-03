@@ -4,7 +4,6 @@ prefix="c" %> <%@ page session="false" %>
 <%--<%response.sendRedirect("main.do"); %> --%>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +23,9 @@ prefix="c" %> <%@ page session="false" %>
 <hr />
 
 <!-- 권소연-->
-<a href="dashboard.do">관리자페이지</a>
+<a href="dashboardManager.do">관리자페이지</a>
 <hr />
+
 
 <!-- 양준석-->
 <form action="listing.do">
@@ -33,6 +33,8 @@ prefix="c" %> <%@ page session="false" %>
 <button type="submit">가게리스트 바로가기</button>   
 </form>
 <hr />
+
+
     
 </body>
 </html>

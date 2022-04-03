@@ -16,12 +16,6 @@ public class BookmarkServiceImpl implements BookmarkService {
 	@Autowired 
 	private BookmarkDAOImpl bookmarkDAO;
 	
-	/*
-	 * public List<BookmarkVO> bookmarkGetList() { return
-	 * bookmarkDAO.bookmarkGetList(); }
-	 */
-
-	
 	 @Override 
 	 public List<BookmarkVO> bookmarkGetList( HashMap map ) { 
 		 return bookmarkDAO.bookmarkGetList( map ); }
@@ -73,6 +67,33 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.mylistDelete(vo);
 	}
 
+	private int totalRecCount; // 전체 레코드 수
+	private int pageTotalCount; // 전체 페이지 수
+	private int countPerPage = 3; // 한페이지당 레코드 수
+	
+	public int totalPageGet() {
+		 
+		totalRecCount=bookmarkDAO.totalbookmarkCount(); 
+		return pageTotalCount=(int)Math.ceil(totalRecCount/3.0); 
+		 
+	}
+	
+	/*
+	 * public List <BoardVO> getArticleList(String pNum) throws BoardException { //
+	 * int pageNum=1; //페이지 수가 null이라도 1을 지정 // if(pNum!=null) pageNum =
+	 * Integer.parseInt(pNum); // int startRow =
+	 * pageNum*countPerPage-(countPerPage-1); // int endRow = pageNum*countPerPage;
+	 * // // List <BoardVO> mList = bookmarkDAO.selectList(startRow, endRow); //
+	 * return mList; }
+	 */
+	
+	
+	
+	public void mylistAdd(BookmarkVO vo) {
+		bookmarkDAO.mylistAdd(vo);
+	}
 
+
+	
 
 }

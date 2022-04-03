@@ -43,24 +43,24 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">메인</div>
-                            <a class="nav-link" href="dashboard.do">
+                            <a class="nav-link" href="dashboardManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 대시보드
                             </a>
                             <div class="sb-sidenav-menu-heading">목차</div>
-                            <a class="nav-link" href="charts.do">
+                            <a class="nav-link" href="chartsManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>
-                            <a class="nav-link" href="memberList.do">
+                            <a class="nav-link" href="memberListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopList.do">
+                            <a class="nav-link" href="shopListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
-                            <a class="nav-link" href="reportList.do">
+                            <a class="nav-link" href="reportListManager.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고리스트
                             </a>

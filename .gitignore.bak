@@ -247,7 +247,9 @@ $RECYCLE.BIN/
 application.yml
 application.yaml
 target/m2e-wtp/web-resources/META-INF/maven/com.javassem/basic/pom.properties
+<<<<<<< HEAD
 /bin/
 target/m2e-wtp/web-resources/META-INF/maven/com.javassem/basic/pom.properties
-
+=======
+>>>>>>> main
 target/m2e-wtp/web-resources/META-INF/maven/com.javassem/basic/pom.properties
