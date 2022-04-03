@@ -78,9 +78,22 @@ public class BookmarkServiceImpl implements BookmarkService {
 		 
 	}
 	
+	/*
+	 * public List <BoardVO> getArticleList(String pNum) throws BoardException { //
+	 * int pageNum=1; //페이지 수가 null이라도 1을 지정 // if(pNum!=null) pageNum =
+	 * Integer.parseInt(pNum); // int startRow =
+	 * pageNum*countPerPage-(countPerPage-1); // int endRow = pageNum*countPerPage;
+	 * // // List <BoardVO> mList = bookmarkDAO.selectList(startRow, endRow); //
+	 * return mList; }
+	 */
+	
+	
+	
 	public void mylistAdd(BookmarkVO vo) {
 		bookmarkDAO.mylistAdd(vo);
 	}
 
+
+	
 
 }

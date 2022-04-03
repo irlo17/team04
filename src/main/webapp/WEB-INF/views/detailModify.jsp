@@ -92,17 +92,32 @@ $(function(){
     
     	// 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
 	$('#btnShopList').click(function(){
+		/* alert($(".shopNumber").val());
      if($(".shopNumber").is(":checked")) {
-     	var shopNumber = $(".shopNumber").val(); 
+     	var shopNumber = $(".shopNumber").val();
      	
-   	 }//end of if
+     	
+   	 }*/ //end of if
+   	 
+   	 var chk_arr = [];
+   	 $(".shopNumber:checked").each(function(){
+   		 var chk = $(this).val();
+   		 console.log(chk);
+   		 chk_arr.push(chk);
+   	 })
+   	 console.log(chk_arr);
+   	 
 	});
     
-    $(".btn-warning").click(function(){
-    	document.fo1.submit();
+    /* $(".btn-warning").click(function(){
+    	//alert('ok');
+    	
+    	//document.fo1.submit();
     	
     	
-    })
+    }) */
+    
+    
     
 })
 
@@ -200,6 +215,7 @@ $(function(){
                   
                  
                   <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
+                  ${bookmark.shopNumber}
                          <div class="col-lg-6 col-md-6">
                            
                             <div class="blog__item">
@@ -273,7 +289,7 @@ $(function(){
       </div>
       <!-- Footer -->
       <div class="modal-footer">
-        <input type="button" value="이동" class="btn btn-warning">
+        <input type="button" value="이동" class="btn btn-warning" onclick="moveBtn()">
       </div>
     </div>
   </div>

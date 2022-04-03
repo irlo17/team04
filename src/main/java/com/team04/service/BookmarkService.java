@@ -29,7 +29,7 @@ public interface BookmarkService {
 	
 	public void mylistDelete(MylistVO vo);
 	
-	public void totalbookmarkPaging();
+	public int totalPageGet();
 	
 	public void mylistAdd(BookmarkVO vo);
 }

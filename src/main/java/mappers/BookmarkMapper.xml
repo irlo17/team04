@@ -58,7 +58,7 @@ WHERE member_email='eq@naver.com'<!-- #{memberEmail} -->
 FROM shop s inner join mylist m
 ON s.shop_number=m.shop_number
 Where m.list_number=#{listNumber}  --> 
-SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,b.list_name
+SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,b.list_name,s.shop_number
 FROM shop s inner join mylist m
 ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number
 Where m.list_number=#{listNumber}

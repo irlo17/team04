@@ -102,7 +102,7 @@ public class BookmarkController {
 	  public String bookmarkDelete(String listNumber) {
 		
 		  bookmarkService.bookmarkDelete(listNumber);
-		 int pageTotalCount= bookmarkService.totalbookmarkPage();
+		 //int pageTotalCount= bookmarkService.totalbookmarkPage();
 		  
 		  return "redirect:mylist.do";
 	  }
