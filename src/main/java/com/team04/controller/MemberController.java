@@ -137,7 +137,7 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}
 			// (2) 세션에 로그인 정보 O
-			return "redirect:mypageMember.do";
+			return "redirect:mylist.do";
 
 	}// end of login()
 

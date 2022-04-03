@@ -125,17 +125,21 @@ margin-bottom:50px;
 		<hr />
 		<br />
 		<div class="">
-			<h4>회원정보</h4>
-		</div>
-		<hr />
-		<div class="">
 			<h4>
-				<a href="./mylist.html">즐겨찾기</a>
+				<a href="mypageMember.do">회원정보</a>
 			</h4>
 		</div>
 		<hr />
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+				<a href="mylist.do">즐겨찾기</a>
+			</h4>
+		</div>
+		<hr />
+		<div class="">
+		<h4>
+				<a href="review.do">리뷰관리</a>
+		</h4>
 		</div>
 	</div>
 	<!-- Filter End -->
