@@ -45,4 +45,6 @@ public interface MemberDAO {
 	int memberDelete(MemberVO vo);
 	
 	int memberDeleteManager(MemberVO vo);
+	
+	int memberDefaultList(MemberVO vo);
 }

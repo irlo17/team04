@@ -44,11 +44,11 @@ public class MemberController {
 	@RequestMapping("memberInsert.do")
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
-
+		memberService.memberDefaultList(vo);
+		
 		return "redirect:loginForm.do";
 
 	}//end of memberInsert()
-
 
 
 	/**	email 중복 체크
@@ -102,7 +102,7 @@ public class MemberController {
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
 				session.setAttribute("admin", result.getMemberAdmin());
-				return "redirect:main.do";
+				return "redirect:memberListManager.do";
 			}//end of if(2) - 관리자 유무
 		}//end of if(1)
 
@@ -231,21 +231,10 @@ public class MemberController {
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String admin = session.getAttribute("admin").toString();
-		
-		if(admin == null) {
-			// 관리자가 아니면
 			System.out.println(session.getAttribute("logemail") + "님 로그아웃");
 			session.invalidate();
-			return "main";
 			
-		}else {
-			System.out.println(session.getAttribute("logemail") + "님(관리자) 로그아웃");
-			session.invalidate();
-			return "mamberListManager";
-		}
-
-
+			return "main";
 	}//end of logout()
 
 
@@ -255,9 +244,7 @@ public class MemberController {
 	 * @param MemberVO vo
 	 * 			- input hidden으로 넘어온 이메일과 패스워드 정보로 회원의 레코드 삭제
 	 * 			- 세션에 저장된 로그인 정보 삭제
-	 * @return 
-	 * 		- 관리자 O
-	 * 		- 관리자 X
+	 * @return 메인페이지로 이동
 	 */
 	@RequestMapping("memberDelete.do")
 	public String memberDelete(MemberVO vo,HttpServletRequest request) {

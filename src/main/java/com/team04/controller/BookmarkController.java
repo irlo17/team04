@@ -152,8 +152,8 @@ public class BookmarkController {
 	  }
 	  
 	  @RequestMapping("mylistadd.do")
-	  public String mylistAdd(BookmarkVO vo) {
-		  
+	  public String mylistAdd(BookmarkVO vo, HttpSession session) {
+		  vo.setMemberEmail((String)session.getAttribute("logemail"));
 		  bookmarkService.mylistAdd(vo);
 		  
 		  return "redirect:mylist.do";

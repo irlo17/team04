@@ -15,6 +15,10 @@ public interface MemberService {
 	 */
 	public int memberInsert(MemberVO vo);
 	
+	/** 회원가입과 동시에 디폴트 리스트 생성
+	 */
+	public int memberDefaultList(MemberVO vo);
+	
 	
 	/** 로그인
 	 * 	- DB에 입력된 이메일과 비밀번호가 일치하는 레코드 검색

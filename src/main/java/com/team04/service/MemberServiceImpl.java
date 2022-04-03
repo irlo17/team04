@@ -128,5 +128,12 @@ public class MemberServiceImpl implements MemberService{
 	public int memberDeleteManager(MemberVO vo) {
 		return memberDAO.memberDeleteManager(vo);
 	}
+
+
+
+	@Override
+	public int memberDefaultList(MemberVO vo) {
+		return memberDAO.memberDefaultList(vo);
+	}
 	
 }

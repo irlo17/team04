@@ -49,7 +49,7 @@ order by  b.list_like desc
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
  SELECT  list_Number, list_name , list_display , list_like 
 FROM bookmark 
-WHERE member_email='eq@naver.com'<!-- #{memberEmail} -->
+WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->
 </select>
 
 
@@ -101,6 +101,6 @@ order by  list_date desc
 
 <insert id="MylistInsert" parameterType="BookmarkVO">
 insert into bookmark(list_number,list_name,list_display,list_like,member_email,list_date,defult_list) 
-values(list_number_seq.nextval,#{listName},#{listDisplay},0,'eq@naver.com',sysdate,'no')
+values(list_number_seq.nextval,#{listName},#{listDisplay},0,#{memberEmail},sysdate,'no')
 </insert>
 </mapper>
