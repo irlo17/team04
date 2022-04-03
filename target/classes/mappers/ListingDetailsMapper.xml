@@ -41,6 +41,27 @@ ON m.shop_number = rs.shop_number
 WHERE m.shop_number= #{shopNumber } 
 
 
+
+
+
+
+<!-- SELECT distinct rs.REVIEW_NUMBER reviewNumber, rs.REVIEW_DATE reviewDate, rs.REVIEW_GRADE reviewGrade
+,rs.REVIEW_CONTENT reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail 
+,rs.REVIEW_FNAME reviewFname, rs.REVIEW_REALFNAME reviewRealfname
+FROM menu m left outer join (SELECT distinct r.REVIEW_NUMBER, r.REVIEW_DATE
+                            ,r.REVIEW_GRADE, r.REVIEW_CONTENT
+                            ,r.SHOP_NUMBER, r.MEMBER_EMAIL
+                            ,r.REVIEW_FNAME, r.REVIEW_REALFNAME
+                            ,s.SHOP_TITLE, s.SHOP_TEL, s.SHOP_PRICE_RANGE
+                            ,s.SHOP_FOOD, s.SHOP_PARK, s.SHOP_TIME
+                            ,s.SHOP_HOLIDAY, s.SHOP_CONTENT, s.SHOP_CREATE_DATE
+                            ,s.SHOP_MODIFY_DATE, s.SHOP_ADDRESS, s.SHOP_ADDRESS_SI
+                            ,s.SHOP_ADDRESS_GU, s.SHOP_ADDRESS_DONG, s.SHOP_REALFNAME
+                            FROM review r left outer join shop s
+                            on r.shop_number = s.shop_number
+                            ORDER BY REVIEW_DATE DESC) rs
+ON m.shop_number = rs.shop_number
+WHERE m.shop_number = #{shopNumber }  -->
 	</select>
 	
 	<select id="listingDetailsShopInfo" parameterType="string" resultType="hashmap">
@@ -74,6 +95,10 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	values ( (   	SELECT List_number listNumber
             		FROM bookmark
             		WHERE member_email = '${logemail}' and  defult_list = 'yes'), 2)
+            		
+            		
+	
+	
 	</insert> -->
 	
 	
@@ -90,30 +115,18 @@ where s.SHOP_NUMBER  = #{shopNumber }
 	
 	</insert>
 	
+	<select id="listingDetailsTotalList" parameterType="string" resultType="hashmap">
 	
-	<!-- 사용자가 그 가게를 추가 했는지 알기위한 쿼리문 -->
-	<select id="listingDetailsTotalList" parameterType="hashmap" resultType="hashmap">
-	
-	SELECT distinct nvl(max(shop_number),0) shopNumber
+	SELECT distinct shop_number shopNumber,List_number listNumber
 		FROM mylist
 		WHERE LIST_NUMBER in (SELECT list_number
                     FROM bookmark
-                    WHERE member_email = #{logemail}) and shop_number = #{shopNumber}
-                   order by shop_number asc
+                    WHERE member_email = #{logemail})
+                   
 	</select>
 	
 	
 	
-	<select id="listingDetailsShopListCount" parameterType="hashmap" resultType="int">
-		
-		SELECT count(*)/2 as shopNumber
-		from MYlist m, (SELECT member_email
-       					 FROM BOOKMARK
-       					 WHERE member_email = '${logemail}'	) s
-		
-	
-	
-	</select>
 
 
 
