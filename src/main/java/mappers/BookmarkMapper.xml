@@ -91,5 +91,11 @@ INSERT INTO mylist VALUES(#{listNumber},#{shopNumber})
 DELETE FROM mylist WHERE list_number=#{listNumber} and shop_number= #{shopNumber}
 </delete>
 
-
+<select id="TotalbookmarkCount" resultType="int">
+SELECT  count(b.list_name) 
+FROM bookmark b INNER JOIN member m
+ON b.member_email = m.member_email
+where b.list_display = 'yes'
+order by  list_date desc
+</select>
 </mapper>

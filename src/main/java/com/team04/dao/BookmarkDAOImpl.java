@@ -93,6 +93,9 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		mybatis.delete("BookmarkDAO.mylistDelete",vo);		
 	}
 	
-	
+	public int totalbookmarkCount() {
+		
+		return mybatis.selectOne("BookmarkDAO.TotalbookmarkCount");
+	}
 
 }

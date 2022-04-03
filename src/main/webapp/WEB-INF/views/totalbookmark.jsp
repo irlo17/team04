@@ -1,6 +1,17 @@
+<%@page import="com.team04.dao.BookmarkDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.team04.dao.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+BookmarkDAOImpl bookmarkDAOImpl= new BookmarkDAOImpl();
+int totalPageCount = bookmarkDAOImpl.totalbookmarkCount();
+String pNum = request.getParameter("page"); 
+//4.해당 페이지의 파라메터를 넘겨서 레코드를 받아옴 =>5.아래에 for문으로 목록 출력
+List <BoardVO> mList =  service.getArticleList(pNum); 
+
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -171,6 +182,10 @@
 		</div>		
 		
 	</form>		
+				<%for(int i =1 ; i<= totalPageCount; i++){ %>
+			<a href="BoardList.jsp?page=<%=i %>"> [<%=i %>] </a>
+		<%} //end of for%>
+				
 				
 				<div class="blog__pagination">
                         <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>

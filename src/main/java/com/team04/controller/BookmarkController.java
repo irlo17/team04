@@ -103,6 +103,7 @@ public class BookmarkController {
 	  public String bookmarkDelete(String listNumber) {
 		
 		  bookmarkService.bookmarkDelete(listNumber);
+		  bookmarkService.TotalbookmarkPaging();
 		  
 		  return "redirect:mylist.do";
 	  }
