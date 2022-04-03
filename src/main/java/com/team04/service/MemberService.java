@@ -1,5 +1,8 @@
 package com.team04.service;
 
+import java.util.List;
+
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 
 public interface MemberService {
@@ -45,4 +48,16 @@ public interface MemberService {
 	 * 	- DB에 동일한 이메일과 패스워드를 가진 회원의 레코드를 삭제
 	 */
 	public int memberDelete(MemberVO vo);
+	
+	
+	// ----- 관리자페이지 -----
+	/* ***관리자페이지 전체 회원리스트 출력
+	 * 		- DB에 있는 회원 리스트를 모두 가져옴
+	 */
+	public List<MemberVO> memberGetListManager();
+	
+	/* ***관리자페이지 월별 회원가입 수 차트
+	 * 		- DB에서 월별 회원가입 수 리스트
+	 */
+	public List<ChartsVO> memberDateListManager();
 }

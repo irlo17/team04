@@ -87,4 +87,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_email = #{memberEmail} AND member_password = #{memberPassword}
 		</where>
 	</delete>
+	
+	
+	<!-- ===== 관리자페이지 ===== -->
+	<!-- 
+		SQL 형태 : SELECT
+		이름 : memberGetListManager
+		받는 값(parameterType) : 없음
+		보내는 값(resultType) : MemberVO
+		사용 : 회원 전체 리스트를 검색하여 MemberVO형으로 보냄 
+	 -->
+	 <select id="memberGetListManager" resultType="MemberVO">
+	 	SELECT * FROM member
+	 </select>
+	 
+	 <!-- 
+	 	SQL 형태 : SELECT
+		이름 : memberDateListManager
+		받는 값(parameterType) : 없음
+		보내는 값(resultType) : hashmap
+		사용 : 회원 가입한 월에 따른 가입수를 검색하여 hashmap에 저장
+	  -->
+	 <select id="memberDateListManager" resultType="ChartsVO">
+	 	SELECT substr(member_date, 4, 2) AS month
+              , count(*) AS cnt
+     	FROM member
+     	WHERE substr(member_date, 4, 2) is not null
+     	GROUP BY substr(member_date, 4, 2)
+     	ORDER BY substr(member_date, 4, 2)
+	 </select>
 </mapper>

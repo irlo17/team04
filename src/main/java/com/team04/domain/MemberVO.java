@@ -16,6 +16,8 @@ public class MemberVO {
 	private String memberFname;		// 파일명
 	private String memberRealfname; // 저장된 파일이름
 	
+	private String memberAdmin;		// 관리자여부
+	
 	MultipartFile memberFile;		// 회원의 프로필 사진 mypageMember.jsp <input type="file" name="memberFile">
 	
 	// 기본 생성자
@@ -24,7 +26,7 @@ public class MemberVO {
 	// 생성자
 	public MemberVO(String memberEmail, String memberNickname, String memberPassword, String memberName,
 			String memberBirth, String memberTel, String memberFname, String memberRealfname,
-			MultipartFile memberFile) {
+			MultipartFile memberFile, String memberAdmin) {
 		super();
 		this.memberEmail = memberEmail;
 		this.memberNickname = memberNickname;
@@ -35,6 +37,7 @@ public class MemberVO {
 		this.memberFname = memberFname;
 		this.memberRealfname = memberRealfname;
 		this.memberFile = memberFile;
+		this.memberAdmin = memberAdmin;
 	}
 	
 	// getter, setter
@@ -69,6 +72,15 @@ public class MemberVO {
 	}
 	
 	
+
+	
+	public String getMemberAdmin() {
+		return memberAdmin;
+	}
+
+	public void setMemberAdmin(String memberAdmin) {
+		this.memberAdmin = memberAdmin;
+	}
 
 	public String getMemberEmail() {
 		return memberEmail;

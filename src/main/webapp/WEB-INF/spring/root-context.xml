@@ -34,7 +34,7 @@
 
 			<value>com.team04.domain.MemberVO</value>
 
-
+			<value>com.team04.domain.ChartsVO</value>
 	  	</list>
 	  </property>
 	 </bean>

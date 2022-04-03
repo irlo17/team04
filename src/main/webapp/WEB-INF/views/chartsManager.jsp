@@ -98,12 +98,12 @@
                             <div class="col-lg-6">
                                 <div class="card mb-4">
 		                            <div class="card-header">
-		                                <i class="fas fa-chart-area2 me-1"></i>
-		                                월별 누적 회원가입 수
+		                                <i class="fas fa-chart-area me-1"></i>
+		                                월별 회원가입 수
 		                            </div>
 		                            <!-- 차트 연동 -->
 		                            <div class="card-body"><canvas id="monthMemberGeneration" width="100%" height="50"></canvas></div>
-		                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+		                            <div class="card-footer small text-muted"></div>
                        			 </div>
                             </div>
                             <!-- 음식종류 별 가게 수 - pie차트영역 -->
@@ -136,6 +136,8 @@
                 </footer>
             </div>
         </div>
+        <!-- JQuery -->
+    	<script src="./resources/js/jquery-3.3.1.min.js"></script>
         <!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
@@ -144,7 +146,53 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 차트 연동 -->
         <script src="./resources/manager/assets/demo/monthListGeneration.js"></script>
-        <script src="./resources/manager/assets/demo/monthMemberGeneration.js"></script>
+        <!-- <script src="./resources/manager/assets/demo/monthMemberGeneration.js"></script> -->
         <script src="./resources/manager/assets/demo/shopByFood.js"></script>
+        <script type="text/javascript">
+        // monthMemberGeneration = 월별 회원가입 수 차트
+        var jsonData = ${json}
+        var jsonObject = JSON.stringify(jsonData);
+        var jData = JSON.parse(jsonObject);
+        		
+        var labelList = new Array();
+        var valueList = new Array();
+        var colorList = new Array();
+        		
+        for(var i = 0; i<jData.length; i++) {
+        	var d = jData[i];
+        	labelList.push(d.Month);
+        	valueList.push(d.Count);
+        }
+
+        var data = {
+				labels: labelList,
+				datasets: [{
+						label : '회원가입 수',
+						backgroundColor: colorize(),
+						data : valueList
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '월별 회원가입 수'
+						}
+				}
+		};
+        
+        var ctx1 = document.getElementById("monthMemberGeneration");
+        var myLineChart = new Chart(ctx1, {
+          type: 'line',
+          data: data
+        })
+        // 월별 회원가입 수 차트
+        
+        function colorize() {
+        	var r = Math.floor(Math.random()*200);
+        	var g = Math.floor(Math.random()*200);
+        	var b = Math.floor(Math.random()*200);
+        	var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
+        	return color;
+        }
+        </script>
     </body>
 </html>
