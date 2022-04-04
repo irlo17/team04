@@ -13,13 +13,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.team04.domain.ChartsVO;
 import com.team04.service.ChartsService;
+import com.team04.service.MemberService;
 
 @Controller
 public class ChartsController {
 
+	// 차트 관련 서비스
+	@Autowired
+	private ChartsService chartsService;
+	
 	// member (회원 테이블)
 	@Autowired
-	ChartsService chartsService;
+	private MemberService memberService;
 	
 	
 	@RequestMapping("dashboardManager.do")
@@ -47,6 +52,7 @@ public class ChartsController {
 		
 		String jsonList = gsonList.toJson(jArrayList);
 		m.addAttribute("jsonList", jsonList);
+		
 		/**
 		 * 사용 : chartsService에 있는 memberDateListManager함수를 호출하여 ChartsVO의 List에 담아
 		 * 		궁극적으로는 gson을 이용해 jsonArray를 String형으로 담아 뷰페이지로 보내기
@@ -70,6 +76,11 @@ public class ChartsController {
 		
 		String json = gson.toJson(jArray);
 		m.addAttribute("json", json);
+		
+		/**
+		 * 사용 : 회원 리스트를 담아 뷰페이지로 보내기
+		 */
+		m.addAttribute("memberListManager", memberService.memberGetListManager());
 		
 		return "dashboardManager";
 	}
