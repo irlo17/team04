@@ -33,6 +33,8 @@
 <link rel="stylesheet" href="./resources/css/flaticon.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/barfiller.css" type="text/css">
+<!-- userStyle : 안정은 -->
+<link rel="stylesheet" href="./resources/member/css/userStyle.css">
 <link rel="stylesheet" href="./resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
@@ -118,8 +120,8 @@ tr{text-align:left;}
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-							<a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+						<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -130,38 +132,74 @@ tr{text-align:left;}
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
-
-	<div class="filter nice-scroll col-md-3">
+	<div class="filter nice-scroll ">
 		<div class="filter__title">
-			<h5>
-				<i class="fa fa-user"></i> 닉네임
+			<div class="box">
+				<memberFile:choose>
+					<memberFile:when test="${ empty MemberVO.memberFname }">
+						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+					</memberFile:when>
+					<memberFile:otherwise>
+						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+					</memberFile:otherwise>
+				</memberFile:choose>
+			
+			</div>
+			<h5 class="nick">
+				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		<hr />
-		<br />
-
-
-
-		<div class="">
-			<h4>회원정보</h4>
-
-		</div>
-		<hr />
-
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 
 		<div class="">
 			<h4>
-				<a href="./mylist.html">즐겨찾기</a>
-			</h4>
+            <a href="mypageMember.do">회원정보</a>
+         </h4>
+
+		</div>
+		<hr />
+
+
+		<div class="">
+			<h4><a href='mylist.do'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
 
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+            <a href="review.do">리뷰관리</a>
+      </h4>
 
 		</div>
 
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<hr />
+			<div class="cate_4">
+				<!--  <h4>로그아웃</h4>-->
+				<a href="logout.do">로그아웃</a>
+
+			</div>
 
 	</div>
 	<!-- Filter End -->
