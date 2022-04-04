@@ -43,6 +43,7 @@
 			<value>com.team04.domain.MylistVO</value>
 
 			<value>com.team04.domain.MemberVO</value>
+			<value>com.team04.domain.PagingVO</value>
 
 
 	  	</list>

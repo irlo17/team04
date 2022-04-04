@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.team04.dao.BookmarkDAOImpl;
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.PagingVO;
 
 @Service("bookmarkService")
 public class BookmarkServiceImpl implements BookmarkService {
@@ -38,9 +39,23 @@ public class BookmarkServiceImpl implements BookmarkService {
 		return bookmarkDAO.bookmarkGetBestList();
 	}
  
+	/** 나만의 즐겨찾기 총 개수 구하기
+	 * 	- 페이징을 위해 DB에 입력된 회원의 즐겨찾기 총 개수를 구함
+	 * @param memberEmail
+	 * @return int 개수 리턴
+	 */
+	@Override
+	public int bookmarkMylistTotalCount(PagingVO paging) {
+		return bookmarkDAO.bookmarkMylistTotalCount(paging);
+	}
+	
+	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging){
+		return bookmarkDAO.bookmarkGetMylistPaging(paging);
+	}
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail){
 		return bookmarkDAO.bookmarkGetMylist(memberEmail);
 	}
+	
 	public List<MylistVO> bookmarkGetMylistDetail(String listNumber){
 		return bookmarkDAO.bookmarkGetMylistDetail(listNumber);
 	}
@@ -94,6 +109,5 @@ public class BookmarkServiceImpl implements BookmarkService {
 	}
 
 
-	
 
 }

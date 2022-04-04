@@ -43,8 +43,22 @@ where b.list_display = 'yes'
 order by  b.list_like desc
 </select>
 
+<!-- 나만의 즐겨찾기 총 개수 구하기 -->
+<select id="bookmarkMylistTotalCount" resultType="int" parameterType="PagingVO">
+SELECT count(*)
+FROM bookmark 
+WHERE member_email=#{memberEmail}
+</select>
 
 
+<select id="bookmarkGetMylistPaging" resultType="BookmarkVO" parameterType="PagingVO">
+ SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY, LIST_LIKE 
+FROM ( SELECT rownum rnum, bookmark.*
+        FROM bookmark 
+        WHERE member_email=#{memberEmail}
+        ORDER BY LIST_NUMBER DESC)
+WHERE rnum between  #{startRow} and #{endRow}
+</select>
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
  SELECT  list_Number, list_name , list_display , list_like 
