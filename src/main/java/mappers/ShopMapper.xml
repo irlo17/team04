@@ -117,8 +117,8 @@ FROM shop s
                      , shop_realfname
                      )
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
-		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
-		             , #{shopHoliday}, #{shopContent, jdbcType=VARCHAR}
+		             , #{shopPriceRange, jdbcType=VARCHAR}, #{shopFood, jdbcType=VARCHAR}, #{shopPark, jdbcType=VARCHAR}, #{shopTime, jdbcType=VARCHAR}
+		             , #{shopHoliday, jdbcType=VARCHAR}, #{shopContent, jdbcType=VARCHAR}
 		             , sysdate, sysdate
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
@@ -160,11 +160,11 @@ FROM shop s
 	 <update id="shopUpdateManager">
 	 	UPDATE shop
 		SET shop_title=#{shopTitle}, shop_tel=#{shopTel}
-		       , shop_price_range=#{shopPriceRange}
-		       , shop_food=#{shopFood}, shop_park=#{shopPark}
-		       , shop_time=#{shopTime}
-		       , shop_holiday=#{shopHoliday}
-		       , shop_content=#{shopContent}
+		       , shop_price_range=#{shopPriceRange, jdbcType=VARCHAR}
+		       , shop_food=#{shopFood, jdbcType=VARCHAR}, shop_park=#{shopPark, jdbcType=VARCHAR}
+		       , shop_time=#{shopTime, jdbcType=VARCHAR}
+		       , shop_holiday=#{shopHoliday, jdbcType=VARCHAR}
+		       , shop_content=#{shopContent, jdbcType=VARCHAR}
 		       , shop_modify_date=sysdate
 		       , shop_realfname=#{shopRealfname, jdbcType=VARCHAR}
 		WHERE shop_number=#{shopNumber}

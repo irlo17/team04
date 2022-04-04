@@ -17,8 +17,6 @@ public class MemberVO {
 	private String memberFname;		// 파일명
 	private String memberRealfname; // 저장된 파일이름
 	
-	private String memberAdmin;		// 관리자여부
-	
 	MultipartFile memberFile;		// 회원의 프로필 사진 mypageMember.jsp <input type="file" name="memberFile">
 	
 	// 기본 생성자

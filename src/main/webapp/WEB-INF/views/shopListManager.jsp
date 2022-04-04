@@ -30,7 +30,6 @@
         			location.href="shopDeleteManager.do?shopNumber=" + num;
         			// 삭제 확인 메세지 띄우기
     				alert("삭제되었습니다.");
-    				//document.frm.submit();
     			} else {
     				// 취소를 누를 경우 리턴
     				return;
