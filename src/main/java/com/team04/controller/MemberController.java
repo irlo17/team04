@@ -95,6 +95,7 @@ public class MemberController {
 				System.out.println("로그인 성공");
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
+				session.setMaxInactiveInterval(60*60*24);
 				
 				return "redirect:main.do";
 			}else {
@@ -107,21 +108,6 @@ public class MemberController {
 		}//end of if(1)
 
 	}//end of loginCheck()
-
-	
-	@RequestMapping("rememberEmail.do")
-	public String rememberEmail(MemberVO vo, HttpServletResponse response) {
-		
-		Cookie cookie = new Cookie("memberEmail",vo.getMemberEmail());
-		cookie.setDomain("localhost");
-		cookie.setPath("/");
-		// 30초간 저장
-		cookie.setMaxAge(30*60);
-		cookie.setSecure(true);
-		response.addCookie(cookie);
-		
-		return "redirect:main.do";
-	}
 
 
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
