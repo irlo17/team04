@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team04.dao.ListingDetailsDAO;
+import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.ReportVO;
+import com.team04.domain.ReviewVO;
 import com.team04.domain.ShopVO;
 
 @Service("listingDetailsService")
@@ -55,7 +57,12 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 	public List<ReportVO> listingDetailsReport(HashMap map){
 		return listingDetailsDAO.listingDetailsReport(map);
 	}
-	 
-	 
+	
+	public List<MemberVO> listingDetailsProfileRealFname(HashMap map){
+		return listingDetailsDAO.listingDetailsProfileRealFname(map);
+	}
+	public List<ReviewVO> listingDetailsFromReviewRealFname(String shopNumber){
+		return listingDetailsDAO.listingDetailsFromReviewRealFname(shopNumber);
+	}
 	
 }

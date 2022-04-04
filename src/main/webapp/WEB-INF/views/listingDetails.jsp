@@ -8,11 +8,7 @@
 response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) response.setHeader("Cache-Control", "no-cache");
 %> --%>
 <%
-
-
-int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
-
-
+	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
 %>
 
 
@@ -28,6 +24,8 @@ int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
 <meta name="keywords" content="Directing, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- <meta http-equiv="refresh" content="1"> -->
+
 <title>Directing | Template</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -113,10 +111,14 @@ html, body {
 		});
 
 		/* 마이페이지 이동*/
-		$('.login-btn').click(function() {
+		/* 	$('.login-btn').click(function() {
 
-			location.href = 'review.html';
+				location.href = 'review.html';
 
+			}) */
+
+		$('#listAdd2').click(function() {
+			alert('이미 추가된 가게입니다.');
 		})
 
 		/*	가게 상세페이지에서 추가하기 버튼을 눌렀을때	
@@ -127,7 +129,7 @@ html, body {
 		 */
 		$('#listAdd').click(function() {
 			var shopNumber = $(this).attr('value');
-		/* 	alert(shopNumber); */
+			/* 	alert(shopNumber); */
 
 			let param = {
 				shopNumber : shopNumber
@@ -154,9 +156,6 @@ html, body {
 
 		});
 	});
-	
-	
-	$('.reviewBTN')
 
 	/*    var selected = $('#gradeSelect option:selected').val(); */
 
@@ -333,50 +332,66 @@ html, body {
 							<h4>Gallery</h4>
 
 
-							<c:forEach items="${shopInfoList}" var='shopInfoList'>
-								<div class="listing__details__gallery__pic">
-
+							<div class="listing__details__gallery__pic">
+								<c:forEach items="${shopInfoList}" var='shopInfoList'>
 									<div class="listing__details__gallery__item">
 
 
-										<c:set var="shopNumber" value="<%= shopNumber%>" />
+										<c:set var="shopNumber" value="<%=shopNumber%>" />
 
 										<c:choose>
 											<c:when test="${	shopNumber eq shopInfoList.SHOPNUMBER}">
 												<img class="listing__details__gallery__item__large"
 													width="100%" height="450"
 													src="resources/manager/upload/${shopInfoList.SHOPREALFNAME }"
-													 alt="">
+													alt="">
 											</c:when>
 											<c:otherwise>
-
+											
 											</c:otherwise>
 										</c:choose>
 
 
-										<!--   <img class="listing__details__gallery__item__large"
-                                        src="resources/img/listing/details/listing-details-1.jpg" alt="">
-                                    <span><i class="fa fa-camera"></i> 170 Image</span>
-                                     -->
 
 
 									</div>
+								</c:forEach>
+								
+								
 									<div class="listing__details__gallery__slider owl-carousel">
-										<img
-											data-imgbigurl="img/listing/details/listing-details-1.jpg"
-											src="resources/img/listing/details/thumb-1.jpg" alt="">
-										<img
-											data-imgbigurl="img/listing/details/listing-details-1.jpg"
-											src="resources/img/listing/details/thumb-2.jpg" alt="">
-										<img
-											data-imgbigurl="img/listing/details/listing-details-1.jpg"
-											src="resources/img/listing/details/thumb-3.jpg" alt="">
-										<img
-											data-imgbigurl="img/listing/details/listing-details-1.jpg"
-											src="resources/img/listing/details/thumb-4.jpg" alt="">
+									<c:forEach items="${fromReviewRealFname}"
+									var="fromReviewRealFname">
+									
+										<c:choose>
+											<c:when
+												test="${ fromReviewRealFname.REVIEWREALFNAME != '0' }">
+
+
+
+												<img
+													data-imgbigurl="./resources/reviewUpload/${fromReviewRealFname.REVIEWREALFNAME }"
+													src="./resources/reviewUpload/${fromReviewRealFname.REVIEWREALFNAME }"
+													width="100%" height="160px"
+													alt="">
+											</c:when>
+											 <c:otherwise>
+											 	<c:if test="${fromReviewRealFname.REVIEWREALFNAME == '0' }">
+												<img
+													data-imgbigurl="./resources/pageSpinner/notExist.png"
+													src="./resources/pageSpinner/notExist.png"
+													width="100%" height="160px"
+													 alt="">
+													</c:if>
+											</c:otherwise> 
+											
+										</c:choose>
+											</c:forEach>
+										
 									</div>
-								</div>
-							</c:forEach>
+
+
+							</div>
+
 						</div>
 
 
@@ -388,6 +403,7 @@ html, body {
 
 
 						<c:forEach items="${reviewInfo}" var='reviewInfo'>
+
 							<c:choose>
 								<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
 
@@ -395,7 +411,23 @@ html, body {
 										<h4>리뷰</h4>
 										<div class="listing__details__comment__item">
 											<div class="listing__details__comment__item__pic">
-												<img src="resources/img/listing/details/comment.png" alt="">
+												<input type="hidden" name="reviewNumber"
+													value="${reviewInfo.REVIEWNUMBER }">
+
+
+												<c:forEach items="${ProfileRealFname }"
+													var="ProfileRealFname">
+													<c:choose>
+														<c:when
+															test="${ProfileRealFname.REVIEWNUMBER eq reviewInfo.REVIEWNUMBER }">
+															<img
+																src="./resources/upload/${ProfileRealFname.MEMBERREALFNAME }"
+																alt="">
+
+														</c:when>
+													</c:choose>
+												</c:forEach>
+
 											</div>
 											<div class="listing__details__comment__item__text">
 												<div class="listing__details__comment__item__rating">
@@ -423,13 +455,13 @@ html, body {
 													<c:when
 														test="${sessionScope.logemail eq reviewInfo.MEMBEREMAIL}">
 														<img class="imgClass" width="180" height="120"
-															src="./resources/reviewUpload/${reviewInfo.REVIEWFNAME }">
+															src="./resources/reviewUpload/${reviewInfo.REVIEWREALFNAME }">
 													</c:when>
 													<c:otherwise>
 														<!--   <img width="180" src="resources/img/listing/list-2.jpg">
                                         <img width="180" src="resources/img/listing/list-3.jpg"> -->
 														<img width="180" height="120"
-															src="./resources/reviewUpload/${reviewInfo.REVIEWFNAME }">
+															src="./resources/reviewUpload/${reviewInfo.REVIEWREALFNAME }">
 													</c:otherwise>
 												</c:choose>
 
@@ -446,8 +478,11 @@ html, body {
 															<div class="bg">
 																<!--이란에는 내용을 넣지 마십시오.-->
 															</div>
-															<form action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }" method="post">
-															<input type="hidden" name="shopNumber" value="${reviewInfo.SHOPNUMBER }"/>
+															<form
+																action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }"
+																method="post">
+																<input type="hidden" name="shopNumber"
+																	value="${reviewInfo.SHOPNUMBER }" />
 																<div class="fg modalchang">
 																	<p>신고하실 내용을 적어주세요.</p>
 																	<textarea class="report_op" name="reportContent"> </textarea>

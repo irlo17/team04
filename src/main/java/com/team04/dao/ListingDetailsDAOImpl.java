@@ -7,8 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.ReportVO;
+import com.team04.domain.ReviewVO;
 import com.team04.domain.ShopVO;
 
 @Repository("listingDetailsDAO")
@@ -57,6 +59,14 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO {
 	
 	public List<ReportVO> listingDetailsReport(HashMap map){
 		return mybatis.selectList("listingDetailsDAO.listingDetailsReport",map);
+	}
+	
+	public List<MemberVO> listingDetailsProfileRealFname(HashMap map){
+		return mybatis.selectList("listingDetailsDAO.listingDetailsProfileRealFname",map);
+	}
+	
+	public List<ReviewVO> listingDetailsFromReviewRealFname(String shopNumber){
+		return mybatis.selectList("listingDetailsDAO.listingDetailsFromReviewRealFname",shopNumber);
 	}
 	
 }

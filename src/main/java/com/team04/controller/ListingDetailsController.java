@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.ReportVO;
 import com.team04.domain.ReviewVO;
@@ -48,17 +49,26 @@ public class ListingDetailsController {
 		List<ShopVO> shopInfoList = listingDetailsService.listingDetailsOnlyShopInfo(shopNumber);
 		m.addAttribute("shopInfoList", shopInfoList);
 
-		HashMap map3 = new HashMap();
-		map3.put("shopNumber", shopNumber);
-		map3.put("logemail", logemail);
-		List<MylistVO> totalList = listingDetailsService.listingDetailsTotalList(map3);
+		HashMap map2 = new HashMap();
+		map2.put("shopNumber", shopNumber);
+		map2.put("logemail", logemail);
+		List<MylistVO> totalList = listingDetailsService.listingDetailsTotalList(map2);
 		m.addAttribute("totalList", totalList);
 
 		HashMap map = new HashMap();
 		map.put("logemail", logemail);
 		Integer shopListCount = listingDetailsService.listingDetailsShopListCount(map);
 		m.addAttribute("shopListCount", shopListCount);
-
+		
+		HashMap map3 = new HashMap();
+		List<MemberVO> ProfileRealFname =listingDetailsService.listingDetailsProfileRealFname(map3);
+		m.addAttribute("ProfileRealFname",ProfileRealFname);
+		
+		
+		List<ReviewVO> fromReviewRealFname = listingDetailsService.listingDetailsFromReviewRealFname(shopNumber);
+		m.addAttribute("fromReviewRealFname",fromReviewRealFname);
+		
+		
 		return "listingDetails";
 	}
 
