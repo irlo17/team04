@@ -99,6 +99,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</delete>
 	
+
+	
+	<!-- ===== 관리자페이지 ===== -->
+	<!-- 
+		SQL 형태 : SELECT
+		이름 : memberGetListManager
+		받는 값(parameterType) : 없음
+		보내는 값(resultType) : MemberVO
+		사용 : 회원 전체 리스트를 검색하여 MemberVO형으로 보냄 
+	 -->
+	 <select id="memberGetListManager" resultType="MemberVO">
+	 	SELECT * FROM member
+	 </select>
+	 
 	<!-- 관리자 회원탈퇴 -->
 	<delete id="memberDeleteManager" parameterType="MemberVO">
 		DELETE FROM member 
@@ -106,4 +120,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			member_email = #{memberEmail}
 		</where>
 	</delete>
+
 </mapper>

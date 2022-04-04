@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="now" value="<%=new java.util.Date()%>" />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -83,27 +85,27 @@
                             <li class="breadcrumb-item"><a href="dashboardManager.do">대시보드</a></li>
                             <li class="breadcrumb-item active">차트</li>
                         </ol>
-                        <!-- 월별 누적 리스트 생성 수 - area차트영역 -->
+                        <!-- 월별 리스트 생성 수 - area차트영역 -->
                          <div class="card mb-4">
                            <div class="card-header">
                                <i class="fas fa-chart-area me-1"></i>
-                               월별 누적 리스트 생성 수
+                               월별 리스트 생성 수
                            </div>
                            <!-- 차트 연동 -->
                            <div class="card-body"><canvas id="monthListGeneration" width="100%" height="30"></canvas></div>
-                           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                           <div class="card-footer small text-muted">전체 즐겨찾기 리스트 수 : ${totalCountBookmark.totalCntBookmark} 개</div>
                 		</div>
                         <div class="row">
-                        	<!-- 월별 누적 회원가입 수 - area차트영역 -->
+                        	<!-- 월별 회원가입 수 - area차트영역 -->
                             <div class="col-lg-6">
                                 <div class="card mb-4">
 		                            <div class="card-header">
-		                                <i class="fas fa-chart-area2 me-1"></i>
-		                                월별 누적 회원가입 수
+		                                <i class="fas fa-chart-area me-1"></i>
+		                                월별 회원가입 수
 		                            </div>
 		                            <!-- 차트 연동 -->
 		                            <div class="card-body"><canvas id="monthMemberGeneration" width="100%" height="50"></canvas></div>
-		                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+		                            <div class="card-footer small text-muted">총 회원가입 수 : ${totalCountMember.totalCntMember} 명</div>
                        			 </div>
                             </div>
                             <!-- 음식종류 별 가게 수 - pie차트영역 -->
@@ -114,8 +116,8 @@
                                         음식종류 별 가게 수
                                     </div>
                                     <!-- 차트 연동 -->
-                                    <div class="card-body"><canvas id="shopByFood" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                    <div class="card-body"><canvas id="foodByShopList" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">저장된 전체 가게 수 : ${totalCountShop.totalCntShop} 개 점포</div>
                                 </div>
                             </div>
                         </div>
@@ -136,15 +138,138 @@
                 </footer>
             </div>
         </div>
+        <!-- JQuery -->
+    	<script src="./resources/js/jquery-3.3.1.min.js"></script>
         <!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="./resources/manager/js/scripts.js"></script>
         <!-- chart.js 연동 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <!-- 파일 내 차트 연동 -->
-        <script src="./resources/manager/assets/demo/monthListGeneration.js"></script>
-        <script src="./resources/manager/assets/demo/monthMemberGeneration.js"></script>
-        <script src="./resources/manager/assets/demo/shopByFood.js"></script>
+        <!-- 내부 차트 js -->
+        <script type="text/javascript">
+        // monthListGeneration = 월별 즐겨찾기 리스트 생성 수 차트
+        var jsonDataList = ${jsonList}
+        var jsonObjList = JSON.stringify(jsonDataList);
+        var jDataList = JSON.parse(jsonObjList);
+        		
+        var label = new Array();
+        var value = new Array();
+        		
+        for(var i = 0; i<jDataList.length; i++) {
+        	var d = jDataList[i];
+        	label.push(d.MonthList);
+        	value.push(d.CountList);
+        }
+
+        var dataList = {
+				labels: label,
+				datasets: [{
+						label : '즐겨찾기 리스트 생성 수',
+						backgroundColor: colorize(),
+						data : value
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '월별 즐겨찾기 리스트 생성 수'
+						}
+				}
+		};
+        
+        var ctxList = document.getElementById("monthListGeneration");
+        var monthListGeneration = new Chart(ctxList, {
+          type: 'line',
+          data: dataList
+        })
+        // 월별 즐겨찾기 리스트 생성 수 차트
+        
+        
+        
+        // monthMemberGeneration = 월별 회원가입 수 차트
+        var jsonData = ${json}
+        var jsonObject = JSON.stringify(jsonData);
+        var jData = JSON.parse(jsonObject);
+        		
+        var labelList = new Array();
+        var valueList = new Array();
+        		
+        for(var i = 0; i<jData.length; i++) {
+        	var d = jData[i];
+        	labelList.push(d.Month);
+        	valueList.push(d.CountMember);
+        }
+
+        var data = {
+				labels: labelList,
+				datasets: [{
+						label : '회원가입 수',
+						backgroundColor: colorize(),
+						data : valueList
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '월별 회원가입 수'
+						}
+				}
+		};
+        
+        var ctx = document.getElementById("monthMemberGeneration");
+        var monthMemberGeneration = new Chart(ctx, {
+          type: 'line',
+          data: data
+        })
+        // 월별 회원가입 수 차트
+        
+        
+        
+        // foodByShopList = 음식종류별 가게 수 차트
+        var jsonDataShop = ${jsonShop}
+        var jsonObjShop = JSON.stringify(jsonDataShop);
+        var jDataShop = JSON.parse(jsonObjShop);
+        		
+        var labelListShop = new Array();
+        var valueListShop = new Array();
+        var colorListShop = new Array();
+        
+        for(var i = 0; i<jDataShop.length; i++) {
+        	var d = jDataShop[i];
+        	labelListShop.push(d.ShopFood);
+        	valueListShop.push(d.CountShop);
+        	colorListShop.push(colorize());
+        }
+
+        var dataShop = {
+				labels: labelListShop,
+				datasets: [{
+						backgroundColor: colorListShop,
+						data : valueListShop
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '음식종류별 가게 수'
+						}
+				}
+		};
+        
+        var ctxShop = document.getElementById("foodByShopList");
+        var foodByShopList = new Chart(ctxShop, {
+          type: 'pie',
+          data: dataShop
+        })
+        // 음식종류별 가게 수 차트
+        
+        
+        
+        function colorize() {
+        	var r = Math.floor(Math.random()*200);
+        	var g = Math.floor(Math.random()*200);
+        	var b = Math.floor(Math.random()*200);
+        	var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
+        	return color;
+        }
+        </script>
     </body>
 </html>

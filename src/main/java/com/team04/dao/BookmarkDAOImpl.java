@@ -102,9 +102,9 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		mybatis.delete("BookmarkDAO.bookmarkDelete",listNumber);
 	}
 	
-	public void mylistInsert(MylistVO vo) {
-		System.out.println("===> Mybatis mylistInsert() 호출"); 
-		mybatis.insert("BookmarkDAO.mylistInsert",vo);		
+	public void mylistUpdate(MylistVO vo) {
+		System.out.println("===> Mybatis mylistUpdate() 호출"); 
+		mybatis.update("BookmarkDAO.mylistUpdate",vo);		
 	}
 	
 	public void mylistDelete(MylistVO vo) {

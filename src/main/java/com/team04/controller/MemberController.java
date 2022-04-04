@@ -1,5 +1,8 @@
 package com.team04.controller;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 import com.team04.service.MemberService;
 
@@ -244,14 +251,31 @@ public class MemberController {
 
 	}//end of memberDelete()
 
-	// 관리자 -> 회원탈퇴
-	@RequestMapping("memberDeleteManager.do")
-	public String memberDeleteManager(MemberVO vo) {
-		memberService.memberDeleteManager(vo);
+	
+	
+	
+	// ----- 관리자 -----
+	/**
+	 * 요청 : memberListManager.do
+	 * 메소드명 : memberListManager()
+	 * 인자 : Model m (= 뷰페이지에 보내줄 값을 담을 객체)
+	 * 리턴형 : String (= 뷰페이지 명)
+	 * 사용 : memberService에 있는 함수 memberListManager()를 호출하여,
+	 * 		받아온 List를 관리자 memberListManager 뷰페이지로 넘겨주는 함수
+	 */
+	@RequestMapping("memberListManager.do")
+	public String memberListManager(Model m) {
 		
+		m.addAttribute("memberListManager", memberService.memberGetListManager());
 		return "memberListManager";
 	}
 	
+	// 관리자 -> 회원탈퇴
+	@RequestMapping("memberDeleteManager.do")
+	public String memberDeleteManager(MemberVO vo, Model m) {
+		memberService.memberDeleteManager(vo);
+		return "redirect:memberListManager.do";
+	}
 
 
 }//end of class

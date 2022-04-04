@@ -19,18 +19,37 @@ public class ReportController {
 	private ReportService reportService;
 
 	
+	// ===== 관리자페이지 =====
 	/**
+	 * 요청 : reportListManager.do
 	 * 메소드명 : reportGetList()
 	 * 인자 : ReportVO (= 신고 리스트를 담을 변수객체), Model (= 다음 페이지로 보내기 위한 객체)
 	 * 리턴형 : String (= 뷰 페이지 명)
-	 * 사용 : reportList.do 요청이 들어오면, reportService에 있는 reportGetList를 호출하고
+	 * 사용 : reportListManager.do 요청이 들어오면, reportService에 있는 reportGetListManager를 호출하고
 	 * 		받아온 List를 뷰페이지로 보내는 함수
 	 */
-	@RequestMapping("reportList.do")
-	public String reportGetList(ReportVO reportVO, Model m) {
-		List<ReportVO> list = reportService.reportGetList(reportVO);
-		m.addAttribute("reportList", list);
-		return "reportList";
+	@RequestMapping("reportListManager.do")
+	public String reportGetListManager(ReportVO reportVO, Model m) {
+		List<ReportVO> list = reportService.reportGetListManager(reportVO);
+		m.addAttribute("reportListManager", list);
+		return "reportListManager";
+	}
+	
+	
+	
+	/**
+	 * 요청 : reportDeleteManager.do
+	 * 메소드명 : reportGetList()
+	 * 인자 : ReportVO (= 신고 리스트를 담을 변수객체), Model (= 다음 페이지로 보내기 위한 객체)
+	 * 리턴형 : String (= 뷰 페이지 명)
+	 * 사용 : reportDeleteManager.do 요청이 들어오면
+	 * 		reportService의 reportDeleteManager함수를 요청하고
+	 * 		reportListManager.do 리다이렉트 요청
+	 */
+	@RequestMapping("reportDeleteManager.do")
+	public String reportDeleteManager(ReportVO reportVO, Model m) {
+		reportService.reportDeleteManager(reportVO);
+		return "redirect:reportListManager.do";
 	}
 	
 }

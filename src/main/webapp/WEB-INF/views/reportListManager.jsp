@@ -20,15 +20,21 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- 내부 script - 삭제버튼 구현 -->
         <script type="text/javascript">
-        function removeBtn() {
-    		if(confirm("정말 삭제하시겠습니까?") == true) {
-				alert("삭제되었습니다.");
-				//document.frm.submit();
-			} else {
-				return;
-			}
-    			
-    	}
+	     // 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
+	    	function removeBtn(num) {
+	    		// num이 받아졌는지 확인
+	    		console.log(num);
+	    		// 확인/취소 alert창 띄우기
+	    		if(confirm("정말 삭제하시겠습니까?") == true) {
+	    			// 확인을 누를 경우 요청과 함께 값을 보내기
+	    			location.href="reportDeleteManager.do?reportNumber=" + num;
+	    			// 삭제 확인 메세지 띄우기
+					alert("삭제되었습니다.");
+				} else {
+					// 취소를 누를 경우 리턴
+					return;
+				}
+	    	}
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -128,12 +134,12 @@
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
-                                    <c:forEach items="${reportList}" var="report">
+                                    <c:forEach items="${reportListManager}" var="reportManager">
                                         <tr>
-                                            <td>${ report.reportNumber }</td>
-                                            <td>${ report.reviewNumber }</td>
-                                            <td>${ report.reportContent }</td>
-                                            <td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn()"/></td>
+                                            <td>${ reportManager.reportNumber }</td>
+                                            <td>${ reportManager.reviewNumber }</td>
+                                            <td>${ reportManager.reportContent }</td>
+                                            <td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn(${reportManager.reportNumber})"/></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

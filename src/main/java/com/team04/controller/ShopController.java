@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team04.domain.MenuVO;
 import com.team04.domain.FoodKindVO;
+import com.team04.domain.FoodPriceVO;
 import com.team04.domain.ShopVO;
 import com.team04.service.MenuService;
 import com.team04.service.ShopService;
@@ -120,13 +121,25 @@ public class ShopController {
 		return "listing";
 	}
 	
+	
+	/**
+	 * 가게리스트 페이지 필터링 값 출력
+	 * 
+	 * @author yangj
+	 * @date 2022.04.04
+	 * @return listing.jsp Page 리턴
+	 */
 	@RequestMapping("listingFilter.do")
-	public String shopPageFilterGetList(String query, FoodKindVO vo, Model m) {
+	public String shopPageFilterGetList(String query, FoodKindVO vo, String shopAddressSi, String shopAddressGu, FoodPriceVO pVo,  Model m) {
 		
 		HashMap map = new HashMap();
 		
 		map.put("query", query);
 		map.put("foodKind", vo);
+		map.put("shopAddressSi", shopAddressSi);
+		map.put("shopAddressGu", shopAddressGu);
+		map.put("foodPrice", pVo);
+		
 		
 		
 		List<ShopVO> list = shopService.shopPageFilterGetList(map);

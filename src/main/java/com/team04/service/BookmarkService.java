@@ -34,7 +34,7 @@ public interface BookmarkService {
 	
 	public void bookmarkDelete(String listNumber);
 	
-	public void mylistInsert(MylistVO vo);
+	public void mylistUpdate(MylistVO vo);
 	
 	public void mylistDelete(MylistVO vo);
 	

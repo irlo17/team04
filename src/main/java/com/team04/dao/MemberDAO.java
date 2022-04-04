@@ -1,5 +1,8 @@
 package com.team04.dao;
 
+import java.util.List;
+
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 
 public interface MemberDAO {
@@ -44,7 +47,17 @@ public interface MemberDAO {
 	 */
 	int memberDelete(MemberVO vo);
 	
+
+	
+	
+	// ----- 관리자페이지 -----
+	/** 회원 전체 리스트 출력
+	 * 	- DB에 저장된 모든 회원 리스트 가져오기
+	 */
+	public List<MemberVO> memberGetListManager();
+
 	int memberDeleteManager(MemberVO vo);
 	
 	int memberDefaultList(MemberVO vo);
+
 }

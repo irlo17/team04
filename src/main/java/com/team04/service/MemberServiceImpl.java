@@ -1,9 +1,12 @@
 package com.team04.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team04.dao.MemberDAOImpl;
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 
 @Service("MemberService")
@@ -134,6 +137,20 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int memberDefaultList(MemberVO vo) {
 		return memberDAO.memberDefaultList(vo);
+	}
+	
+	
+	// ----- 관리자페이지 -----
+	/**
+	 * 메소드명 : memberGetListManager()
+	 * 인자 : 없음
+	 * 리턴형 : MemberVO가 담긴 List형
+ 	 * 사용 : memberDAO에 있는 함수 memberGetListManager()를 호출하여,
+	 * 		받아온 List를 Controller에 리턴하는 함수
+	 */
+	@Override
+	public List<MemberVO> memberGetListManager() {
+		return memberDAO.memberGetListManager();
 	}
 	
 }

@@ -1,5 +1,8 @@
 package com.team04.service;
 
+import java.util.List;
+
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 
 public interface MemberService {
@@ -51,7 +54,15 @@ public interface MemberService {
 	public int memberDelete(MemberVO vo);
 	
 	
+
+	// ----- 관리자페이지 -----
+	/* ***관리자페이지 전체 회원리스트 출력
+	 * 		- DB에 있는 회원 리스트를 모두 가져옴
+	 */
+	public List<MemberVO> memberGetListManager();
+	
 	/** 관리자 회원 탈퇴
 	 */
 	public int memberDeleteManager(MemberVO vo);
+
 }

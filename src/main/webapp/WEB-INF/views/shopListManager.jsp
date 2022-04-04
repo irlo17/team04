@@ -5,6 +5,8 @@
 <%@ page import="java.util.*" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,7 +32,6 @@
         			location.href="shopDeleteManager.do?shopNumber=" + num;
         			// 삭제 확인 메세지 띄우기
     				alert("삭제되었습니다.");
-    				//document.frm.submit();
     			} else {
     				// 취소를 누를 경우 리턴
     				return;
@@ -152,8 +153,16 @@
                                             <td id="number">${ shopManager.shopNumber }</td>
                                             <td>${ shopManager.shopTitle }</td>
                                             <td>${ shopManager.shopContent }</td>
-                                            <td>${ shopManager.shopCreateDate }</td>
-                                            <td>${ shopManager.shopModifyDate }</td>
+                                            <td>
+                                            	<fmt:setLocale value="en_US" scope="session"/>
+	                                            <fmt:parseDate value="${ shopManager.shopCreateDate }" var="dateValueCreate" pattern="E MMM dd HH:mm:ss z yyyy"/>
+												<fmt:formatDate value="${dateValueCreate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                            </td>
+                                            <td>
+                                            	<fmt:setLocale value="en_US" scope="session"/>
+                                            	<fmt:parseDate value="${ shopManager.shopModifyDate }" var="dateValueModify" pattern="E MMM dd HH:mm:ss z yyyy"/>
+												<fmt:formatDate value="${dateValueModify}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                            </td>
                                             <td>${ shopManager.shopAddress }</td>
                                             <td>
                                             	<a class="btn btn-warning btn-sm" href="shopModifyFormManager.do?shopNumber=${ shopManager.shopNumber }">수정</a>

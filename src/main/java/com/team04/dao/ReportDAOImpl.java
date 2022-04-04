@@ -28,10 +28,16 @@ public class ReportDAOImpl implements ReportDAO {
 
 	}
 
+	/**
+	 * 메소드명 : reportDeleteManager()
+	 * 인자 : ReportVO reportVO
+	 * 리턴형 : ReportVO(= 조인하여 검색한 내용을 담음)
+	 * 사용 : 신고번호에 따른 리뷰번호와 가게번호를 조회하여 ReportVO에 담아 리턴
+	 */
 	@Override
-	public void reportDelete(ReportVO reportVO) {
-		// TODO Auto-generated method stub
-
+	public ReportVO reportDeleteManager(ReportVO reportVO) {
+		System.out.println("===> reportDAO mybatis reportDeleteManager() 함수 요청");
+		return mybatis.selectOne("reportDAO.reportDeleteManager", reportVO);
 	}
 
 	@Override
@@ -43,15 +49,15 @@ public class ReportDAOImpl implements ReportDAO {
 	
 	
 	/**
-	 * 메소드명 : reportGetList()
+	 * 메소드명 : reportGetListManager()
 	 * 인자 : ReportVO reportVO
 	 * 리턴형 : ReportVO가 담긴 List
 	 * 사용 : 모든 신고 리스트를 조회하여 ReportVO에 담아 List형으로 리턴
 	 */
 	@Override
-	public List<ReportVO> reportGetList(ReportVO reportVO) {
-		System.out.println("====> Mybatis reportGetList() 호출");
-		return mybatis.selectList("reportDAO.reportGetList", reportVO);
+	public List<ReportVO> reportGetListManager(ReportVO reportVO) {
+		System.out.println("====> Mybatis reportGetListManager() 호출");
+		return mybatis.selectList("reportDAO.reportGetListManager", reportVO);
 	}
 
 }
