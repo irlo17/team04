@@ -103,7 +103,7 @@
         overflow: hidden;
         background: #d95050;
         background: #d95050
-          url(https://t1.daumcdn.net/local./resources/img/localimages/07/mapapidoc/arrow_white.png)
+ 		  url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
           no-repeat right 14px center;
       }
       .customoverlay .title {
@@ -314,60 +314,232 @@
             </div>
             <hr />
             <!--모달창 지역 구분-->
-            <div>
-              <input id="gangnam" type="button" value="강남" />
-              <input id="gangbook" type="button" value="강북" />
-              <input type="button" value="경기도" />
-              <input type="button" value="인천" />
-              <input type="button" value="대구" />
+             <div class="pop-up-area-container addressSi">
+              <input
+                class="btn btn-pop-up pop-up-area"
+                id="seoul"
+                type="button"
+                value="서울"
+              />
+              <input
+                class="btn btn-pop-up pop-up-area"
+                id="gyeonggido"
+                type="button"
+                value="경기도"
+              />
+              <input
+                class="btn btn-pop-up pop-up-area"
+                type="button"
+                value="경기도"
+              />
+              <input
+                class="btn btn-pop-up pop-up-area"
+                type="button"
+                value="인천"
+              />
+              <input
+                class="btn btn-pop-up pop-up-area"
+                type="button"
+                value="대구"
+              />
             </div>
             <hr />
-            <div class="region">
-              <div class="gangnam">
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
-                <input type="button" value="일원" />
+             <div class="addressGu">
+              <div class="seoul">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="종로구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="중구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="용산구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="성동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광진구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="동대문구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="중랑구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="성북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="도봉구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="노원구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="은평구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="서대문구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="마포구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="양천구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="구로구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="금천구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="영등포구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="동작구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="관악구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="서초구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강남구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="송파구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강동구"
+                />
               </div>
-              <div class="gangbook">
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
-                <input type="button" value="안암" />
+              <div class="gyeonggido">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="양천구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="금천구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안암"
+                />
               </div>
             </div>
             <hr />
             <form action="listingFilter.do">
             
-           		<input id="query" name="query" value="${param.query}" /> 	
+           		<input id="query" name="query" value="${param.query}" hidden="hidden"/> 	
               <input
                 type="submit"
                 class="btn btn-pop-up pop-up-search"
                 value="검색"
+                
               />
               <input
                 id="koreanFoodInput"
                 name="koreanFood"
+                hidden="hidden"
               
               />
               <input
                 id="japaneseFoodInput"
                 name="japaneseFood"
+                hidden="hidden"
                 
               />
               <input
@@ -388,6 +560,8 @@
               <input id="buffetInput" name="buffet" hidden="hidden" />
               <input id="cafeInput" name="cafe" hidden="hidden" />
               <input id="pupInput" name="pup" hidden="hidden" />
+                   <input id="addressSi" name="shopAddressSi" value="서울"/>
+              <input id="addressGu" name="shopAddressGu" />
             </form>
           </div>
         </div>

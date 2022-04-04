@@ -50,6 +50,13 @@ FROM shop s
 	<if test="foodKind.pup != '' ">
 		OR s.shop_food = #{foodKind.pup}
 	</if>
+	<if test="shopAddressSi != '' ">
+		AND s.SHOP_ADDRESS_SI LIKE '%'||#{shopAddressSi}||'%'
+	</if>
+	<if test="shopAddressGu != '' ">
+		AND s.SHOP_ADDRESS_GU LIKE '%'||#{shopAddressGu}||'%'
+	</if>
+	
 </where>
 </select>
 
