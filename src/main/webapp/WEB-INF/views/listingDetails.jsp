@@ -2,11 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<%-- <%
-	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
-response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) response.setHeader("Cache-Control", "no-cache");
-%> --%>
 <%
 	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
 %>
@@ -321,11 +316,6 @@ html, body {
 							<div class="listing__details__about">
 								<h4>가게 소개</h4>
 								<p>${shopInfoList.SHOPCONTENT }</p>
-								<!--  <p>The judges are the most influential global personalities from hospitality, design and
-                                lifestyle media and have previously included the Editor in Chief of Wallpaper*, Marcus
-                                Wareing and Thomas Heatherwick.
-                                The Awards are followed by over 40,000 of the most influential architects, designers,
-                                hospitality professionals and lifestyle media from around the globe.</p> -->
 							</div>
 						</c:forEach>
 						<div class="listing__details__gallery">
@@ -395,14 +385,9 @@ html, body {
 						</div>
 
 
-						<%--  <c:choose>
-                   		<c:when test="${reviewInfo.SHOPNUMBER }"></c:when>
-                   
-                   
-                   </c:choose> --%>
 
 
-						<c:forEach items="${reviewInfo}" var='reviewInfo'>
+						<c:forEach items="${reviewInfo}" var='reviewInfo' varStatus="vs">
 
 							<c:choose>
 								<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
@@ -473,14 +458,15 @@ html, body {
 													<!-- <li><i class="fa fa-hand-o-right"></i> Like</li>-->
 													<li><i class="fa fa-share-square-o"></i>
 														<button type="text" class="modal-button"
-															onClick="document.getElementById('mw_temp').style.display='block'">신고하기</button>
-														<div id="mw_temp" class="mw modalchang">
+															onClick="document.getElementById('mw_temp${vs.index}').style.display='block'">신고하기</button>
+														<div id="mw_temp${vs.index}" class="mw modalchang">
 															<div class="bg">
 																<!--이란에는 내용을 넣지 마십시오.-->
 															</div>
 															<form
 																action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }"
 																method="post">
+																
 																<input type="hidden" name="shopNumber"
 																	value="${reviewInfo.SHOPNUMBER }" />
 																<div class="fg modalchang">
@@ -488,7 +474,7 @@ html, body {
 																	<textarea class="report_op" name="reportContent"> </textarea>
 																	<button type="submit" class="btn btn-info">제출</button>
 																	<button
-																		onclick="document.getElementById('mw_temp').style.display='none'"
+																		onclick="document.getElementById('mw_temp${vs.index}').style.display='none'"
 																		type="button" class="btn btn-danger">창닫기</button>
 																</div>
 															</form>
@@ -538,10 +524,6 @@ html, body {
 						</c:forEach>
 
 
-						<%-- <c:forEach items="${reviewInfo}" var='reviewInfo'>
-
-							<c:set var="reviewInfo_realFile" value="${reviewInfo.REVIEWFNAME}" > </c:set>
-							</c:forEach> --%>
 						<div class="listing__details__review">
 							<h>리뷰 작성</h>
 							<form action="reviewInsert.do?" method="post"

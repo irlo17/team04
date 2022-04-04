@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 		<!-- 리뷰 목록 용도로 쓸거 -->
-	<!-- 	SELECT distinct NVL(rs.REVIEW_NUMBER,0) reviewNumber, rs.REVIEW_DATE
+	 	SELECT distinct NVL(rs.REVIEW_NUMBER,0) reviewNumber, rs.REVIEW_DATE
 		reviewDate, rs.REVIEW_GRADE reviewGrade
 		,rs.REVIEW_CONTENT
 		reviewContent ,rs.SHOP_NUMBER shopNumber ,rs.MEMBER_EMAIL memberEmail
@@ -56,9 +56,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON
 		m.shop_number = rs.shop_number
 		WHERE m.shop_number=
-		#{shopNumber,jdbcType=INTEGER }  -->
+		#{shopNumber,jdbcType=INTEGER } 
+		ORDER BY REVIEW_DATE DESC
 		
-		 SELECT distinct NVL(r.REVIEW_NUMBER,0) reviewNumber,
+		
+		<!--  SELECT distinct NVL(r.REVIEW_NUMBER,0) reviewNumber,
 		r.REVIEW_DATE reviewDate
 		,r.REVIEW_GRADE reviewGrade, r.REVIEW_CONTENT reviewContent
 		,r.SHOP_NUMBER shopNumber, r.MEMBER_EMAIL memberEmail
@@ -68,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.shop_number = s.shop_number
         WHERE s.shop_number= #{shopNumber,jdbcType=INTEGER }
 		ORDER BY REVIEW_DATE DESC 
-
+ -->
 
 	</select>
 
@@ -151,7 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
+	<!--  이것은 사용을 안함 -->
 	<select id="listingDetailsShopListCount" parameterType="hashmap"
 		resultType="int">
 
