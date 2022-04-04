@@ -618,9 +618,92 @@
         <script src="./resources/manager/js/scripts.js"></script>
         <!-- chart.js 연동 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <!-- 파일 내 차트 연동 -->
-        <script src="./resources/manager/assets/demo/monthListGeneration.js"></script>
-        <script src="./resources/manager/assets/demo/monthMemberGeneration.js"></script>
+        <!-- 내부 차트 js -->
+        <script type="text/javascript">
+        // monthListGeneration = 월별 즐겨찾기 리스트 생성 수 차트
+        var jsonDataList = ${jsonList}
+        var jsonObjList = JSON.stringify(jsonDataList);
+        var jDataList = JSON.parse(jsonObjList);
+        		
+        var label = new Array();
+        var value = new Array();
+        		
+        for(var i = 0; i<jDataList.length; i++) {
+        	var d = jDataList[i];
+        	label.push(d.MonthList);
+        	value.push(d.CountList);
+        }
+
+        var data = {
+				labels: label,
+				datasets: [{
+						label : '즐겨찾기 리스트 생성 수',
+						backgroundColor: colorize(),
+						data : value
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '월별 즐겨찾기 리스트 생성 수'
+						}
+				}
+		};
+        
+        var ctxList = document.getElementById("monthListGeneration");
+        var monthListGeneration = new Chart(ctxList, {
+          type: 'line',
+          data: data
+        })
+        // 월별 즐겨찾기 리스트 생성 수 차트
+        
+        
+        
+        // monthMemberGeneration = 월별 회원가입 수 차트
+        var jsonData = ${json}
+        var jsonObject = JSON.stringify(jsonData);
+        var jData = JSON.parse(jsonObject);
+        		
+        var labelList = new Array();
+        var valueList = new Array();
+        		
+        for(var i = 0; i<jData.length; i++) {
+        	var d = jData[i];
+        	labelList.push(d.Month);
+        	valueList.push(d.CountMember);
+        }
+
+        var data = {
+				labels: labelList,
+				datasets: [{
+						label : '회원가입 수',
+						backgroundColor: colorize(),
+						data : valueList
+				}],
+				options : {
+						title : {
+							display : true,
+							text: '월별 회원가입 수'
+						}
+				}
+		};
+        
+        var ctx = document.getElementById("monthMemberGeneration");
+        var monthMemberGeneration = new Chart(ctx, {
+          type: 'line',
+          data: data
+        })
+        // 월별 회원가입 수 차트
+        
+        
+		// 색 랜덤 함수
+        function colorize() {
+        	var r = Math.floor(Math.random()*200);
+        	var g = Math.floor(Math.random()*200);
+        	var b = Math.floor(Math.random()*200);
+        	var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
+        	return color;
+        }
+        </script>
         <!-- datatable 연동 -->
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->

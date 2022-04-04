@@ -61,11 +61,6 @@ public interface MemberService {
 	 */
 	public List<MemberVO> memberGetListManager();
 	
-	/* ***관리자페이지 월별 회원가입 수 차트
-	 * 		- DB에서 월별 회원가입 수 리스트
-	 */
-	public List<ChartsVO> memberDateListManager();
-
 	/** 관리자 회원 탈퇴
 	 */
 	public int memberDeleteManager(MemberVO vo);

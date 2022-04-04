@@ -276,39 +276,6 @@ public class MemberController {
 		memberService.memberDeleteManager(vo);
 		return "redirect:memberListManager.do";
 	}
-	
-	/**
-	 * 요청 : chartsManager.do
-	 * 메소드명 : memberDateListManager()
-	 * 인자 : Model m (= 뷰페이지에 보내줄 값을 담을 객체)
-	 * 리턴형 : String (= 뷰페이지 명)
-	 * 사용 : memberService에 있는 함수 memberListManager()를 호출하여,
-	 * 		받아온 List를 관리자 memberListManager 뷰페이지로 넘겨주는 함수
-	 */
-	@RequestMapping("chartsManager.do")
-	public String memberDateListManager(Model m) {
-		List<ChartsVO> chartsList = memberService.memberDateListManager();
-		
-		Gson gson = new Gson();
-		JsonArray jArray = new JsonArray();
-		
-		Iterator<ChartsVO> it = chartsList.iterator();
-		while (it.hasNext()) {
-			ChartsVO cVO = it.next();
-			JsonObject object = new JsonObject();
-			String month = cVO.getMonth();
-			int cnt = cVO.getCnt();
-			
-			object.addProperty("Month", month);
-			object.addProperty("Count", cnt);
-			jArray.add(object);
-		}
-		
-		String json = gson.toJson(jArray);
-		m.addAttribute("json", json);
-		
-		return "chartsManager";
-	}
 
 
 }//end of class
