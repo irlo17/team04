@@ -104,6 +104,7 @@
                                             <th>생년월일</th>
                                             <th>휴대전화</th>
                                             <th>관리자여부</th>
+                                            <th>가입날짜</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
@@ -115,6 +116,7 @@
                                             <th>생년월일</th>
                                             <th>휴대전화</th>
                                             <th>관리자여부</th>
+                                            <th>가입날짜</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
@@ -129,6 +131,7 @@
                                     		<td>${memberManager.memberBirth}</td>
                                     		<td>${memberManager.memberTel}</td>
                                     		<td>${memberManager.memberAdmin}</td>
+                                    		<td>${memberManager.memberDate}</td>
                                     		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn('${ memberManager.memberEmail }')"/></td>
                                     	</tr>
                                     </c:forEach>

@@ -17,6 +17,8 @@ public class MemberVO {
 	private String memberFname;		// 파일명
 	private String memberRealfname; // 저장된 파일이름
 	
+	private String memberDate;		// 회원가입 날짜
+	
 	MultipartFile memberFile;		// 회원의 프로필 사진 mypageMember.jsp <input type="file" name="memberFile">
 	
 	// 기본 생성자
@@ -25,7 +27,7 @@ public class MemberVO {
 	// 생성자
 	public MemberVO(String memberEmail, String memberNickname, String memberPassword, String memberName,
 			String memberBirth, String memberTel, String memberFname, String memberRealfname,
-			MultipartFile memberFile, String memberAdmin) {
+			MultipartFile memberFile, String memberAdmin, String memberDate) {
 		super();
 		this.memberEmail = memberEmail;
 		this.memberNickname = memberNickname;
@@ -38,6 +40,7 @@ public class MemberVO {
 		this.memberRealfname = memberRealfname;
 		this.memberFile = memberFile;
 		this.memberAdmin = memberAdmin;
+		this.memberDate = memberDate;
 	}
 	
 	
@@ -75,6 +78,14 @@ public class MemberVO {
 	
 	
 	
+	public String getMemberDate() {
+		return memberDate;
+	}
+
+	public void setMemberDate(String memberDate) {
+		this.memberDate = memberDate;
+	}
+
 	public String getMemberAdmin() {
 		return memberAdmin;
 	}
