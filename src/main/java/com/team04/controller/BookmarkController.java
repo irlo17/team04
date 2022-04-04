@@ -24,7 +24,8 @@ public class BookmarkController {
 	  @RequestMapping("totalbookmark.do") 
 	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model) {
 		
-		  HashMap map = new HashMap(); map.put("searchCondition",searchCondition);
+		  HashMap map = new HashMap(); 
+		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list); 
