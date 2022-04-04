@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -81,7 +82,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">대시보드</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">대시보드</li>
                         </ol>
                         <div class="row">
                         	<!-- 월별 누적 리스트 생성 수 - area차트영역 -->
@@ -89,7 +90,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        월별 누적 리스트 생성 수
+                                        월별 리스트 생성 수
                                     </div>
                                     <!-- 차트연동 -->
                                     <div class="card-body"><canvas id="monthListGeneration" width="100%" height="40"></canvas></div>
@@ -100,7 +101,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        월별 누적 회원가입 수
+                                        월별 회원가입 수
                                     </div>
                                     <!-- 차트 연동 -->
                                     <div class="card-body"><canvas id="monthMemberGeneration" width="100%" height="40"></canvas></div>
@@ -148,7 +149,11 @@
                                     		<td>${memberManager.memberBirth}</td>
                                     		<td>${memberManager.memberTel}</td>
                                     		<td>${memberManager.memberAdmin}</td>
-                                    		<td>${memberManager.memberDate}</td>
+                                    		<td>
+                                    			<fmt:setLocale value="en_US" scope="session"/>
+	                                            <fmt:parseDate value="${memberManager.memberDate}" var="dateValueCreate" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<fmt:formatDate value="${dateValueCreate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                    		</td>
                                     	</tr>
                                     </c:forEach>
                                     </tbody>

@@ -5,6 +5,8 @@
 <%@ page import="java.util.*" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -131,7 +133,11 @@
                                     		<td>${memberManager.memberBirth}</td>
                                     		<td>${memberManager.memberTel}</td>
                                     		<td>${memberManager.memberAdmin}</td>
-                                    		<td>${memberManager.memberDate}</td>
+                                    		<td>
+                                    			<fmt:setLocale value="en_US" scope="session"/>
+	                                            <fmt:parseDate value="${memberManager.memberDate}" var="dateValueCreate" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<fmt:formatDate value="${dateValueCreate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                    		</td>
                                     		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn('${ memberManager.memberEmail }')"/></td>
                                     	</tr>
                                     </c:forEach>
