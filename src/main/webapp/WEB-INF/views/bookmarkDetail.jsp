@@ -126,9 +126,7 @@ position: relative; left:400px; }
 	<div id='btnl'>
 	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
 	<a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
-	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a> 
-	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
-	
+
 	 </div>
 			<section class="blog-section spad">
         <div class="container">

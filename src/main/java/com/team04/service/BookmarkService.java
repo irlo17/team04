@@ -17,6 +17,7 @@ public interface BookmarkService {
 	public List<BookmarkVO> bookmarkGetBestList();
 		
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);	
+	
 	public List<MylistVO> bookmarkGetMylistDetail(String listNumber);	
 	
 	public BookmarkVO bookmarkGetDetail(String listNumber);
@@ -25,7 +26,7 @@ public interface BookmarkService {
 	
 	public void bookmarkDelete(String listNumber);
 	
-	public void mylistInsert(MylistVO vo);
+	public void mylistUpdate(MylistVO vo);
 	
 	public void mylistDelete(MylistVO vo);
 	

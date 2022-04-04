@@ -59,8 +59,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.bookmarkDelete(listNumber);
 	}
 	
-	public void mylistInsert(MylistVO vo) {
-		bookmarkDAO.mylistInsert(vo);
+	public void mylistUpdate(MylistVO vo) {
+		bookmarkDAO.mylistUpdate(vo);
 	}
 	
 	public void mylistDelete(MylistVO vo) {

@@ -82,10 +82,17 @@ WHERE list_number=#{listNumber}
 DELETE FROM bookmark WHERE list_number=#{listNumber}
 </delete>
 
+<resultMap type="MylistVO" id="mylistUpdate">
+<result property="listNumber2" column="list_number"/>
+</resultMap>
 
-<insert id="mylistInsert" parameterType="MylistVO" >
-INSERT INTO mylist VALUES(#{listNumber},#{shopNumber})
-</insert>
+<update id="mylistUpdate" parameterType="MylistVO" >
+update mylist
+set list_number =#{listNumber}
+where shop_number=#{shopNumber} and 
+list_number=#{listNumber2}
+</update>
+
 
 <delete id="mylistDelete" parameterType="MylistVO" >
 DELETE FROM mylist WHERE list_number=#{listNumber} and shop_number= #{shopNumber}

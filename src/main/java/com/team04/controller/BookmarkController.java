@@ -133,16 +133,20 @@ public class BookmarkController {
 	  
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo) {
-		  bookmarkService.mylistInsert(vo);
-		  
-		return "redirect:detailModify.do";  
+		  bookmarkService.mylistUpdate(vo);
+		System.out.println(vo.getShopNumber());
+		return "redirect:mylist.do";  
 	  }
 	 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
+		  
+		  
+		  
+		
 		  bookmarkService.mylistDelete(vo);
 		  
-			return "redirect:detailModify.do";  
+			return "redirect:mylist.do";  
 		  }
 	  
 	  @RequestMapping("addPageView.do")
