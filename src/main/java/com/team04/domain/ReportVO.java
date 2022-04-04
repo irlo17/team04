@@ -18,6 +18,9 @@ public class ReportVO {
 	private String reportContent;
 	private int reviewNumber;
 	
+	// 신고삭제와 함께 리뷰도 삭제하기 위한 변수
+	private String logemail;
+	
 	
 	// 기본생성자 - 인자없는
 	public ReportVO() {
@@ -25,17 +28,28 @@ public class ReportVO {
 	}
 	
 	// 생성자 - 인자있는
-	public ReportVO(int reportNumber, String reportContent, int reviewNumber) {
+	public ReportVO(int reportNumber, String reportContent, int reviewNumber, String logemail) {
 		super();
 		this.reportNumber = reportNumber;
 		this.reportContent = reportContent;
 		this.reviewNumber = reviewNumber;
+		this.logemail = logemail;
 	}
 	
 	// setter & getter
+	
+	public String getLogemail() {
+		return logemail;
+	}
+	
+	public void setLogemail(String logemail) {
+		this.logemail = logemail;
+	}
+	
 	public int getReportNumber() {
 		return reportNumber;
 	}
+
 	public void setReportNumber(int reportNumber) {
 		this.reportNumber = reportNumber;
 	}
