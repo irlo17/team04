@@ -103,14 +103,27 @@ $("#pup").on("click", function name(params) {
 });
 
 //모달 지역
-$("#gangnam").click(function name(params) {
-  $(".region > .gangbook").css("display", "none");
-  $(".gangnam").css("display", "block");
+$("#seoul").click(function name(params) {
+  $(".addressGu > .gyeonggido").css("display", "none");
+  $(".seoul").css("display", "block");
 });
 
-$("#gangbook").click(function name(params) {
-  $(".region > .gangnam").css("display", "none");
-  $(".gangbook").css("display", "block");
+$("#gyeonggido").click(function name(params) {
+  $(".addressGu > .seoul").css("display", "none");
+  $(".gyeonggido").css("display", "block");
+});
+
+$(".addressSi > input").click(function name(params) {
+  $("#addressSi").val($(this).val());
+  $("#addressGu").val("");
+});
+
+$(".addressGu > div > input").click(function name(params) {
+  if ($("#addressGu").val() == $(this).val()) {
+    $("#addressGu").val("");
+  } else {
+    $("#addressGu").val($(this).val());
+  }
 });
 
 
