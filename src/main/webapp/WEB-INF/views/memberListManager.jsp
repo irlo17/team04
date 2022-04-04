@@ -18,25 +18,6 @@
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- 내부 script -- 삭제버튼 구현 -->
-        <script type="text/javascript">
-		    // 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
-		   	function removeBtn(num) {
-		   		// num이 받아졌는지 확인
-		   		console.log(num);
-		   		// 확인/취소 alert창 띄우기
-		   		if(confirm("정말 삭제하시겠습니까?") == true) {
-		   			// 확인을 누를 경우 요청과 함께 값을 보내기
-		   			//location.href=".do?shopNumber=" + num;
-		   			// 삭제 확인 메세지 띄우기
-					alert("삭제되었습니다.");
-					//document.frm.submit();
-				} else {
-					// 취소를 누를 경우 리턴
-					return;
-				}
-		   	}
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
@@ -140,15 +121,15 @@
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
-                                    <c:forEach items="${memberList}" var="member">
+                                    <c:forEach items="${memberListManager}" var="memberManager">
                                     	<tr>
-                                    		<td>${member.memberEmail}</td>
-                                    		<td>${member.memberNickname}</td>
-                                    		<td>${member.memberName}</td>
-                                    		<td>${member.memberBirth}</td>
-                                    		<td>${member.memberTel}</td>
-                                    		<td>${member.memberAdmin}</td>
-                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn(${member.memberEmail})"/></td>
+                                    		<td>${memberManager.memberEmail}</td>
+                                    		<td>${memberManager.memberNickname}</td>
+                                    		<td>${memberManager.memberName}</td>
+                                    		<td>${memberManager.memberBirth}</td>
+                                    		<td>${memberManager.memberTel}</td>
+                                    		<td>${memberManager.memberAdmin}</td>
+                                    		<td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn('${ memberManager.memberEmail }')"/></td>
                                     	</tr>
                                     </c:forEach>
                                     </tbody>
@@ -176,6 +157,28 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="${path}/resources/manager/js/scripts.js"></script>
+        <!-- JQuery -->
+    	<script src="./resources/js/jquery-3.3.1.min.js"></script>
+        <!-- 내부 script -- 삭제버튼 구현 -->
+        <script type="text/javascript">
+		    // 삭제버튼이 눌렸을 때
+		    function removeBtn(num) {
+		    	// 확인
+		    	//alert('ok');
+		    	// 이메일 확인
+		    	console.log(num);
+		    	// 확인/취소 alert창 띄우기
+        		if(confirm("정말 삭제하시겠습니까?") == true) {
+        			// 확인을 누를 경우 요청과 함께 값을 보내기
+        			location.href="memberDeleteManager.do?memberEmail=" + num;
+        			// 삭제 확인 메세지 띄우기
+    				alert("삭제되었습니다.");
+    			} else {
+    				// 취소를 누를 경우 리턴
+    				return;
+    			}
+		    }
+        </script>
         <!-- datatable 연동 -->
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->

@@ -266,16 +266,15 @@ public class MemberController {
 	@RequestMapping("memberListManager.do")
 	public String memberListManager(Model m) {
 		
-		m.addAttribute("memberList", memberService.memberGetListManager());
+		m.addAttribute("memberListManager", memberService.memberGetListManager());
 		return "memberListManager";
 	}
 	
 	// 관리자 -> 회원탈퇴
 	@RequestMapping("memberDeleteManager.do")
-	public String memberDeleteManager(MemberVO vo) {
+	public String memberDeleteManager(MemberVO vo, Model m) {
 		memberService.memberDeleteManager(vo);
-		
-		return "memberListManager";
+		return "redirect:memberListManager.do";
 	}
 	
 	/**
