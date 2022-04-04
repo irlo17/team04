@@ -16,40 +16,77 @@ where s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||
 
 </select>
 
-<select id="shopPageFilterGetList" parameterType="hashmap" resultType="ShopVO">
+<select id="shopPageFilterGetList" parameterType="hashmap"
+	resultType="ShopVO">
 
 SELECT *   
 FROM shop s
-WHERE s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||'%'  or s.shop_title LIKE '%'||#{query}||'%'
-<if test='foodKind.koreanFood != null' >
-AND s.shop_food LIKE '%'||#{foodKind.koreanFood}||'%'
-</if>
-<if test='foodKind.japaneseFood != null' >
-AND s.shop_food LIKE '%'||#{foodKind.japaneseFood}||'%'
-</if>
-<if test='foodKind.chineseFood != null' >
-AND s.shop_food LIKE '%'||#{foodKind.chineseFood}||'%'
-</if>
-<if test='foodKind.westernFood != null' >
-AND s.shop_food LIKE '%'||#{foodKind.westernFood}||'%'
-</if>
-<if test='foodKind.worldFood != null' >
-AND s.shop_food LIKE '%'||#{foodKind.worldFood}||'%'
-</if>
-<if test='foodKind.buffet != null' >
-AND s.shop_food LIKE '%'||#{foodKind.buffet}||'%'
-</if>
-<if test='foodKind.cafe != null' >
-AND s.shop_food LIKE '%'||#{foodKind.cafe}||'%'
-</if>
-<if test='foodKind.pup != null' >
-AND s.shop_food LIKE '%'||#{foodKind.pup}||'%'
-</if>
-
-
+<where>
+	<if test="query != '' ">
+		s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE '%'||#{query}||'%' or
+		s.shop_title LIKE '%'||#{query}||'%'
+	</if>
+	<if test="foodKind.koreanFood != '' ">
+		OR s.shop_food = #{foodKind.koreanFood}
+	</if>
+	<if test="foodKind.japaneseFood != '' ">
+		OR s.shop_food = #{foodKind.japaneseFood}
+	</if>
+	<if test="foodKind.chineseFood != '' ">
+		OR s.shop_food = #{foodKind.chineseFood}
+	</if>
+	<if test="foodKind.westernFood != '' ">
+		OR s.shop_food = #{foodKind.westernFood}
+	</if>
+	<if test="foodKind.worldFood != '' ">
+		OR s.shop_food = #{foodKind.worldFood}
+	</if>
+	<if test="foodKind.buffet != '' ">
+		OR s.shop_food = #{foodKind.buffet}
+	</if>
+	<if test="foodKind.cafe != '' ">
+		OR s.shop_food = #{foodKind.cafe}
+	</if>
+	<if test="foodKind.pup != '' ">
+		OR s.shop_food = #{foodKind.pup}
+	</if>
+</where>
 </select>
 
-
+	<!-- SELECT *
+	FROM shop s
+	<where>
+	<if test="query != null">
+	s.shop_food LIKE '%'||#{query}||'%' or s.shop_address LIKE %'||#{query}||'%' or s.shop_title LIKE '%'||#{query}||'%'
+		</if> 
+	<if test="koreanFood != null">
+		OR s.shop_food LIKE '%'||#{koreanFood}||'%'  
+	</if>
+	<if test="westernFood != null">
+		OR s.shop_food LIKE '%'||#{westernFood}||'%'
+	</if> -->
+<!-- <if test='foodKind.japaneseFood != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.japaneseFood}||'%'
+	</if>
+	<if test='foodKind.chineseFood != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.chineseFood}||'%'
+	</if>
+	<if test='foodKind.westernFood != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.westernFood}||'%'
+	</if>
+	<if test='foodKind.worldFood != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.worldFood}||'%'
+	</if>
+	<if test='foodKind.buffet != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.buffet}||'%'
+	</if>
+	<if test='foodKind.cafe != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.cafe}||'%'
+	</if>
+	<if test='foodKind.pup != null'>
+		OR s.shop_food LIKE '%'||#{foodKind.pup}||'%')
+	</if>
+ -->
 
 
 	<!--  	
@@ -80,8 +117,8 @@ AND s.shop_food LIKE '%'||#{foodKind.pup}||'%'
                      , shop_realfname
                      )
 		VALUES(shop_number_seq.nextval, #{shopTitle}, #{shopTel}
-		             , #{shopPriceRange}, #{shopFood}, #{shopPark}, #{shopTime}
-		             , #{shopHoliday}, #{shopContent, jdbcType=VARCHAR}
+		             , #{shopPriceRange, jdbcType=VARCHAR}, #{shopFood, jdbcType=VARCHAR}, #{shopPark, jdbcType=VARCHAR}, #{shopTime, jdbcType=VARCHAR}
+		             , #{shopHoliday, jdbcType=VARCHAR}, #{shopContent, jdbcType=VARCHAR}
 		             , sysdate, sysdate
 		             , #{shopAddress}, #{shopAddressSi}
 		             , #{shopAddressGu}, #{shopAddressDong}
@@ -123,11 +160,11 @@ AND s.shop_food LIKE '%'||#{foodKind.pup}||'%'
 	 <update id="shopUpdateManager">
 	 	UPDATE shop
 		SET shop_title=#{shopTitle}, shop_tel=#{shopTel}
-		       , shop_price_range=#{shopPriceRange}
-		       , shop_food=#{shopFood}, shop_park=#{shopPark}
-		       , shop_time=#{shopTime}
-		       , shop_holiday=#{shopHoliday}
-		       , shop_content=#{shopContent}
+		       , shop_price_range=#{shopPriceRange, jdbcType=VARCHAR}
+		       , shop_food=#{shopFood, jdbcType=VARCHAR}, shop_park=#{shopPark, jdbcType=VARCHAR}
+		       , shop_time=#{shopTime, jdbcType=VARCHAR}
+		       , shop_holiday=#{shopHoliday, jdbcType=VARCHAR}
+		       , shop_content=#{shopContent, jdbcType=VARCHAR}
 		       , shop_modify_date=sysdate
 		       , shop_realfname=#{shopRealfname, jdbcType=VARCHAR}
 		WHERE shop_number=#{shopNumber}

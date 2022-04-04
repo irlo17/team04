@@ -1,5 +1,8 @@
 package com.team04.controller;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 import com.team04.service.MemberService;
 
@@ -44,11 +51,11 @@ public class MemberController {
 	@RequestMapping("memberInsert.do")
 	public String memberInsert(MemberVO vo) {
 		memberService.memberInsert(vo);
-
+		memberService.memberDefaultList(vo);
+		
 		return "redirect:loginForm.do";
 
 	}//end of memberInsert()
-
 
 
 	/**	email 중복 체크
@@ -95,6 +102,7 @@ public class MemberController {
 				System.out.println("로그인 성공");
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
+				session.setMaxInactiveInterval(60*60*24);
 				
 				return "redirect:main.do";
 			}else {
@@ -102,26 +110,11 @@ public class MemberController {
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
 				session.setAttribute("admin", result.getMemberAdmin());
-				return "redirect:main.do";
+				return "redirect:memberListManager.do";
 			}//end of if(2) - 관리자 유무
 		}//end of if(1)
 
 	}//end of loginCheck()
-
-	
-	@RequestMapping("rememberEmail.do")
-	public String rememberEmail(MemberVO vo, HttpServletResponse response) {
-		
-		Cookie cookie = new Cookie("memberEmail",vo.getMemberEmail());
-		cookie.setDomain("localhost");
-		cookie.setPath("/");
-		// 30초간 저장
-		cookie.setMaxAge(30*60);
-		cookie.setSecure(true);
-		response.addCookie(cookie);
-		
-		return "redirect:main.do";
-	}
 
 
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
@@ -137,7 +130,7 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}
 			// (2) 세션에 로그인 정보 O
-			return "redirect:mypageMember.do";
+			return "redirect:mylist.do";
 
 	}// end of login()
 
@@ -231,21 +224,10 @@ public class MemberController {
 	@RequestMapping(value="logout.do", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String admin = session.getAttribute("admin").toString();
-		
-		if(admin == null) {
-			// 관리자가 아니면
 			System.out.println(session.getAttribute("logemail") + "님 로그아웃");
 			session.invalidate();
-			return "main";
 			
-		}else {
-			System.out.println(session.getAttribute("logemail") + "님(관리자) 로그아웃");
-			session.invalidate();
-			return "mamberListManager";
-		}
-
-
+			return "main";
 	}//end of logout()
 
 
@@ -255,9 +237,7 @@ public class MemberController {
 	 * @param MemberVO vo
 	 * 			- input hidden으로 넘어온 이메일과 패스워드 정보로 회원의 레코드 삭제
 	 * 			- 세션에 저장된 로그인 정보 삭제
-	 * @return 
-	 * 		- 관리자 O
-	 * 		- 관리자 X
+	 * @return 메인페이지로 이동
 	 */
 	@RequestMapping("memberDelete.do")
 	public String memberDelete(MemberVO vo,HttpServletRequest request) {
@@ -271,6 +251,25 @@ public class MemberController {
 
 	}//end of memberDelete()
 
+	
+	
+	
+	// ----- 관리자 -----
+	/**
+	 * 요청 : memberListManager.do
+	 * 메소드명 : memberListManager()
+	 * 인자 : Model m (= 뷰페이지에 보내줄 값을 담을 객체)
+	 * 리턴형 : String (= 뷰페이지 명)
+	 * 사용 : memberService에 있는 함수 memberListManager()를 호출하여,
+	 * 		받아온 List를 관리자 memberListManager 뷰페이지로 넘겨주는 함수
+	 */
+	@RequestMapping("memberListManager.do")
+	public String memberListManager(Model m) {
+		
+		m.addAttribute("memberList", memberService.memberGetListManager());
+		return "memberListManager";
+	}
+	
 	// 관리자 -> 회원탈퇴
 	@RequestMapping("memberDeleteManager.do")
 	public String memberDeleteManager(MemberVO vo) {
@@ -279,6 +278,38 @@ public class MemberController {
 		return "memberListManager";
 	}
 	
+	/**
+	 * 요청 : chartsManager.do
+	 * 메소드명 : memberDateListManager()
+	 * 인자 : Model m (= 뷰페이지에 보내줄 값을 담을 객체)
+	 * 리턴형 : String (= 뷰페이지 명)
+	 * 사용 : memberService에 있는 함수 memberListManager()를 호출하여,
+	 * 		받아온 List를 관리자 memberListManager 뷰페이지로 넘겨주는 함수
+	 */
+	@RequestMapping("chartsManager.do")
+	public String memberDateListManager(Model m) {
+		List<ChartsVO> chartsList = memberService.memberDateListManager();
+		
+		Gson gson = new Gson();
+		JsonArray jArray = new JsonArray();
+		
+		Iterator<ChartsVO> it = chartsList.iterator();
+		while (it.hasNext()) {
+			ChartsVO cVO = it.next();
+			JsonObject object = new JsonObject();
+			String month = cVO.getMonth();
+			int cnt = cVO.getCnt();
+			
+			object.addProperty("Month", month);
+			object.addProperty("Count", cnt);
+			jArray.add(object);
+		}
+		
+		String json = gson.toJson(jArray);
+		m.addAttribute("json", json);
+		
+		return "chartsManager";
+	}
 
 
 }//end of class

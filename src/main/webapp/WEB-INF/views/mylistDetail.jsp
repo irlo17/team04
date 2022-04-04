@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<% String number=request.getParameter("listNumber"); %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String number=request.getParameter("listNumber"); %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -74,7 +74,7 @@
 	position: relative;
 	left:30%;
 }
-#my{margin-top:50px; 
+#my{margin-top:50px;
 position: relative; left:400px; }
 #btnl{padding:20px; float: right;}
 .fa-solid{font-size: 20px;}
@@ -97,15 +97,15 @@ position: relative; left:400px; }
 	<header class="header header--normal">
 
 		<div class="container-fluid">
-		
+
 			<div class="row">
-			
+
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
 						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
 					</div>
 				</div>
-				
+
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
@@ -132,14 +132,14 @@ position: relative; left:400px; }
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
 					</memberFile:otherwise>
 				</memberFile:choose>
-			
+
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
 				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		
+
 		<br/>
 		<br/>
 		<br/>
@@ -152,24 +152,24 @@ position: relative; left:400px; }
 
 		<div class="">
 			<h4>
-            <a href="mypageMember.do">회원정보</a>
-         </h4>
+				<a href="mypageMember.do">회원정보</a>
+			</h4>
 
 		</div>
 		<hr />
 
 
 		<div class="">
-			<h4><a href='mylist.do'>즐겨찾기</a></h4>
-
+			<h4>
+				<a href="mylist.do">즐겨찾기</a>
+			</h4>
 		</div>
 		<hr />
 
 		<div class="">
 			<h4>
-            <a href="review.do">리뷰관리</a>
-      </h4>
-
+				<a href="review.do">리뷰관리</a>
+		</h4>
 		</div>
 
 			<br />
@@ -198,23 +198,23 @@ position: relative; left:400px; }
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
 	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
-	
-	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a> 
+
+	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
 	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
-	
+
 	 </div>
 			<section class="blog-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    
+
                     <div class="row">
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
                                 <div class="blog__item__text">
-                                    <ul class="blog__item__tags">  
+                                    <ul class="blog__item__tags">
                                         <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
                                         <li>${bookmark.shopFood}</li>
                                     </ul>
@@ -236,7 +236,7 @@ position: relative; left:400px; }
                         <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>

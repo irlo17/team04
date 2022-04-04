@@ -1,9 +1,12 @@
 package com.team04.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 
 @Repository("memberDAO")
@@ -130,6 +133,36 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println("===> MemberMapper memberDelete 호출");	
 		return memberMybatis.delete("memberDAO.memberDelete", vo);
 	}
+	
+	
+	
+	
+	// ----- 관리자페이지 -----
+	/**
+	 * 메소드명 : memberGetListManager()
+	 * 인자 : 없음
+	 * 리턴형 : MemberVO가 담긴 List형
+ 	 * 사용 : memberMapper에 있는 memberGetListManager를 호출하여,
+	 * 		DB에서 전체 리스트를 검색하고 받아온 List를 리턴하는 함수
+	 */
+	@Override
+	public List<MemberVO> memberGetListManager() {
+		System.out.println("===> MemberMapper mybatis memberGetListManager 호출");
+		return memberMybatis.selectList("memberDAO.memberGetListManager");
+	}
+	
+	/**
+	 * 메소드명 : memberDateListManager()
+	 * 인자 : 없음
+	 * 리턴형 : ChartsVO가 담긴 List형
+ 	 * 사용 : memberMapper에 있는 memberDateListManager를 호출하여,
+	 * 		DB에서 월별 회원가입 수 리스트를 받아와 리턴하는 함수
+	 */
+	@Override
+	public List<ChartsVO> memberDateListManager() {
+		System.out.println("===> MemberMapper mybatis memberDateListManager 호출");
+		return memberMybatis.selectList("memberDAO.memberDateListManager");
+	}
 
 
 
@@ -137,6 +170,14 @@ public class MemberDAOImpl implements MemberDAO{
 	public int memberDeleteManager(MemberVO vo) {
 		System.out.println("===> MemberMapper memberDelete 호출");	
 		return memberMybatis.delete("memberDAO.memberDeleteManager", vo);
+	}
+
+
+
+	@Override
+	public int memberDefaultList(MemberVO vo) {
+		System.out.println("===> MemberMapper memberDefaultList 호출");	
+		return memberMybatis.insert("memberDAO.memberDefaultList", vo);
 	}
 
 }

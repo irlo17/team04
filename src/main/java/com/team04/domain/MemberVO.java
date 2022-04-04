@@ -24,8 +24,8 @@ public class MemberVO {
 
 	// 생성자
 	public MemberVO(String memberEmail, String memberNickname, String memberPassword, String memberName,
-			String memberBirth, String memberTel, String memberAdmin, String memberFname, String memberRealfname,
-			MultipartFile memberFile) {
+			String memberBirth, String memberTel, String memberFname, String memberRealfname,
+			MultipartFile memberFile, String memberAdmin) {
 		super();
 		this.memberEmail = memberEmail;
 		this.memberNickname = memberNickname;
@@ -37,6 +37,7 @@ public class MemberVO {
 		this.memberFname = memberFname;
 		this.memberRealfname = memberRealfname;
 		this.memberFile = memberFile;
+		this.memberAdmin = memberAdmin;
 	}
 	
 	
@@ -73,10 +74,10 @@ public class MemberVO {
 	}
 	
 	
+	
 	public String getMemberAdmin() {
 		return memberAdmin;
 	}
-	
 
 	public void setMemberAdmin(String memberAdmin) {
 		this.memberAdmin = memberAdmin;

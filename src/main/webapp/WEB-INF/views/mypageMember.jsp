@@ -107,7 +107,7 @@
 			
 			</div>
 			<h5 class="nick">
-				${MemberVO.memberNickname }
+				${sessionScope.lognick }
 			</h5>
 		</div>
 		
@@ -122,8 +122,9 @@
 		<br/>
 
 		<div class="">
-			<h4>회원정보</h4>
-
+			<h4>
+				<a href="mypageMember.do">회원정보</a>
+			</h4>
 		</div>
 		<hr />
 
@@ -135,7 +136,9 @@
 		<hr />
 
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+				<a href="review.do">리뷰관리</a>
+		</h4>
 
 		</div>
 
@@ -222,7 +225,7 @@
 					<!-- BIRTH -->
 					<div class="form-group first">
 						<label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
-						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" > 
+						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" readonly> 
 					</div>
 
 
