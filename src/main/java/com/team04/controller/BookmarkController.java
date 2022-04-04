@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.PagingVO;
 import com.team04.service.BookmarkServiceImpl;
 
 @Controller
@@ -63,16 +65,22 @@ public class BookmarkController {
 		  return "main";
 	  }
 	  
-	  @RequestMapping("mylist.do")
-	  private String bookmarkGetMylist(Model model,HttpSession session) {
-		  
-		 String memberEmail=(String)session.getAttribute("logemail");
-		  List<BookmarkVO> list= bookmarkService.bookmarkGetMylist(memberEmail);
-		  
-		  model.addAttribute("bookmarkList", list); 
+	  
+	  
+	 /** 페이징 추가 - 안정은
+	 * @return
+	 */
+	@RequestMapping("mylist.do")
+	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo) {
+		vo.setMemberEmail((String)session.getAttribute("logemail"));
+		vo.setPageTotalCount(bookmarkService.bookmarkMylistTotalCount(vo));
+		vo.setStartRow(vo.getPage());
+		vo.setEndRow(vo.getPage());
+		List<BookmarkVO> list= bookmarkService.bookmarkGetMylistPaging(vo);
+		model.addAttribute("paging", vo);
+		model.addAttribute("bookmarkList", list); 
 		  return "mylist";
 	  }
-	  
 	  
 	  @RequestMapping("bookmarkDetail.do")
 	  private String bookmarkGetDetail(String listNumber,Model model ) {
@@ -161,7 +169,7 @@ public class BookmarkController {
 		  vo.setMemberEmail((String)session.getAttribute("logemail"));
 		  bookmarkService.mylistAdd(vo);
 		  
-		  return "redirect:mylist.do";
+		  return "redirect:mylist.do?page=1";
 	  }
 
 }

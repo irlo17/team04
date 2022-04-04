@@ -3,8 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reportDAO">
 
-	<select id="reportGetList" resultType="ReportVO">
+	<select id="reportGetListManager" resultType="ReportVO">
 		SELECT * FROM report
+	</select>
+	
+	<select id="reportDeleteManager" parameterType="ReportVO" resultType="ReportVO">
+		SELECT rp.report_number reportNumber, rv.review_number reviewNumber, rv.member_email logemail
+		FROM report rp INNER JOIN review rv
+		                ON rp.review_number = rv.review_number
+		WHERE rp.report_number=#{reportNumber}
 	</select>
 
 </mapper>

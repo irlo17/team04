@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.PagingVO;
 
 
 
@@ -39,6 +40,13 @@ import com.team04.domain.MylistVO;
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	
+	/** 나만의 즐겨찾기 총 개수 구하기
+	 * 	- 페이징을 위해 DB에 입력된 회원의 즐겨찾기 총 개수를 구함
+	 */
+	public int bookmarkMylistTotalCount(PagingVO paging);
+
+	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging);
+
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);
 	
 	public List<MylistVO> bookmarkGetMylistDetail(String listNumber);

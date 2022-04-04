@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.PagingVO;
 
 @Repository("bookmarkDAO")
 public class BookmarkDAOImpl implements BookmarkDAO {
@@ -47,7 +48,25 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	public List<BookmarkVO> bookmarkGetBestList(){
 		System.out.println("===> Mybatis bookmarkGetBestList() 호출"); 
 		return mybatis.selectList("BookmarkDAO.bookmarkGetBestList");
-	}   
+	} 
+	
+	/** 나만의 즐겨찾기 총 개수 구하기
+	 * 	- 페이징을 위해 DB에 입력된 회원의 즐겨찾기 총 개수를 구함
+	 * @param memberEmail
+	 * @return int 개수 리턴
+	 */
+	@Override
+	public int bookmarkMylistTotalCount(PagingVO paging) {
+		System.out.println("===> Mybatis bookmarkMylistTotalCount() 호출"); 
+		return mybatis.selectOne("BookmarkDAO.bookmarkMylistTotalCount", paging);
+	}
+	
+	@Override
+	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging){
+		System.out.println("===> Mybatis bookmarkGetMylistPaging() 호출"); 
+		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistPaging",paging );
+	}
+	
 	/**나의 즐겨찾기 목록 보기 (미완성)
 	 *
 	 */
@@ -105,4 +124,5 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		
 		mybatis.insert("BookmarkDAO.MylistInsert",vo);
 	}
+
 }

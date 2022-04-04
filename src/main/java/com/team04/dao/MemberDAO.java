@@ -55,11 +55,6 @@ public interface MemberDAO {
 	 * 	- DB에 저장된 모든 회원 리스트 가져오기
 	 */
 	public List<MemberVO> memberGetListManager();
-	
-	/** 월별 가입날짜 리스트 출력
-	 * 	- DB에 저장된 회원가입한 월별 갯수 가져오기
-	 */
-	public List<ChartsVO> memberDateListManager();
 
 	int memberDeleteManager(MemberVO vo);
 	
