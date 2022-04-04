@@ -177,12 +177,16 @@
                 </footer>
             </div>
         </div>
+        <!-- JQuery -->
+    	<script src="./resources/js/jquery-3.3.1.min.js"></script>
         <!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="./resources/manager/js/scripts.js"></script>
         <!-- chart.js 연동 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <!-- datatable 연동 -->
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <!-- 내부 차트 js -->
         <script type="text/javascript">
         // monthListGeneration = 월별 즐겨찾기 리스트 생성 수 차트
@@ -268,10 +272,14 @@
         	var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
         	return color;
         }
+        // 색 랜덤 함수
+        
+        
+        
+        
+        
         </script>
-        <!-- datatable 연동 -->
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->
-        <script src="./resources/manager/js/datatables-simple-demo.js"></script>
+       <script src="./resources/manager/js/datatables-simple-demo.js"></script>
     </body>
 </html>
