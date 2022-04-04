@@ -15,6 +15,8 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -169,8 +171,14 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3</version>
 		</dependency>
+		
+		<!-- Sql Log -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
 
-
+		</dependency>
 		<!-- JSON -->
 
 		<dependency>
@@ -192,7 +200,7 @@
 			<version>2.9.7</version>
 		</dependency>
 
-
+	
 	</dependencies>
 
 	<build>
@@ -232,6 +240,8 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
+			
+			
 		
 			
 		</plugins>

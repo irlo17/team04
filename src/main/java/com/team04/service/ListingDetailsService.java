@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.MylistVO;
+import com.team04.domain.ReportVO;
 import com.team04.domain.ShopVO;
 
 public interface ListingDetailsService {
@@ -23,5 +24,7 @@ public interface ListingDetailsService {
 	List<MylistVO> listingDetailsTotalList(HashMap map);
 	
 	Integer listingDetailsShopListCount(HashMap map);
+	
+	List<ReportVO> listingDetailsReport(HashMap map);
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.team04.dao.ListingDetailsDAO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.ReportVO;
 import com.team04.domain.ShopVO;
 
 @Service("listingDetailsService")
@@ -51,7 +52,9 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 		return listingDetailsDAO.listingDetailsShopListCount(map);
 	}
 	
-	 
+	public List<ReportVO> listingDetailsReport(HashMap map){
+		return listingDetailsDAO.listingDetailsReport(map);
+	}
 	 
 	 
 	

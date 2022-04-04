@@ -3,9 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<%
+<%-- <%
 	int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+response.setHeader("Cache-Control","no-store"); response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); if (request.getProtocol().equals("HTTP/1.1")) response.setHeader("Cache-Control", "no-cache");
+%> --%>
+<%
+
+
+int shopNumber = Integer.valueOf(request.getParameter("shopNumber"));
+
+
 %>
+
 
 
 
@@ -330,14 +339,14 @@ html, body {
 									<div class="listing__details__gallery__item">
 
 
-										<c:set var="shopNumber" value="<%=shopNumber%>" />
+										<c:set var="shopNumber" value="<%= shopNumber%>" />
 
 										<c:choose>
 											<c:when test="${	shopNumber eq shopInfoList.SHOPNUMBER}">
 												<img class="listing__details__gallery__item__large"
 													width="100%" height="450"
 													src="resources/manager/upload/${shopInfoList.SHOPREALFNAME }"
-													alt="">
+													 alt="">
 											</c:when>
 											<c:otherwise>
 
@@ -437,10 +446,11 @@ html, body {
 															<div class="bg">
 																<!--이란에는 내용을 넣지 마십시오.-->
 															</div>
-															<form>
+															<form action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }" method="post">
+															<input type="hidden" name="shopNumber" value="${reviewInfo.SHOPNUMBER }"/>
 																<div class="fg modalchang">
 																	<p>신고하실 내용을 적어주세요.</p>
-																	<textarea class="report_op"> </textarea>
+																	<textarea class="report_op" name="reportContent"> </textarea>
 																	<button type="submit" class="btn btn-info">제출</button>
 																	<button
 																		onclick="document.getElementById('mw_temp').style.display='none'"
