@@ -126,6 +126,57 @@ $(".addressGu > div > input").click(function name(params) {
   }
 });
 
+//필터 가격대
+$("#manwonLess").on("click", function name(params) {
+  if ($(this).attr("src") == "./resources/img/modal/manwonLess.png") {
+    $("#manwonLess").attr("src", "./resources/img/modal/manwonLessClick.png");
+    $("#manwonLessInput").val("1만원 미만");
+  } else {
+    $("#manwonLess").attr("src", "./resources/img/modal/manwonLess.png");
+    $("#manwonLessInput").val("");
+  }
+});
+
+$("#manwonMore").on("click", function name(params) {
+  if ($(this).attr("src") == "./resources/img/modal/manwonMore.png") {
+    $("#manwonMore").attr("src", "./resources/img/modal/manwonMoreClick.png");
+    $("#manwonMoreInput").val("1만원 이상");
+  } else {
+    $("#manwonMore").attr("src", "./resources/img/modal/manwonMore.png");
+    $("#manwonMoreInput").val("");
+  }
+});
+$("#threeManwonMore").on("click", function name(params) {
+  if ($(this).attr("src") == "./resources/img/modal/threeManwonMore.png") {
+    $("#threeManwonMore").attr(
+      "src",
+      "./resources/img/modal/threeManwonMoreClick.png"
+    );
+    $("#threeManwonMoreInput").val("3만원 이상");
+  } else {
+    $("#threeManwonMore").attr(
+      "src",
+      "./resources/img/modal/threeManwonMore.png"
+    );
+    $("#threeManwonMoreInput").val("");
+  }
+});
+$("#fiveManwonMore").on("click", function name(params) {
+  if ($(this).attr("src") == "./resources/img/modal/fiveManwonMore.png") {
+    $("#fiveManwonMore").attr(
+      "src",
+      "./resources/img/modal/fiveManwonMoreClick.png"
+    );
+    $("#fiveManwonMoreInput").val("5만원 이상");
+  } else {
+    $("#fiveManwonMore").attr(
+      "src",
+      "./resources/img/modal/fiveManwonMore.png"
+    );
+    $("#fiveManwonMoreInput").val("");
+  }
+});
+
 
 
 
