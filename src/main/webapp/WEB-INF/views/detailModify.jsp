@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-
+<%String listNumber2=request.getParameter("listNumber"); %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -32,7 +32,8 @@
 <link rel="stylesheet" href="./resources/css/flaticon.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/barfiller.css" type="text/css">
-
+<!-- userStyle : 안정은 -->
+<link rel="stylesheet" href="./resources/member/css/userStyle.css">
 <link rel="stylesheet" href="./resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
@@ -86,34 +87,42 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	//모달 창 띄우기
     $("#popbutton").click(function(){
         $('div.modal').modal();
     });
     
-    	// 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
+    // 가게 이동 버튼이 눌렸을 때 -> 가게 번호와 리스트 번호를 모달창 안으로 넘긴다
     var chk_arr = [];
 	$('#btnShopList').click(function(){
-		
-   	 
-   	
-   	 $(".shopNumber:checked").each(function(){
+   		 $(".shopNumber:checked").each(function(){
    		 var chk = $(this).val();
    		 console.log(chk);
    		 chk_arr.push(chk);
-   	 })
-   	 console.log(chk_arr);
-   	 
-   	 
+   		 }) 
 	});
-    
-  $(".btn-warning").click(function(){
-	  for( var a:chk_arr ){
-	   		 
-	   	 }
-    }) 
-    
-    
-    
+	
+	$("#listMove").click(function name() {
+   		 for( var snum of chk_arr ){
+			var lnum= $("#listNumber:checked").val();	
+			$(location).attr('href', "mylistUpdate.do?shopNumber="+snum+"&listNumber="+lnum+"&listNumber2="+<%=listNumber2%>);
+	 	 }  
+	});
+	
+	$("#btnDelete").click(function(){
+		 var chk_arr = [];
+		 $(".shopNumber:checked").each(function(){
+			 var chk = $(this).val();
+			 chk_arr.push(chk);
+		 });
+		 for( var snum of chk_arr ){
+			 $(location).attr('href', "mylistDelete.do?shopNumber="+snum+"&listNumber="+<%=listNumber2%>);
+			 
+		 }
+		 
+		
+	});
 })
 
 </script>
@@ -144,8 +153,8 @@ $(function(){
 
 						<div class="header__menu__right">
 							
-							<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-							 <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							 <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -156,17 +165,35 @@ $(function(){
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
-
-	<div class="filter nice-scroll col-md-3">
+	<div class="filter nice-scroll ">
 		<div class="filter__title">
-			<h5>
-				<i class="fa fa-user"></i> 닉네임
+			<div class="box">
+				<memberFile:choose>
+					<memberFile:when test="${ empty MemberVO.memberFname }">
+						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+					</memberFile:when>
+					
+					<memberFile:otherwise>
+						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+					</memberFile:otherwise>
+				</memberFile:choose>
+			
+			</div>
+			<h5 class="nick">
+			${sessionScope.lognick }
+				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		<hr />
-		<br />
-
-
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 
 		<div class="">
 			<h4>회원정보</h4>
@@ -176,9 +203,7 @@ $(function(){
 
 
 		<div class="">
-			<h4>
-				<a href="./mylist.html">즐겨찾기</a>
-			</h4>
+			<h4><a href='mylist.do'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
@@ -188,6 +213,24 @@ $(function(){
 
 		</div>
 
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<hr />
+			<div class="cate_4">
+				<!--  <h4>로그아웃</h4>-->
+				<a href="logout.do">로그아웃</a>
+
+			</div>
 
 	</div>
 	<!-- Filter End -->
@@ -195,7 +238,7 @@ $(function(){
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<a href="mylistDelete?"><input type="button" value='가게목록 삭제' class='btn btn-info'></a>
+	<input type="button" value='가게목록 삭제' id="btnDelete" class='btn btn-info'></a>
 	<button class="btn btn-info" id="btnShopList" data-target="#layerpop" data-toggle="modal" >가게목록 이동</button>
 	 </div>
 			<section class="blog-section spad">
@@ -274,7 +317,8 @@ $(function(){
 				<tbody>
 				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 					<tr class="active">
-						<th scope="row">&nbsp;&nbsp;<input type="radio" name="listNumber" value='${bookmark.listNumber }'></th>
+						<th scope="row">&nbsp;&nbsp;<input type="radio" id="listNumber" name="listNumber" value='${bookmark.listNumber }'></th>
+						<td>${bookmark.listNumber }</td>
 						<td>${bookmark.listName}</td>
 					</tr>
 				</c:forEach>	
@@ -284,7 +328,7 @@ $(function(){
       </div>
       <!-- Footer -->
       <div class="modal-footer">
-        <input type="button" value="이동" class="btn btn-warning" onclick="moveBtn()">
+        <input type="button" id="listMove" value="이동" class="btn btn-warning" />
       </div>
     </div>
   </div>

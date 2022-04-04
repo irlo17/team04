@@ -49,7 +49,7 @@ import com.team04.domain.MylistVO;
 	
 	public void bookmarkDelete(String listNumber);
 	
-	public void mylistInsert(MylistVO vo);
+	public void mylistUpdate(MylistVO vo);
 	
 	public void mylistDelete(MylistVO vo);
 	

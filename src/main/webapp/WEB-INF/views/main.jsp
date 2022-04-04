@@ -50,7 +50,7 @@
                     <div class="header__nav">
                         
                         <div class="header__menu__right">
-                           <a href="./about.html" class="primary-btn"><i class="fa fa-plus"></i>맛집리스트</a>
+                           <a href="totalbookmark.do" class="primary-btn"><i class="fa fa-plus"></i>맛집리스트</a>
                             <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>

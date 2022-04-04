@@ -91,8 +91,8 @@ List <BoardVO> mList =  service.getArticleList(pNum);
                     <div class="header__nav">
                         
                         <div class="header__menu__right">
-            				<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-                            <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+            				<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+                            <a href="mylist.do" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

@@ -24,7 +24,8 @@ public class BookmarkController {
 	  @RequestMapping("totalbookmark.do") 
 	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model) {
 		
-		  HashMap map = new HashMap(); map.put("searchCondition",searchCondition);
+		  HashMap map = new HashMap(); 
+		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list); 
@@ -133,16 +134,20 @@ public class BookmarkController {
 	  
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo) {
-		  bookmarkService.mylistInsert(vo);
-		  
-		return "redirect:detailModify.do";  
+		  bookmarkService.mylistUpdate(vo);
+		System.out.println(vo.getShopNumber());
+		return "redirect:mylist.do";  
 	  }
 	 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
+		  
+		  
+		  
+		
 		  bookmarkService.mylistDelete(vo);
 		  
-			return "redirect:detailModify.do";  
+			return "redirect:mylist.do";  
 		  }
 	  
 	  @RequestMapping("addPageView.do")
