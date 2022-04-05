@@ -150,20 +150,6 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println("===> MemberMapper mybatis memberGetListManager 호출");
 		return memberMybatis.selectList("memberDAO.memberGetListManager");
 	}
-	
-	/**
-	 * 메소드명 : memberDateListManager()
-	 * 인자 : 없음
-	 * 리턴형 : ChartsVO가 담긴 List형
- 	 * 사용 : memberMapper에 있는 memberDateListManager를 호출하여,
-	 * 		DB에서 월별 회원가입 수 리스트를 받아와 리턴하는 함수
-	 */
-	@Override
-	public List<ChartsVO> memberDateListManager() {
-		System.out.println("===> MemberMapper mybatis memberDateListManager 호출");
-		return memberMybatis.selectList("memberDAO.memberDateListManager");
-	}
-
 
 
 	@Override

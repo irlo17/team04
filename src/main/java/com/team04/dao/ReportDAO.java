@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.ReportVO;
@@ -14,12 +15,12 @@ public interface ReportDAO {
 	void reportUpdate(ReportVO reportVO);
 	
 	// 신고 삭제
-	void reportDelete(ReportVO reportVO);
+	ReportVO reportDeleteManager(ReportVO reportVO);
 	
 	// 신고 상세 조회
 	ReportVO reportGet(ReportVO reportVO);
 	
 	// 신고 전체 리스트 조회
-	List<ReportVO> reportGetList(ReportVO reportVO);
+	List<ReportVO> reportGetListManager(ReportVO reportVO);
 	
 }

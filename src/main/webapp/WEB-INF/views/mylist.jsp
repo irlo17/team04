@@ -163,7 +163,7 @@ margin-bottom:50px;
 				<tbody>
 				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 					<tr class="active">
-						<th scope="row">${status.count}</th>
+						<th scope="row">${status.count+((paging.page-1)*10)}</th>
 						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>
 						<td>${bookmark.likeCount}</td>
@@ -173,21 +173,18 @@ margin-bottom:50px;
 				</tbody>
 			</table>
 
-
-
-
-
-
-
-
 				<a href="addPageView.do"><input type="button" class="btn btn-success" value="리스트 추가"></a>
 
 			<div class="blog__pagination">
-				<a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a> 
-				    <a href="#">1</a> 
-					<a href="#">2</a> 
-					<a href="#">3</a> 
-					<a href="#">Next<i class="fa fa-long-arrow-right"></i></a>
+			<c:if test="${paging.page != 1 }">
+				<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a> 
+			</c:if>
+			<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+					<a href="mylist.do?page=${pageNum }">${pageNum }</a>
+			</c:forEach>
+			<c:if test="${paging.page <paging.pageTotalCount}">
+					<a href="mylist.do?page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+			</c:if>
 				</div>
 			</div>
 		</section>

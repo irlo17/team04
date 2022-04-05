@@ -3,8 +3,10 @@ package com.team04.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.ReportVO;
+import com.team04.domain.ReviewVO;
 import com.team04.domain.ShopVO;
 
 public interface ListingDetailsService {
@@ -27,4 +29,7 @@ public interface ListingDetailsService {
 	
 	List<ReportVO> listingDetailsReport(HashMap map);
 	
+	List<MemberVO> listingDetailsProfileRealFname(HashMap map);
+	
+	List<ReviewVO> listingDetailsFromReviewRealFname(String shopNumber);
 }

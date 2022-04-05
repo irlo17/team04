@@ -113,22 +113,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	SELECT * FROM member
 	 </select>
 	 
-	 <!-- 
-	 	SQL 형태 : SELECT
-		이름 : memberDateListManager
-		받는 값(parameterType) : 없음
-		보내는 값(resultType) : hashmap
-		사용 : 회원 가입한 월에 따른 가입수를 검색하여 hashmap에 저장
-	  -->
-	 <select id="memberDateListManager" resultType="ChartsVO">
-	 	SELECT substr(member_date, 4, 2) AS month
-              , count(*) AS cnt
-     	FROM member
-     	WHERE substr(member_date, 4, 2) is not null
-     	GROUP BY substr(member_date, 4, 2)
-     	ORDER BY substr(member_date, 4, 2)
-	 </select>
-
 	<!-- 관리자 회원탈퇴 -->
 	<delete id="memberDeleteManager" parameterType="MemberVO">
 		DELETE FROM member 

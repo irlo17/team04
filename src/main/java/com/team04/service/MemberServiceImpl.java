@@ -153,16 +153,4 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.memberGetListManager();
 	}
 	
-	/**
-	 * 메소드명 : memberDateListManager()
-	 * 인자 : 없음
-	 * 리턴형 : ChartsVO가 담긴 List형
- 	 * 사용 : memberDAO에 있는 함수 memberDateListManager()를 호출하여,
-	 * 		받아온 List를 Controller에 리턴하는 함수
-	 */
-	@Override
-	public List<ChartsVO> memberDateListManager() {
-		return memberDAO.memberDateListManager();
-	}
-	
 }

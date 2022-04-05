@@ -14,7 +14,7 @@
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 600px;
+  height: 800px;
   z-index: 100;
   padding: 30px;
   text-align: center;
@@ -35,6 +35,47 @@
   width: 8ex;
 }
 
-.gangbook {
+.gyeonggido {
   display: none;
 }
+
+#pop-up-filter {
+  position: fixed;
+  /* z-index: 999; */
+}
+
+.pop-up-area-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-pop-up {
+  background-color: RGB(215, 76, 95);
+  border-width: 0px;
+  color: #ffffff;
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn-pop-up:hover {
+  background: RGB(215, 67, 82);
+}
+
+/* .btn-pop-up-area:focus {
+  border-color:  RGB(215, 67, 82);
+  top: 2px;
+} */
+
+.pop-up-dongnae {
+  margin-bottom: 5px;
+}
+
+.pop-up-search {
+  width: 50%;
+}
+
+.foodPrice > img {
+  width: 70px;
+  height: 70px;
+}
+
