@@ -166,7 +166,7 @@ margin-bottom:50px;
 						<th scope="row">${status.count+((paging.page-1)*10)}</th>
 						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>
-						<td>${bookmark.likeCount}</td>
+						<td>${bookmark.listLike}</td>
 					</tr>
 				</c:forEach>
 				

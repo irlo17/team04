@@ -131,7 +131,7 @@
                                                 <h5>${bookmark.listName }</h5>
                                                 <div class="listing__item__text__rating">
                                                     
-                                                        <span class="glyphicon glyphicon-heart"> 좋아요 수: ${bookmark.likeCount }</span>
+                                                        <span class="glyphicon glyphicon-heart"> 좋아요 수: ${bookmark.listLike }</span>
                                                  </div>
                                                     <div>작성자: ${bookmark.memberNickname }</div>
                                                 

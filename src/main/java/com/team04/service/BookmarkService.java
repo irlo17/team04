@@ -45,5 +45,7 @@ public interface BookmarkService {
 	
 	public BookmarkVO imageSelectBestBookmark(int listNumber);
 	
-	public HeartVO findHeart(long e_number, long m_number) ;
+	public HeartVO pictureSaveHeart(HeartVO vo);
+	
+	public HeartVO pictureRemoveHeart(HeartVO vo);
 }

@@ -4,27 +4,17 @@
 <% String number=request.getParameter("listNumber"); %> 
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Directing Template">
 <meta name="keywords" content="Directing, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
+<!--제이쿼리 라이브러리  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Directing | Template</title>
-
-
-
-
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
-	rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <!-- Css Styles -->
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -38,8 +28,6 @@
 <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
-
-
 
 
 <style type="text/css">
@@ -82,9 +70,10 @@ position: relative; left:400px; }
 </style>
 <script type="text/javascript">
 
+
+
 </script>
 </head>
-
 <body class="ov-hid">
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -119,20 +108,21 @@ position: relative; left:400px; }
 	<!-- Header Section End -->
 
 
-	
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
-	<div id='btnl'>
-	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
-	<a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
-
-	 </div>
-			<section class="blog-section spad">
+	    <div id='btnl'>
+		<%-- <a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1">
+					<span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>--%>
+			 <a href="" class="text-dark heart" style="text-decoration-line: none;">
+					<img id="heart" src="./resources/images/icons/heart.svg">
+					좋아요
+			 </a>
+		</div>
+		<section class="blog-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    
                     <div class="row">
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
@@ -169,14 +159,6 @@ position: relative; left:400px; }
 
 
 
-
-
-
-
-
-
-
-
 	<!-- Js Plugins -->
 	<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
 	<script src="./resources/js/jquery-3.3.1.min.js"></script>
@@ -191,7 +173,5 @@ position: relative; left:400px; }
 	<script src="./resources/js/main.js"></script>
 
 
-
 </body>
-
 </html>

@@ -9,11 +9,12 @@ public class BookmarkVO {
 	private String memberEmail;
 	private String listDate;
 	private String defultList;
+	private int listLike;
 	
 	//리스트 출력하기위해서 만들었음
 	private String memberNickname;
 	private String shopRealfname;
-	private int likeCount;
+	
 	
 	
 	
@@ -22,13 +23,13 @@ public class BookmarkVO {
 		 
 	}
 
-	public BookmarkVO(int listNumber, String listName, String listDisplay, int likeCount, String memberEmail,
+	public BookmarkVO(int listNumber, String listName, String listDisplay, int listLike, String memberEmail,
 			String listDate, String defultList, String memberNickname,String shopRealfname) {
 		
 		this.listNumber = listNumber;
 		this.listName = listName;
 		this.listDisplay = listDisplay;
-		this.likeCount = likeCount;
+		this.listLike = listLike;
 		this.memberEmail = memberEmail;
 		this.listDate = listDate;
 		this.defultList = defultList;
@@ -57,11 +58,11 @@ public class BookmarkVO {
 	public void setListDisplay(String listDisplay) {
 		this.listDisplay = listDisplay;
 	}
-	public int getLikeCount() {
-		return likeCount;
+	public int getListLike() {
+		return listLike;
 	}
-	public void setLikeCount(int likeCount) {
-		this.likeCount = likeCount;
+	public void setListLike(int listLike) {
+		this.listLike = listLike;
 	}
 	public String getMemberEmail() {
 		return memberEmail;

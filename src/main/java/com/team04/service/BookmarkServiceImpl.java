@@ -64,7 +64,6 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 
 	public BookmarkVO bookmarkGetDetail(String listNumber) {
-		System.out.println("service단 호출");
 		return bookmarkDAO.bookmarkGetDetail(listNumber);
 	}
 
@@ -84,27 +83,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.mylistDelete(vo);
 	}
 
-	private int totalRecCount; // 전체 레코드 수
-	private int pageTotalCount; // 전체 페이지 수
-	private int countPerPage = 3; // 한페이지당 레코드 수
-
-	public int totalPageGet() {
-
-		totalRecCount=bookmarkDAO.totalbookmarkCount();
-		return pageTotalCount=(int)Math.ceil(totalRecCount/3.0);
-
-	}
-
-	/*
-	 * public List <BoardVO> getArticleList(String pNum) throws BoardException { //
-	 * int pageNum=1; //페이지 수가 null이라도 1을 지정 // if(pNum!=null) pageNum =
-	 * Integer.parseInt(pNum); // int startRow =
-	 * pageNum*countPerPage-(countPerPage-1); // int endRow = pageNum*countPerPage;
-	 * // // List <BoardVO> mList = bookmarkDAO.selectList(startRow, endRow); //
-	 * return mList; }
-	 */
-
-
+	
 
 	public void mylistAdd(BookmarkVO vo) {
 		bookmarkDAO.mylistAdd(vo);
@@ -116,13 +95,16 @@ public class BookmarkServiceImpl implements BookmarkService {
 		return bookmarkDAO.imageSelectBestBookmark(listNumber);
 	}
 
-	@Override
-	public HeartVO findHeart(long listNumber, String memberEmail) {
-		// 2개의 parameter를 보내기 위해 Map 선언 및 Map에 데이터 삽입
-		HashMap number = new HashMap();
-		number.put("listNumber", listNumber);
-		number.put("memberEmail", memberEmail);
-		return bookmarkDAO.findHeart(number);
+	public HeartVO pictureSaveHeart(HeartVO vo) {
+	
+		return bookmarkDAO.pictureSaveHeart(vo);
 	}
+
+	public HeartVO pictureRemoveHeart(HeartVO vo) {
+		
+		return bookmarkDAO.pictureRemoveHeart(vo);
+	}
+	
+	
 
 }

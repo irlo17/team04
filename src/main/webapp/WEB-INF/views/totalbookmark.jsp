@@ -155,7 +155,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 									<input type="hidden" name="listnumber" value=${bookmark.listNumber}/>
 									<td class="cell100 column2"><a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 									<td class="cell100 column3">${bookmark.memberNickname }</td>
-									<td class="cell100 column4">${bookmark.likeCount }</td>
+									<td class="cell100 column4">${bookmark.listLike }</td>
 								</tr>
 							</c:forEach>
 								
