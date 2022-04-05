@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -88,10 +87,12 @@
         border-bottom: 2px solid #ddd;
         float: left;
       }
+
       .customoverlay:nth-of-type(n) {
         border: 0;
         box-shadow: 0px 1px 2px #888;
       }
+
       .customoverlay a {
         display: block;
         text-decoration: none;
@@ -103,9 +104,10 @@
         overflow: hidden;
         background: #d95050;
         background: #d95050
- 		  url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
+          url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
           no-repeat right 14px center;
       }
+
       .customoverlay .title {
         display: block;
         text-align: center;
@@ -115,6 +117,7 @@
         font-size: 14px;
         font-weight: bold;
       }
+
       .customoverlay:after {
         content: "";
         position: absolute;
@@ -176,7 +179,12 @@
       </div>
       <hr />
       <div class="filter__search">
-        <input id= "search" type="text" placeholder="검색값" value="${param.query}"/>
+        <input
+          id="search"
+          type="text"
+          placeholder="검색값"
+          value="${param.query}"
+        />
       </div>
       <div class="filter__select">
         <select>
@@ -237,19 +245,19 @@
       <div class="filter__tags">
         <h6>선택</h6>
         <label for="parking">
-          주차
-          <input type="checkbox" id="parking" />
+          주차 <input type="checkbox" id="parking" />
           <span class="checkmark"></span>
         </label>
         <label for="open">
-          영업중
-          <input type="checkbox" id="open" />
+          영업중 <input type="checkbox" id="open" />
           <span class="checkmark"></span>
         </label>
       </div>
       <div class="filter__btns">
         <button type="submit" class="filter__reset">전체 선택 취소</button>
       </div>
+      <input id="myLat" name="myLat" />
+      <input id="myLon" name="myLon" />
     </div>
     <!-- Filter End -->
 
@@ -342,7 +350,7 @@
             </div>
             <hr />
             <!--모달창 지역 구분-->
-             <div class="pop-up-area-container addressSi">
+            <div class="pop-up-area-container addressSi">
               <input
                 class="btn btn-pop-up pop-up-area"
                 id="seoul"
@@ -372,7 +380,7 @@
               />
             </div>
             <hr />
-             <div class="addressGu">
+            <div class="addressGu">
               <div class="seoul">
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
@@ -550,52 +558,50 @@
             </div>
             <hr />
             <form action="listingFilter.do">
-            
-           		<input id="query" name="query" value="${param.query}" hidden="hidden"/> 	
+              <input
+                id="query"
+                name="query"
+                value="${param.query}"
+                hidden="hidden"
+              />
               <input
                 type="submit"
                 class="btn btn-pop-up pop-up-search"
                 value="검색"
-                
               />
-              <input
-                id="koreanFoodInput"
-                name="koreanFood"
-                hidden="hidden"
-              
-              />
+              <input id="koreanFoodInput" name="koreanFood" hidden="hidden" />
               <input
                 id="japaneseFoodInput"
                 name="japaneseFood"
                 hidden="hidden"
-                
               />
-              <input
-                id="chineseFoodInput"
-                name="chineseFood"
-                hidden="hidden"
-              />
-              <input
-                id="westernFoodInput"
-                name="westernFood"
-                hidden="hidden"
-              />
-              <input
-                id="worldFoodInput"
-                name="worldFood"
-                hidden="hidden"
-              />
+              <input id="chineseFoodInput" name="chineseFood" hidden="hidden" />
+              <input id="westernFoodInput" name="westernFood" hidden="hidden" />
+              <input id="worldFoodInput" name="worldFood" hidden="hidden" />
               <input id="buffetInput" name="buffet" hidden="hidden" />
               <input id="cafeInput" name="cafe" hidden="hidden" />
               <input id="pupInput" name="pup" hidden="hidden" />
               <!-- 주소 value 들어가는 곳 -->
-              <input id="addressSi" name="shopAddressSi" value="서울" hidden="hidden"/>
-              <input id="addressGu" name="shopAddressGu" hidden="hidden"/>
+              <input
+                id="addressSi"
+                name="shopAddressSi"
+                value="서울"
+                hidden="hidden"
+              />
+              <input id="addressGu" name="shopAddressGu" hidden="hidden" />
               <!--가격대 value 들어가는 곳-->
-              <input id="manwonLessInput" name="manwonLess" />
-              <input id="manwonMoreInput" name="manwonMore" />
-              <input id="threeManwonMoreInput" name="threeManwonMore" />
-              <input id="fiveManwonMoreInput" name="fiveManwonMore" />
+              <input id="manwonLessInput" name="manwonLess" hidden="hidden" />
+              <input id="manwonMoreInput" name="manwonMore" hidden="hidden" />
+              <input
+                id="threeManwonMoreInput"
+                name="threeManwonMore"
+                hidden="hidden"
+              />
+              <input
+                id="fiveManwonMoreInput"
+                name="fiveManwonMore"
+                hidden="hidden"
+              />
             </form>
           </div>
         </div>
@@ -610,54 +616,58 @@
           Nearby <i class="fa fa-sort-amount-asc"></i>
         </div>
       </div>
-	
-	
-      <div class="listing__list">
-      <c:forEach items="${shopPageList}" var="shop">
-        <div class="listing__item">
-          <!-- 여기에 img값 가지고와야함 동적으로 -->
-          <div
-            class="listing__item__pic set-bg"
-            data-setbg="./resources/img/listing/list-1.jpg"
-          >
-            <div class="listing__item__pic__btns">
-              <a href="#"><span class="icon_zoom-in_alt"></span></a>
-              <a href="#"><span class="icon_heart_alt"></span></a>
-            </div>
-          </div>
-          <div class="listing__item__text">
-            <div class="listing__item__text__inside">
-              <h5 class="shopTitle">${shop.shopTitle} </h5>
-              <div class="listing__item__text__rating">
-                <!-- 이쪽에 별 대신 맛평가 들어가야함-->
-                <div class="listing__item__rating__star">
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star"></span>
-                  <span class="icon_star-half_alt"></span>
-                </div>
-                <!-- 가격대 가지고와야함-->
-                <h6>${shop.shopPriceRange}</h6>
-              </div>
-              <ul>
-                <!--주소 이름 가지고와야함 ㅅㅂ-->
-                <li class="shopAddress"><span class="icon_pin_alt"></span>${shop.shopAddress} </li>
-                <li><span class="icon_phone"></span> ${shop.shopTel}</li>
-              </ul>
-            </div>
-            <div class="listing__item__text__info">
-              <div class="listing__item__text__info__left">
-                <img src="./resources/img/listing/list_small_icon-1.png" alt="" />
-                <span>${shop.shopFood} </span>
-              </div>
-              <div class="listing__item__text__info__right">영업중인걸 어케 표시할까</div>
-            </div>
-          </div>
-        </div>
-          </c:forEach>
 
-        
+      <div class="listing__list">
+        <c:forEach items="${shopPageList}" var="shop">
+          <div class="listing__item">
+            <!-- 여기에 img값 가지고와야함 동적으로 -->
+            <div
+              class="listing__item__pic set-bg"
+              data-setbg="./resources/img/listing/list-1.jpg"
+            >
+              <div class="listing__item__pic__btns">
+                <a href="#"><span class="icon_zoom-in_alt"></span></a>
+                <a href="#"><span class="icon_heart_alt"></span></a>
+              </div>
+            </div>
+            <div class="listing__item__text">
+              <div class="listing__item__text__inside">
+                <h5 class="shopTitle">${shop.shopTitle}</h5>
+                <div class="listing__item__text__rating">
+                  <!-- 이쪽에 별 대신 맛평가 들어가야함-->
+                  <div class="listing__item__rating__star">
+                    <span class="icon_star"></span>
+                    <span class="icon_star"></span>
+                    <span class="icon_star"></span>
+                    <span class="icon_star"></span>
+                    <span class="icon_star-half_alt"></span>
+                  </div>
+                  <!-- 가격대 가지고와야함-->
+                  <h6>${shop.shopPriceRange}</h6>
+                </div>
+                <ul>
+                  <!--주소 이름 가지고와야함 ㅅㅂ-->
+                  <li class="shopAddress">
+                    <span class="icon_pin_alt"></span>${shop.shopAddress}
+                  </li>
+                  <li><span class="icon_phone"></span> ${shop.shopTel}</li>
+                </ul>
+              </div>
+              <div class="listing__item__text__info">
+                <div class="listing__item__text__info__left">
+                  <img
+                    src="./resources/img/listing/list_small_icon-1.png"
+                    alt=""
+                  />
+                  <span>${shop.shopFood} </span>
+                </div>
+                <div class="listing__item__text__info__right">
+                  영업중인걸 어케 표시할까
+                </div>
+              </div>
+            </div>
+          </div>
+        </c:forEach>
       </div>
     </section>
     <!-- Listing Section End -->
@@ -697,6 +707,31 @@
       };
 
       var map = new daum.maps.Map(mapContainer, mapOption);
+
+      // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+      if (navigator.geolocation) {
+        // GeoLocation을 이용해서 현재 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+
+          var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+          console.log("myLat " + lat);
+          console.log("myLon " + lon);
+          $("#myLat").val(lat);
+          $("#myLon").val(lon);
+          // 마커와 인포윈도우를 표시합니다
+          displayMarker(locPosition, message);
+        });
+      } else {
+        // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+          message = "geolocation을 사용할수 없어요..";
+
+        displayMarker(locPosition, message);
+      }
       //마커 이미지
       // var imageSrc =
       //     "https://t1.daumcdn.net/local./resources/img/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
@@ -704,27 +739,23 @@
       //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
       var geocoder = new daum.maps.services.Geocoder();
-	
-      
-      
-     var listData=[];
-     var listShop=[];
-      
-   		//DB에 있는 shopAddress가 들어옴
+
+      var listData = [];
+      var listShop = [];
+
+      //DB에 있는 shopAddress가 들어옴
       $(".shopAddress").each(function name(params) {
-    		var shopName = $(this).text();
-    		
-    		  listData.push(shopName);
-      })
-      
-      
-      	//DB에 있는 shopTitle이 들어옴
+        var shopName = $(this).text();
+
+        listData.push(shopName);
+      });
+
+      //DB에 있는 shopTitle이 들어옴
       $(".shopTitle").each(function name(params) {
-    		var shopTitle = $(this).html();
-    		
-    		  listShop.push(shopTitle);
-      })
-      
+        var shopTitle = $(this).html();
+
+        listShop.push(shopTitle);
+      });
 
       listData.forEach(function (addr, index) {
         geocoder.addressSearch(addr, function (result, status) {
@@ -777,5 +808,3 @@
     </script>
   </body>
 </html>
-
-

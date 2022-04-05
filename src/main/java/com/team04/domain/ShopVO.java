@@ -25,7 +25,11 @@ public class ShopVO {
 	private String shopAddrDoroManager;		//도로명주소
 	private String shopAddrJibunManager;		//지번주소
 	private String shopAddrDetailManager;		//상세주소
+
+	private String shopLat; //위도
+	private String shopLon; //경도
 	
+
 	// 필터용 주소 입력
 	private String shopAddressSi;
 	private String shopAddressGu;
@@ -33,6 +37,7 @@ public class ShopVO {
 
 	// 저장된 파일 이름
 	private String shopRealfname;
+	
 	
 	// 파일 업로드를 위한 변수
 	MultipartFile shopFile;
@@ -44,11 +49,12 @@ public class ShopVO {
 	}
 	
 	// 생성자 - 인자있는
+	
 	public ShopVO(int shopNumber, String shopTitle, String shopTel, String shopPriceRange, String shopFood,
 			String shopPark, String shopTime, String shopHoliday, String shopContent, Date shopCreateDate,
-			Date shopModifyDate, String shopAddress, String shopAddressSi, String shopAddressGu, String shopAddressDong,
-			String shopRealfname, MultipartFile shopFile, 
-			String shopAddrDoroManager, String shopAddrJibunManager, String shopAddrDetailManager) {
+			Date shopModifyDate, String shopAddress, String shopAddrDoroManager, String shopAddrJibunManager,
+			String shopAddrDetailManager, String shopLat, String shopLon, String shopAddressSi, String shopAddressGu,
+			String shopAddressDong, String shopRealfname, MultipartFile shopFile) {
 		super();
 		this.shopNumber = shopNumber;
 		this.shopTitle = shopTitle;
@@ -62,20 +68,24 @@ public class ShopVO {
 		this.shopCreateDate = shopCreateDate;
 		this.shopModifyDate = shopModifyDate;
 		this.shopAddress = shopAddress;
+		this.shopAddrDoroManager = shopAddrDoroManager;
+		this.shopAddrJibunManager = shopAddrJibunManager;
+		this.shopAddrDetailManager = shopAddrDetailManager;
+		this.shopLat = shopLat;
+		this.shopLon = shopLon;
 		this.shopAddressSi = shopAddressSi;
 		this.shopAddressGu = shopAddressGu;
 		this.shopAddressDong = shopAddressDong;
 		this.shopRealfname = shopRealfname;
 		this.shopFile = shopFile;
-		this.shopAddrDoroManager = shopAddrDoroManager;
-		this.shopAddrJibunManager = shopAddrJibunManager;
-		this.shopAddrDetailManager = shopAddrDetailManager;
 	}
 	
 	// setter & getter
 	public MultipartFile getShopFile() {
 		return shopFile;
 	}
+	
+
 	public void setShopFile(MultipartFile shopFile) {
 		this.shopFile = shopFile;
 		/* 파일 업로드 작업*/
@@ -222,5 +232,19 @@ public class ShopVO {
 		this.shopRealfname = shopRealfname;
 	}
 	
-	
+	public String getShopLat() {
+		return shopLat;
+	}
+
+	public void setShopLat(String shopLat) {
+		this.shopLat = shopLat;
+	}
+
+	public String getShopLon() {
+		return shopLon;
+	}
+
+	public void setShopLon(String shopLon) {
+		this.shopLon = shopLon;
+	}
 }
