@@ -35,7 +35,9 @@ form-group .form-control.form-nickname {
 	margin-right : 300px;
 	margin-left : 300px;
 	margin-bottom: 100px;
-	border-radius: 20px
+	border-radius: 20px;
+	padding-left: 150px;
+	padding-right: 150px;
 }
 
 .box {
@@ -44,6 +46,12 @@ form-group .form-control.form-nickname {
     border-radius: 70%;
     overflow: hidden;
     border: 5px solid #f8fafb;
+	display:block;
+	margin:auto;
+}
+
+.box > .memberFile {
+	
 }
 
 .filter__title{
@@ -57,6 +65,37 @@ form-group .form-control.form-nickname {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+#memberFile{
+	margin-left: 30px;
+}
+input[type="file"]{
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0;
+
+}
+.label.mFile{
+	display: inline-block; 
+	padding: .5em .75em; 
+	color: #fdfdfd; 
+	font-size: inherit; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #dc3545; 
+	cursor: pointer; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	border-radius: .25em;
+
+}
+.memberFileForm, .memberFile{
+	text-align : center;
 }
 
 .formInt{
@@ -88,4 +127,18 @@ form-group .form-control.form-nickname {
 
 #memberFile{
 	/* width: 70%; */
+}
+
+#btnMemberUpdate{
+	margin-top: 70px;
+	margin-bottom : 100px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.label{
+	 font-weight: bold;
+}
+.form-group.first {
+	margin-bottom: 30px;
 }

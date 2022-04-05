@@ -83,38 +83,52 @@ public class MemberController {
 	 * 	- DB에 입력된 레코드 중에서 이메일과 패스워드가 같은 레코드 검색
 	 * 	- 하나의 레코드가 검색되어야함
 	 * @param MemberVO vo (memberEmail, memberPassword)
-	 * @return (페이지 이동)
+	 * @return ajax로 이동
 	 * 		- 로그인 성공
-	 * 			(1) 관리자가 아닐 때 : 검색된 이메일과 닉네임을 HttpSession에 저장 -> main.do로 이동
-	 * 			(2) 관리자일 때 : 검색된 이메일과 닉네임을 HttpSession에 저장
 	 * 		- 로그인 실패
 	 */
-	@RequestMapping("loginCheck.do")
+	@RequestMapping(value="loginCheck.do", produces="application/text;charset=utf-8")
+	@ResponseBody
 	public String loginCheck(MemberVO vo, HttpSession session){
 		MemberVO result = memberService.loginCheck(vo);
-
+		String message = "";
 		if(result == null){
 			System.out.println("로그인 실패");
-			return "redirect:loginForm.do";
-
+			message = "N";
+			return message;
 		}else{
-			if(result.getMemberAdmin().equals("N")) {
-				System.out.println("로그인 성공");
-				session.setAttribute("lognick", result.getMemberNickname());
-				session.setAttribute("logemail", result.getMemberEmail());
-				session.setMaxInactiveInterval(60*60*24);
-				
-				return "redirect:main.do";
-			}else {
 				System.out.println("로그인 성공");
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
 				session.setAttribute("admin", result.getMemberAdmin());
-				return "redirect:memberListManager.do";
-			}//end of if(2) - 관리자 유무
-		}//end of if(1)
+				session.setMaxInactiveInterval(60*60*24);
+				return message;
+		}//end of if
 
 	}//end of loginCheck()
+	
+	/** 로그인 성공 후 페이지 이동
+	 * @param vo
+	 * @return 
+	 * 			(1) 관리자가 아닐 때 : main.do로 이동
+	 * 			(2) 관리자일 때 : redirect:memberListManager.do 이동
+	 */
+	@RequestMapping("loginMove")
+	public String loginMove(MemberVO vo, HttpSession session) {
+		
+		MemberVO result = memberService.loginCheck(vo);
+		vo.setMemberAdmin(session.getAttribute("admin").toString());
+		System.out.println(vo.getMemberAdmin());
+		if(result.getMemberAdmin().equals("N")) {
+			System.out.println("일반 회원 로그인");
+			
+			return "redirect:main.do";
+		}else {
+			
+			System.out.println("관리자 로그인");
+			return "redirect:memberListManager.do";
+		}//end of if - 관리자 유무
+	}
 
 
 	/** main 페이지에서 .login-btn 버튼을 눌렀을 때
@@ -130,7 +144,7 @@ public class MemberController {
 			return "redirect:loginForm.do";
 		}
 			// (2) 세션에 로그인 정보 O
-			return "redirect:mylist.do";
+			return "redirect:mylist.do?page=1";
 
 	}// end of login()
 

@@ -151,7 +151,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 								
 							<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 								<tr class="row100 body">
-									<td class="cell100 column1"> ${status.count}  </td>
+									<td class="cell100 column1"> ${status.count+((paging.page-1)*10)} </td>
 									<input type="hidden" name="listnumber" value=${bookmark.listNumber}/>
 									<td class="cell100 column2"><a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 									<td class="cell100 column3">${bookmark.memberNickname }</td>
@@ -188,11 +188,15 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 				
 				
 				<div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+				<c:if test="${paging.page != 1 }">
+					<a href="totalbookmark.do?page=${paging.page-1 }"></i> Pre</a> 
+				</c:if>
+				<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="totalbookmark.do?page=${pageNum }">${pageNum }</a>
+				</c:forEach>
+				<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="totalbookmark.do?page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+				</c:if>
                </div>
 			</div>
 		</div>

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.MylistVO;
@@ -24,11 +23,17 @@ public class BookmarkController {
 	
 	
 	  @RequestMapping("totalbookmark.do") 
-	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model) {
+	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model, PagingVO vo) {
 		
 		  HashMap map = new HashMap(); 
 		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
+		  
+		  vo.setPageTotalCount(bookmarkService.bookmarkListCount());
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  map.put("startRow", vo.getStartRow());
+		  map.put("endRow", vo.getEndRow());
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list); 
 		  return "totalbookmark"; 

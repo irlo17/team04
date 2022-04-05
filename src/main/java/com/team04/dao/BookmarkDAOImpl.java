@@ -16,6 +16,16 @@ public class BookmarkDAOImpl implements BookmarkDAO {
  
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 * @return int
+	 */
+	@Override
+	public int bookmarkListCount() {
+		System.out.println("===> Mybatis bookmarkListCount() 호출"); 
+		return mybatis.selectOne("BookmarkDAO.bookmarkListCount");
+	}
 
 	  /**공개 즐겨찾기 목록 & 검색
 	 *인자:HashMap map으로 제목이나 닉네임을 가져와 검색,인자를 안주면 전체 공개목록 검색

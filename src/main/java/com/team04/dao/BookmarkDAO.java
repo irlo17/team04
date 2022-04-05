@@ -13,7 +13,9 @@ import com.team04.domain.PagingVO;
 	public interface BookmarkDAO {
 
 	
-	
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 */
+	public int bookmarkListCount();
 	
 	/**즐겨찾기 목록 출력 
 	 * 1.기본 출력: 공개된 즐겨찾기 전체 목록 출력.
