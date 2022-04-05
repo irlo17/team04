@@ -43,7 +43,8 @@ order by  b.list_date desc
 
 
 <select id="bookmarkGetBestList" resultType="BookmarkVO">
-SELECT  b.list_name , m.member_nickname
+
+SELECT  b.list_name , m.member_nickname ,b.list_like, b.list_number
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
 where b.list_display = 'yes' 
@@ -58,7 +59,8 @@ WHERE member_email=#{memberEmail}
 
 
 <select id="bookmarkGetMylistPaging" resultType="BookmarkVO" parameterType="PagingVO">
- SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY, list_date 
+
+ SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
 FROM ( SELECT rownum rnum, bookmark.*
         FROM bookmark 
         WHERE member_email=#{memberEmail}
@@ -67,17 +69,14 @@ WHERE rnum between  #{startRow} and #{endRow}
 </select>
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
- SELECT  list_Number, list_name , list_display 
+
+  SELECT  list_Number, list_name , list_display , list_like 
 FROM bookmark 
 WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->
 </select>
 
 
 <select id="bookmarkGetMylistDetail" resultType="MylistVO" parameterType="String">
-<!-- SELECT m.list_number,s.shop_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname 
-FROM shop s inner join mylist m
-ON s.shop_number=m.shop_number
-Where m.list_number=#{listNumber}  --> 
 SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,b.list_name,s.shop_number
 FROM shop s inner join mylist m
 ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number
@@ -126,8 +125,28 @@ where b.list_display = 'yes'
 order by  list_date desc
 </select>
 
+
 <insert id="MylistInsert" parameterType="BookmarkVO">
 insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list) 
 values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no')
 </insert>
+
+<select id="ImageSelectBestBookmark" parameterType="Int" resultType="BookmarkVO">
+SELECT list_name,shop_realfname,list_number,member_nickname,list_like
+FROM
+(SELECT rownum rnum, shop_realfname ,list_name,list_number,member_nickname,list_like
+FROM
+(SELECT b.list_name , m.member_nickname ,b.list_like, b.list_number, s.shop_realfname, s.shop_number
+FROM bookmark b INNER JOIN member m
+ON b.member_email = m.member_email inner join mylist l 
+    on l.list_number=b.list_number inner join shop s 
+        on s.shop_number=l.shop_number 
+where b.list_display = 'yes' 
+order by  b.list_like desc)where list_number=#{listNumber} )
+WHERE rnum =1 
+</select>
+
+
+
+
 </mapper>

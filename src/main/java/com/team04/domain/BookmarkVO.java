@@ -6,13 +6,16 @@ public class BookmarkVO {
 	private int listNumber;
 	private String listName;
 	private String listDisplay;
-	private int listLike;
 	private String memberEmail;
 	private String listDate;
 	private String defultList;
+	private int listLike;
 	
 	//리스트 출력하기위해서 만들었음
 	private String memberNickname;
+	private String shopRealfname;
+	
+	
 	
 	
 	//constructor-------------------------------------------
@@ -21,7 +24,7 @@ public class BookmarkVO {
 	}
 
 	public BookmarkVO(int listNumber, String listName, String listDisplay, int listLike, String memberEmail,
-			String listDate, String defultList, String memberNickname) {
+			String listDate, String defultList, String memberNickname,String shopRealfname) {
 		
 		this.listNumber = listNumber;
 		this.listName = listName;
@@ -31,6 +34,7 @@ public class BookmarkVO {
 		this.listDate = listDate;
 		this.defultList = defultList;
 		this.memberNickname = memberNickname;
+		this.shopRealfname = shopRealfname;
 		
 	}
 
@@ -83,6 +87,14 @@ public class BookmarkVO {
 	  public void
 	  setMemberNickname(String memberNickname) { this.memberNickname =
 	  memberNickname; }
+
+	public String getShopRealfname() {
+		return shopRealfname;
+	}
+
+	public void setShopRealfname(String shopRealfname) {
+		this.shopRealfname = shopRealfname;
+	}
 	 
 	
 	

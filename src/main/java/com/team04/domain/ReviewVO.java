@@ -35,7 +35,7 @@ public class ReviewVO {
 			
 			reviewRealfname=uuid.toString()+"_"+reviewFname;
 			
-			File f = new File("C:\\Users\\choi\\Documents\\GitHub\\team04\\src\\main\\webapp\\resources\\reviewUpload\\"+reviewFname );
+			File f = new File("C:\\Users\\choi\\Documents\\GitHub\\team04\\src\\main\\webapp\\resources\\reviewUpload\\"+reviewRealfname );
 			
 			try {
 				file.transferTo(f); //실직적으로 파일을 업로딩하는거

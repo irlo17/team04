@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% String number=request.getParameter("listNumber"); %>
+<%String number=request.getParameter("listNumber"); %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -197,8 +199,6 @@ position: relative; left:400px; }
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
-
 	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
 	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 
@@ -228,12 +228,16 @@ position: relative; left:400px; }
                         </div>
                       </c:forEach>
                     </div>
+                
+		
+                    
                 <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
+                       <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                        
                     </div>
                 </div>
 

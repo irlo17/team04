@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Directing | Template</title>
-
+ <script src="./resources/js/jquery-3.3.1.min.js"></script>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -30,7 +30,10 @@
     <link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="./resources/css/style4.css" type="text/css">
 </head>
+<script type="text/javascript">
 
+
+</script>
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -114,19 +117,21 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="row">
-                            <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="3">
+                            <c:forEach items="${fileName }" var="bookmark" begin="0" end="5">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="listing__item">
-                                        <div class="listing__item__pic set-bg" data-setbg="./resources/img/listing/list-1.jpg">
-                                            <div class="listing__item__pic__btns">
+                                    		
+                            
+                                        <div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div>
+                                           <div class="listing__item__pic__btns">
                                             </div>
-                                        </div>
+                                        
                                         <div class="listing__item__text">
                                             <div class="listing__item__text__inside">
                                                 <h5>${bookmark.listName }</h5>
                                                 <div class="listing__item__text__rating">
                                                     
-                                                        <span class="glyphicon glyphicon-heart">좋아요 수 ${bookmark.listLike }</span>
+                                                        <span class="glyphicon glyphicon-heart"> 좋아요 수: ${bookmark.listLike }</span>
                                                  </div>
                                                     <div>작성자: ${bookmark.memberNickname }</div>
                                                 
@@ -172,7 +177,7 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="./resources/js/jquery-3.3.1.min.js"></script>
+   
     <script src="./resources/js/bootstrap.min.js"></script>
     <script src="./resources/js/jquery.nice-select.min.js"></script>
     <script src="./resources/js/jquery-ui.min.js"></script>

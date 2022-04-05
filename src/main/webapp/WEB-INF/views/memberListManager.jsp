@@ -16,7 +16,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자페이지 - 회원리스트</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <!-- datatable CSS -->
+        <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -110,18 +111,6 @@
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>이메일</th>
-                                            <th>닉네임</th>
-                                            <th>이름</th>
-                                            <th>생년월일</th>
-                                            <th>휴대전화</th>
-                                            <th>관리자여부</th>
-                                            <th>가입날짜</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
@@ -189,7 +178,7 @@
 		    }
         </script>
         <!-- datatable 연동 -->
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->
         <script src="${path}/resources/manager/js/datatables-simple-demo.js"></script>
     </body>
