@@ -174,14 +174,15 @@ public class BookmarkController {
 	  public String save_heart(int listNumber, HttpSession session,Model model) {
 
 		  
-		  HeartVO vo = new HeartVO();
+		  HeartVO hvo = new HeartVO();
 	      // 게시물 번호 세팅
-		  vo.setListNumber(listNumber);
+		  hvo.setListNumber(listNumber);
 	      // 좋아요 누른 사람 nick을 userid로 세팅
-		  vo.setMemberEmail((String) session.getAttribute("logemail"));
+		  hvo.setMemberEmail((String) session.getAttribute("logemail"));
+		  
 	      // +1된 하트 갯수를 담아오기위함
-		  vo.getLike_count(bookmarkService.pictureSaveHeart(vo));
-		  model.addAttribute("likeCount", vo);
+		  BookmarkVO bvo= bookmarkService.pictureSaveHeart(hvo);
+		  model.addAttribute("likeCount", bvo);
 		  
 	      return "totalbookmark";
 	  }
@@ -191,14 +192,14 @@ public class BookmarkController {
 	  @RequestMapping(value = "removeHeart.do")
 	  public String remove_heart( int listNumber, HttpSession session,Model model) {
 	      
-		  HeartVO vo = new HeartVO();
+		  HeartVO hvo = new HeartVO();
 	      // 게시물 번호 세팅
-	      vo.setListNumber(listNumber);
+	      hvo.setListNumber(listNumber);
 	      // 좋아요 누른 사람 nick을 userid로 세팅
-	      vo.setMemberEmail((String) session.getAttribute("logemail"));
+	      hvo.setMemberEmail((String) session.getAttribute("logemail"));
 	      // -1된 하트 갯수를 담아오기위함
-	      vo.getLike_count(bookmarkService.pictureRemoveHeart(vo));
-	      model.addAttribute("likeCount", vo);
+	      BookmarkVO bvo=  bookmarkService.pictureRemoveHeart(hvo);
+	      model.addAttribute("likeCount", bvo);
 
 	      return "totalbookmark";
 	  }
