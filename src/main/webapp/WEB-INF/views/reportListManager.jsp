@@ -14,7 +14,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자페이지 - 신고리스트</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <!-- datatable CSS -->
+        <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -123,14 +124,6 @@
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>신고번호</th>
-                                            <th>리뷰번호</th>
-                                            <th>신고내용</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                     	items은 보낸 값, var는 출력할 객체변수 -->
@@ -164,12 +157,14 @@
                 </footer>
             </div>
         </div>
+        <!-- JQuery -->
+    	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="${path}/resources/manager/js/scripts.js"></script>
         <!-- datatable 연동 -->
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->
         <script src="${path}/resources/manager/js/datatables-simple-demo.js"></script>
     </body>
