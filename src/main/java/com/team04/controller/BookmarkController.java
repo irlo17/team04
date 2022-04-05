@@ -1,5 +1,6 @@
 package com.team04.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.HeartVO;
 import com.team04.domain.MylistVO;
 import com.team04.service.BookmarkServiceImpl;
 
@@ -33,42 +36,36 @@ public class BookmarkController {
 	  }
 	  
 	  
-	  @RequestMapping("UpdateLike.do")
-	 private  String  bookmarkUpdateLike(String listNumber ) {
-		 
-		  System.out.println(listNumber);
-		  int listNum=Integer.parseInt(listNumber); 
-		 bookmarkService.bookmarkUpdateLike(listNum);
-		 
-		 return "redirect:totalbookmark.do";
-	 }
 	  
-	  @RequestMapping("UpdateLikeMa.do")
-		 private  String  bookmarkUpdateLikeMa(String listNumber ) {
-			 
-			  System.out.println(listNumber);
-			  int listNum=Integer.parseInt(listNumber); 
-			 bookmarkService.bookmarkUpdateLikeMa(listNum);
-			 
-			 return "redirect:totalbookmark.do";
-		 } 
+		/*
+		 * @RequestMapping("UpdateLike.do") private String bookmarkUpdateLike(String
+		 * listNumber ) { int listNum=Integer.parseInt(listNumber);
+		 * bookmarkService.bookmarkUpdateLike(listNum); return
+		 * "redirect:totalbookmark.do"; }
+		 * 
+		 * @RequestMapping("UpdateLikeMa.do") private String bookmarkUpdateLikeMa(String
+		 * listNumber ) { int listNum=Integer.parseInt(listNumber);
+		 * bookmarkService.bookmarkUpdateLikeMa(listNum); return
+		 * "redirect:totalbookmark.do"; }
+		 */
 	 
+	  
 	  @RequestMapping("main.do")
-	  private String bookmarkGetBestList(Model m) {
-		
-		  
+		private String bookmarkGetBestList( Model m) {
 		  List<BookmarkVO> list= bookmarkService. bookmarkGetBestList();
-		  
+		  ArrayList listNumber = new  ArrayList();
+		  for(BookmarkVO vo:list) {
+			  listNumber.add(bookmarkService.imageSelectBestBookmark(vo.getListNumber()));
+		  }
 		  m.addAttribute("bookmarkList", list); 
+		  m.addAttribute("fileName", listNumber); 
 		  return "main";
 	  }
 	  
 	  @RequestMapping("mylist.do")
 	  private String bookmarkGetMylist(Model model,HttpSession session) {
-		  
 		 String memberEmail=(String)session.getAttribute("logemail");
 		  List<BookmarkVO> list= bookmarkService.bookmarkGetMylist(memberEmail);
-		  
 		  model.addAttribute("bookmarkList", list); 
 		  return "mylist";
 	  }
@@ -76,7 +73,6 @@ public class BookmarkController {
 	  
 	  @RequestMapping("bookmarkDetail.do")
 	  private String bookmarkGetDetail(String listNumber,Model model ) {
-		  
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
 		  model.addAttribute("bookmarkList", list); 
 		  return "bookmarkDetail";
@@ -88,7 +84,6 @@ public class BookmarkController {
 	  
 	  @RequestMapping("mylistDetail.do")
 	  private String bookmarkGetMylistDetail(String listNumber,Model model ) {
-		  
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
 		  model.addAttribute("bookmarkList", list); 
 		  return "mylistDetail";
@@ -96,7 +91,6 @@ public class BookmarkController {
 	  
 	  @RequestMapping("modify1.do")
 	  public String bookmarkModify(String listNumber, Model model ) {
-		 
 			BookmarkVO vo= bookmarkService.bookmarkGetDetail(listNumber);
 			model.addAttribute("bookmark", vo); 
 		  
@@ -105,19 +99,13 @@ public class BookmarkController {
 	  
 	  @RequestMapping("ModifyListname.do")
 	  public String bookmarkModifylistName(BookmarkVO vo) {
-		  
-		  System.out.println(vo.getListNumber());
 		  bookmarkService.bookmarkModify(vo);
-		  
 		  return "redirect:mylist.do";
 	  }
 	  
 	  @RequestMapping("deleteBookmark.do")
 	  public String bookmarkDelete(String listNumber) {
-		
 		  bookmarkService.bookmarkDelete(listNumber);
-		 //int pageTotalCount= bookmarkService.totalbookmarkPage();
-		  
 		  return "redirect:mylist.do";
 	  }
 	  
@@ -135,18 +123,12 @@ public class BookmarkController {
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo) {
 		  bookmarkService.mylistUpdate(vo);
-		System.out.println(vo.getShopNumber());
 		return "redirect:mylist.do";  
 	  }
 	 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
-		  
-		  
-		  
-		
 		  bookmarkService.mylistDelete(vo);
-		  
 			return "redirect:mylist.do";  
 		  }
 	  
@@ -156,12 +138,25 @@ public class BookmarkController {
 		  return "mylistadd";
 	  }
 	  
+	  
 	  @RequestMapping("mylistadd.do")
 	  public String mylistAdd(BookmarkVO vo, HttpSession session) {
 		  vo.setMemberEmail((String)session.getAttribute("logemail"));
 		  bookmarkService.mylistAdd(vo);
-		  
 		  return "redirect:mylist.do";
 	  }
+	  
+	  @RequestMapping(value="UpdateLike.do")
+	  public String liketbUpdate(long listNumber, Model model,  HttpSession session) {
+		  
+		String memberEmail=(String)session.getAttribute("logemail");
+	  	HeartVO heart = new HeartVO();
+	  	// 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄.
+	  	heart = bookmarkService.findHeart(listNumber,memberEmail);
+	  	// 찾은 정보를 heart로 담아서 보냄
+	  	model.addAttribute("heart",heart);
+	  	return "redirect:totalbookmark.do";
+	  }
+	 
 
 }

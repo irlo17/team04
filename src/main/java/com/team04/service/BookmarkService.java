@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.HeartVO;
 import com.team04.domain.MylistVO;
 
 public interface BookmarkService {
@@ -33,4 +34,8 @@ public interface BookmarkService {
 	public int totalPageGet();
 	
 	public void mylistAdd(BookmarkVO vo);
+	
+	public BookmarkVO imageSelectBestBookmark(int listNumber);
+	
+	public HeartVO findHeart(long e_number, long m_number) ;
 }

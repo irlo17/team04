@@ -2,12 +2,14 @@ package com.team04.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team04.dao.BookmarkDAOImpl;
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.HeartVO;
 import com.team04.domain.MylistVO;
 
 @Service("bookmarkService")
@@ -93,7 +95,19 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.mylistAdd(vo);
 	}
 
-
+	@Override
+	public BookmarkVO imageSelectBestBookmark(int listNumber) {
+		
+		return bookmarkDAO.imageSelectBestBookmark(listNumber);
+	}
 	
+	@Override
+	public HeartVO findHeart(long listNumber, String memberEmail) {
+		// 2개의 parameter를 보내기 위해 Map 선언 및 Map에 데이터 삽입
+		HashMap number = new HashMap();
+		number.put("listNumber", listNumber);
+		number.put("memberEmail", memberEmail);
+		return bookmarkDAO.findHeart(number);
+	}
 
 }

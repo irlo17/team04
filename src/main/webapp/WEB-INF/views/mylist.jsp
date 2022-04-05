@@ -166,7 +166,7 @@ margin-bottom:50px;
 						<th scope="row">${status.count}</th>
 						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>
-						<td>${bookmark.listLike}</td>
+						<td>${bookmark.likeCount}</td>
 					</tr>
 				</c:forEach>
 				
