@@ -168,6 +168,7 @@ public class BookmarkController {
 		  return "redirect:mylist.do?page=1";
 	  }
 
+
 	// 빈하트 클릭시 하트 저장
 	  @ResponseBody
 	  @RequestMapping(value = "saveHeart.do")
@@ -185,6 +186,19 @@ public class BookmarkController {
 		  model.addAttribute("likeCount", bvo);
 		  
 	      return "totalbookmark";
+	  }
+
+	  @RequestMapping(value="UpdateLike.do")
+	  public String liketbUpdate(long listNumber, Model model,  HttpSession session) {
+
+		String memberEmail=(String)session.getAttribute("logemail");
+	  	HeartVO heart = new HeartVO();
+	  	// 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄.
+	  	heart = bookmarkService.findHeart(listNumber,listNumber);
+	  	// 찾은 정보를 heart로 담아서 보냄
+	  	model.addAttribute("heart",heart);
+	  	return "redirect:totalbookmark.do";
+
 	  }
 
 	  // 꽉찬하트 클릭시 하트 해제
