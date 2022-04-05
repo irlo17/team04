@@ -39,13 +39,13 @@ public interface BookmarkService {
 	
 	public void mylistDelete(MylistVO vo);
 	
-	public int totalPageGet();
+	
 	
 	public void mylistAdd(BookmarkVO vo);
 	
 	public BookmarkVO imageSelectBestBookmark(int listNumber);
 	
-	public HeartVO pictureSaveHeart(HeartVO vo);
+	public BookmarkVO pictureSaveHeart(HeartVO vo);
 	
-	public HeartVO pictureRemoveHeart(HeartVO vo);
+	public BookmarkVO pictureRemoveHeart(HeartVO vo);
 }

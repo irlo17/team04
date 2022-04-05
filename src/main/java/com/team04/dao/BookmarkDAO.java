@@ -61,5 +61,9 @@ import com.team04.domain.PagingVO;
 	//베스트 공개 즐겨찾기 이미지 출력
 	public BookmarkVO imageSelectBestBookmark(int listNumber);
 
-	public HeartVO findHeart(HashMap<String, Long> number);
+	//좋아요 하트 수 증가
+	public BookmarkVO pictureSaveHeart(HeartVO vo);
+	
+	//좋아요 하트 수 감소
+	public BookmarkVO pictureRemoveHeart(HeartVO vo);
 	}

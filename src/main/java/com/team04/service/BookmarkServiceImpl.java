@@ -95,12 +95,12 @@ public class BookmarkServiceImpl implements BookmarkService {
 		return bookmarkDAO.imageSelectBestBookmark(listNumber);
 	}
 
-	public HeartVO pictureSaveHeart(HeartVO vo) {
+	public BookmarkVO pictureSaveHeart(HeartVO vo) {
 	
 		return bookmarkDAO.pictureSaveHeart(vo);
 	}
 
-	public HeartVO pictureRemoveHeart(HeartVO vo) {
+	public BookmarkVO pictureRemoveHeart(HeartVO vo) {
 		
 		return bookmarkDAO.pictureRemoveHeart(vo);
 	}
