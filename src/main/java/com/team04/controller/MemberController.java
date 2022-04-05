@@ -97,15 +97,6 @@ public class MemberController {
 			message = "N";
 			return message;
 		}else{
-
-			if(result.getMemberAdmin().equals("N")) {
-				System.out.println("로그인 성공");
-				session.setAttribute("lognick", result.getMemberNickname());
-				session.setAttribute("logemail", result.getMemberEmail());
-				session.setMaxInactiveInterval(60*60*24);
-				return "redirect:main.do";
-			}else {
-
 				System.out.println("로그인 성공");
 				session.setAttribute("lognick", result.getMemberNickname());
 				session.setAttribute("logemail", result.getMemberEmail());
@@ -115,7 +106,6 @@ public class MemberController {
 			}//end of if
 
 		}//end of loginCheck()
-	}
 	/** 로그인 성공 후 페이지 이동
 	 * @param vo
 	 * @return 
@@ -125,10 +115,9 @@ public class MemberController {
 	@RequestMapping("loginMove")
 	public String loginMove(MemberVO vo, HttpSession session) {
 		
-		MemberVO result = memberService.loginCheck(vo);
 		vo.setMemberAdmin(session.getAttribute("admin").toString());
 		System.out.println(vo.getMemberAdmin());
-		if(result.getMemberAdmin().equals("N")) {
+		if(vo.getMemberAdmin().equals("N")) {
 			System.out.println("일반 회원 로그인");
 			
 			return "redirect:main.do";
