@@ -265,7 +265,7 @@ li.on {
                   <img class="memberFile profile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
                </c:when>
                <c:otherwise>
-                  <img class="memberFile profile" src="./resources/upload/${MemberVO.memberRealfname }">
+                  <img class="memberFile profile" src="./resources/upload/${MemberVO.memberRealFname }">
                </c:otherwise>
             </c:choose>
          	
@@ -359,7 +359,7 @@ li.on {
 						<c:set var="email" value="${sessionScope.logemail}" />
                                     <c:choose>
                                     	<c:when test="${sessionScope.logemail eq review.MEMBEREMAIL}">
-                                        <img width="350" height="300"   src="resources/reviewUpload/${review.REVIEWFNAME }">
+                                        <img width="350" height="300"   src="resources/reviewUpload/${review.REVIEWREALFNAME }">
                                         </c:when>
                                         <c:otherwise>
                                       

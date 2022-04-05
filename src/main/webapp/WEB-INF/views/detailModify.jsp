@@ -253,7 +253,7 @@ $(function(){
                   
                  
                   <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
-                  ${bookmark.shopNumber}
+                  
                          <div class="col-lg-6 col-md-6">
                            
                             <div class="blog__item">

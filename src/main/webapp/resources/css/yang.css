@@ -74,3 +74,8 @@
   width: 50%;
 }
 
+.foodPrice > img {
+  width: 70px;
+  height: 70px;
+}
+

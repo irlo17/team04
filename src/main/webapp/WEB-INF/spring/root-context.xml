@@ -25,7 +25,7 @@
 	        </bean> 
 	    </property> 
 	</bean>
-
+ 
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	  <property name="dataSource" ref="dataSource" />
@@ -39,10 +39,12 @@
 	  		<value>com.team04.domain.ReviewVO</value>
 	  		<value>com.team04.domain.ShopVO</value>
 			<value>com.team04.domain.BookmarkVO</value>
+			<value>com.team04.domain.HeartVO</value>
 
 			<value>com.team04.domain.MylistVO</value>
 
 			<value>com.team04.domain.MemberVO</value>
+			<value>com.team04.domain.PagingVO</value>
 
 			<value>com.team04.domain.ChartsVO</value>
 	  	</list>

@@ -313,6 +313,34 @@
               />
             </div>
             <hr />
+            <!-- 가격대 -->
+            <div class="foodPrice">
+              <img
+                id="manwonLess"
+                class="food_price"
+                src="./resources/img/modal/manwonLess.png"
+                value="1만원이하"
+              />
+              <img
+                id="manwonMore"
+                class="food_price"
+                src="./resources/img/modal/manwonMore.png"
+                value="1만원이상"
+              />
+              <img
+                id="threeManwonMore"
+                class="food_price"
+                src="./resources/img/modal/threeManwonMore.png"
+                value="3만원이상"
+              />
+              <img
+                id="fiveManwonMore"
+                class="food_price"
+                src="./resources/img/modal/fiveManwonMore.png"
+                value="5만원이상"
+              />
+            </div>
+            <hr />
             <!--모달창 지역 구분-->
              <div class="pop-up-area-container addressSi">
               <input
@@ -560,8 +588,14 @@
               <input id="buffetInput" name="buffet" hidden="hidden" />
               <input id="cafeInput" name="cafe" hidden="hidden" />
               <input id="pupInput" name="pup" hidden="hidden" />
-                   <input id="addressSi" name="shopAddressSi" value="서울"/>
-              <input id="addressGu" name="shopAddressGu" />
+              <!-- 주소 value 들어가는 곳 -->
+              <input id="addressSi" name="shopAddressSi" value="서울" hidden="hidden"/>
+              <input id="addressGu" name="shopAddressGu" hidden="hidden"/>
+              <!--가격대 value 들어가는 곳-->
+              <input id="manwonLessInput" name="manwonLess" />
+              <input id="manwonMoreInput" name="manwonMore" />
+              <input id="threeManwonMoreInput" name="threeManwonMore" />
+              <input id="fiveManwonMoreInput" name="fiveManwonMore" />
             </form>
           </div>
         </div>

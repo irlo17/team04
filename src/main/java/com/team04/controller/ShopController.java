@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team04.domain.MenuVO;
 import com.team04.domain.FoodKindVO;
+import com.team04.domain.FoodPriceVO;
 import com.team04.domain.ShopVO;
 import com.team04.service.MenuService;
 import com.team04.service.ShopService;
@@ -129,7 +130,7 @@ public class ShopController {
 	 * @return listing.jsp Page 리턴
 	 */
 	@RequestMapping("listingFilter.do")
-	public String shopPageFilterGetList(String query, FoodKindVO vo, String shopAddressSi, String shopAddressGu, Model m) {
+	public String shopPageFilterGetList(String query, FoodKindVO vo, String shopAddressSi, String shopAddressGu, FoodPriceVO pVo,  Model m) {
 		
 		HashMap map = new HashMap();
 		
@@ -137,6 +138,7 @@ public class ShopController {
 		map.put("foodKind", vo);
 		map.put("shopAddressSi", shopAddressSi);
 		map.put("shopAddressGu", shopAddressGu);
+		map.put("foodPrice", pVo);
 		
 		
 		
