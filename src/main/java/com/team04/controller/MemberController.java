@@ -106,6 +106,7 @@ public class MemberController {
 			}//end of if
 
 		}//end of loginCheck()
+	
 	/** 로그인 성공 후 페이지 이동
 	 * @param vo
 	 * @return 
@@ -124,7 +125,7 @@ public class MemberController {
 		}else {
 			
 			System.out.println("관리자 로그인");
-			return "redirect:memberListManager.do";
+			return "redirect:dashboardManager.do";
 		}//end of if - 관리자 유무
 	}
 
@@ -136,13 +137,15 @@ public class MemberController {
 	 */
 	@RequestMapping("login.do")
 	public String login(HttpSession session) {
-
 		if(session.getAttribute("lognick") == null) {
-			//(1) 세션에 로그인 정보 X
 			return "redirect:loginForm.do";
-		}
-			// (2) 세션에 로그인 정보 O
+		}else if(session.getAttribute("admin").toString().equals("N")){
+			// (2) 세션에 로그인 정보 O : 일반 회원
 			return "redirect:mylist.do?page=1";
+		}else {
+			//(2)-2 관리자일 때
+			return "redirect:dashboardManager.do";
+		}
 
 	}// end of login()
 
