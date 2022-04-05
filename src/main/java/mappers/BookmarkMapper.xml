@@ -75,6 +75,7 @@ ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_nu
 Where m.list_number=#{listNumber}
 </select>
 
+
 <select id="bookmarkGetDetail" resultType="BookmarkVO" parameterType="String">
 SELECT list_number,list_name,list_display
 FROM bookmark
