@@ -92,8 +92,8 @@ $(document).ready(function() {
 	            },
 	            success : function(likeCount) {
 	                //페이지 새로고침
-	
-	                let heart = likeCount.listLike;
+						alert(likeCount);
+	                /* let heart = likeCount.listLike; */
 	
 	                // 페이지에 하트수 갱신
 	                
@@ -102,8 +102,9 @@ $(document).ready(function() {
 	                console.log("하트추가 성공");
 	                console.log(likeCount);
 	            },
-	            error : function() {
+	            error : function(err) {
 	                alert('서버 에러');
+	                console.log(err);
 	            }
 	        });
 	        console.log("꽉찬하트로 바껴라!");
@@ -125,16 +126,17 @@ $(document).ready(function() {
 	            success : function(likeCount) {
 	                //페이지 새로고침
 	                //document.location.reload(true);
-	
-	                let heart = likeCount.listLike;
+					alert(likeCount);
+	                /* let heart = likeCount.listLike; */
 	                // 페이지에 하트수 갱신
 	                $('#heart'+no).text(heart);
 	
 	                console.log("하트삭제 성공");
 	                console.log(heart);
 	            },
-	            error : function() {
+	            error : function(err) {
 	                alert('서버 에러');
+	                console.log(err);
 	            }
 	        });
 	        console.log("빈하트로 바껴라!");
@@ -209,6 +211,7 @@ $(document).ready(function() {
             <c:when test="${empty tmp.hno}">
                 <%-- 빈 하트일때 --%>
                 <div id='btnl'>  <a id="${tmp.listNumber }" href="javascript:"
+                	
                     class="heart-click heart_icon${tmp.listNumber }"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a>  좋아요
                 </div>
             </c:when>
@@ -235,7 +238,7 @@ $(document).ready(function() {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row">
+                    <div class="row" >
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                     			
                         <div class="col-lg-6 col-md-6">

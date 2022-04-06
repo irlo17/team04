@@ -17,9 +17,6 @@ public interface BookmarkService {
 	 */
 	public int bookmarkListCount();
 		
-	public void bookmarkUpdateLike(int listNum);
-	
-	public void bookmarkUpdateLikeMa(int listNum);
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	

@@ -42,28 +42,6 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	  return mybatis.selectList("BookmarkDAO.bookmarkGetList",map); }
 
 
-	/** 메소드명:bookmarkUpdateLike(미완성)
-	 * 인자: int num
-	 * 리턴형: x
-	 * 사용:하트 클릭시 좋아요 수 증가
-	 */
-	@Override
-	public void bookmarkUpdateLike(int listNum) {
-		System.out.println("===> Mybatis bookmarkUpdateLike() 호출");
-		  mybatis.selectList("BookmarkDAO.bookmarkUpdateLike",listNum);
-	}
-
-
-	/**메소드명:bookmarkUpdateLikeMa(미완성)
-	 * 인자:int num
-	 * 리턴형:x
-	 * 사용:하트 다시 클릭하여 좋아요 취소하기
-	 */
-	@Override
-	public void bookmarkUpdateLikeMa(int listNum) {
-		System.out.println("===> Mybatis bookmarkUpdateLikeMa() 호출");
-		  mybatis.selectList("BookmarkDAO.bookmarkUpdateLikeMa",listNum);
-	}
 
 
 	/*메소드명: bookmarkGetBestList()
@@ -213,40 +191,58 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 
 	
 	
+	
+	/**메소드명:pictureSaveHeart
+	 *인자: HeartVO vo
+	 *리턴형: BookmarkVO
+	 *사용: 좋아요 하트를 클릭하면 +1증가하고 하트가 채워짐
+	 */
 	public BookmarkVO pictureSaveHeart(HeartVO vo) {
 				// p_board 테이블에 해당 게시물의 heart수를 +1 하기위한 to세팅
 				BookmarkVO pto = new BookmarkVO();
 				pto.setListNumber(vo.getListNumber());
+				pto.setMemberEmail(vo.getMemberEmail());
 				
 				// 해당 게시물의 heart를 +1 한다.
-				mybatis.update("BookmarkDAO.pictureHeartUp", pto);
+				int result2=mybatis.update("BookmarkDAO.pictureHeartUp", pto);
 				
 				// p_heart 테이블에 추가 
-				int result = mybatis.insert("BookmarkDAO.pictureHeartSave", vo);
+				int result;
+				if (result2 == 1) {
+					result = mybatis.insert("BookmarkDAO.pictureHeartSave", vo);
 				
 				if (result == 1) {	// p_heart 테이블에 새로운 좋아요 추가가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				}
+				}}
 				return pto;
 	}
 
+	
+	/**메소드명:pictureRemoveHeart
+	 *인자: HeartVO vo
+	 *리턴형: BookmarkVO
+	 *사용: 좋아요 하트를 클릭하면 -1감소하고 하트가 비워짐
+	 */
 	public BookmarkVO pictureRemoveHeart(HeartVO vo) {
 				
 				// p_board 테이블에 해당 게시물의 heart수를 -1 하기위한 to세팅
 				BookmarkVO pto = new BookmarkVO();
 				pto.setListNumber(vo.getListNumber());
+				pto.setMemberEmail(vo.getMemberEmail());
 				
 				// 해당 게시물의 heart를 -1 한다.
-				mybatis.update("BookmarkDAO.pictureHeartDown", pto);
+				int result2=mybatis.update("BookmarkDAO.pictureHeartDown", pto);
 				
 				// p_heart 테이블에서 삭제
-				int result = mybatis.delete("BookmarkDAO.pictureHeartRemove", vo);
+				int result; 
+				if (result2 == 1) {
+				result= mybatis.delete("BookmarkDAO.pictureHeartRemove", vo);
 				
 				if (result == 1) {	// p_heart 테이블에 좋아요 삭제가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				}
+				}}
 				return pto;
 	}
 	

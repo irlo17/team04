@@ -34,17 +34,6 @@ public class BookmarkServiceImpl implements BookmarkService {
 		 return bookmarkDAO.bookmarkGetList( map ); }
 
 
-	@Override
-	public void bookmarkUpdateLike(int listNum) {
-		bookmarkDAO.bookmarkUpdateLike(listNum);
-
-	}
-
-	@Override
-	public void bookmarkUpdateLikeMa(int listNum) {
-		bookmarkDAO.bookmarkUpdateLike(listNum);
-
-	}
 
 	@Override
 	public List<BookmarkVO> bookmarkGetBestList(){
