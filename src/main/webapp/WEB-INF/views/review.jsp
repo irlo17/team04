@@ -27,53 +27,6 @@
 
 
 <title>Directing | Template</title>
-<script type="text/javascript">
-    
-    
-       $(function(){
-           
-           
-           /*회원정보 즐겨찾기 리뷰관리 로그아웃에 마우스를 올려두면 마우스포인트 손모양 바뀜*/
-           $('.cate_1').css({
-               cursor : 'pointer'
-               
-           })
-           
-            $('.cate_2').css({
-               cursor : 'pointer'
-               
-           })
-           
-            $('.cate_3').css({
-               cursor : 'pointer'
-               
-           })
-           
-            $('.cate_4').css({
-               cursor : 'pointer'
-               
-           })
-           
-           
-           /*클릭했을시 색상을 핑크색으로 바뀌는것*/
-           
-           $('.categori li').click(function(){
-               $(this).css({"background" :"pink"})
-           })
-           
-           
-           
-       });
-       
-       
-  /*      
-       $('.modi_dele_button').onclick(function() {
-		$(this).location.href='review'
-	})
-        */
-       
-    
-</script>
 
 
 
@@ -103,123 +56,10 @@
 <link rel="stylesheet" href="resources/css/slicknav.min.css"
 	type="text/css">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
-
-
-<style type="text/css">
-
-/* Listing Section Begin 리뷰쪽 리스트 */
-.nuguri {
-	margin-top: 10px;
-	margin-left: 100px;
-	margin-right: 100px;
-	/* text-align: center;*/
-}
-
-/*가게명 inline-block*/
-.inline-block {
-	display: inline-block;
-	margin-top: 100px;
-}
-
-/* textarea 공간 넓히기*/
-.hb300 {
-	height: 320px;
-	width: 500px;
-	resize: none;
-}
-
-.dogdog {
-	display: flex;
-	align-items: center;
-	margin-bottom: 3px;
-	border-radius: 40px; 
-	background: ivory;
-}
-/*수정, 삭제 버튼 오른쪽으로 옮기기*/
-.modi_dele_button1 {
-	margin-left: 370px;
-}
+<link rel="stylesheet" href="resources/pageSpinner/review.css" type="text/css">
 
 
 
-.max-width1 {
-	max-width: 80%;
-	margin-top:65px;
-}
-
-/*가게명*/
-.shop_name {
-	padding-bottom: 30px;
-}
-
-/*리뷰 이미지*/
-.review_img {
-	padding-bottom: 46px;
-}
-
-/*---------왼쪽 네비바 관련-0-----*/
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	width: 200px;
-	background-color: #f1f1f1;
-}
-
-li a {
-	display: block;
-	color: #000;
-	padding: 8px 16px;
-	text-decoration: none;
-}
-
- a.active {
-	background-color: lightpink;
-	color: black;
-	text-align: center;
-}
-
-li a:hover:not(.active) {
-	background-color: #555;
-	color: white;
-}
-
-li.on {
-	color: #555;
-}
-
-/* .ul_nav {
-	background: #fff;
-} */
-
-.box {
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-}
-
-
-.nick{
-  margin-top: -20px;
-   text-align: center;
-}
-
-.filter__title{
-    position: absolute;
-     top: 25%;
-     left: 50%;
-     transform: translate(-50%,-50%);
-}
-
-.profile{
-	    max-width: 120%;
-	    
-}
-
-
-/*---------왼쪽 네비바 관련-0-----*/
-</style>
 
 </head>
 
@@ -338,18 +178,29 @@ li.on {
 	<section class=" nice-scroll nuguri">
 		<div class="listing__text__top col-md-12 dogdog">
 			<div class="listing__text__top__left fa fa-pencil-square fa-2x">
+				<h5></h5>
+
+			</div>
+		</div>
+		
+		
+		<div class="listing__text__top col-md-12 dogdog">
+			<div class="listing__text__top__left fa fa-pencil-square fa-2x">
 				<h5>리뷰 관리</h5>
 
 			</div>
-			<!--  <div class="listing__text__top__right"> <i class="fa fa-sort-amount-asc"></i></div>-->
 		</div>
 
-
-
-
+		<c:forEach items="${reviewList }" var="review">
+		
 		<div class="listing__list">
-			<c:forEach items="${reviewList }" var="review">
-				<div class="listing__item dogdog">
+		
+			<c:set var="listCount" value="${listCount }"/>
+			
+				<c:choose>
+					<c:when test="${  listCount >0}">
+			
+				<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
 
 					<div class="col-md-4 inline-block">
 						<div style="font-weight: bold; font-size: 1.5em;"
@@ -390,11 +241,33 @@ li.on {
 						</form>
 						
 					</div>
-				</div>
-			</c:forEach>
+				</div>		<!--리뷰 목록 끝-->
+				</c:when>
+				</c:choose>
 		</div>
+		
+	</c:forEach>
+	
+	
+	
+	<c:choose>
+		<c:when test="${listCount eq 0 }">
+					<c:out value='"등록하신 리뷰가"+${listCount  }+"개입니다"'></c:out>
+									<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
 
-
+					<div class="col-md-8 inline-block">
+						<div style="font-weight: bold; font-size: 3em;"
+							class="shop_name noReview" >가게명: 등록하신 리뷰가 없습니다.</div>
+							</div>
+							</div>
+							
+							
+							
+						
+							
+							
+					</c:when>	
+	</c:choose>
 
 
 
@@ -417,6 +290,8 @@ li.on {
 	<script src="resources/js/jquery.slicknav.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	<script src="resources/pageSpinner/review.js"></script>
+	
 </body>
 
 </html>
