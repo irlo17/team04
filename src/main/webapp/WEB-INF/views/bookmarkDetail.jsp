@@ -88,8 +88,8 @@ $(document).ready(function() {
         	 $('#heart'+no).text(result);
          },
          error : function(err) {
-             alert('서버 에러');
-             console.log(err);
+             //alert('서버 에러');
+             //console.log(err);
          }
      });
 	
@@ -108,8 +108,8 @@ $(document).ready(function() {
         	 
          },
          error : function(err) {
-             alert('서버 에러');
-             console.log(err);
+             //alert('서버 에러');
+             //console.log(err);
          }
      });
 	
@@ -133,7 +133,7 @@ $(document).ready(function() {
 	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	            success : function(likeCount) {
 	                //페이지 새로고침
-						alert(likeCount);
+						//alert(likeCount);
 	                /* let heart = likeCount.listLike; */
 	
 	                // 페이지에 하트수 갱신
@@ -144,8 +144,8 @@ $(document).ready(function() {
 	                console.log(likeCount);
 	            },
 	            error : function(err) {
-	                alert('서버 에러');
-	                console.log(err);
+	                //alert('서버 에러');
+	               // console.log(err);
 	            }
 	        });
 	        console.log("꽉찬하트로 바껴라!");
@@ -168,7 +168,7 @@ $(document).ready(function() {
 	            success : function(likeCount) {
 	                //페이지 새로고침
 	                //document.location.reload(true);
-					alert(likeCount);
+					//alert(likeCount);
 	                /* let heart = likeCount.listLike; */
 	                // 페이지에 하트수 갱신
 	                if(likeCount <= 0){
@@ -180,8 +180,8 @@ $(document).ready(function() {
 	                console.log("하트삭제 성공");
 	            },
 	            error : function(err) {
-	                alert('서버 에러');
-	                console.log(err);
+	               // alert('서버 에러');
+	                //console.log(err);
 	            }
 	        });
 	        console.log("빈하트로 바껴라!");
@@ -201,6 +201,7 @@ $(document).ready(function() {
 	$(".heart-notlogin").unbind('click');
 	$(".heart-notlogin ").click(function() {
 	    alert('로그인 하셔야 하트를 누를수 있습니다!');
+	    
 	});
 });
 </script>

@@ -156,7 +156,7 @@ position: relative; left:400px; }
 		<br/>
 		<br/>
 
-		<div class="">
+		<div class="categori">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
 			</h4>
@@ -165,14 +165,14 @@ position: relative; left:400px; }
 		<hr />
 
 
-		<div class="">
+		<div class="categori" id="check">
 			<h4>
 				<a href="mylist.do?page=1">즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
 				<a href="review.do">리뷰관리</a>
 		</h4>
@@ -191,7 +191,7 @@ position: relative; left:400px; }
 			<br />
 			<br />
 			<hr />
-			<div class="cate_4">
+			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 
