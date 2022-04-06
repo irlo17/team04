@@ -103,8 +103,11 @@ public class BookmarkController {
 	  //bookmarkGetMylistDetail 페이징 추가
 
 	  @RequestMapping("mylistDetail.do")
-	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo ) {
+	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo, MemberVO mvo,HttpSession session) {
 		  vo.setListNumber(listNumber);
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  vo.setCountPerPage(6);
 		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
 		  vo.setStartRow(vo.getPage());
@@ -117,9 +120,12 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("modify1.do")
-	  public String bookmarkModify(String listNumber, Model model ) {
+	  public String bookmarkModify(String listNumber, Model model, MemberVO mvo,HttpSession session ) {
 			BookmarkVO vo= bookmarkService.bookmarkGetDetail(listNumber);
 			model.addAttribute("bookmark", vo);
+			mvo.setMemberEmail((String)session.getAttribute("logemail"));
+			MemberVO member = memberService.memberSearch(mvo);
+			model.addAttribute("MemberVO", member);
 
 		  return "modify1";
 	  }
@@ -137,8 +143,11 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("detailModify.do")
-	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo ) {
+	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo, MemberVO mvo) {
 		  String memberEmail= (String)session.getAttribute("logemail");
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  vo.setListNumber(listNumber);
 		  vo.setCountPerPage(6);
 		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
@@ -166,8 +175,10 @@ public class BookmarkController {
 		  }
 
 	  @RequestMapping("addPageView.do")
-	  public String addPageView() {
-
+	  public String addPageView(MemberVO mvo, HttpSession session, Model model) {
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  return "mylistadd";
 	  }
 
