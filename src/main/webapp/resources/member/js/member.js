@@ -1,5 +1,5 @@
 
-
+	
 /**
 *	유효성 검사 정규식
  */
@@ -161,16 +161,6 @@ $('#btn_signUp').click(function(){
 		$('label[for="memberName"] .error_box').html("");
 		}
 		
-	// 생년월일 max를 오늘 날짜로 지정하기
- 	var today = new Date();
- 	var day = today.getDate();
- 	var monty = today.getMonth()+1;
- 	var year = today.getFullYear();
-
-	if(day<10){ day = '0'+ day}
-	if(monty<10){ monty = '0' + monty}
-	today = year + "-" + monty + "-" + day;
-	document.getElementById('memberBirth').setAttribute("max", today);
 		
 	/* 생년월일 */
 	if(memberBirth == ''){
@@ -466,9 +456,16 @@ $('#btnMemberUpdate').click(function(){
 	 document.memberUpdateForm.submit();
 }) //end of #btnMemberUpdate
 
-$('#btnMemberDelete').click(function(){
-  	alert('확인');
-	$('.modalMemberDelete').fadeIn()
-})
+
+// 생년월일 max를 오늘 날짜로 지정하기
+ 	var today = new Date();
+ 	var day = today.getDate();
+ 	var monty = today.getMonth()+1;
+ 	var year = today.getFullYear();
+
+	if(day<10){ day = '0'+ day}
+	if(monty<10){ monty = '0' + monty}
+	today = year + "-" + monty + "-" + day;
+	document.getElementById('memberBirth').setAttribute("max", today);
 
 

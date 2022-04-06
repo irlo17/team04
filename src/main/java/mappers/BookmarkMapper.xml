@@ -72,6 +72,7 @@ FROM (
         FROM ( 
             SELECT bookmark.*
             FROM bookmark
+            WHERE member_email=#{memberEmail}
             ORDER BY LIST_NUMBER DESC
             )bookmark
             )bookmark
