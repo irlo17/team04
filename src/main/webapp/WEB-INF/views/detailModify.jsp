@@ -170,15 +170,15 @@ $(function(){
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
+					</c:when>
 					
-					<memberFile:otherwise>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 			
 			</div>
 			<h5 class="nick">
@@ -256,7 +256,7 @@ $(function(){
                          <div class="col-lg-6 col-md-6">
                          <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+                               <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"> <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">  
                                         <li><i class="fa-solid fa-utensils"></i>${bookmark.shopAddressSi}</li>
@@ -272,14 +272,17 @@ $(function(){
                         </div>
                       </c:forEach>
                     </div>
-                  
-                <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
             </div>
         </div>

@@ -17,9 +17,6 @@ public interface BookmarkService {
 	 */
 	public int bookmarkListCount();
 		
-	public void bookmarkUpdateLike(int listNum);
-	
-	public void bookmarkUpdateLikeMa(int listNum);
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	
@@ -53,4 +50,9 @@ public interface BookmarkService {
 	public BookmarkVO pictureSaveHeart(HeartVO vo);
 	
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//리스트 안 가게 총 개수 구하기
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+	
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
 }

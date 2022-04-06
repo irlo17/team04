@@ -29,13 +29,6 @@ import com.team04.domain.PagingVO;
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
 
 
-	//좋아요 +1 (미완)
-	public void bookmarkUpdateLike(int num);
-
-
-	//좋아요-1 (미완)
-	public void bookmarkUpdateLikeMa(int num);
-
 	//공개리스트 베스트 순으로 뽑기
 	public List<BookmarkVO> bookmarkGetBestList();
 
@@ -80,4 +73,11 @@ import com.team04.domain.PagingVO;
 	
 	//좋아요 하트 수 감소
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//즐겨찾기 상세 목록 가게 수
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
 	}
+	

@@ -31,13 +31,9 @@ public class BookmarkController {
 		
 		  HashMap map = new HashMap(); 
 
-
-
-
-
 		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
-		  
+		  vo.setCountPerPage(10);
 		  vo.setPageTotalCount(bookmarkService.bookmarkListCount());
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
@@ -45,22 +41,10 @@ public class BookmarkController {
 		  map.put("endRow", vo.getEndRow());
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list);
+		  model.addAttribute("paging", vo);
 		  return "totalbookmark";
 	  }
 
-
-
-		/*
-		 * @RequestMapping("UpdateLike.do") private String bookmarkUpdateLike(String
-		 * listNumber ) { int listNum=Integer.parseInt(listNumber);
-		 * bookmarkService.bookmarkUpdateLike(listNum); return
-		 * "redirect:totalbookmark.do"; }
-		 *
-		 * @RequestMapping("UpdateLikeMa.do") private String bookmarkUpdateLikeMa(String
-		 * listNumber ) { int listNum=Integer.parseInt(listNumber);
-		 * bookmarkService.bookmarkUpdateLikeMa(listNum); return
-		 * "redirect:totalbookmark.do"; }
-		 */
 
 
 	  @RequestMapping("main.do")
@@ -83,6 +67,7 @@ public class BookmarkController {
 	@RequestMapping("mylist.do")
 	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo) {
 		vo.setMemberEmail((String)session.getAttribute("logemail"));
+		vo.setCountPerPage(10);
 		vo.setPageTotalCount(bookmarkService.bookmarkMylistTotalCount(vo));
 		vo.setStartRow(vo.getPage());
 		vo.setEndRow(vo.getPage());
@@ -93,20 +78,33 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("bookmarkDetail.do")
-	  private String bookmarkGetDetail(String listNumber,Model model ) {
-		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+	  private String bookmarkGetDetail(String listNumber,Model model, PagingVO vo) {
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list);
 		  return "bookmarkDetail";
 	  }
 
 
 
-
+	  //bookmarkGetMylistDetail 페이징 추가
 
 	  @RequestMapping("mylistDetail.do")
-	  private String bookmarkGetMylistDetail(String listNumber,Model model ) {
-		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo ) {
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  
 		  model.addAttribute("bookmarkList", list);
+		  model.addAttribute("paging", vo);
 		  return "mylistDetail";
 	  }
 
@@ -131,12 +129,18 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("detailModify.do")
-	  public String mylistModifydetail(String listNumber,Model model,HttpSession session) {
+	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo ) {
 		  String memberEmail= (String)session.getAttribute("logemail");
-		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetail(listNumber);
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetailPaging(vo);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
 		  model.addAttribute("bookmarkModify", list1);
-		  model.addAttribute("bookmarkList", list2);
+		  model.addAttribute("paging", vo);
+		  model.addAttribute("bookmarkList", list2);	// 모달창 (페이징 없음)
 
 		return "detailModify";
 	  }
@@ -171,8 +175,8 @@ public class BookmarkController {
 
 	// 빈하트 클릭시 하트 저장
 	  @ResponseBody
-	  @RequestMapping(value = "saveHeart.do")
-	  public BookmarkVO save_heart(int listNumber, HttpSession session) {
+	  @RequestMapping(value = "saveHeart.do" ,produces="application/text;charset=utf-8")
+	  public int save_heart(int listNumber, HttpSession session) {
 
 		  
 		  HeartVO hvo = new HeartVO();
@@ -185,37 +189,37 @@ public class BookmarkController {
 		  BookmarkVO bvo= bookmarkService.pictureSaveHeart(hvo);
 		  
 		  
-	      return bvo;
+	      return bvo.getListLike();
 	  }
 
-	  @RequestMapping(value="UpdateLike.do")
-	  public String liketbUpdate(long listNumber, Model model,  HttpSession session) {
-
-		String memberEmail=(String)session.getAttribute("logemail");
-	  	HeartVO heart = new HeartVO();
-	  	// 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄.
-	  	//heart = bookmarkService.findHeart(listNumber,listNumber);
-	  	// 찾은 정보를 heart로 담아서 보냄
-	  	model.addAttribute("heart",heart);
-	  	return "redirect:totalbookmark.do";
-
-	  }
+		/*
+		 * @RequestMapping(value="UpdateLike.do") public String liketbUpdate(long
+		 * listNumber, Model model, HttpSession session) {
+		 * 
+		 * String memberEmail=(String)session.getAttribute("logemail"); HeartVO heart =
+		 * new HeartVO(); // 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄. //heart =
+		 * bookmarkService.findHeart(listNumber,listNumber); // 찾은 정보를 heart로 담아서 보냄
+		 * model.addAttribute("heart",heart); return "redirect:totalbookmark.do";
+		 * 
+		 * }
+		 */
 
 	  // 꽉찬하트 클릭시 하트 해제
 	  @ResponseBody
-	  @RequestMapping(value = "removeHeart.do")
-	  public BookmarkVO remove_heart( int listNumber, HttpSession session) {
-	      
+	  @RequestMapping(value = "removeHeart.do",produces="application/text;charset=utf-8")
+	  public int remove_heart( int listNumber, HttpSession session) {
+		 
 		  HeartVO hvo = new HeartVO();
 	      // 게시물 번호 세팅
 	      hvo.setListNumber(listNumber);
 	      // 좋아요 누른 사람 nick을 userid로 세팅
 	      hvo.setMemberEmail((String) session.getAttribute("logemail"));
+	      
 	      // -1된 하트 갯수를 담아오기위함
 	      BookmarkVO bvo=  bookmarkService.pictureRemoveHeart(hvo);
 	     
 
-	      return bvo;
+	      return bvo.getListLike();
 	  }
 
 }

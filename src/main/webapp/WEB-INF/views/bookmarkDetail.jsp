@@ -92,8 +92,8 @@ $(document).ready(function() {
 	            },
 	            success : function(likeCount) {
 	                //페이지 새로고침
-	
-	                let heart = likeCount.listLike;
+						alert(likeCount);
+	                /* let heart = likeCount.listLike; */
 	
 	                // 페이지에 하트수 갱신
 	                
@@ -102,8 +102,9 @@ $(document).ready(function() {
 	                console.log("하트추가 성공");
 	                console.log(likeCount);
 	            },
-	            error : function() {
+	            error : function(err) {
 	                alert('서버 에러');
+	                console.log(err);
 	            }
 	        });
 	        console.log("꽉찬하트로 바껴라!");
@@ -125,16 +126,17 @@ $(document).ready(function() {
 	            success : function(likeCount) {
 	                //페이지 새로고침
 	                //document.location.reload(true);
-	
-	                let heart = likeCount.listLike;
+					alert(likeCount);
+	                /* let heart = likeCount.listLike; */
 	                // 페이지에 하트수 갱신
 	                $('#heart'+no).text(heart);
 	
 	                console.log("하트삭제 성공");
 	                console.log(heart);
 	            },
-	            error : function() {
+	            error : function(err) {
 	                alert('서버 에러');
+	                console.log(err);
 	            }
 	        });
 	        console.log("빈하트로 바껴라!");
@@ -209,6 +211,7 @@ $(document).ready(function() {
             <c:when test="${empty tmp.hno}">
                 <%-- 빈 하트일때 --%>
                 <div id='btnl'>  <a id="${tmp.listNumber }" href="javascript:"
+                	
                     class="heart-click heart_icon${tmp.listNumber }"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a>  좋아요
                 </div>
             </c:when>
@@ -235,7 +238,7 @@ $(document).ready(function() {
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row">
+                    <div class="row" >
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                     			
                         <div class="col-lg-6 col-md-6">
@@ -256,13 +259,17 @@ $(document).ready(function() {
                         </div>
                       </c:forEach>
                     </div>
-                <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
                 
             </div>
