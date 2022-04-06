@@ -174,6 +174,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <!-- 내부 차트 js -->
         <script type="text/javascript">
+        
+        
+        
+        
         // monthListGeneration = 월별 즐겨찾기 리스트 생성 수 차트
         var jsonDataList = ${jsonList}
         var jsonObjList = JSON.stringify(jsonDataList);

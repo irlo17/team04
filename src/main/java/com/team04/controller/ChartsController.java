@@ -42,8 +42,8 @@ public class ChartsController {
 		while (itList.hasNext()) {
 			ChartsVO cVO = itList.next();
 			JsonObject objList = new JsonObject();
-			String monthList = cVO.getMonthList();
-			int cntList = cVO.getCntList();
+			String monthList = cVO.getList();
+			int cntList = cVO.getCnt();
 			
 			objList.addProperty("MonthList", monthList);
 			objList.addProperty("CountList", cntList);
@@ -66,8 +66,8 @@ public class ChartsController {
 		while (it.hasNext()) {
 			ChartsVO cVO = it.next();
 			JsonObject object = new JsonObject();
-			String month = cVO.getMonth();
-			int cntMember = cVO.getCntMember();
+			String month = cVO.getList();
+			int cntMember = cVO.getCnt();
 			
 			object.addProperty("Month", month);
 			object.addProperty("CountMember", cntMember);
@@ -107,8 +107,8 @@ public class ChartsController {
 		while (itList.hasNext()) {
 			ChartsVO cVO = itList.next();
 			JsonObject objList = new JsonObject();
-			String monthList = cVO.getMonthList();
-			int cntList = cVO.getCntList();
+			String monthList = cVO.getList();
+			int cntList = cVO.getCnt();
 			
 			objList.addProperty("MonthList", monthList);
 			objList.addProperty("CountList", cntList);
@@ -131,8 +131,8 @@ public class ChartsController {
 		while (it.hasNext()) {
 			ChartsVO cVO = it.next();
 			JsonObject object = new JsonObject();
-			String month = cVO.getMonth();
-			int cntMember = cVO.getCntMember();
+			String month = cVO.getList();
+			int cntMember = cVO.getCnt();
 			
 			object.addProperty("Month", month);
 			object.addProperty("CountMember", cntMember);
@@ -155,8 +155,8 @@ public class ChartsController {
 		while (itShop.hasNext()) {
 			ChartsVO cVO = itShop.next();
 			JsonObject objShop = new JsonObject();
-			String shopFood = cVO.getShopFood();
-			int cntShop = cVO.getCntShop();
+			String shopFood = cVO.getList();
+			int cntShop = cVO.getCnt();
 			
 			objShop.addProperty("ShopFood", shopFood);
 			objShop.addProperty("CountShop", cntShop);

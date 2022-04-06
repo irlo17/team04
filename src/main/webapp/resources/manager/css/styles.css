@@ -3967,7 +3967,7 @@ textarea.form-control-lg {
     transition: none;
   }
 }
-.nav-link:hover, .nav-link:focus, .nav-link:visited {
+.nav-link:hover, .nav-link:focus {
   color: #0a58ca;
 }
 
