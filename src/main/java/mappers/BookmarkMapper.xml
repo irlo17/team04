@@ -37,10 +37,10 @@ WHERE rnum between ${startRow} and ${endRow}
 
 <select id="bookmarkGetBestList" resultType="BookmarkVO">
 
-SELECT  b.list_name , m.member_nickname ,b.list_like, b.list_number
+SELECT  b.list_name , m.member_nickname ,nvl(b.list_like,0), b.list_number
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
-where b.list_display = 'yes' order by  b.list_like desc
+where b.list_display = 'yes' order by  nvl(b.list_like,0) desc
 </select>
 
 <!-- 나만의 즐겨찾기 총 개수 구하기 -->

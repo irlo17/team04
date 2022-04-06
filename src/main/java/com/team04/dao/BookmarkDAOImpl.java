@@ -210,11 +210,11 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 				int result;
 				if (result2 == 1) {
 					result = mybatis.insert("BookmarkDAO.pictureHeartSave", vo);
-				}
-					// p_heart 테이블에 새로운 좋아요 추가가 성공한다면..
+				
+				if (result == 1) {	// p_heart 테이블에 새로운 좋아요 추가가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				
+				}}
 				return pto;
 	}
 
@@ -238,11 +238,13 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 				int result; 
 				if (result2 == 1) {
 				result= mybatis.delete("BookmarkDAO.pictureHeartRemove", vo);
-				}
-					// p_heart 테이블에 좋아요 삭제가 성공한다면..
+				
+				if (result == 1) {	// p_heart 테이블에 좋아요 삭제가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				
+				}}else {
+					
+				}
 				return pto;
 	}
 
@@ -259,20 +261,17 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		System.out.println("===> Mybatis bookmarkGetMylistDetailPaging() 호출");
 		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistDetailPaging",paging );
 	}
-
-
 	@Override
 	public HeartVO heartCheak(HeartVO vo) {
-		System.out.println("===> Mybatis heartCheak() 호출");
-		return mybatis.selectOne("BookmarkDAO.heartCheak",vo );
+	   System.out.println("===> Mybatis heartCheak() 호출");
+	   return mybatis.selectOne("BookmarkDAO.heartCheak",vo );
 	}
 
 
-	@Override
+	   @Override
 	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
-		System.out.println("===> Mybatis pictureHeartCount() 호출");
-		
-		return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
+	   System.out.println("===> Mybatis pictureHeartCount() 호출");
+	   return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
 	}
 	
 	

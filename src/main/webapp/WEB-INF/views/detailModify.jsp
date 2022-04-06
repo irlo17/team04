@@ -154,7 +154,7 @@ $(function(){
 
 						<div class="header__menu__right">
 							
-							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
 							 <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -207,7 +207,7 @@ $(function(){
 
 
 		<div class="">
-			<h4><a href='mylist.do'>즐겨찾기</a></h4>
+			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
@@ -256,7 +256,7 @@ $(function(){
                          <div class="col-lg-6 col-md-6">
                          <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
                             <div class="blog__item">
-                               <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"> <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
+                               <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }&page=1"> <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">  
                                         <li><i class="fa-solid fa-utensils"></i>${bookmark.shopAddressSi}</li>
