@@ -38,8 +38,14 @@ public class ReviewController {
 		vo.setMemberEmail(logemail);
 		MemberVO member = memberService.memberSearch(vo);
 		List<ReviewVO> list = reviewService.reviewGetList(logemail);
+		int listCount= list.size();
+		System.out.println(listCount);
 		m.addAttribute("reviewList",list);
+
 		m.addAttribute("MemberVO", member);
+
+		m.addAttribute("listCount",listCount);
+		
 		return "review";
 	}
 	

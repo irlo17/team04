@@ -2,12 +2,18 @@ package com.team04.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.awt.print.Pageable;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.Part;
 import org.springframework.stereotype.Controller;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
+import com.team04.domain.PagingVO;
 import com.team04.domain.ReportVO;
 import com.team04.domain.ReviewVO;
 import com.team04.domain.ShopVO;
@@ -35,9 +42,10 @@ public class ListingDetailsController {
 	 */
 
 	@RequestMapping("listingDetails.do")
-	public String listingDetailsGetList(String shopNumber, Model m, HttpSession session) {
+	public String listingDetailsGetList(String shopNumber, Model m, HttpSession session, PagingVO vo) {
 		/* System.out.println("이동완료"); */
 		String logemail = (String) session.getAttribute("logemail");
+		
 
 	
 		/* 가게 정보를 가져오기위해서 했는데 메뉴판뛰울려고 사용 */
@@ -75,8 +83,17 @@ public class ListingDetailsController {
 		List<ShopVO> list = listingDetailsService.listingDetailsGetList(shopNumber);
 		m.addAttribute("reviewInfo", list);
 		
-		list.size();
-		
+		//페이징 작업  ajax 도전 실패함
+		/*
+		 * vo.setShopNumber( Integer.valueOf(shopNumber) );
+		 * vo.setReviewPageTotalCount(listingDetailsService.reviewTotalCount(vo));
+		 * vo.setReviewStartRow(vo.getPage()); vo.setReviewEndRow(vo.getPage());
+		 * 
+		 * List<ReviewVO> reviewList = listingDetailsService.reviewPaging(vo);
+		 * m.addAttribute("paging",vo); //버튼수 m.addAttribute("reviewList", reviewList);
+		 */
+		  
+		  
 		
 		return "listingDetails";
 	}
@@ -171,5 +188,26 @@ public class ListingDetailsController {
 		
 		return "listingDetails3";
 	}
+	// ajax 페이징 실패작
+/*	@RequestMapping(value = "listingDetails", produces = "application/text;charset=UTF-8", method=RequestMethod.GET)
+	@ResponseBody
+	public String searchMoreNotify(@RequestParam Map<String,String> param , HttpServletRequest httpServletRequest) throws Exception {
+		
+		
+		HashMap<String, String> searchParam = new HashMap<String, String>();	// search 파라미터 생성
+		String shopNumber =  httpServletRequest.getParameter("shopNumber");
+		searchParam.put("reviewStartRow", param.get("startIndex"));	
+		searchParam.put("reviewEndRow", param.get("endIndex"));
+		searchParam.put("shopNumber", param.get("shopNumber"));
+		// startIndex ~ endIndex 범위에 해당하는 list 조회 
+		List<ReviewVO> addList = listingDetailsService.reviewPaging(searchParam);
+		
+		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(addList);
+		return jsonStr.toString();		
+	}   */
 
 }
