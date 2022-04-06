@@ -137,24 +137,9 @@
 			</div>
 	</div>
 
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-		
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="cate_4">
-				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
-
 			</div>
 	
 

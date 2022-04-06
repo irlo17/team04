@@ -161,3 +161,10 @@ input[type="file"]{
 #realNav{
 	padding-top: 230px;
 }
+
+#outlog{
+	padding-top: 315px;
+}
+#outlog>a{
+	color: black;
+}
