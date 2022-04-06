@@ -84,7 +84,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<!--   <a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>-->
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa fa-plus"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
                   <img class="memberFile profile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
                </c:when>
                <c:otherwise>
-                  <img class="memberFile profile" src="./resources/upload/${MemberVO.memberRealFname }">
+                  <img class="memberFile profile" src="./resources/upload/${MemberVO.memberRealfname }">
                </c:otherwise>
             </c:choose>
          	
@@ -141,7 +141,7 @@
 
 			<div class="cate_2">
 				<!--   <h4>즐겨찾기</h4>-->
-			<a href="mylist.do"><h4>즐겨찾기</h4></a>
+			<a href="mylist.do?page=1"><h4>즐겨찾기</h4></a>
 			</div>
 			<hr />
 

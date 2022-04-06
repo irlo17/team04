@@ -256,7 +256,7 @@ $(function(){
                          <div class="col-lg-6 col-md-6">
                          <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
                             <div class="blog__item">
-                               <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"> <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
+                               <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }&page=1"> <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">  
                                         <li><i class="fa-solid fa-utensils"></i>${bookmark.shopAddressSi}</li>
