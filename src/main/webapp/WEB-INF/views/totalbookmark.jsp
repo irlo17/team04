@@ -5,12 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-/* BookmarkDAOImpl bookmarkDAOImpl= new BookmarkDAOImpl();
-int totalPageCount = bookmarkDAOImpl.totalbookmarkCount();
-String pNum = request.getParameter("page"); 
-//4.해당 페이지의 파라메터를 넘겨서 레코드를 받아옴 =>5.아래에 for문으로 목록 출력
-List <BoardVO> mList =  service.getArticleList(pNum); 
- */
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -93,7 +88,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
                         
                         <div class="header__menu__right">
             				<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-                            <a href="mylist.do" class="login-btn"><i class="fa fa-user"></i></a>
+                            <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>

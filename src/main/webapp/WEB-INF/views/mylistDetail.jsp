@@ -215,7 +215,7 @@ position: relative; left:400px; }
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+                             <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>   
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">
                                         <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>

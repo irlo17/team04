@@ -197,7 +197,7 @@ margin-bottom:50px;
 			
 		<div class="listing__text__top col-md-12 dogdog">
 		<div id="my"><h4 id='ga'><i class="fa-solid fa-apple-whole"></i>  나만의 즐겨찾기 목록</h4></div>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -209,7 +209,7 @@ margin-bottom:50px;
 				</thead>
 				<tbody>
 				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
-					<tr class="active">
+					<tr >
 						<th scope="row">${status.count+((paging.page-1)*10)}</th>
 						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}&page=1">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>

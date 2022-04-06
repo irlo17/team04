@@ -121,8 +121,8 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="listing__item">
                                     		
-                            
-                                        <div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div>
+                            				
+                                     <a href="mylistDetail.do?listNumber=${bookmark.listNumber}"><div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div></a>
                                            <div class="listing__item__pic__btns">
                                             </div>
                                         
