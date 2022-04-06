@@ -83,6 +83,10 @@ position: relative; left:400px; }
 .glyphicon{color:red; font-size:30px; right:20px;}
 
 .blog__item__pic{width:555px;height:310px;}
+
+.filter{padding-top: 200px;}
+
+
 </style>
 <script type="text/javascript">
 
@@ -207,7 +211,6 @@ position: relative; left:400px; }
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="row">
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">

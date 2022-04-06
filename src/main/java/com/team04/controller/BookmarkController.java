@@ -160,7 +160,7 @@ public class BookmarkController {
 	// 빈하트 클릭시 하트 저장
 	  @ResponseBody
 	  @RequestMapping(value = "saveHeart.do")
-	  public String save_heart(int listNumber, HttpSession session,Model model) {
+	  public BookmarkVO save_heart(int listNumber, HttpSession session) {
 
 		  
 		  HeartVO hvo = new HeartVO();
@@ -171,15 +171,15 @@ public class BookmarkController {
 		  
 	      // +1된 하트 갯수를 담아오기위함
 		  BookmarkVO bvo= bookmarkService.pictureSaveHeart(hvo);
-		  model.addAttribute("likeCount", bvo);
 		  
-	      return "totalbookmark";
+		  
+	      return bvo;
 	  }
 
 	  // 꽉찬하트 클릭시 하트 해제
 	  @ResponseBody
 	  @RequestMapping(value = "removeHeart.do")
-	  public String remove_heart( int listNumber, HttpSession session,Model model) {
+	  public BookmarkVO remove_heart( int listNumber, HttpSession session) {
 	      
 		  HeartVO hvo = new HeartVO();
 	      // 게시물 번호 세팅
@@ -188,9 +188,9 @@ public class BookmarkController {
 	      hvo.setMemberEmail((String) session.getAttribute("logemail"));
 	      // -1된 하트 갯수를 담아오기위함
 	      BookmarkVO bvo=  bookmarkService.pictureRemoveHeart(hvo);
-	      model.addAttribute("likeCount", bvo);
+	     
 
-	      return "totalbookmark";
+	      return bvo;
 	  }
 
 }
