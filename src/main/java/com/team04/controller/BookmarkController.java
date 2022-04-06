@@ -10,19 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.HeartVO;
+import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.PagingVO;
 import com.team04.service.BookmarkServiceImpl;
+import com.team04.service.MemberService;
 
 @Controller
 public class BookmarkController {
 
 	@Autowired
 	private BookmarkServiceImpl bookmarkService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	
 	
@@ -30,7 +35,7 @@ public class BookmarkController {
 	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model, PagingVO vo) {
 		
 		  HashMap map = new HashMap(); 
-
+		  
 		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
 		  vo.setCountPerPage(10);
@@ -65,8 +70,11 @@ public class BookmarkController {
 	 * @return
 	 */
 	@RequestMapping("mylist.do")
-	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo) {
+	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo, MemberVO mvo) {
 		vo.setMemberEmail((String)session.getAttribute("logemail"));
+		mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		MemberVO member = memberService.memberSearch(mvo);
+		model.addAttribute("MemberVO", member);
 		vo.setCountPerPage(10);
 		vo.setPageTotalCount(bookmarkService.bookmarkMylistTotalCount(vo));
 		vo.setStartRow(vo.getPage());

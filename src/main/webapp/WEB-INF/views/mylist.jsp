@@ -80,7 +80,6 @@ margin-bottom:50px;
 
 .table{width:100%; }
 .btn-success{position: relative; left:90%;}
-.filter{padding-top: 200px;}
 </style>
 
 </head>
@@ -121,33 +120,22 @@ margin-bottom:50px;
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
 			</h5>
 		</div>
-
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
-		<div class="">
+	<div id="realNav">
+		<div class="categori">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
 			</h4>
@@ -156,18 +144,19 @@ margin-bottom:50px;
 		<hr />
 
 
-		<div class="">
+		<div class="categori" id="check">
 			<h4>
 				<a href="mylist.do?page=1">즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
 				<a href="review.do">리뷰관리</a>
 		</h4>
 		</div>
+	</div>
 
 			<br />
 			<br />
