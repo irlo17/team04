@@ -4,19 +4,15 @@ public class HeartVO {
 	int likeNumber;
 	int listNumber;
 	String memberEmail;
-	int like_count;
-	
-	
 	
 	public HeartVO() {
 	
 	}
-	public HeartVO(int likeNumber, int listNumber, String memberEmail, int like_count) {
+	public HeartVO(int likeNumber, int listNumber, String memberEmail) {
 		super();
 		this.likeNumber = likeNumber;
 		this.listNumber = listNumber;
 		this.memberEmail = memberEmail;
-		this.like_count = like_count;
 	}
 	
 	
@@ -40,14 +36,5 @@ public class HeartVO {
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
 	}
-	public int getLike_count() {
-		return like_count;
-	}
-	public void setLike_count(int like_count) {
-		this.like_count = like_count;
-	}
-
-	
-	
 	
 }
