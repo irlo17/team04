@@ -175,8 +175,8 @@
 					
 					
 					<!-- 프로필 사진 -->
-					<div class="form-group first">
-						<div class="box email_check col-md-4" >
+					<div class="form-group first memberFileForm">
+						<div class="box" >
 							<memberFile:choose>
 								<memberFile:when test="${ empty MemberVO.memberFname }">
 									<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
@@ -186,62 +186,57 @@
 								</memberFile:otherwise>
 							</memberFile:choose>
 						</div>
-						<div class="email_check col-md-8" >
-							<label for="memberFile">프로필 사진</label> 
+							<label class="label mFile" for="memberFile">프로필 사진 수정</label> 
 							<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
-						</div>
 					</div>
 					
 					<!-- NICKNAME -->
 					<div class="form-group first">
-						<label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="text" class="form-control form_nick formInt" id="memberNickname" name="memberNickname" value="${MemberVO.memberNickname }" >
 					</div>
 
 					<!-- EMAIL -->
 					<div class="form-group first">
-						<label for="memberEmail">이메일</label> 
+						<label class="label" for="memberEmail">이메일</label> 
 						<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
 					</div>
 
 					<!-- PW -->
-					<div class="form-group">
-						<label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+					<div class="form-group first">
+						<label class="label" for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="memberPassword" name="memberPassword">
 					</div>
 
 					<!-- PW CHECK -->
-					<div class="form-group last mb-4">
-						<label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+					<div class="form-group first">
+						<label class="label" for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="passwordCheck">
 					</div>
 
 					<!-- NAME -->
 					<div class="form-group first">
-						<label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
 					</div>
 
 					<!-- BIRTH -->
 					<div class="form-group first">
-						<label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" readonly> 
 					</div>
 
 
 					<!-- TEL -->
 					<div class="form-group first">
-						<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="tel" class="form-control formInt" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
 					</div>
 					
 
-					<br/>
-					<br/>
+				
 					<input type="button" value="회원정보수정" id="btnMemberUpdate" class="btn btn-pill text-white btn-block btn-danger">
-					<br/>
-					<br/>
-					<br/>
+					
 					<hr/>
 					<br/>
 				</form>

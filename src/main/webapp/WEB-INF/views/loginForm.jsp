@@ -39,9 +39,10 @@
               <div class="form-block">
                   <div class="mb-4">
                   <h3><strong>LOGIN</strong></h3>
+                  <span class="error_box login"></span>
                   <p class="mb-4"></p>
                 </div>
-                <form action="loginCheck.do" method="post" id="loginForm" name="loginForm">
+                <form action="loginMove.do" method="post" id="loginForm" name="loginForm">
                   <div class="form-group first">
                     <label for="memberEmail">이메일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="email" class="form-control" id="memberEmail" name="memberEmail">

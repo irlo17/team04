@@ -19,6 +19,16 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 * @return int
+	 */
+	@Override
+	public int bookmarkListCount() {
+		System.out.println("===> Mybatis bookmarkListCount() 호출"); 
+		return mybatis.selectOne("BookmarkDAO.bookmarkListCount");
+	}
 
 
 	/* 메소드명:bookmarkGetList

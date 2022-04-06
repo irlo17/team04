@@ -5,11 +5,18 @@
 
 <mapper namespace="BookmarkDAO">
 
-
+<!-- 공개여부 : "yes" 인 즐겨찾기 전체 개수 -->
+<select id="bookmarkListCount" resultType="int">
+SELECT count(*)
+FROM bookmark b INNER JOIN member m
+ON b.member_email = m.member_email
+where b.list_display = 'yes' 
+order by  b.list_date desc
+</select>
 
 <select id="bookmarkGetList" resultType="BookmarkVO" parameterType="hashmap" >
 
-SELECT b.list_number , b.list_name listName , m.member_nickname ,b.list_like 
+SELECT b.list_number , b.list_name listName , m.member_nickname 
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
 where b.list_display = 'yes' 
@@ -36,11 +43,11 @@ order by  b.list_date desc
 
 
 <select id="bookmarkGetBestList" resultType="BookmarkVO">
+
 SELECT  b.list_name , m.member_nickname ,b.list_like, b.list_number
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
 where b.list_display = 'yes' 
-order by  b.list_like desc
 </select>
 
 <!-- 나만의 즐겨찾기 총 개수 구하기 -->
@@ -52,6 +59,7 @@ WHERE member_email=#{memberEmail}
 
 
 <select id="bookmarkGetMylistPaging" resultType="BookmarkVO" parameterType="PagingVO">
+
  SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
 FROM ( SELECT rownum rnum, bookmark.*
         FROM bookmark 
@@ -61,6 +69,7 @@ WHERE rnum between  #{startRow} and #{endRow}
 </select>
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
+
   SELECT  list_Number, list_name , list_display , list_like 
 FROM bookmark 
 WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->

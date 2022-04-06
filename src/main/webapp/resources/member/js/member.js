@@ -227,7 +227,7 @@ $('#btn_signUp').click(function(){
 */
 
 $('#btnLogin').click(function(){
-	alert("확인");
+
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
 	
@@ -249,9 +249,28 @@ $('#btnLogin').click(function(){
 		}else{
 		$('label[for="memberPassword"] .error_box').html("");
 		}
-
-	document.loginForm.submit();
 	
+  $.ajax({
+	type : 'post',
+	url : 'loginCheck.do',
+	data : { memberEmail : $('#memberEmail').val(),
+			memberPassword : $('#memberPassword').val(),
+	 		},
+	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	success : function(result){
+		// 중복 검사 후 나오는 결과 에러박스에 출력
+		if(result == "N"){
+        		$('.error_box.login').html("존재하는 회원이 아닙니다.");
+			}else{
+				alert("로그인 성공");
+        		document.loginForm.submit();
+			}
+	},
+	error : function(err){
+		alert(err);
+		console.log(err);
+	}
+	});//end of ajax
 }); //end of #btnLogin 
 
 
@@ -286,7 +305,7 @@ $('#btnPwSearch').click(function(){
 				}
     	},
     	error : function(err){
-	        $('.error_box.pwSearch').html("존재하는 회원이 아닙니다.");
+	        
 			alert('실패');
     		console.log(err);
     	}

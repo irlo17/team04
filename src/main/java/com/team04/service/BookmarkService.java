@@ -11,6 +11,11 @@ import com.team04.domain.PagingVO;
 public interface BookmarkService {
 
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
+	
+	
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 */
+	public int bookmarkListCount();
 		
 	public void bookmarkUpdateLike(int listNum);
 	

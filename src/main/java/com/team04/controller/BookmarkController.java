@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.team04.domain.BookmarkVO;
 import com.team04.domain.HeartVO;
 import com.team04.domain.MylistVO;
@@ -25,13 +24,25 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkServiceImpl bookmarkService;
 
+	
+	
+	  @RequestMapping("totalbookmark.do") 
+	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model, PagingVO vo) {
+		
+		  HashMap map = new HashMap(); 
 
-	  @RequestMapping("totalbookmark.do")
-	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model) {
 
-		  HashMap map = new HashMap();
+
+
+
 		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
+		  
+		  vo.setPageTotalCount(bookmarkService.bookmarkListCount());
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  map.put("startRow", vo.getStartRow());
+		  map.put("endRow", vo.getEndRow());
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list);
 		  return "totalbookmark";
@@ -157,6 +168,7 @@ public class BookmarkController {
 		  return "redirect:mylist.do?page=1";
 	  }
 
+
 	// 빈하트 클릭시 하트 저장
 	  @ResponseBody
 	  @RequestMapping(value = "saveHeart.do")
@@ -174,6 +186,19 @@ public class BookmarkController {
 		  
 		  
 	      return bvo;
+	  }
+
+	  @RequestMapping(value="UpdateLike.do")
+	  public String liketbUpdate(long listNumber, Model model,  HttpSession session) {
+
+		String memberEmail=(String)session.getAttribute("logemail");
+	  	HeartVO heart = new HeartVO();
+	  	// 좋아요가 되있는지 찾기위해 게시글번호와 회원번호를 보냄.
+	  	//heart = bookmarkService.findHeart(listNumber,listNumber);
+	  	// 찾은 정보를 heart로 담아서 보냄
+	  	model.addAttribute("heart",heart);
+	  	return "redirect:totalbookmark.do";
+
 	  }
 
 	  // 꽉찬하트 클릭시 하트 해제

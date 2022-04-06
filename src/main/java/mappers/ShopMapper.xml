@@ -28,8 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM shop s
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
-
-
 			<if test="query != '' ">
 				s.shop_food LIKE '%'||#{query}||'%' or s.shop_address
 				LIKE '%'||#{query}||'%'
@@ -138,6 +136,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, shop_address_gu,
 		shop_address_dong
 		, shop_realfname
+		, shop_lat
+		, shop_lon
 		)
 		VALUES(shop_number_seq.nextval,
 		#{shopTitle}, #{shopTel}
@@ -153,6 +153,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, #{shopAddressGu}, #{shopAddressDong}
 		,
 		#{shopRealfname, jdbcType=VARCHAR}
+		, #{shopLat}
+		, #{shopLon}
 		)
 	</insert>
 

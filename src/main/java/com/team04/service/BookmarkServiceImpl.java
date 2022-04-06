@@ -19,8 +19,18 @@ public class BookmarkServiceImpl implements BookmarkService {
 	@Autowired
 	private BookmarkDAOImpl bookmarkDAO;
 
-	 @Override
-	 public List<BookmarkVO> bookmarkGetList( HashMap map ) {
+	
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 * @return int
+	 */
+	@Override
+	public int bookmarkListCount() {
+		return bookmarkDAO.bookmarkListCount();
+	}
+	
+	 @Override 
+	 public List<BookmarkVO> bookmarkGetList( HashMap map ) { 
+
 		 return bookmarkDAO.bookmarkGetList( map ); }
 
 
@@ -95,6 +105,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 		return bookmarkDAO.imageSelectBestBookmark(listNumber);
 	}
 
+
 	public BookmarkVO pictureSaveHeart(HeartVO vo) {
 	
 		return bookmarkDAO.pictureSaveHeart(vo);
@@ -103,8 +114,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public BookmarkVO pictureRemoveHeart(HeartVO vo) {
 		
 		return bookmarkDAO.pictureRemoveHeart(vo);
+
 	}
-	
 	
 
 }
