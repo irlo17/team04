@@ -116,7 +116,7 @@ position: relative; left:400px; }
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -167,7 +167,7 @@ position: relative; left:400px; }
 
 		<div class="">
 			<h4>
-				<a href="mylist.do">즐겨찾기</a>
+				<a href="mylist.do?page=1">즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
@@ -204,7 +204,7 @@ position: relative; left:400px; }
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
 	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
-	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
+	<a href="detailModify.do?listNumber=<%=number %>&page=1"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 
 	 </div>
 			<section class="blog-section spad">
