@@ -122,7 +122,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~18자로 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -260,7 +260,7 @@ $('#btnLogin').click(function(){
 	success : function(result){
 		// 중복 검사 후 나오는 결과 에러박스에 출력
 		if(result == "N"){
-        		$('.error_box.login').html("존재하는 회원이 아닙니다.");
+        		$('.error_box.login').html("존재하는 회원이 아니거나 비밀번호가 일치하지 않습니다.");
 			}else{
 				alert("로그인 성공");
         		document.loginForm.submit();

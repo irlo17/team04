@@ -185,10 +185,8 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 				<%-- <%for(int i =1 ; i<= totalPageCount; i++){ %>
 			<a href="BoardList.jsp?page=<%=i %>"> [<%=i %>] </a>
 		<%} //end of for%> --%>
-				
-				
 				<div class="blog__pagination">
-				<c:if test="${paging.page != 1 }">
+				<c:if test="${paging.page > 1 }">
 					<a href="totalbookmark.do?page=${paging.page-1 }"></i> Pre</a> 
 				</c:if>
 				<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">

@@ -276,14 +276,17 @@ $(function(){
                       </c:forEach>
 	                  </form>
                     </div>
-                  
-                <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="detailModify.do?listNumber=<%=listNumber2 %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
                 
             </div>

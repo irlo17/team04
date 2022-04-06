@@ -164,7 +164,7 @@ margin-bottom:50px;
 				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 					<tr class="active">
 						<th scope="row">${status.count+((paging.page-1)*10)}</th>
-						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
+						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}&page=1">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>
 						<td>${bookmark.listLike}</td>
 					</tr>

@@ -14,16 +14,23 @@ where b.list_display = 'yes'
 order by  b.list_date desc
 </select>
 
+<!-- 공개여부 : "yes" 인 즐겨찾기 페이징 -->
 <select id="bookmarkGetList" resultType="BookmarkVO" parameterType="hashmap" >
-
-SELECT b.list_number , b.list_name listName , m.member_nickname 
-FROM bookmark b INNER JOIN member m
-ON b.member_email = m.member_email
-where b.list_display = 'yes' 
-<if test="searchCondition != null">
+SELECT list_number, list_name , member_nickname ,list_like
+FROM (
+        SELECT rownum rnum, list_number, list_name , member_nickname ,list_like
+        FROM (
+            SELECT b.*, m.*
+            FROM bookmark b INNER JOIN member m
+                            ON b.member_email = m.member_email
+            WHERE b.list_display = 'yes'
+            <if test="searchCondition != null">
 				AND ${searchCondition} LIKE '%${searchKeyword}%'
 			</if>
-order by  b.list_date desc
+            order by list_date DESC
+            )
+            )
+WHERE rnum between ${startRow} and ${endRow}
 </select> 
 
 
@@ -57,15 +64,18 @@ FROM bookmark
 WHERE member_email=#{memberEmail}
 </select>
 
-
+<!-- 나만의 즐겨찾기 페이징 -->
 <select id="bookmarkGetMylistPaging" resultType="BookmarkVO" parameterType="PagingVO">
-
- SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
-FROM ( SELECT rownum rnum, bookmark.*
-        FROM bookmark 
-        WHERE member_email=#{memberEmail}
-        ORDER BY LIST_NUMBER DESC)
-WHERE rnum between  #{startRow} and #{endRow}
+SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
+FROM ( 
+        SELECT rownum rnum, bookmark.*
+        FROM ( 
+            SELECT bookmark.*
+            FROM bookmark
+            ORDER BY LIST_NUMBER DESC
+            )bookmark
+            )bookmark
+WHERE rnum between #{startRow} and #{endRow}
 </select>
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
@@ -75,6 +85,31 @@ FROM bookmark
 WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->
 </select>
 
+<!-- 리스트 안 가게 총 개수 -->
+<select id="bookmarkGetMylistTotalCount" resultType="int" parameterType="PagingVO">
+SELECT count(*)
+FROM shop s inner join mylist m
+ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number 
+Where m.list_number=#{listNumber}
+</select>
+
+<!-- 리스트 안 가게 페이징 -->
+<select id="bookmarkGetMylistDetailPaging" resultType="MylistVO" parameterType="PagingVO">
+SELECT  s.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,s.list_name,s.shop_number
+FROM (
+        SELECT rownum rnum, s.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,s.list_name,s.shop_number
+        FROM (
+                SELECT s.*, m.list_number, b.list_name
+                FROM shop s inner join mylist m
+                            ON s.shop_number=m.shop_number  
+                            inner join bookmark b 
+                            on m.list_number=b.list_number
+                            WHERE m.list_number=#{listNumber}
+                            ORDER BY s.shop_food DESC
+                            )s
+                            )s
+WHERE rnum between #{startRow} and #{endRow}
+</select>
 
 <select id="bookmarkGetMylistDetail" resultType="MylistVO" parameterType="String">
 SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,

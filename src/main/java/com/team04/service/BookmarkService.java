@@ -53,4 +53,9 @@ public interface BookmarkService {
 	public BookmarkVO pictureSaveHeart(HeartVO vo);
 	
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//리스트 안 가게 총 개수 구하기
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+	
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
 }

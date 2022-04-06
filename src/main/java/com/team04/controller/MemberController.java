@@ -108,25 +108,15 @@ public class MemberController {
 		}//end of loginCheck()
 	
 	/** 로그인 성공 후 페이지 이동
-	 * @param vo
-	 * @return 
-	 * 			(1) 관리자가 아닐 때 : main.do로 이동
-	 * 			(2) 관리자일 때 : redirect:memberListManager.do 이동
+	 * @param HttpSession session -> 세션에 저장된 이메일 값 가져오기
+	 * @return main.do로 이동
 	 */
 	@RequestMapping("loginMove")
-	public String loginMove(MemberVO vo, HttpSession session) {
+	public String loginMove(HttpSession session) {
 		
-		vo.setMemberAdmin(session.getAttribute("admin").toString());
-		System.out.println(vo.getMemberAdmin());
-		if(vo.getMemberAdmin().equals("N")) {
-			System.out.println("일반 회원 로그인");
+			System.out.println(session.getAttribute("logemail")+"로그인");
 			
 			return "redirect:main.do";
-		}else {
-			
-			System.out.println("관리자 로그인");
-			return "redirect:dashboardManager.do";
-		}//end of if - 관리자 유무
 	}
 
 

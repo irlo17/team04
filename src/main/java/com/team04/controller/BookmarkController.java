@@ -31,13 +31,9 @@ public class BookmarkController {
 		
 		  HashMap map = new HashMap(); 
 
-
-
-
-
 		  map.put("searchCondition",searchCondition);
 		  map.put("searchKeyword",searchKeyword);
-		  
+		  vo.setCountPerPage(10);
 		  vo.setPageTotalCount(bookmarkService.bookmarkListCount());
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
@@ -45,6 +41,7 @@ public class BookmarkController {
 		  map.put("endRow", vo.getEndRow());
 		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
 		  model.addAttribute("bookmarkList", list);
+		  model.addAttribute("paging", vo);
 		  return "totalbookmark";
 	  }
 
@@ -83,6 +80,7 @@ public class BookmarkController {
 	@RequestMapping("mylist.do")
 	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo) {
 		vo.setMemberEmail((String)session.getAttribute("logemail"));
+		vo.setCountPerPage(10);
 		vo.setPageTotalCount(bookmarkService.bookmarkMylistTotalCount(vo));
 		vo.setStartRow(vo.getPage());
 		vo.setEndRow(vo.getPage());
@@ -93,20 +91,33 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("bookmarkDetail.do")
-	  private String bookmarkGetDetail(String listNumber,Model model ) {
-		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+	  private String bookmarkGetDetail(String listNumber,Model model, PagingVO vo) {
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list);
 		  return "bookmarkDetail";
 	  }
 
 
 
-
+	  //bookmarkGetMylistDetail 페이징 추가
 
 	  @RequestMapping("mylistDetail.do")
-	  private String bookmarkGetMylistDetail(String listNumber,Model model ) {
-		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetail(listNumber);
+	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo ) {
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  
 		  model.addAttribute("bookmarkList", list);
+		  model.addAttribute("paging", vo);
 		  return "mylistDetail";
 	  }
 
@@ -131,12 +142,18 @@ public class BookmarkController {
 	  }
 
 	  @RequestMapping("detailModify.do")
-	  public String mylistModifydetail(String listNumber,Model model,HttpSession session) {
+	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo ) {
 		  String memberEmail= (String)session.getAttribute("logemail");
-		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetail(listNumber);
+		  vo.setListNumber(listNumber);
+		  vo.setCountPerPage(6);
+		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
+		  vo.setStartRow(vo.getPage());
+		  vo.setEndRow(vo.getPage());
+		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetailPaging(vo);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
 		  model.addAttribute("bookmarkModify", list1);
-		  model.addAttribute("bookmarkList", list2);
+		  model.addAttribute("paging", vo);
+		  model.addAttribute("bookmarkList", list2);	// 모달창 (페이징 없음)
 
 		return "detailModify";
 	  }
