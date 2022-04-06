@@ -4,16 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.BookmarkVO;
+import com.team04.domain.HeartVO;
 import com.team04.domain.MylistVO;
 import com.team04.domain.PagingVO;
 
 public interface BookmarkService {
 
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
-		
-	public void bookmarkUpdateLike(int listNum);
 	
-	public void bookmarkUpdateLikeMa(int listNum);
+	
+	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	 */
+	public int bookmarkListCount();
+		
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	
@@ -38,7 +41,22 @@ public interface BookmarkService {
 	
 	public void mylistDelete(MylistVO vo);
 	
-	public int totalPageGet();
+	
 	
 	public void mylistAdd(BookmarkVO vo);
+	
+	public BookmarkVO imageSelectBestBookmark(int listNumber);
+	
+	public BookmarkVO pictureSaveHeart(HeartVO vo);
+	
+	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//리스트 안 가게 총 개수 구하기
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+	
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
+	public HeartVO heartCheak(HeartVO vo);
+	
+	public BookmarkVO pictureHeartCount(BookmarkVO vo);
 }

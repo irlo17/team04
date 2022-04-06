@@ -5,12 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-/* BookmarkDAOImpl bookmarkDAOImpl= new BookmarkDAOImpl();
-int totalPageCount = bookmarkDAOImpl.totalbookmarkCount();
-String pNum = request.getParameter("page"); 
-//4.해당 페이지의 파라메터를 넘겨서 레코드를 받아옴 =>5.아래에 for문으로 목록 출력
-List <BoardVO> mList =  service.getArticleList(pNum); 
- */
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -68,6 +63,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 	.form{position:relative; left:35%}
 	td{text-align: center;}
 	.row100 head{font-size: 20px;}
+	
 	</style>
 	
 </head>
@@ -92,7 +88,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
                         
                         <div class="header__menu__right">
             				<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-                            <a href="mylist.do" class="login-btn"><i class="fa fa-user"></i></a>
+                            <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
                 </div>
@@ -108,10 +104,10 @@ List <BoardVO> mList =  service.getArticleList(pNum);
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>모두의 맛집 리스트</h2>
+                       <h2>공개 맛집 리스트  <i class="fa-solid fa-bowl-food"></i></h2>
                         <div class="breadcrumb__option">
-                            <a href="#"><i class="fa fa-home"></i> Home</a>
-                            <span>모두의 맛집</span>
+                            <a href="main.do"><i class="fa fa-home"></i> Home</a>
+                            <span>맛집 리스트</span>
                         </div>
                     </div>
                 </div>
@@ -151,7 +147,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 								
 							<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
 								<tr class="row100 body">
-									<td class="cell100 column1"> ${status.count}  </td>
+									<td class="cell100 column1"> ${status.count+((paging.page-1)*10)} </td>
 									<input type="hidden" name="listnumber" value=${bookmark.listNumber}/>
 									<td class="cell100 column2"><a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
 									<td class="cell100 column3">${bookmark.memberNickname }</td>
@@ -185,14 +181,16 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 				<%-- <%for(int i =1 ; i<= totalPageCount; i++){ %>
 			<a href="BoardList.jsp?page=<%=i %>"> [<%=i %>] </a>
 		<%} //end of for%> --%>
-				
-				
 				<div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+				<c:if test="${paging.page > 1 }">
+					<a href="totalbookmark.do?page=${paging.page-1 }"></i> Pre</a> 
+				</c:if>
+				<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="totalbookmark.do?page=${pageNum }">${pageNum }</a>
+				</c:forEach>
+				<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="totalbookmark.do?page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+				</c:if>
                </div>
 			</div>
 		</div>

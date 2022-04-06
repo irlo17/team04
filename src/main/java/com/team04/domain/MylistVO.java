@@ -16,6 +16,8 @@ public class MylistVO {
 	private String listName;
 	private int listNumber2;
 	
+	// 현재사용자가 좋아요 누른건지 아닌지
+	private String hno;
 	
 	
 	//constructor-----------------------------------------------------------------------
@@ -24,7 +26,7 @@ public class MylistVO {
 	}
 	
 	public MylistVO(int listNumber, int shopNumber, String shopTitle, String shopTel, String shopPriceRange,
-			String shopFood, String shopAddressSi, String shopRealfname, String listName,int listNumber2) {
+			String shopFood, String shopAddressSi, String shopRealfname, String listName,int listNumber2,String hno) {
 		super();
 		this.listNumber = listNumber;
 		this.shopNumber = shopNumber;
@@ -36,6 +38,7 @@ public class MylistVO {
 		this.shopRealfname = shopRealfname;
 		this.listName = listName;
 		this.listNumber2 = listNumber2;
+		this.hno = hno;
 	}
 
 
@@ -130,6 +133,16 @@ public class MylistVO {
 	public void setListNumber2(int listNumber2) {
 		this.listNumber2 = listNumber2;
 	}
+
+	public String getHno() {
+		return hno;
+	}
+
+	public void setHno(String hno) {
+		this.hno = hno;
+	}
+
+	
 	
 	
 	

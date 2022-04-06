@@ -1,5 +1,5 @@
 
-
+	
 /**
 *	유효성 검사 정규식
  */
@@ -122,7 +122,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~18자로 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -161,16 +161,6 @@ $('#btn_signUp').click(function(){
 		$('label[for="memberName"] .error_box').html("");
 		}
 		
-	// 생년월일 max를 오늘 날짜로 지정하기
- 	var today = new Date();
- 	var day = today.getDate();
- 	var monty = today.getMonth()+1;
- 	var year = today.getFullYear();
-
-	if(day<10){ day = '0'+ day}
-	if(monty<10){ monty = '0' + monty}
-	today = year + "-" + monty + "-" + day;
-	document.getElementById('memberBirth').setAttribute("max", today);
 		
 	/* 생년월일 */
 	if(memberBirth == ''){
@@ -227,7 +217,7 @@ $('#btn_signUp').click(function(){
 */
 
 $('#btnLogin').click(function(){
-	alert("확인");
+
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
 	
@@ -249,9 +239,28 @@ $('#btnLogin').click(function(){
 		}else{
 		$('label[for="memberPassword"] .error_box').html("");
 		}
-
-	document.loginForm.submit();
 	
+  $.ajax({
+	type : 'post',
+	url : 'loginCheck.do',
+	data : { memberEmail : $('#memberEmail').val(),
+			memberPassword : $('#memberPassword').val(),
+	 		},
+	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	success : function(result){
+		// 중복 검사 후 나오는 결과 에러박스에 출력
+		if(result == "N"){
+        		$('.error_box.login').html("존재하는 회원이 아니거나 비밀번호가 일치하지 않습니다.");
+			}else{
+				alert("로그인 성공");
+        		document.loginForm.submit();
+			}
+	},
+	error : function(err){
+		alert(err);
+		console.log(err);
+	}
+	});//end of ajax
 }); //end of #btnLogin 
 
 
@@ -286,7 +295,7 @@ $('#btnPwSearch').click(function(){
 				}
     	},
     	error : function(err){
-	        $('.error_box.pwSearch').html("존재하는 회원이 아닙니다.");
+	        
 			alert('실패');
     		console.log(err);
     	}
@@ -447,9 +456,16 @@ $('#btnMemberUpdate').click(function(){
 	 document.memberUpdateForm.submit();
 }) //end of #btnMemberUpdate
 
-$('#btnMemberDelete').click(function(){
-  	alert('확인');
-	$('.modalMemberDelete').fadeIn()
-})
+
+// 생년월일 max를 오늘 날짜로 지정하기
+ 	var today = new Date();
+ 	var day = today.getDate();
+ 	var monty = today.getMonth()+1;
+ 	var year = today.getFullYear();
+
+	if(day<10){ day = '0'+ day}
+	if(monty<10){ monty = '0' + monty}
+	today = year + "-" + monty + "-" + day;
+	document.getElementById('memberBirth').setAttribute("max", today);
 
 

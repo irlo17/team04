@@ -34,6 +34,8 @@ prefix="c" %> <%@ page session="false" %>
 </form>
 <hr />
 
+<!-- 이은혜 -->
+<a href='totalbookmark.do'>모두의 즐겨찾기</a><hr/>
 
     
 </body>

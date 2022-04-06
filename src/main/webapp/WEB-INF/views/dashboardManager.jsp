@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 파일 연동시키기 위한 코드 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<!-- 날짜관련 코드 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,15 +15,16 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자페이지 - 메인</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <!-- datatable CSS -->
+        <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
         <!-- 파일 내 CSS 연결 -->
-        <link href="./resources/manager/css/styles.css" rel="stylesheet" />
+        <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
             <!-- navbar 로고 -- 이미지파일 연결 -->
-            <a class="navbar-brand ps-3" href="index.html"><img src="./resources/manager/img/footer-logo.png" alt=""></a>
+            <a class="navbar-brand ps-3" href="main.do"><img src="${path}/resources/manager/img/footer-logo.png" alt=""></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- 로그인 버튼 위치때문에 유지 -- 원래는 검색바 -->
@@ -28,13 +33,7 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                    </ul>
+                    <i class="fas fa-user fa-fw"></i>
                 </li>
             </ul>
         </nav>
@@ -70,8 +69,7 @@
                     </div>
                     <!-- 맨 아래 로그인 확인 창 -->
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <a href="logout.do">로그아웃</a>
                     </div>
                 </nav>
             </div>
@@ -127,17 +125,6 @@
                                             <th>가입날짜</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>이메일</th>
-                                            <th>닉네임</th>
-                                            <th>이름</th>
-                                            <th>생년월일</th>
-                                            <th>휴대전화</th>
-                                            <th>관리자여부</th>
-                                            <th>가입날짜</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     <!-- Controller에서 보내온 가게 리스트 출력할 반복문
                                    	items은 보낸 값, var는 출력할 객체변수 -->
@@ -177,14 +164,20 @@
                 </footer>
             </div>
         </div>
+        <!-- JQuery -->
+    	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
-        <script src="./resources/manager/js/scripts.js"></script>
+        <script src="${path}/resources/manager/js/scripts.js"></script>
         <!-- chart.js 연동 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <!-- 내부 차트 js -->
         <script type="text/javascript">
+        
+        
+        
+        
         // monthListGeneration = 월별 즐겨찾기 리스트 생성 수 차트
         var jsonDataList = ${jsonList}
         var jsonObjList = JSON.stringify(jsonDataList);
@@ -268,10 +261,12 @@
         	var color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.7)';
         	return color;
         }
+        // 색 랜덤 함수
+        
         </script>
         <!-- datatable 연동 -->
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->
-        <script src="./resources/manager/js/datatables-simple-demo.js"></script>
+        <script src="${path}/resources/manager/js/datatables-simple-demo.js"></script>
     </body>
 </html>

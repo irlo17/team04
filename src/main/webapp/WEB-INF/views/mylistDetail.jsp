@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% String number=request.getParameter("listNumber"); %>
+<%String number=request.getParameter("listNumber"); %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -81,6 +83,10 @@ position: relative; left:400px; }
 .glyphicon{color:red; font-size:30px; right:20px;}
 
 .blog__item__pic{width:555px;height:310px;}
+
+.filter{padding-top: 200px;}
+
+
 </style>
 <script type="text/javascript">
 
@@ -197,8 +203,6 @@ position: relative; left:400px; }
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<%-- <c:forEach items="${bookmarkList }" var="bookmark" begin="0" end="0"> ${bookmark.listNumber} --%>
-
 	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
 	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 
@@ -207,12 +211,11 @@ position: relative; left:400px; }
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="row">
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+                             <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>   
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">
                                         <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
@@ -228,13 +231,20 @@ position: relative; left:400px; }
                         </div>
                       </c:forEach>
                     </div>
-                <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                
+		
+                    
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
 
             </div>
