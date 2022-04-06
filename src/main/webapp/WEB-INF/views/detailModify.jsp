@@ -197,7 +197,7 @@ $(function(){
 		<br/>
 		<br/>
 
-		<div class="">
+		<div class="categori">
 			<h4>
             <a href="mypageMember.do">회원정보</a>
          	</h4>
@@ -206,13 +206,13 @@ $(function(){
 		<hr />
 
 
-		<div class="">
+		<div class="categori" id="check">
 			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
             <a href="review.do">리뷰관리</a>
       		</h4>
