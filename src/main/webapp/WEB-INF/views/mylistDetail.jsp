@@ -84,7 +84,6 @@ position: relative; left:400px; }
 
 .blog__item__pic{width:555px;height:310px;}
 
-.filter{padding-top: 200px;}
 
 
 </style>
@@ -146,16 +145,7 @@ position: relative; left:400px; }
 			</h5>
 		</div>
 
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+		<div id="realNav">
 		<div class="categori">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
@@ -177,19 +167,8 @@ position: relative; left:400px; }
 				<a href="review.do">리뷰관리</a>
 		</h4>
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+			
 			<hr />
 			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->

@@ -158,18 +158,7 @@ margin-bottom:50px;
 		</div>
 	</div>
 
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			
 			<hr />
 			<div  class="categori">
 				<!--  <h4>로그아웃</h4>-->

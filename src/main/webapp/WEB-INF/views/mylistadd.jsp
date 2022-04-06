@@ -93,7 +93,7 @@ font-size: 15px;
 #tx{width:400px; text-align:left; background-color: #f8fafb;}
 #tb{width:600px;height:100px; }
 tr{text-align:left;}
-.filter{padding-top: 200px;}
+
 </style>
 
 </head>
@@ -152,17 +152,7 @@ tr{text-align:left;}
 				${MemberVO.memberNickname }
 			</h5>
 		</div>
-		
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+		<div id="realNav">
 		<div class="categori">
 			<h4>
             <a href="mypageMember.do">회원정보</a>
@@ -184,19 +174,8 @@ tr{text-align:left;}
       		</h4>
 
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+		
 			<hr />
 			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->

@@ -187,16 +187,7 @@ $(function(){
 			</h5>
 		</div>
 		
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+		<div id="realNav">
 		<div class="categori">
 			<h4>
             <a href="mypageMember.do">회원정보</a>
@@ -204,7 +195,6 @@ $(function(){
 
 		</div>
 		<hr />
-
 
 		<div class="categori" id="check">
 			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
@@ -218,21 +208,11 @@ $(function(){
       		</h4>
 
 		</div>
+</div>
 
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			
 			<hr />
-			<div class="cate_4">
+			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 			</div>
