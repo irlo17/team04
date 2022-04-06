@@ -10,21 +10,28 @@
 SELECT count(*)
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
-where b.list_display = 'yes' 
+where b.list_display = 'yes'
 order by  b.list_date desc
 </select>
 
+<!-- 공개여부 : "yes" 인 즐겨찾기 페이징 -->
 <select id="bookmarkGetList" resultType="BookmarkVO" parameterType="hashmap" >
-
-SELECT b.list_number , b.list_name listName , m.member_nickname , b.list_like
-FROM bookmark b INNER JOIN member m
-ON b.member_email = m.member_email
-where b.list_display = 'yes' 
-<if test="searchCondition != null">
+SELECT list_number, list_name , member_nickname ,list_like
+FROM (
+        SELECT rownum rnum, list_number, list_name , member_nickname ,list_like
+        FROM (
+            SELECT b.*, m.*
+            FROM bookmark b INNER JOIN member m
+                            ON b.member_email = m.member_email
+            WHERE b.list_display = 'yes'
+            <if test="searchCondition != null">
 				AND ${searchCondition} LIKE '%${searchKeyword}%'
 			</if>
-order by  b.list_date desc
-</select> 
+            order by list_date DESC
+            )
+            )
+WHERE rnum between ${startRow} and ${endRow}
+</select>
 
 
 
@@ -39,34 +46,62 @@ where b.list_display = 'yes' order by  b.list_like desc
 <!-- 나만의 즐겨찾기 총 개수 구하기 -->
 <select id="bookmarkMylistTotalCount" resultType="int" parameterType="PagingVO">
 SELECT count(*)
-FROM bookmark 
+FROM bookmark
 WHERE member_email=#{memberEmail}
 </select>
 
-
+<!-- 나만의 즐겨찾기 페이징 -->
 <select id="bookmarkGetMylistPaging" resultType="BookmarkVO" parameterType="PagingVO">
-
- SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
-FROM ( SELECT rownum rnum, bookmark.*
-        FROM bookmark 
-        WHERE member_email=#{memberEmail}
-        ORDER BY LIST_NUMBER DESC)
-WHERE rnum between  #{startRow} and #{endRow}
+SELECT LIST_NUMBER, LIST_NAME, LIST_DISPLAY ,list_Like
+FROM (
+        SELECT rownum rnum, bookmark.*
+        FROM (
+            SELECT bookmark.*
+            FROM bookmark
+            ORDER BY LIST_NUMBER DESC
+            )bookmark
+            )bookmark
+WHERE rnum between #{startRow} and #{endRow}
 </select>
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
 
-  SELECT  list_Number, list_name , list_display , list_like 
-FROM bookmark 
+  SELECT  list_Number, list_name , list_display , list_like
+FROM bookmark
 WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->
 </select>
 
+<!-- 리스트 안 가게 총 개수 -->
+<select id="bookmarkGetMylistTotalCount" resultType="int" parameterType="PagingVO">
+SELECT count(*)
+FROM shop s inner join mylist m
+ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number
+Where m.list_number=#{listNumber}
+</select>
+
+<!-- 리스트 안 가게 페이징 -->
+<select id="bookmarkGetMylistDetailPaging" resultType="MylistVO" parameterType="PagingVO">
+SELECT  s.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,s.list_name,s.shop_number
+FROM (
+        SELECT rownum rnum, s.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,s.shop_realfname,s.list_name,s.shop_number
+        FROM (
+                SELECT s.*, m.list_number, b.list_name
+                FROM shop s inner join mylist m
+                            ON s.shop_number=m.shop_number
+                            inner join bookmark b
+                            on m.list_number=b.list_number
+                            WHERE m.list_number=#{listNumber}
+                            ORDER BY s.shop_food DESC
+                            )s
+                            )s
+WHERE rnum between #{startRow} and #{endRow}
+</select>
 
 <select id="bookmarkGetMylistDetail" resultType="MylistVO" parameterType="String">
 SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,
 s.shop_realfname,b.list_name,s.shop_number
 FROM shop s inner join mylist m
-ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number 
+ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number
 Where m.list_number=#{listNumber}
 </select>
 
@@ -80,8 +115,8 @@ WHERE list_number=#{listNumber}
 
 
 <update id="bookmarkModify" parameterType="BookmarkVO">
-UPDATE  bookmark 
-SET list_name=#{listName} , list_display=#{listDisplay} 
+UPDATE  bookmark
+SET list_name=#{listName} , list_display=#{listDisplay}
 WHERE list_number=#{listNumber}
 </update>
 
@@ -96,7 +131,7 @@ DELETE FROM bookmark WHERE list_number=#{listNumber}
 <update id="mylistUpdate" parameterType="MylistVO" >
 update mylist
 set list_number =#{listNumber}
-where shop_number=#{shopNumber} and 
+where shop_number=#{shopNumber} and
 list_number=#{listNumber2}
 </update>
 
@@ -106,7 +141,7 @@ DELETE FROM mylist WHERE list_number=#{listNumber} and shop_number= #{shopNumber
 </delete>
 
 <select id="TotalbookmarkCount" resultType="int">
-SELECT  count(b.list_name) 
+SELECT  count(b.list_name)
 FROM bookmark b INNER JOIN member m
 ON b.member_email = m.member_email
 where b.list_display = 'yes'
@@ -115,7 +150,7 @@ order by  list_date desc
 
 
 <insert id="MylistInsert" parameterType="BookmarkVO">
-insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list) 
+insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list)
 values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no')
 </insert>
 
@@ -126,12 +161,12 @@ FROM
 FROM
 (SELECT b.list_name , m.member_nickname ,b.list_like, b.list_number, s.shop_realfname, s.shop_number
 FROM bookmark b INNER JOIN member m
-ON b.member_email = m.member_email inner join mylist l 
-    on l.list_number=b.list_number inner join shop s 
-        on s.shop_number=l.shop_number 
-where b.list_display = 'yes' 
+ON b.member_email = m.member_email inner join mylist l
+    on l.list_number=b.list_number inner join shop s
+        on s.shop_number=l.shop_number
+where b.list_display = 'yes'
 order by  b.list_like desc)where list_number=#{listNumber} )
-WHERE rnum =1 
+WHERE rnum =1
 </select>
 
 <!-- 좋아요 추가 -->
@@ -140,7 +175,7 @@ WHERE rnum =1
     values(like_number_seq.nextval, #{memberEmail}, #{listNumber})
 </insert>
 <update id="pictureHeartUp" parameterType="BookmarkVO">
-    update bookmark set list_like=list_like+1 
+    update bookmark set list_like=list_like+1
     where  list_number=#{listNumber} and ( select member_email from liketb where list_number=#{listNumber} and member_email=#{memberEmail})is null
 </update>
 
@@ -150,7 +185,7 @@ WHERE rnum =1
     where list_number=#{listNumber} and member_email=#{memberEmail}
 </delete>
 <update id="pictureHeartDown" parameterType="BookmarkVO">
-    update bookmark set list_like=list_like-1 
+    update bookmark set list_like=list_like-1
     where  list_number=#{listNumber} and ( select member_email from liketb where list_number=#{listNumber} and member_email=#{memberEmail} )= #{memberEmail}
 </update>
 

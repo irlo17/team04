@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		사용 : 월별 리스트 생성 수를 검색하여 ChartsVO에 저장
 	   -->
 	<select id="bookmarkDateListManager" resultType="ChartsVO">
-		SELECT substr(list_date, 4, 2) AS monthList
-              , count(*) AS cntList
+		SELECT substr(list_date, 4, 2) AS list
+              , count(*) AS cnt
 	    FROM bookmark
 	    WHERE substr(list_date, 4, 2) IS NOT NULL
 	    GROUP BY substr(list_date, 4, 2)
@@ -30,8 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		사용 : 회원 가입한 월에 따른 가입수를 검색하여 ChartsVO에 저장
 	  -->
 	 <select id="memberDateListManager" resultType="ChartsVO">
-	 	SELECT substr(member_date, 4, 2) AS month
-              , count(*) AS cntMember
+	 	SELECT substr(member_date, 4, 2) AS list
+              , count(*) AS cnt
      	FROM member
      	WHERE substr(member_date, 4, 2) IS NOT NULL
      	GROUP BY substr(member_date, 4, 2)
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		사용 : 회원 가입한 월에 따른 가입수를 검색하여 ChartsVO에 저장
 	  -->
 	  <select id="foodByShopListManager" resultType="ChartsVO">
-	  	SELECT shop_food, count(*) AS cntShop
+	  	SELECT shop_food AS list, count(*) AS cnt
 	    FROM shop
 	    WHERE shop_food IS NOT NULL
 	    GROUP BY shop_food

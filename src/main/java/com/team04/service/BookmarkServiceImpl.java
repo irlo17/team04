@@ -106,5 +106,16 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 	}
 	
+	//리스트 안 가게 총 개수 구하기
+	@Override
+	public int bookmarkGetMylistTotalCount(PagingVO paging) {
+		return bookmarkDAO.bookmarkGetMylistTotalCount(paging);
+	}
+
+	@Override
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging) {
+		return bookmarkDAO.bookmarkGetMylistDetailPaging(paging);
+	}
+	
 
 }

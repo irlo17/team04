@@ -245,6 +245,20 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 				}}
 				return pto;
 	}
+
+	//즐겨찾기 상세 목록 가게 수
+	@Override
+	public int bookmarkGetMylistTotalCount(PagingVO paging) {
+		System.out.println("===> Mybatis bookmarkGetMylistTotalCount() 호출");
+		return mybatis.selectOne("BookmarkDAO.bookmarkGetMylistTotalCount", paging);
+	}
+
+
+	@Override
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging) {
+		System.out.println("===> Mybatis bookmarkGetMylistDetailPaging() 호출");
+		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistDetailPaging",paging );
+	}
 	
 	
 }

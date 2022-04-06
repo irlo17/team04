@@ -73,4 +73,11 @@ import com.team04.domain.PagingVO;
 	
 	//좋아요 하트 수 감소
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//즐겨찾기 상세 목록 가게 수
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
 	}
+	

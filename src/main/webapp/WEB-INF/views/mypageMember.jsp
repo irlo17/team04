@@ -81,7 +81,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa fa-plus"></i>Add
 								Listing</a> <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
