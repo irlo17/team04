@@ -19,24 +19,6 @@
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- 내부 script - 삭제버튼 구현 -->
-        <script type="text/javascript">
-	     // 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
-	    	function removeBtn(num) {
-	    		// num이 받아졌는지 확인
-	    		console.log(num);
-	    		// 확인/취소 alert창 띄우기
-	    		if(confirm("정말 삭제하시겠습니까?") == true) {
-	    			// 확인을 누를 경우 요청과 함께 값을 보내기
-	    			location.href="reportDeleteManager.do?reportNumber=" + num;
-	    			// 삭제 확인 메세지 띄우기
-					alert("삭제되었습니다.");
-				} else {
-					// 취소를 누를 경우 리턴
-					return;
-				}
-	    	}
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
@@ -156,6 +138,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="${path}/resources/manager/js/scripts.js"></script>
+        <!-- 내부 script - 삭제버튼 구현 -->
+        <script type="text/javascript">
+	     // 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
+	    	function removeBtn(num) {
+	    		// num이 받아졌는지 확인
+	    		console.log(num);
+	    		// 확인/취소 alert창 띄우기
+	    		if(confirm("정말 삭제하시겠습니까?") == true) {
+	    			// 확인을 누를 경우 요청과 함께 값을 보내기
+	    			location.href="reportDeleteManager.do?reportNumber=" + num;
+	    			// 삭제 확인 메세지 띄우기
+					alert("삭제되었습니다.");
+				} else {
+					// 취소를 누를 경우 리턴
+					return;
+				}
+	    	}
+        </script>
         <!-- datatable 연동 -->
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->
