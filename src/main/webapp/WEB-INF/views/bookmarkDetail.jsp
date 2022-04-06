@@ -183,7 +183,7 @@ $(document).ready(function() {
 
 						<div class="header__menu__right">
 							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-							<a href="mylist.do" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>

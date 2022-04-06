@@ -121,7 +121,7 @@ WHERE list_number=#{listNumber}
 </update>
 
 <delete id="bookmarkDelete" parameterType="String">
-DELETE FROM bookmark WHERE list_number=#{listNumber}
+DELETE FROM bookmark WHERE list_number=#{listNumber} 
 </delete>
 
 <resultMap type="MylistVO" id="mylistUpdate">
@@ -137,7 +137,7 @@ list_number=#{listNumber2}
 
 
 <delete id="mylistDelete" parameterType="MylistVO" >
-DELETE FROM mylist WHERE list_number=#{listNumber} and shop_number= #{shopNumber} ON DELETE CASCADE
+DELETE FROM mylist WHERE list_number=#{listNumber} and shop_number= #{shopNumber} 
 </delete>
 
 <select id="TotalbookmarkCount" resultType="int">

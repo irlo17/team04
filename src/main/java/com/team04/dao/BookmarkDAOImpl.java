@@ -210,11 +210,11 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 				int result;
 				if (result2 == 1) {
 					result = mybatis.insert("BookmarkDAO.pictureHeartSave", vo);
-				
-				if (result == 1) {	// p_heart 테이블에 새로운 좋아요 추가가 성공한다면..
+				}
+					// p_heart 테이블에 새로운 좋아요 추가가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				}}
+				
 				return pto;
 	}
 
@@ -238,11 +238,11 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 				int result; 
 				if (result2 == 1) {
 				result= mybatis.delete("BookmarkDAO.pictureHeartRemove", vo);
-				
-				if (result == 1) {	// p_heart 테이블에 좋아요 삭제가 성공한다면..
+				}
+					// p_heart 테이블에 좋아요 삭제가 성공한다면..
 					// 갱신된 하트 갯수를 가져옴
 					pto = mybatis.selectOne("BookmarkDAO.pictureHeartCount", pto);
-				}}
+				
 				return pto;
 	}
 
