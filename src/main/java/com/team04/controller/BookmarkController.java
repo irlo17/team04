@@ -176,7 +176,7 @@ public class BookmarkController {
 	// 빈하트 클릭시 하트 저장
 	  @ResponseBody
 	  @RequestMapping(value = "saveHeart.do" ,produces="application/text;charset=utf-8")
-	  public int save_heart(int listNumber, HttpSession session) {
+	  public String save_heart(int listNumber, HttpSession session) {
 
 		  
 		  HeartVO hvo = new HeartVO();
@@ -187,9 +187,9 @@ public class BookmarkController {
 		  
 	      // +1된 하트 갯수를 담아오기위함
 		  BookmarkVO bvo= bookmarkService.pictureSaveHeart(hvo);
+		  String like =  Integer.toString(bvo.getListLike());
 		  
-		  
-	      return bvo.getListLike();
+	      return like;
 	  }
 
 		/*
@@ -207,7 +207,7 @@ public class BookmarkController {
 	  // 꽉찬하트 클릭시 하트 해제
 	  @ResponseBody
 	  @RequestMapping(value = "removeHeart.do",produces="application/text;charset=utf-8")
-	  public int remove_heart( int listNumber, HttpSession session) {
+	  public String remove_heart( int listNumber, HttpSession session) {
 		 
 		  HeartVO hvo = new HeartVO();
 	      // 게시물 번호 세팅
@@ -217,9 +217,38 @@ public class BookmarkController {
 	      
 	      // -1된 하트 갯수를 담아오기위함
 	      BookmarkVO bvo=  bookmarkService.pictureRemoveHeart(hvo);
+	      String like =  Integer.toString(bvo.getListLike());
 	     
 
-	      return bvo.getListLike();
+	      return like;
+	  }
+	  
+	  @RequestMapping(value="heartCheak.do",produces="application/text;charset=utf-8")
+	  @ResponseBody
+	  public String heartCheak(int listNumber, HttpSession session,HeartVO vo) {
+		  String message = "";
+		// 게시물 번호 세팅
+	      vo.setListNumber(listNumber);
+	      // 좋아요 누른 사람 nick을 userid로 세팅
+	      vo.setMemberEmail((String) session.getAttribute("logemail"));
+		  vo = bookmarkService.heartCheak(vo);
+		  
+		  if(vo == null) {
+			  message = "no";
+		  }else {
+			  message = "yes";
+		  }
+		  
+		  return message;
+	  }
+	  
+	  @RequestMapping(value="heartTotalCount.do",produces="application/text;charset=utf-8")
+	  @ResponseBody
+	  public String heartTotalCount(int listNumber,BookmarkVO vo) {
+		  vo.setListNumber(listNumber);
+		  vo = bookmarkService.pictureHeartCount(vo);
+		  String listLike = Integer.toString(vo.getListLike());
+		  return listLike;
 	  }
 
 }

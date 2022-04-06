@@ -79,5 +79,9 @@ import com.team04.domain.PagingVO;
 
 	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
 	
+	public HeartVO heartCheak(HeartVO vo);
+	
+	public BookmarkVO pictureHeartCount(BookmarkVO vo);
 	}
+	
 	

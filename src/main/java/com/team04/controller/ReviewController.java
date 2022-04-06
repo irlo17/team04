@@ -33,7 +33,12 @@ public class ReviewController {
 		String logemail = (String) session.getAttribute("logemail");
 		
 		List<ReviewVO> list = reviewService.reviewGetList(logemail);
+		int listCount= list.size();
+		System.out.println(listCount);
 		m.addAttribute("reviewList",list);
+		m.addAttribute("listCount",listCount);
+		
+		
 		return "review";
 	}
 	

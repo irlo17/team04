@@ -58,6 +58,7 @@ FROM (
         FROM (
             SELECT bookmark.*
             FROM bookmark
+            WHERE member_email=#{memberEmail}
             ORDER BY LIST_NUMBER DESC
             )bookmark
             )bookmark
@@ -196,6 +197,10 @@ WHERE rnum =1
     where list_number=#{listNumber}
 </select>
 
-
+<select id="heartCheak" parameterType="HeartVO" resultType="HeartVO">
+select *
+from liketb
+where member_email=#{memberEmail} and list_number=#{listNumber}
+</select>
 
 </mapper>

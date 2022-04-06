@@ -74,14 +74,54 @@ position: relative; left:400px; }
 
 //로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
 $(document).ready(function() {
+	var no = <%=number%>;
+	var heartCheak = false;
+	
+	 $.ajax({
+         url : 'heartTotalCount.do',
+         type : 'post',
+         data : {
+             listNumber : no,
+         },
+     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+         success : function(result) {
+        	 $('#heart'+no).text(result);
+         },
+         error : function(err) {
+             alert('서버 에러');
+             console.log(err);
+         }
+     });
+	
+	 $.ajax({
+         url : 'heartCheak.do',
+         type : 'post',
+         data : {
+             listNumber : no,
+         },
+     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+         success : function(result) {
+        	 if(result == "yes"){
+	        	 $('.heart').attr('class','glyphicon glyphicon-heart');
+	        	 heartCheak = true;
+        	 }
+        	 
+         },
+         error : function(err) {
+             alert('서버 에러');
+             console.log(err);
+         }
+     });
+	
+	
 	$(".heart-click").click(function() {
 	
 	    // 게시물 번호(no)를 idx로 전달받아 저장합니다.
 	    let no = $(this).attr('id');
 	    console.log("heart-click");
-	
+	    
 	    // 빈하트를 눌렀을때
-	    if($(this).children('span').attr('class') == "glyphicon glyphicon-heart-empty"){
+	    if(!heartCheak){
 	        console.log("빈하트 클릭" + no);
 	
 	        $.ajax({
@@ -90,6 +130,7 @@ $(document).ready(function() {
 	            data : {
 	                listNumber : no,
 	            },
+	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	            success : function(likeCount) {
 	                //페이지 새로고침
 						alert(likeCount);
@@ -97,7 +138,7 @@ $(document).ready(function() {
 	
 	                // 페이지에 하트수 갱신
 	                
-	                $('#heart'+no).text(heart);
+	                $('#heart'+no).text(likeCount);
 	
 	                console.log("하트추가 성공");
 	                console.log(likeCount);
@@ -110,8 +151,8 @@ $(document).ready(function() {
 	        console.log("꽉찬하트로 바껴라!");
 	
 	        // 꽉찬하트로 바꾸기
-	        $(this).children('span').attr('class','glyphicon glyphicon-heart') 
-	        
+	        $(this).children('span').attr('class','glyphicon glyphicon-heart')
+	        heartCheak = true;
 	        
 	    // 꽉찬 하트를 눌렀을 때
 	    }else if($(this).children('span').attr('class') == "glyphicon glyphicon-heart"){
@@ -123,16 +164,20 @@ $(document).ready(function() {
 	            data : {
 	            	listNumber : no,
 	            },
+	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	            success : function(likeCount) {
 	                //페이지 새로고침
 	                //document.location.reload(true);
 					alert(likeCount);
 	                /* let heart = likeCount.listLike; */
 	                // 페이지에 하트수 갱신
-	                $('#heart'+no).text(heart);
+	                if(likeCount <= 0){
+		                $('#heart'+no).text("");
+	                }else{
+		                $('#heart'+no).text(likeCount);
+	                }
 	
 	                console.log("하트삭제 성공");
-	                console.log(heart);
 	            },
 	            error : function(err) {
 	                alert('서버 에러');
@@ -142,7 +187,8 @@ $(document).ready(function() {
 	        console.log("빈하트로 바껴라!");
 	
 	        // 빈하트로 바꾸기
-	        $(this).children('span').attr('class','glyphicon glyphicon-heart-empty') 
+	        $(this).children('span').attr('class','glyphicon glyphicon-heart-empty')
+	        heartCheak = false;
 	    }
 	
 	
@@ -212,7 +258,7 @@ $(document).ready(function() {
                 <%-- 빈 하트일때 --%>
                 <div id='btnl'>  <a id="${tmp.listNumber }" href="javascript:"
                 	
-                    class="heart-click heart_icon${tmp.listNumber }"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a>  좋아요
+                    class="heart-click heart_icon${tmp.listNumber }"><span class="heart glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a>좋아요
                 </div>
             </c:when>
             <c:otherwise>

@@ -55,4 +55,8 @@ public interface BookmarkService {
 	public int bookmarkGetMylistTotalCount(PagingVO paging);
 	
 	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
+	public HeartVO heartCheak(HeartVO vo);
+	
+	public BookmarkVO pictureHeartCount(BookmarkVO vo);
 }
