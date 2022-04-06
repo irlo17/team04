@@ -183,7 +183,7 @@ $(function(){
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
+				
 			</h5>
 		</div>
 		
@@ -211,8 +211,8 @@ $(function(){
 </div>
 
 			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 			</div>

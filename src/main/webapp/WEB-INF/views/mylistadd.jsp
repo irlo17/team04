@@ -136,20 +136,20 @@ tr{text-align:left;}
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
+					</c:when>
 					
-					<memberFile:otherwise>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 			
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
+				
 			</h5>
 		</div>
 		<div id="realNav">
@@ -176,8 +176,9 @@ tr{text-align:left;}
 		</div>
 </div>
 		
+			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 
