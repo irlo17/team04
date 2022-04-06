@@ -68,6 +68,7 @@ List <BoardVO> mList =  service.getArticleList(pNum);
 	.form{position:relative; left:35%}
 	td{text-align: center;}
 	.row100 head{font-size: 20px;}
+	
 	</style>
 	
 </head>
@@ -108,10 +109,10 @@ List <BoardVO> mList =  service.getArticleList(pNum);
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>모두의 맛집 리스트</h2>
+                       <h2>공개 맛집 리스트  <i class="fa-solid fa-bowl-food"></i></h2>
                         <div class="breadcrumb__option">
-                            <a href="#"><i class="fa fa-home"></i> Home</a>
-                            <span>모두의 맛집</span>
+                            <a href="main.do"><i class="fa fa-home"></i> Home</a>
+                            <span>맛집 리스트</span>
                         </div>
                     </div>
                 </div>

@@ -93,6 +93,8 @@ font-size: 15px;
 #tx{width:400px; text-align:left; background-color: #f8fafb;}
 #tb{width:600px;height:100px; }
 tr{text-align:left;}
+
+.filter{padding-top: 200px;}
 </style>
 
 </head>
@@ -146,6 +148,7 @@ tr{text-align:left;}
 			
 			</div>
 			<h5 class="nick">
+			${sessionScope.lognick }
 				${MemberVO.memberNickname }
 			</h5>
 		</div>
@@ -178,7 +181,7 @@ tr{text-align:left;}
 		<div class="">
 			<h4>
             <a href="review.do">리뷰관리</a>
-      </h4>
+      		</h4>
 
 		</div>
 

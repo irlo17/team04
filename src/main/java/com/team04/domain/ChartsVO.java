@@ -3,15 +3,9 @@ package com.team04.domain;
 public class ChartsVO {
 
 	// ====멤버변수====
-	// 월별 즐겨찾기 리스트 생성수 차트와 관련된 변수
-	private int cntList;
-	private String monthList;
-	// 월별 회원가입 수 차트와 관련된 변수
-	private int cntMember;
-	private String month;
-	// 음식종류별 가게 수 차트와 관련된 변수
-	private String shopFood;
-	private int cntShop;
+	// 차트와 관련된 변수
+	private int cnt;
+	private String list;
 	
 	// 생성된 총 즐겨찾기 리스트 수
 	private int totalCntBookmark;
@@ -27,64 +21,29 @@ public class ChartsVO {
 	}
 
 	// 생성자 - 인자있는
-	public ChartsVO(int cntMember, String month, String shopFood, int cntShop
-			, int cntList, String monthList, int totalCntMember, int totalCntBookmark, int totalCntShop) {
+	public ChartsVO(int cnt, String list, int totalCntMember, int totalCntBookmark, int totalCntShop) {
 		super();
-		this.cntMember = cntMember;
-		this.month = month;
-		this.shopFood = shopFood;
-		this.cntShop = cntShop;
-		this.cntList = cntList;
-		this.monthList = monthList;
+		this.cnt = cnt;
+		this.list = list;
 		this.totalCntMember = totalCntMember;
 		this.totalCntBookmark = totalCntBookmark;
 		this.totalCntShop = totalCntShop;
 	}
 	
 	// setter & getter
-	public int getCntMember() {
-		return cntMember;
+	public int getCnt() {
+		return cnt;
 	}
-	public void setCntMember(int cntMember) {
-		this.cntMember = cntMember;
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
-	public String getMonth() {
-		return month;
-	}
-	public void setMonth(String month) {
-		this.month = month;
+	
+	public String getList() {
+		return list;
 	}
 
-	public String getShopFood() {
-		return shopFood;
-	}
-
-	public void setShopFood(String shopFood) {
-		this.shopFood = shopFood;
-	}
-
-	public int getCntShop() {
-		return cntShop;
-	}
-
-	public void setCntShop(int cntShop) {
-		this.cntShop = cntShop;
-	}
-
-	public int getCntList() {
-		return cntList;
-	}
-
-	public void setCntList(int cntList) {
-		this.cntList = cntList;
-	}
-
-	public String getMonthList() {
-		return monthList;
-	}
-
-	public void setMonthList(String monthList) {
-		this.monthList = monthList;
+	public void setList(String list) {
+		this.list = list;
 	}
 
 	public int getTotalCntMember() {
