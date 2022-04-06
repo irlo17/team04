@@ -116,6 +116,15 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging) {
 		return bookmarkDAO.bookmarkGetMylistDetailPaging(paging);
 	}
-	
 
+	@Override
+	public HeartVO heartCheak(HeartVO vo) {
+		return bookmarkDAO.heartCheak(vo);
+	}
+
+	@Override
+	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
+		return bookmarkDAO.pictureHeartCount(vo);
+	}
+	
 }

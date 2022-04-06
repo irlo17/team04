@@ -259,6 +259,21 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		System.out.println("===> Mybatis bookmarkGetMylistDetailPaging() 호출");
 		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistDetailPaging",paging );
 	}
+
+
+	@Override
+	public HeartVO heartCheak(HeartVO vo) {
+		System.out.println("===> Mybatis heartCheak() 호출");
+		return mybatis.selectOne("BookmarkDAO.heartCheak",vo );
+	}
+
+
+	@Override
+	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
+		System.out.println("===> Mybatis pictureHeartCount() 호출");
+		
+		return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
+	}
 	
 	
 }
