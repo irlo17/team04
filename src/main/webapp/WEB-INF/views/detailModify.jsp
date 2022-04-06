@@ -68,7 +68,7 @@
 .ov-hid .blog__pagination {
 	padding: 50px;
 	position: relative;
-	left:20%;
+	left:30%;
 }
 [type="checkbox"]{width:20px; height: 20px; }
 
@@ -84,6 +84,7 @@
 #fo6{width:400px; margin: 20px;}
 .col-md-6{display: inline;}
 .btn-warning{color: white;}
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -165,6 +166,7 @@ $(function(){
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
+	
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
@@ -196,7 +198,9 @@ $(function(){
 		<br/>
 
 		<div class="">
-			<h4>회원정보</h4>
+			<h4>
+            <a href="mypageMember.do">회원정보</a>
+         	</h4>
 
 		</div>
 		<hr />
@@ -209,7 +213,9 @@ $(function(){
 		<hr />
 
 		<div class="">
-			<h4>리뷰관리</h4>
+			<h4>
+            <a href="review.do">리뷰관리</a>
+      		</h4>
 
 		</div>
 
@@ -229,35 +235,27 @@ $(function(){
 			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
-
 			</div>
-
 	</div>
+	
 	<!-- Filter End -->
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<input type="button" value='가게목록 삭제' id="btnDelete" class='btn btn-info'></a>
+	<button  id="btnDelete" class='btn btn-warning'>가게목록 삭제</button>
 	<button class="btn btn-info" id="btnShopList" data-target="#layerpop" data-toggle="modal" >가게목록 이동</button>
 	 </div>
 			<section class="blog-section spad">
         <div class="container">
             <div class="row">
-            
                 <div class="col-lg-12">
-                   
                     <div class="row">
-                     <form id="" action="" method="post" name="numberList">
                     <c:forEach items="${bookmarkModify }" var="bookmark" varStatus="status">
                   
-                 
-                  <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
-                  
                          <div class="col-lg-6 col-md-6">
-                           
+                         <input type="checkbox" class="shopNumber" name="shopNumber" value="${bookmark.shopNumber}">
                             <div class="blog__item">
-                            
                                 <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">  
@@ -272,9 +270,7 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-                       
                       </c:forEach>
-	                  </form>
                     </div>
                   
                 <div class="blog__pagination">
@@ -285,11 +281,8 @@ $(function(){
                         <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
-                
             </div>
         </div>
-      
-        
     </section>
 	</section>
 
@@ -334,16 +327,6 @@ $(function(){
   </div>
 </div>
      
-
-
-
-
-
-
-
-
-
-
 
 
 

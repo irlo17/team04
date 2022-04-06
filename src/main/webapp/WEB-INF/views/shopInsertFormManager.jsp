@@ -35,7 +35,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
             <!-- navbar 로고 -- 이미지파일 연결 -->
-            <a class="navbar-brand ps-3" href="index.html"><img src="${path}/resources/manager/img/footer-logo.png" alt=""></a>
+            <a class="navbar-brand ps-3" href="main.do"><img src="${path}/resources/manager/img/footer-logo.png" alt=""></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- 로그인 버튼 위치때문에 유지 -- 원래는 검색바 -->
@@ -113,7 +113,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                 	<!-- 주소 Api 연결 버튼 -->
-                                                    <div class="d-grid"><a class="btn btn-success btn-lg btn-block" onclick="sample4_execDaumPostcode()">주소찾기</a></div>
+                                                    <div class="d-grid"><a id="jusoSearch" class="btn btn-success btn-lg btn-block" onclick="sample4_execDaumPostcode()">주소찾기</a></div>
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
@@ -193,9 +193,12 @@
                                             <div class="form-group mb-3">
 											    <label class="jb-600" for="exampleInputFile">파일 업로드</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											    <input type="file" id="exampleInputFile" name="shopFile">
+											    <input id="shopLat" name="shopLat" hidden="hidden"/>
+											    <input id="shopLon" name="shopLon" hidden="hidden"/>
+									
 											</div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid"><input type="submit" value="추가" class="btn btn-success btn-block"></div>
+                                                <div class="d-grid"><button id="shopAdd" value="추가" class="btn btn-success btn-block">추가</button></div>
                                             </div>
                                         </form>
                                     </div>
@@ -219,7 +222,18 @@
                 </footer>
             </div>
         </div>
-        <!-- 부트스트랩 -->
+        
+
+				<!-- 카카오 맵 출력 -->
+    		<div id="map" style="width: 100%; height: 350px" hidden="hidden"></div>
+
+
+
+
+
+		<!-- 제이 쿼리 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- 부트스트랩 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="${path}/resources/manager/js/scripts.js"></script>
@@ -231,5 +245,22 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <!-- 파일 내 주소 스크립트 연동 -->
         <script src="${path}/resources/manager/js/addressApiEx.js"></script>
-    </body>
+        <!-- 카카오맵 가지고오기 위한 키 값 -->
+        <script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"></script>
+        <!-- 위도경도 값 가지고 오기 위한 카카오 맵 연동 -->
+        <script src="${path}/resources/manager/js/shopInsertKakaoMap.js"></script>
+
+	<!-- form tag 지연시간 설정 -->
+	<script type="text/javascript">
+		$('form').submit(function(e) {
+			var form = this;
+			e.preventDefault();
+			setTimeout(function() {
+				form.submit();
+			}, 1000); //1초 설정
+		});
+	</script>
+</body>
+ 
 </html>
