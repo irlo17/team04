@@ -57,6 +57,8 @@
 	type="text/css">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 <link rel="stylesheet" href="resources/pageSpinner/review.css" type="text/css">
+<link rel="stylesheet" href="./resources/member/css/userStyle.css">
+
 
 
 
@@ -84,7 +86,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa fa-plus"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -110,45 +112,30 @@
             </c:choose>
          	
          </div>
-        <br/>
-        <br/>
+        
          <h5 class="nick">
             ${sessionScope.lognick }
          </h5>
       </div>
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-	
-		
-	
-	
-
-			<div class="cate_1">
+	<div id="realNav">
+			<div class="categori">
 				<!-- <h4>회원정보</h4>-->
-			<a href="mypageMember.do"><h4>회원정보</h4></a>
+			<h4><a href="mypageMember.do">회원정보</a></h4>
 			</div>
 			<hr />
 
 
-			<div class="cate_2">
+			<div class="categori">
 				<!--   <h4>즐겨찾기</h4>-->
-			<a href="mylist.do?page=1"><h4>즐겨찾기</h4></a>
+			<h4><a href="mylist.do?page=1">즐겨찾기</a></h4>
 			</div>
 			<hr />
 
-			<div class="cate_3">
+			<div class="categori" id="check">
 				<!--   <h4>리뷰관리</h4>-->
-				<a href="review.do"><h4>리뷰관리</h4></a>
+				<h4><a href="review.do">리뷰관리</a></h4>
 			</div>
+	</div>
 
 			<br />
 			<br />
@@ -280,6 +267,8 @@
 
 
 	<!-- Js Plugins -->
+	<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
+	
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/jquery.nice-select.min.js"></script>

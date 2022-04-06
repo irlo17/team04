@@ -81,7 +81,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa fa-plus"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 			 			<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -111,17 +111,9 @@
 			</h5>
 		</div>
 		
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
-		<div class="">
+	
+	<div id="realNav">
+		<div class="categori" id="check">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
 			</h4>
@@ -129,19 +121,19 @@
 		<hr />
 
 
-		<div class="">
+		<div class="categori">
 			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
 				<a href="review.do">리뷰관리</a>
 		</h4>
 
 		</div>
-
+	</div>
 			<br />
 			<br />
 			<br />
@@ -255,6 +247,7 @@
 
 
 	<!-- Js Plugins -->
+	<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
 	
 	<script src="./resources/js/jquery-3.3.1.min.js"></script>
 	<script src="./resources/js/bootstrap.min.js"></script>

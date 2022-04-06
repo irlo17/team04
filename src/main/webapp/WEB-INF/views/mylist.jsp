@@ -26,7 +26,7 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
@@ -51,7 +51,7 @@
             margin-left: 100px;
             margin-right: 100px; */
 	/* text-align: center;*/
-	 padding: 100px; 
+	 padding: 100px;
 }
 
 .inline-block {
@@ -67,22 +67,19 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	 padding: 100px; 
+	 padding: 100px;
 }
 
 .ov-hid .blog__pagination {
 	text-align: center;
 
-} 
+}
 #my{text-align: center;
 margin-bottom:50px;
 }
 
 .table{width:100%; }
 .btn-success{position: relative; left:90%;}
-.filter{padding-top: 200px;}
-
-
 </style>
 
 </head>
@@ -93,7 +90,7 @@ margin-bottom:50px;
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-		
+
 	<!-- Header Section Begin -->
 	<header class="header header--normal">
 		<div class="container-fluid" >
@@ -107,7 +104,7 @@ margin-bottom:50px;
 					<div class="header__nav" >
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -116,39 +113,28 @@ margin-bottom:50px;
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-	
+
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
 			</h5>
 		</div>
-
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+	<div id="realNav">
 		<div class="categori">
 			<h4>
 				<a class="haha" href="mypageMember.do">회원정보</a>
@@ -170,6 +156,7 @@ margin-bottom:50px;
 				<a class="haha" href="review.do">리뷰관리</a>
 		</h4>
 		</div>
+	</div>
 
 			<br />
 			<br />
@@ -196,7 +183,7 @@ margin-bottom:50px;
 
 	<!-- Listing Section Begin -->
 	<section class="nice-scroll nuguri">
-			
+
 		<div class="listing__text__top col-md-12 dogdog">
 		<div id="my"><h4 id='ga'><i class="fa-solid fa-apple-whole"></i>  나만의 즐겨찾기 목록</h4></div>
 			<table class="table table-striped">
@@ -206,7 +193,7 @@ margin-bottom:50px;
 						<th>리스트제목</th>
 						<th>공개여부</th>
 						<th>좋아요 수</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>
@@ -218,7 +205,7 @@ margin-bottom:50px;
 						<td>${bookmark.listLike}</td>
 					</tr>
 				</c:forEach>
-				
+
 				</tbody>
 			</table>
 
@@ -226,7 +213,7 @@ margin-bottom:50px;
 
 			<div class="blog__pagination">
 			<c:if test="${paging.page != 1 }">
-				<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a> 
+				<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a>
 			</c:if>
 			<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
 					<a href="mylist.do?page=${pageNum }">${pageNum }</a>
