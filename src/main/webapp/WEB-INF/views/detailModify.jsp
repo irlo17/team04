@@ -287,6 +287,7 @@ $(function(){
 				<thead>
 					<tr>
 						<th>선택</th>
+						<th>번호</th>
 						<th>리스트제목</th>
 					</tr>
 				</thead>
