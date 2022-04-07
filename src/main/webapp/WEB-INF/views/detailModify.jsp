@@ -62,7 +62,11 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	padding: 100px;
+	padding: 50px;
+	background-image:url('./resources/images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right:500px;
 }
 
 .ov-hid .blog__pagination {
@@ -84,6 +88,14 @@
 #fo6{width:400px; margin: 20px;}
 .col-md-6{display: inline;}
 .btn-warning{color: white;}
+#jjanggu{
+	width: 300px;
+    height: 300px;
+    position: relative;
+    right:100px;
+    top:50px;
+    }
+#addcoment{position: relative; bottom:150px;left: 350px;}
 
 </style>
 <script type="text/javascript">
@@ -231,6 +243,17 @@ $(function(){
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
+                     <c:choose>
+						<c:when test="${listCount eq 0 }">
+							<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
+								<div >
+									<div style="font-weight: bold; font-size: 3em;"class="shop_name noReview" >
+										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> <div id="addcoment">추가하신 맛집이 없습니다.<br/>&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!</div>
+									</div>
+								</div>
+							</div>
+						</c:when>	
+					</c:choose>
                     <c:forEach items="${bookmarkModify }" var="bookmark" varStatus="status">
                   
                          <div class="col-lg-6 col-md-6">
