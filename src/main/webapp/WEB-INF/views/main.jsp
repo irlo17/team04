@@ -53,7 +53,7 @@
                     <div class="header__nav">
                         
                         <div class="header__menu__right">
-                           <a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa fa-plus"></i>맛집리스트</a>
+                           <a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
                             <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
                         </div>
                     </div>
@@ -187,6 +187,7 @@
     <script src="./resources/js/jquery.slicknav.js"></script>
     <script src="./resources/js/owl.carousel.min.js"></script>
     <script src="./resources/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/2173f645ed.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

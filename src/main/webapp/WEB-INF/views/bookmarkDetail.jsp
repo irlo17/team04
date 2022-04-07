@@ -81,7 +81,7 @@ position: relative; left:400px; }
     top:50px;
     }
 #addcoment{position: relative; bottom:150px;left: 350px;}
-
+#listTitle{margin-bottom:20px;}
 </style>
 <script type="text/javascript">
 
@@ -234,7 +234,7 @@ $(document).ready(function() {
 			
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				
@@ -292,6 +292,7 @@ $(document).ready(function() {
 <!--------------------------------------------------------------------------------------------------------------  -->		
 		<section class="blog-section spad">
         <div class="container">
+                <h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row" >
