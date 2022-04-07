@@ -44,7 +44,7 @@
                                 대시보드
                             </a>
                             <div class="sb-sidenav-menu-heading">목차</div>
-                            <a class="nav-link" href="chartsManager.do">
+                            <a class="nav-link" href="chartsManager.do" id="check">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>

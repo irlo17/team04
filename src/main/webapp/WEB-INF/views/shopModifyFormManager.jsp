@@ -125,7 +125,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopListManager.do">
+                            <a class="nav-link" href="shopListManager.do" id="check">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
