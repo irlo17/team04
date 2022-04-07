@@ -186,8 +186,7 @@
                                             <div class="mb-3">
                                                 <select class="form-select ps-2" name="shopPark">
                                                 	<option>주차</option>
-                                                	<option>유료주차 가능</option>
-                                                	<option>무료주차 가능</option>
+                                                	<option>주차 가능</option>
                                                 	<option>주차 불가능</option>
                                                 </select>
                                             </div>
