@@ -68,7 +68,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>
-                            <a class="nav-link" href="shopListManager.do">
+                            <a class="nav-link" href="shopListManager.do" id="check">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
@@ -162,8 +162,7 @@
                                             <div class="mb-3">
                                                 <select class="form-select ps-2" name="shopPark">
                                                 	<option value="0" selected="selected">주차</option>
-                                                	<option value="유료주차 가능">유료주차 가능</option>
-                                                	<option value="무료주차 가능">무료주차 가능</option>
+                                                	<option value="주차 가능">주차 가능</option>
                                                 	<option value="주차 불가능">주차 불가능</option>
                                                 </select>
                                             </div>

@@ -83,7 +83,7 @@
 				data: {
 					shopNumber: shopNumber,
 					startIndex: startIndex,
-					endIndex: searchStep
+					endIndex: let _endIndex
 				},
 				url: "listingDetails",
 				success: function (data, textStatus) {

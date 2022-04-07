@@ -54,7 +54,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 차트
                             </a>
-                            <a class="nav-link" href="memberListManager.do">
+                            <a class="nav-link" href="memberListManager.do" id="check">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원리스트
                             </a>

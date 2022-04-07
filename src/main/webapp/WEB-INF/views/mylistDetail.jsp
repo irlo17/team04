@@ -68,7 +68,12 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	padding: 100px;
+	padding: 50px;
+	background-image:url('./resources/images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right:500px;
+	
 }
 
 .ov-hid .blog__pagination {
@@ -86,8 +91,14 @@ position: relative; left:400px; }
 
 #jjanggu{
 	width: 300px;
-    height: 300px;}
-
+    height: 300px;
+    position: relative;
+    right:100px;
+    top:50px;
+    }
+ .header__logo{padding:1%}
+#addcoment{position: relative; bottom:150px;left: 350px;}
+#listTitle{margin-bottom:20px;}
 </style>
 <script type="text/javascript">
 
@@ -109,7 +120,7 @@ position: relative; left:400px; }
 
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 
@@ -190,20 +201,24 @@ position: relative; left:400px; }
 	 </div>
 	<section class="blog-section spad">
         <div class="container">
+        
+						<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
+					
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
                     <c:choose>
 						<c:when test="${listCount eq 0 }">
 							<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
-								<div class="col-md-8 inline-block">
+								<div >
 									<div style="font-weight: bold; font-size: 3em;"class="shop_name noReview" >
-										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> 추가하신 맛집이 없습니다.
+										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> <div id="addcoment">추가하신 맛집이 없습니다.<br/>&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!</div>
 									</div>
 								</div>
 							</div>
 						</c:when>	
 					</c:choose>
+					
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">

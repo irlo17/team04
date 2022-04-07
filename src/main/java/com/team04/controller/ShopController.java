@@ -1,5 +1,7 @@
 package com.team04.controller;
 
+import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.team04.domain.MenuVO;
+import com.team04.domain.ChartsVO;
 import com.team04.domain.FoodKindVO;
 import com.team04.domain.FoodPriceVO;
 import com.team04.domain.ShopVO;
@@ -114,9 +117,10 @@ public class ShopController {
 	//가게 리스트 출력
 	//가게 리스트페이지에서 가게 출력
 	@RequestMapping("listing.do")
-	public String shopPageList(String query, ModelMap m) {
+	public String shopPageList(String query, ModelMap m, ShopVO vo) {
 		
 		List<ShopVO> list = shopService.shopPageGetList(query);
+	
 		m.addAttribute("shopPageList", list); //jsp쪽으로 보내는 키값
 		return "listing";
 	}
@@ -130,7 +134,7 @@ public class ShopController {
 	 * @return listing.jsp Page 리턴
 	 */
 	@RequestMapping("listingFilter.do")
-	public String shopPageFilterGetList(String query, FoodKindVO vo, String shopAddressSi, String shopAddressGu, FoodPriceVO pVo,  Model m) {
+	public String shopPageFilterGetList(String query, FoodKindVO vo, String shopAddressSi, String shopAddressGu, FoodPriceVO pVo,  ShopVO sVo,Model m) {
 		
 		HashMap map = new HashMap();
 		
@@ -139,14 +143,70 @@ public class ShopController {
 		map.put("shopAddressSi", shopAddressSi);
 		map.put("shopAddressGu", shopAddressGu);
 		map.put("foodPrice", pVo);
-		
+		System.out.println("lat "+sVo.getShopLat());
+		System.out.println("lon "+sVo.getShopLon());
 		
 		
 		List<ShopVO> list = shopService.shopPageFilterGetList(map);
 		m.addAttribute("shopPageList", list);
+		//반환값으로 줘야할것
+		//m.addAttribute("거리값",반경 value값);
 		
 		return "listing";
 	}
+	
+	
+	@RequestMapping("listingFilter2.do")
+	public String shopPageFilterGetList2(String query,double myLat, double myLon, double radiusInput, ShopVO vo, Model m) {
+		
+		
+		
+		HashMap map = new HashMap();		
+
+		
+		ArrayList<Double> resultList = new ArrayList<>();
+		List<ShopVO> list = shopService.shopGetListManager();
+		List<ShopVO> list2;
+		for(ShopVO vv : list) {
+			double lat = Double.parseDouble(vv.getShopLat());
+			double lon = Double.parseDouble(vv.getShopLon());
+			String voo = Integer.toString(vv.getShopNumber());
+			
+			Double result = distance(myLat, myLon, lat, lon);
+			resultList.add(result);
+			map.put("radius", radiusInput);
+			map.put("distance", result);
+			map.put("shopNumber", voo);
+			list2 = shopService.shopPageFilterGetList2(map);
+			m.addAttribute("shopPageList", list2);
+			
+		}
+		
+		System.out.println(resultList);
+		
+		
+		
+		
+		return "listing";
+	}
+	
+    private static double distance(double lat1, double lon1, double lat2, double lon2){
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1))* Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1))*Math.cos(deg2rad(lat2))*Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60*1.1515*1609.344;
+        dist = dist /1000;
+        return dist; //단위 km
+    }
+    
+    private static double deg2rad(double deg){
+        return (deg * Math.PI/180.0);
+    }
+    //radian(라디안)을 10진수로 변환
+    private static double rad2deg(double rad){
+        return (rad * 180 / Math.PI);
+    }
 	
 	
 

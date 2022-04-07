@@ -203,6 +203,7 @@ prefix="c"%>
         <input type="text" placeholder="위치" />
         <i class="fa fa-map-marker"></i>
       </div>
+      <form action="listingFilter2.do">
       <div class="filter__radius">
         <p>반경 :</p>
         <div class="price-range-wrap">
@@ -217,7 +218,7 @@ prefix="c"%>
           </div>
           <div class="range-slider">
             <div class="price-input">
-              <input type="text" id="radius" />
+              <input type="text" id="radius"/>
             </div>
           </div>
         </div>
@@ -242,8 +243,10 @@ prefix="c"%>
           </div>
         </div>
       </div>
+     
       <div class="filter__tags">
         <h6>선택</h6>
+ 
         <label for="parking">
           주차 <input type="checkbox" id="parking" />
           <span class="checkmark"></span>
@@ -253,11 +256,19 @@ prefix="c"%>
           <span class="checkmark"></span>
         </label>
       </div>
-      <div class="filter__btns">
+      
+		<div class="filter__btns">
+			<button id="filter-search" type="submit" class="filter__reset">
+				검색
+			</button>
+		</div>
+		<div class="filter__btns">
         <button type="submit" class="filter__reset">전체 선택 취소</button>
       </div>
       <input id="myLat" name="myLat" />
       <input id="myLon" name="myLon" />
+      <input id="radiusInput" name= "radiusInput" />
+      </form>
     </div>
     <!-- Filter End -->
 
@@ -806,5 +817,24 @@ prefix="c"%>
         });
       });
     </script>
+    
+       <script>
+      $("#filter-search").click(function name(params) {
+        var regex = /[^0-9.;\-]/g;
+        var result = $("#radius").val().replace(regex, "");
+        $("#radiusInput").val(result);
+        console.log(result);
+      });
+    </script>
+    	<!-- form tag 지연시간 설정 -->
+	<script type="text/javascript">
+		$('form').submit(function(e) {
+			var form = this;
+			e.preventDefault();
+			setTimeout(function() {
+				form.submit();
+			}, 1000); //1초 설정
+		});
+	</script>
   </body>
 </html>

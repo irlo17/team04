@@ -96,8 +96,12 @@ public class BookmarkController {
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  BookmarkVO bvo= bookmarkService.bookmarkGetDetail(listNumber);
+		  int listCount= list.size();
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list);
+		  model.addAttribute("BookmarkVO", bvo);
 		  return "bookmarkDetail";
 	  }
 
@@ -108,6 +112,7 @@ public class BookmarkController {
 	  @RequestMapping("mylistDetail.do")
 	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo, MemberVO mvo,HttpSession session) {
 		  vo.setListNumber(listNumber);
+		  
 		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
 		  MemberVO member = memberService.memberSearch(mvo);
 		  model.addAttribute("MemberVO", member);
@@ -116,11 +121,14 @@ public class BookmarkController {
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  BookmarkVO bvo= bookmarkService.bookmarkGetDetail(listNumber);
 		  int listCount= list.size();
-		  
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("bookmarkList", list);
 		  model.addAttribute("paging", vo);
-		  model.addAttribute("listCount", listCount);
+		  model.addAttribute("BookmarkVO", bvo);
+			
+		  
 		  
 		  return "mylistDetail";
 	  }
@@ -161,10 +169,13 @@ public class BookmarkController {
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetailPaging(vo);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
+		  BookmarkVO bvo= bookmarkService.bookmarkGetDetail(listNumber);
+		  int listCount= list1.size();
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("bookmarkModify", list1);
 		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list2);	// 모달창 (페이징 없음)
-
+		  model.addAttribute("BookmarkVO", bvo);
 		return "detailModify";
 	  }
 

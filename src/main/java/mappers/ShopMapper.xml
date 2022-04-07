@@ -112,6 +112,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</select>
 
+	<select id="shopPageFilterGetList2" parameterType="hashmap"
+		resultType="ShopVO">
+
+
+		select *
+		from shop
+		<where>
+
+			#{distance}	
+			
+		<![CDATA[
+		<=#{radius}
+		]]> and SHOP_NUMBER = #{shopNumber}
+
+		</where>
+
+	</select>
+
 
 
 

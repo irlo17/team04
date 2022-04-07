@@ -93,8 +93,7 @@ font-size: 15px;
 #tx{width:400px; text-align:left; background-color: #f8fafb;}
 #tb{width:600px;height:100px; }
 tr{text-align:left;}
-
-
+ .header__logo{padding:1%}
 </style>
 
 </head>
@@ -114,7 +113,7 @@ tr{text-align:left;}
 			
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				
