@@ -199,14 +199,14 @@ $('#btn_signUp').click(function(){
 	}
 	
 	//이용약관에 체크 했는지 확인
-	if( !$("#termsService").is(':checked') ){
+	if( !$("#termsService").is(':checked')){
 		// 체크 X
 		$('#termsService').next().html("이용 약관에 동의해주세요.");
 		return;
 	}else{
 		// 체크 O
-		alert("회원가입이 되었습니다.");
 		document.member_frm.submit();
+		alert("회원가입이 되었습니다.");
 	}
 });
 
@@ -260,8 +260,8 @@ $('#btnLogin').click(function(){
 			
 			}else{
 			// 결과가 result = "Y"이면 로그인 성공 -> loginMove.do로 이동
-				alert("로그인 성공");
         		document.loginForm.submit();
+				alert("로그인 성공");
 			}
 	},
 	error : function(err){
@@ -295,7 +295,6 @@ $('#btnPwSearch').click(function(){
     	 		},
     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
     	success : function(result){
-    		
     		// 중복 검사 후 나오는 결과 에러박스에 출력
     		if(result == 'N'){
 	        		$('.error_box.pwSearch').html("존재하는 회원이 아닙니다.");
@@ -352,6 +351,7 @@ $('#btnPwChange').click(function(){
 		return;
 	}
 	document.pwChangeForm.submit();
+	alert("비밀번호가 변경되었습니다.");
 	
 }); // end of #btnPwChange
 
@@ -463,18 +463,21 @@ $('#btnMemberUpdate').click(function(){
 	
 	
 	 document.memberUpdateForm.submit();
+	 alert("회원 정보 수정이 완료되었습니다.");
 }) //end of #btnMemberUpdate
-
+$('#btnAgree').click(function(){
+	$('#agreeForm').toggle();
+});
 
 // 생년월일 max를 오늘 날짜로 지정하기
  	var date = new Date();
- 	var day = today.getDate();
- 	var monty = today.getMonth()+1;
- 	var year = today.getFullYear();
+ 	var day = date.getDate();
+ 	var month = date.getMonth()+1;
+ 	var year = date.getFullYear();
 
 	if(day<10){ day = '0'+ day}
-	if(monty<10){ monty = '0' + monty}
-	var today = year + "-" + monty + "-" + day;
+	if(month<10){ month = '0' + month}
+	var today = year + "-" + month + "-" + day;
 	document.getElementById('memberBirth').setAttribute("max", today);
 
 
