@@ -174,6 +174,7 @@
 		</select>
 		
 		<span class=col-md-2><input type='text' name='searchKeyword' id='search'></span>
+		<input type="hidden" name="page" value="1"/>
 		<span class=col-md-4><input type='submit' value='검색' id='searchb' class='btn btn-danger'></span>
 		</div>		
 		
@@ -182,14 +183,27 @@
 			<a href="BoardList.jsp?page=<%=i %>"> [<%=i %>] </a>
 		<%} //end of for%> --%>
 				<div class="blog__pagination">
-				<c:if test="${paging.page > 1 }">
-					<a href="totalbookmark.do?page=${paging.page-1 }"></i> Pre</a> 
+				<c:if test="${empty searchKeyword}">
+					<c:if test="${paging.page > 1 }">
+						<a href="totalbookmark.do?page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+							<a href="totalbookmark.do?page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page < paging.pageTotalCount}">
+							<a href="totalbookmark.do?page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
 				</c:if>
-				<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
-						<a href="totalbookmark.do?page=${pageNum }">${pageNum }</a>
-				</c:forEach>
-				<c:if test="${paging.page <paging.pageTotalCount}">
-						<a href="totalbookmark.do?page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+				<c:if test="${not empty searchKeyword}">
+					<c:if test="${paging.page > 1 }">
+						<a href="totalbookmark.do?page=${paging.page-1 }&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+							<a href="totalbookmark.do?page=${pageNum }&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+							<a href="totalbookmark.do?page=${paging.page+1 }&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
 				</c:if>
                </div>
 			</div>

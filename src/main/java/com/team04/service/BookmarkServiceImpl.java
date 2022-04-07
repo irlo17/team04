@@ -24,8 +24,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 	 * @return int
 	 */
 	@Override
-	public int bookmarkListCount() {
-		return bookmarkDAO.bookmarkListCount();
+	public int bookmarkListCount(HashMap map) {
+		return bookmarkDAO.bookmarkListCount(map);
 	}
 	
 	 @Override 
@@ -33,7 +33,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 		 return bookmarkDAO.bookmarkGetList( map ); }
 
-
+	 
 
 	@Override
 	public List<BookmarkVO> bookmarkGetBestList(){
@@ -52,7 +52,9 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging){
 		return bookmarkDAO.bookmarkGetMylistPaging(paging);
+		
 	}
+	
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail){
 		return bookmarkDAO.bookmarkGetMylist(memberEmail);
 	}

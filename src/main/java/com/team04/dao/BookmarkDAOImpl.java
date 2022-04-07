@@ -25,11 +25,10 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	 * @return int
 	 */
 	@Override
-	public int bookmarkListCount() {
+	public int bookmarkListCount(HashMap map) {
 		System.out.println("===> Mybatis bookmarkListCount() 호출"); 
-		return mybatis.selectOne("BookmarkDAO.bookmarkListCount");
+		return mybatis.selectOne("BookmarkDAO.bookmarkListCount", map);
 	}
-
 
 	/* 메소드명:bookmarkGetList
 	 * 인자: HashMap map
@@ -273,6 +272,5 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	   System.out.println("===> Mybatis pictureHeartCount() 호출");
 	   return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
 	}
-	
 	
 }

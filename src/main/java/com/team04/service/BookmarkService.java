@@ -13,10 +13,9 @@ public interface BookmarkService {
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
 	
 	
-	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	/** 공개 여부가 "yes" 이고 키워드 검색 후 레코드 전체 검색 
 	 */
-	public int bookmarkListCount();
-		
+	public int bookmarkListCount(HashMap map);
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	
