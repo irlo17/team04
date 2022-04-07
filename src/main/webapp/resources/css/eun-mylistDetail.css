@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+.nuguri {
+	/*  margin-top: 150px;
+            margin-left: 100px;
+            margin-right: 100px; */
+	/* text-align: center;*/
+	padding: 100px;
+}
+
+.inline-block {
+	display: inline-block;
+	margin-top: 30px;
+}
+
+.hb300 {
+	height: 300px;
+	resize: none
+}
+
+.dogdog {
+	/* display: flex;
+            align-items: center; */
+	padding: 50px;
+	background-image: url('../images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right: 500px;
+}
+
+.ov-hid .blog__pagination {
+	padding: 50px;
+	position: relative;
+	left: 30%;
+}
+
+#my {
+	margin-top: 50px;
+	position: relative;
+	left: 400px;
+}
+
+#btnl {
+	padding: 20px;
+	float: right;
+}
+
+.fa-solid {
+	font-size: 20px;
+}
+
+.glyphicon {
+	color: red;
+	font-size: 30px;
+	right: 20px;
+}
+
+.blog__item__pic {
+	width: 555px;
+	height: 310px;
+}
+
+#jjanggu {
+	width: 300px;
+	height: 300px;
+	position: relative;
+	right: 100px;
+	top: 50px;
+}
+
+.header__logo {
+	padding: 1%
+}
+
+#addcoment {
+	position: relative;
+	bottom: 150px;
+	left: 350px;
+}
+
+#listTitle {
+	margin-bottom: 20px;
+}
+
+.btn-success {
+	color: #fff;
+	background-color: #4ABA99;
+	border-color: #4ABA99;
+}
+
+.btn-success:hover {
+	color: #fff;
+	background-color: #3E805F;
+	border-color: #3E805F;
+}

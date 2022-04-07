@@ -154,8 +154,8 @@ order by  list_date desc
 
 
 <insert id="MylistInsert" parameterType="BookmarkVO">
-insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list)
-values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no')
+insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list,list_like)
+values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no',0)
 </insert>
 
 <select id="ImageSelectBestBookmark" parameterType="Int" resultType="BookmarkVO">
