@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="memberEmail"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -45,8 +46,7 @@
                 <form action="loginMove.do" method="post" id="loginForm" name="loginForm">
                   <div class="form-group first">
                     <label for="memberEmail">이메일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
-                    <input type="email" class="form-control" id="memberEmail" name="memberEmail">
-
+                    <input type="email" class="form-control" id="memberEmail" name="memberEmail" value="${cookie.rememberEmail.value}">
                   </div>
                   <div class="form-group last mb-4">
                     <label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
@@ -55,8 +55,12 @@
                   </div>
                   
                   <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">이메일 기억하기</span>
-                      <input type="checkbox" id="rememberEmail"/>
+                    <label class="control control--checkbox mb-0" for="rememberEmail"><span class="caption">이메일 기억하기</span>
+                      <!-- 쿠키값이 있으면 체크표시 유지 -->
+                    	<memberEmail:if test="${not empty cookie.rememberEmail.value }">
+							<memberEmail:set value="checked" var="checked"/>              	
+                    	</memberEmail:if>
+                       <input type="checkbox" id="rememberEmail" name="rememberEmail" value="true" ${checked }/>
                       <div class="control__indicator"></div>
                     </label>
                     <span class="ml-auto"><a href="pwSearchForm.do" class="forgot-pass">비밀번호 찾기</a></span> 
@@ -64,7 +68,6 @@
                   <input type="button" value="로그인" id="btnLogin"class="btn btn-pill text-white btn-block btn-danger">
                   <div class="d-flex mb-5 align-items-center">
                     <label class="control control--checkbox mb-0"><span class="caption"></span>
-                      <input type="checkbox" id="rememberEmail"/>
                     </label>
                     <span class="ml-auto"><a href="signupForm.do" class="forgot-pass">회원가입 하기</a></span> 
                   </div>
