@@ -113,9 +113,12 @@ public class BookmarkController {
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  int listCount= list.size();
 		  
 		  model.addAttribute("bookmarkList", list);
 		  model.addAttribute("paging", vo);
+		  model.addAttribute("listCount", listCount);
+		  
 		  return "mylistDetail";
 	  }
 
@@ -133,13 +136,13 @@ public class BookmarkController {
 	  @RequestMapping("ModifyListname.do")
 	  public String bookmarkModifylistName(BookmarkVO vo) {
 		  bookmarkService.bookmarkModify(vo);
-		  return "redirect:mylist.do";
+		  return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("deleteBookmark.do")
 	  public String bookmarkDelete(String listNumber) {
 		  bookmarkService.bookmarkDelete(listNumber);
-		  return "redirect:mylist.do";
+		  return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("detailModify.do")
@@ -165,13 +168,13 @@ public class BookmarkController {
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo) {
 		  bookmarkService.mylistUpdate(vo);
-		return "redirect:mylist.do";
+		return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
 		  bookmarkService.mylistDelete(vo);
-			return "redirect:mylist.do";
+			return "redirect:mylist.do?page=1";
 		  }
 
 	  @RequestMapping("addPageView.do")

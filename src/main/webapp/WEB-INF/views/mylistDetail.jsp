@@ -191,6 +191,18 @@ position: relative; left:400px; }
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
+                    <c:choose>
+						<c:when test="${listCount eq 0 }">
+					
+					<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
+
+					<div class="col-md-8 inline-block">
+						<div style="font-weight: bold; font-size: 3em;"
+							class="shop_name noReview" > 추가하신 맛집이 없습니다.</div>
+							</div>
+							</div>
+						</c:when>	
+					</c:choose>
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
