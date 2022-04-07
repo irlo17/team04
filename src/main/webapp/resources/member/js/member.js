@@ -220,7 +220,7 @@ $('#btnLogin').click(function(){
 
 	var memberEmail = $.trim($("#memberEmail").val());
 	var memberPassword = $.trim($("#memberPassword").val());
-	
+	var rememberEmail = false;
 
 	/* 이메일 */
 	if(memberEmail == ''){
@@ -240,18 +240,26 @@ $('#btnLogin').click(function(){
 		$('label[for="memberPassword"] .error_box').html("");
 		}
 	
+	/* 이메일 기억하기 체크 박스*/
+	if( $("#rememberEmail").is(':checked') ){
+		rememberEmail = true;
+		}//end of if
+	
   $.ajax({
 	type : 'post',
 	url : 'loginCheck.do',
-	data : { memberEmail : $('#memberEmail').val(),
-			memberPassword : $('#memberPassword').val(),
+	data : { memberEmail : $("#memberEmail").val(),
+			memberPassword : $("#memberPassword").val(),
+			rememberEmail : rememberEmail
 	 		},
 	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	success : function(result){
 		// 중복 검사 후 나오는 결과 에러박스에 출력
 		if(result == "N"){
         		$('.error_box.login').html("존재하는 회원이 아니거나 비밀번호가 일치하지 않습니다.");
+			
 			}else{
+			// 결과가 result = "Y"이면 로그인 성공 -> loginMove.do로 이동
 				alert("로그인 성공");
         		document.loginForm.submit();
 			}
@@ -261,6 +269,7 @@ $('#btnLogin').click(function(){
 		console.log(err);
 	}
 	});//end of ajax
+	
 }); //end of #btnLogin 
 
 
@@ -458,14 +467,14 @@ $('#btnMemberUpdate').click(function(){
 
 
 // 생년월일 max를 오늘 날짜로 지정하기
- 	var today = new Date();
+ 	var date = new Date();
  	var day = today.getDate();
  	var monty = today.getMonth()+1;
  	var year = today.getFullYear();
 
 	if(day<10){ day = '0'+ day}
 	if(monty<10){ monty = '0' + monty}
-	today = year + "-" + monty + "-" + day;
+	var today = year + "-" + monty + "-" + day;
 	document.getElementById('memberBirth').setAttribute("max", today);
 
 
