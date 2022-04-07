@@ -33,20 +33,23 @@ public class BookmarkController {
 	
 	  @RequestMapping("totalbookmark.do") 
 	  public String bookmarkGetList( String searchCondition, String searchKeyword, Model model, PagingVO vo) {
+		  vo.setCountPerPage(10);
 		
 		  HashMap map = new HashMap(); 
-		  
-		  map.put("searchCondition",searchCondition);
-		  map.put("searchKeyword",searchKeyword);
-		  vo.setCountPerPage(10);
-		  vo.setPageTotalCount(bookmarkService.bookmarkListCount());
-		  vo.setStartRow(vo.getPage());
-		  vo.setEndRow(vo.getPage());
-		  map.put("startRow", vo.getStartRow());
-		  map.put("endRow", vo.getEndRow());
-		  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
-		  model.addAttribute("bookmarkList", list);
-		  model.addAttribute("paging", vo);
+
+			  map.put("searchCondition",searchCondition);
+			  map.put("searchKeyword",searchKeyword);
+			  vo.setPageTotalCount(bookmarkService.bookmarkListCount(map));
+			  System.out.println(bookmarkService.bookmarkListCount(map));
+			  vo.setStartRow(vo.getPage());
+			  vo.setEndRow(vo.getPage());
+			  map.put("startRow", vo.getStartRow());
+			  map.put("endRow", vo.getEndRow());
+			  List<BookmarkVO> list = bookmarkService.bookmarkGetList( map );
+			  model.addAttribute("bookmarkList", list);
+			  model.addAttribute("paging", vo);
+			  model.addAttribute("searchCondition", searchCondition);
+			  model.addAttribute("searchKeyword", searchKeyword);
 		  return "totalbookmark";
 	  }
 

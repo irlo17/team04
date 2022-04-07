@@ -21,10 +21,11 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!-- <meta http-equiv="refresh" content="1"> -->
 
+
+
 <title>Directing | Template</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 
 
 
@@ -76,6 +77,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
+				<a href="main.do"><img src="resources/img/footer-logo.png" alt=""></a>
 						<a href="./index.html"><img src="resources/img/logo.png"
 							alt=""></a>
 					</div>
@@ -84,8 +86,8 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="#" class="primary-btn"><i class="fa fa-plus"></i>맛집리스트</a>
-							<a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -451,18 +453,40 @@
 																		});
 
 																// 인포윈도우로 장소에 대한 설명을 표시합니다
-																var infowindow = new kakao.maps.InfoWindow(
+														/* 		var infowindow = new kakao.maps.InfoWindow(
 																		{
 																			content : '<div style="width:150px;text-align:center;padding:6px 0;">집</div>',
 																		});
 																infowindow
 																		.open(
 																				map,
-																				marker);
+																				marker); */
 
 																// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																map
-																		.setCenter(coords);
+																map.setCenter(coords);
+																				
+																				
+															       var content =
+															              '<div class="customoverlay">' +
+															              '  <a href="" target="_blank">' +
+															              '    <span class="title">' +
+															              "${shopInfoList.SHOPTITLE}" +
+															              "</span>" +
+															              "  </a>" +
+															              "</div>";
+
+															            var position = new kakao.maps.LatLng(result[0].y, result[0].x);
+															            // 커스텀 오버레이를 생성합니다
+															            var customOverlay = new kakao.maps.CustomOverlay({
+															              map: map,
+															              position: position,
+															              content: content,
+															              yAnchor: 0.5,
+															            });
+																				
+																				
+																				
+																				
 															}
 														});
 									</script>
@@ -533,7 +557,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer__about">
 						<div class="footer__about__logo">
-							<a href="./index.html"><img
+							<a href="main.do"><img
 								src="resources/img/footer-logo.png" alt=""></a>
 						</div>
 						<p>Challenging the way things have always been done can lead
@@ -604,6 +628,9 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
+		<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
+	
+	
 
 	<!-- Js Plugins -->
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
