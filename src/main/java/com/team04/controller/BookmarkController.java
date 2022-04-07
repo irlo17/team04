@@ -96,6 +96,8 @@ public class BookmarkController {
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  int listCount= list.size();
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list);
 		  return "bookmarkDetail";
@@ -117,10 +119,10 @@ public class BookmarkController {
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
 		  int listCount= list.size();
-		  
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("bookmarkList", list);
 		  model.addAttribute("paging", vo);
-		  model.addAttribute("listCount", listCount);
+		  
 		  
 		  return "mylistDetail";
 	  }
@@ -161,6 +163,8 @@ public class BookmarkController {
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list1= bookmarkService.bookmarkGetMylistDetailPaging(vo);
 		  List<BookmarkVO> list2= bookmarkService.bookmarkGetMylist(memberEmail);
+		  int listCount= list1.size();
+		  model.addAttribute("listCount", listCount);
 		  model.addAttribute("bookmarkModify", list1);
 		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list2);	// 모달창 (페이징 없음)

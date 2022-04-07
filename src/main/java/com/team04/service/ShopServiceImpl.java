@@ -22,12 +22,16 @@ public class ShopServiceImpl implements ShopService{
 		return shopDAO.shopPageGetList(query);
 	}
 	
-	//가게리스트 필터까지 검색해서 불러오는거 ㅅㅂ 왜안되
+	//가게리스트 필터까지 검색해서 불러오는 
 	@Override
 	public List<ShopVO> shopPageFilterGetList(HashMap map) {
-		// TODO Auto-generated method stub
-		System.out.println("넌 필터 서비스란다");
+		
 		return shopDAO.shopPageFilterGetList(map);
+	}
+	
+	public List<ShopVO>shopPageFilterGetList2(HashMap map) {
+		
+		return shopDAO.shopPageFilterGetList2(map);
 	}
 	
 
