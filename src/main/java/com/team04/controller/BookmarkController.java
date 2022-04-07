@@ -103,23 +103,32 @@ public class BookmarkController {
 	  //bookmarkGetMylistDetail 페이징 추가
 
 	  @RequestMapping("mylistDetail.do")
-	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo ) {
+	  private String bookmarkGetMylistDetail(String listNumber,Model model, PagingVO vo, MemberVO mvo,HttpSession session) {
 		  vo.setListNumber(listNumber);
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  vo.setCountPerPage(6);
 		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
 		  vo.setStartRow(vo.getPage());
 		  vo.setEndRow(vo.getPage());
 		  List<MylistVO> list= bookmarkService.bookmarkGetMylistDetailPaging(vo);
+		  int listCount= list.size();
 		  
 		  model.addAttribute("bookmarkList", list);
 		  model.addAttribute("paging", vo);
+		  model.addAttribute("listCount", listCount);
+		  
 		  return "mylistDetail";
 	  }
 
 	  @RequestMapping("modify1.do")
-	  public String bookmarkModify(String listNumber, Model model ) {
+	  public String bookmarkModify(String listNumber, Model model, MemberVO mvo,HttpSession session ) {
 			BookmarkVO vo= bookmarkService.bookmarkGetDetail(listNumber);
 			model.addAttribute("bookmark", vo);
+			mvo.setMemberEmail((String)session.getAttribute("logemail"));
+			MemberVO member = memberService.memberSearch(mvo);
+			model.addAttribute("MemberVO", member);
 
 		  return "modify1";
 	  }
@@ -127,18 +136,21 @@ public class BookmarkController {
 	  @RequestMapping("ModifyListname.do")
 	  public String bookmarkModifylistName(BookmarkVO vo) {
 		  bookmarkService.bookmarkModify(vo);
-		  return "redirect:mylist.do";
+		  return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("deleteBookmark.do")
 	  public String bookmarkDelete(String listNumber) {
 		  bookmarkService.bookmarkDelete(listNumber);
-		  return "redirect:mylist.do";
+		  return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("detailModify.do")
-	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo ) {
+	  public String mylistModifydetail(String listNumber,Model model,HttpSession session,PagingVO vo, MemberVO mvo) {
 		  String memberEmail= (String)session.getAttribute("logemail");
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  vo.setListNumber(listNumber);
 		  vo.setCountPerPage(6);
 		  vo.setPageTotalCount(bookmarkService.bookmarkGetMylistTotalCount(vo));
@@ -156,18 +168,20 @@ public class BookmarkController {
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo) {
 		  bookmarkService.mylistUpdate(vo);
-		return "redirect:mylist.do";
+		return "redirect:mylist.do?page=1";
 	  }
 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
 		  bookmarkService.mylistDelete(vo);
-			return "redirect:mylist.do";
+			return "redirect:mylist.do?page=1";
 		  }
 
 	  @RequestMapping("addPageView.do")
-	  public String addPageView() {
-
+	  public String addPageView(MemberVO mvo, HttpSession session, Model model) {
+		  mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		  MemberVO member = memberService.memberSearch(mvo);
+		  model.addAttribute("MemberVO", member);
 		  return "mylistadd";
 	  }
 

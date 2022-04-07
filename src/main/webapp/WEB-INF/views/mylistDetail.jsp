@@ -84,8 +84,9 @@ position: relative; left:400px; }
 
 .blog__item__pic{width:555px;height:310px;}
 
-.filter{padding-top: 200px;}
-
+#jjanggu{
+	width: 300px;
+    height: 300px;}
 
 </style>
 <script type="text/javascript">
@@ -130,32 +131,23 @@ position: relative; left:400px; }
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
+				
 			</h5>
 		</div>
 
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+		<div id="realNav">
 		<div class="categori">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
@@ -177,21 +169,10 @@ position: relative; left:400px; }
 				<a href="review.do">리뷰관리</a>
 		</h4>
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 
@@ -201,17 +182,28 @@ position: relative; left:400px; }
 	<!-- Filter End -->
 
 	<!-- Listing Section Begin -->
-	<section class=" nice-scroll nuguri">
+<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
-	<a href="detailModify.do?listNumber=<%=number %>&page=1"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
+		<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
+		<a href="detailModify.do?listNumber=<%=number %>&page=1"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 
 	 </div>
-			<section class="blog-section spad">
+	<section class="blog-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
+                    <c:choose>
+						<c:when test="${listCount eq 0 }">
+							<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
+								<div class="col-md-8 inline-block">
+									<div style="font-weight: bold; font-size: 3em;"class="shop_name noReview" >
+										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> 추가하신 맛집이 없습니다.
+									</div>
+								</div>
+							</div>
+						</c:when>	
+					</c:choose>
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">

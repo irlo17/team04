@@ -94,7 +94,7 @@ font-size: 15px;
 #tb{width:600px;height:100px; }
 tr{text-align:left;}
 
-.filter{padding-top: 200px;}
+
 </style>
 
 </head>
@@ -137,32 +137,24 @@ tr{text-align:left;}
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 			
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
+				
 			</h5>
 		</div>
 		
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
+		
+<div id="realNav">
 		<div class="categori">
 			<h4>
             <a href="mypageMember.do">회원정보</a>
@@ -184,21 +176,10 @@ tr{text-align:left;}
       		</h4>
 
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="categori">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 

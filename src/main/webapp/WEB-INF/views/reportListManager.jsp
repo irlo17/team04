@@ -23,7 +23,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
             <!-- navbar 로고 -- 이미지파일 연결 -->
-            <a class="navbar-brand ps-3" href="main.do"><img src="${path}/resources/manager/img/footer-logo.png" alt=""></a>
+            <a class="navbar-brand px-sm-4" href="main.do"><img src="${path}/resources/manager/img/logo.png" alt="" width="100%" height="50px"></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- 로그인 버튼 위치때문에 유지 -- 원래는 검색바 -->
@@ -90,7 +90,7 @@
                             </div>
                             <div class="card-body">
                             <form action="" name="frm">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="stripe hover row-border">
                                     <thead>
                                         <tr>
                                             <th>신고번호</th>
