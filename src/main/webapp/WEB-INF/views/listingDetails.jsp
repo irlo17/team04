@@ -77,9 +77,8 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-				<a href="main.do"><img src="resources/img/footer-logo.png" alt=""></a>
-						<a href="./index.html"><img src="resources/img/logo.png"
-							alt=""></a>
+				<a href="main.do"><img width="50%" height="100px" src="resources/pageSpinner/logo/listingDetailsLogo.png" alt=""></a>
+						
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
@@ -323,15 +322,17 @@
 												<c:choose>
 													<c:when
 														test="${sessionScope.logemail eq reviewInfo.MEMBEREMAIL}">
+														<c:if test="${reviewInfo.REVIEWREALFNAME ne '0' }">
 														<img class="imgClass" width="180" height="120"
 															src="./resources/reviewUpload/${reviewInfo.REVIEWREALFNAME }">
-													</c:when>
-													<c:otherwise>
-														<!--   <img width="180" src="resources/img/listing/list-2.jpg">
-                                        <img width="180" src="resources/img/listing/list-3.jpg"> -->
+														</c:if>
+														<c:if test="${reviewInfo.REVIEWREALFNAME eq '0' }">
 														<img width="180" height="120"
-															src="./resources/reviewUpload/${reviewInfo.REVIEWREALFNAME }">
-													</c:otherwise>
+															src="./resources/pageSpinner/notExist.png">
+														
+														</c:if>
+													</c:when>
+											
 												</c:choose>
 
 												<ul>
@@ -558,33 +559,34 @@
 					<div class="footer__about">
 						<div class="footer__about__logo">
 							<a href="main.do"><img
-								src="resources/img/footer-logo.png" alt=""></a>
+								src="resources/pageSpinner/logo/logo.png" width="100%" height="70px" alt=""></a>
 						</div>
-						<p>Challenging the way things have always been done can lead
-							to creative new options that reward you.</p>
+						<p> Eat, Share, Be Happy.
+
+						</p>
 					</div>
 				</div>
 				<div class="col-lg-4 offset-lg-1 col-md-6">
 					<div class="footer__address">
 						<ul>
-							<li><span>Call Us:</span>
-								<p>(+12) 345-678-910</p></li>
+							<li><span>전화번호:</span>
+								<p>02-2025-8523</p></li>
 							<li><span>Email:</span>
 								<p>info.colorlib@gmail .com</p></li>
-							<li><span>Fax:</span>
-								<p>(+12) 345-678-910</p></li>
-							<li><span>Connect Us:</span>
-								<div class="footer__social">
+							<li><span>주소:</span>
+								<p>서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II 4층 413호</p></li>
+							<!-- <li><span>Connect Us:</span> -->
+							<!-- 	<div class="footer__social">
 									<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
 										class="fa fa-instagram"></i></a> <a href="#"><i
 										class="fa fa-twitter"></i></a> <a href="#"><i
 										class="fa fa-skype"></i></a>
-								</div></li>
+								</div></li> -->
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-3 offset-lg-1 col-md-6">
-					<div class="footer__widget">
+					<!-- <div class="footer__widget">
 						<ul>
 							<li><a href="#">Home</a></li>
 							<li><a href="#">Support</a></li>
@@ -599,7 +601,7 @@
 							<li><a href="#">Direo App</a></li>
 							<li><a href="#">Packages</a></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="row">
@@ -612,15 +614,13 @@
 								<script>
 									document.write(new Date().getFullYear());
 								</script>
-								All rights reserved | This template is made with <i
-									class="fa fa-heart" aria-hidden="true"></i> by <a
-									href="https://colorlib.com" target="_blank">Colorlib</a>
+								 KOSMO. All rights reserved
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
 						<div class="footer__copyright__links">
-							<a href="#">Terms</a> <a href="#">Privacy Policy</a> <a href="#">Cookie
-								Policy</a>
+							<!-- <a href="#">Terms</a> <a href="#">Privacy Policy</a> <a href="#">Cookie
+								Policy</a> -->
 						</div>
 					</div>
 				</div>

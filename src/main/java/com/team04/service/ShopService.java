@@ -12,7 +12,11 @@ public interface ShopService {
 	//가게 리스트 페이지에 가게 출력
 	List<ShopVO> shopPageGetList(String query);
 
+	//필터 모달창에서 하는 필터링
 	List<ShopVO> shopPageFilterGetList(HashMap map);
+	
+	//사이드 필터창에서 하는 검색
+	List<ShopVO>shopPageFilterGetList2(HashMap map);
 	
 	
 	/*

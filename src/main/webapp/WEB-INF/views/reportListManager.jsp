@@ -60,7 +60,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 가게리스트
                             </a>
-                            <a class="nav-link" href="reportListManager.do">
+                            <a class="nav-link" href="reportListManager.do" id="check">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고리스트
                             </a>
