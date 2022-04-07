@@ -29,6 +29,10 @@ public class ShopVO {
 	private String shopLat; //위도
 	private String shopLon; //경도
 	
+	private String distance; //거리
+	private String radius; //반경
+	
+
 
 	// 필터용 주소 입력
 	private String shopAddressSi;
@@ -50,11 +54,18 @@ public class ShopVO {
 	
 	// 생성자 - 인자있는
 	
+
+	// setter & getter
+	public MultipartFile getShopFile() {
+		return shopFile;
+	}
+	
 	public ShopVO(int shopNumber, String shopTitle, String shopTel, String shopPriceRange, String shopFood,
 			String shopPark, String shopTime, String shopHoliday, String shopContent, Date shopCreateDate,
 			Date shopModifyDate, String shopAddress, String shopAddrDoroManager, String shopAddrJibunManager,
-			String shopAddrDetailManager, String shopLat, String shopLon, String shopAddressSi, String shopAddressGu,
-			String shopAddressDong, String shopRealfname, MultipartFile shopFile) {
+			String shopAddrDetailManager, String shopLat, String shopLon, String distance, String radius,
+			String shopAddressSi, String shopAddressGu, String shopAddressDong, String shopRealfname,
+			MultipartFile shopFile) {
 		super();
 		this.shopNumber = shopNumber;
 		this.shopTitle = shopTitle;
@@ -73,18 +84,14 @@ public class ShopVO {
 		this.shopAddrDetailManager = shopAddrDetailManager;
 		this.shopLat = shopLat;
 		this.shopLon = shopLon;
+		this.distance = distance;
+		this.radius = radius;
 		this.shopAddressSi = shopAddressSi;
 		this.shopAddressGu = shopAddressGu;
 		this.shopAddressDong = shopAddressDong;
 		this.shopRealfname = shopRealfname;
 		this.shopFile = shopFile;
 	}
-	
-	// setter & getter
-	public MultipartFile getShopFile() {
-		return shopFile;
-	}
-	
 
 	public void setShopFile(MultipartFile shopFile) {
 		this.shopFile = shopFile;
@@ -247,4 +254,22 @@ public class ShopVO {
 	public void setShopLon(String shopLon) {
 		this.shopLon = shopLon;
 	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+	public String getRadius() {
+		return radius;
+	}
+
+	public void setRadius(String radius) {
+		this.radius = radius;
+	}
+
+
 }

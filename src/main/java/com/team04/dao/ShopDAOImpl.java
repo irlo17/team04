@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +31,13 @@ public class ShopDAOImpl implements ShopDAO{
 		System.out.println("다오???" + map.get("foodKind"));
 		return mybatis.selectList("shopDAO.shopPageFilterGetList", map);
 	}
+	
+	public List<ShopVO>shopPageFilterGetList2(HashMap map) {
+		System.out.println("넌 다오란다 ===> Mybatis shopPageFilterGetList2 호출");
+		
+	
+		return mybatis.selectList("shopDAO.shopPageFilterGetList2", map);
+	};
 
 	/**
 	 * 메소드명 : shopInsertManager()

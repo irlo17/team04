@@ -13,6 +13,9 @@ public interface ShopDAO {
 	
 	//가게 상세 리스트 필터값 까지 된거...
 	public List<ShopVO> shopPageFilterGetList(HashMap map);
+	
+	//사이드바 필터창
+	List<ShopVO> shopPageFilterGetList2(HashMap map);
 
 	// 가게 추가
 	void shopInsertManager(ShopVO shopVO);
