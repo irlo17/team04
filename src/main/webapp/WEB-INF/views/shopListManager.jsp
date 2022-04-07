@@ -21,29 +21,11 @@
         <!-- 파일 내 CSS 연결 -->
         <link href="${path}/resources/manager/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- 내부 script -->
-        <script type="text/javascript">
-        	// 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
-        	function removeBtn(num) {
-        		// num이 받아졌는지 확인
-        		console.log(num);
-        		// 확인/취소 alert창 띄우기
-        		if(confirm("정말 삭제하시겠습니까?") == true) {
-        			// 확인을 누를 경우 요청과 함께 값을 보내기
-        			location.href="shopDeleteManager.do?shopNumber=" + num;
-        			// 삭제 확인 메세지 띄우기
-    				alert("삭제되었습니다.");
-    			} else {
-    				// 취소를 누를 경우 리턴
-    				return;
-    			}
-        	}
-        </script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
             <!-- navbar 로고 -- 이미지파일 연결 -->
-            <a class="navbar-brand ps-3" href="index.html"><img src="${path}/resources/manager/img/footer-logo.png" alt=""></a>
+            <a class="navbar-brand px-sm-4" href="main.do"><img src="${path}/resources/manager/img/logo.png" alt="" width="100%" height="50px"></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- 로그인 버튼 위치때문에 유지 -- 원래는 검색바 -->
@@ -52,13 +34,7 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                    </ul>
+                    <i class="fas fa-user fa-fw"></i>
                 </li>
             </ul>
         </nav>
@@ -94,8 +70,7 @@
                     </div>
                     <!-- 맨 아래 로그인 확인 창 -->
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <a href="logout.do">로그아웃</a>
                     </div>
                 </nav>
             </div>
@@ -123,7 +98,7 @@
                                 가게 전체 리스트
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datatablesSimple" class="stripe hover row-border">
                                     <thead>
                                         <tr>
                                             <th>번호</th>
@@ -187,6 +162,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 스크립트 연동 -->
         <script src="${path}/resources/manager/js/scripts.js"></script>
+        <!-- 내부 script -->
+        <script type="text/javascript">
+        	// 삭제 버튼이 눌렸을 때 (보내진 shopNumber를 받아옴)
+        	function removeBtn(num) {
+        		// num이 받아졌는지 확인
+        		console.log(num);
+        		// 확인/취소 alert창 띄우기
+        		if(confirm("정말 삭제하시겠습니까?") == true) {
+        			// 확인을 누를 경우 요청과 함께 값을 보내기
+        			location.href="shopDeleteManager.do?shopNumber=" + num;
+        			// 삭제 확인 메세지 띄우기
+    				alert("삭제되었습니다.");
+    			} else {
+    				// 취소를 누를 경우 리턴
+    				return;
+    			}
+        	}
+        </script>
         <!-- datatable 연동 -->
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <!-- 파일 내 테이블 연동 -->

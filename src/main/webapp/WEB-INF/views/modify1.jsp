@@ -93,6 +93,8 @@ font-size: 15px;
 #tx{width:400px; text-align:left; background-color: #f8fafb;}
 #tb{width:600px;height:100px; }
 tr{text-align:left;}
+
+
 </style>
 
 </head>
@@ -120,7 +122,7 @@ tr{text-align:left;}
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -135,32 +137,25 @@ tr{text-align:left;}
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 			
 			</div>
 			<h5 class="nick">
-				${MemberVO.memberNickname }
+			${sessionScope.lognick }
+				
 			</h5>
 		</div>
 		
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
-		<div class="">
+		
+<div id="realNav">
+		<div class="categori">
 			<h4>
             <a href="mypageMember.do">회원정보</a>
          </h4>
@@ -169,33 +164,22 @@ tr{text-align:left;}
 		<hr />
 
 
-		<div class="">
-			<h4><a href='mylist.do'>즐겨찾기</a></h4>
+		<div class="categori" id="check">
+			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
 
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
             <a href="review.do">리뷰관리</a>
-      </h4>
+      		</h4>
 
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 

@@ -52,7 +52,11 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	padding: 100px;
+	padding: 50px;
+	background-image:url('./resources/images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right:500px;
 }
 
 .ov-hid .blog__pagination {
@@ -62,85 +66,142 @@
 }
 #my{margin-top:50px; 
 position: relative; left:400px; }
-#btnl{padding:20px; float: right;}
+#btnl{padding-top:100px; position:relative; left:70% ; font-size: 20px; }
 .fa-solid{font-size: 20px;}
-.glyphicon{color:red; font-size:30px; right:20px;}
+.glyphicon{color:red; font-size:30px;/*  position:relative;left:70%; */ }
 
 .blog__item__pic{width:555px;height:310px;}
+.spad{position:relative; right:100px;}
+.haha{position:relative;left:69% ; bottom:2%}
+#jjanggu{
+	width: 300px;
+    height: 300px;
+    position: relative;
+    right:100px;
+    top:50px;
+    }
+#addcoment{position: relative; bottom:150px;left: 350px;}
+
 </style>
 <script type="text/javascript">
 
 //로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
 $(document).ready(function() {
+	var no = <%=number%>;
+	var heartCheak = false;
+	
+	 $.ajax({
+         url : 'heartTotalCount.do',
+         type : 'post',
+         data : {
+             listNumber : no,
+         },
+     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+         success : function(result) {
+        	 $('#heart'+no).text(result);
+         },
+         error : function(err) {
+             //alert('서버 에러');
+             //console.log(err);
+         }
+     });
+	
+	 $.ajax({
+         url : 'heartCheak.do',
+         type : 'post',
+         data : {
+             listNumber : no,
+         },
+     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+         success : function(result) {
+        	 if(result == "yes"){
+	        	 $('.heart').attr('class','glyphicon glyphicon-heart');
+	        	 heartCheak = true;
+        	 }
+        	 
+         },
+         error : function(err) {
+             //alert('서버 에러');
+             //console.log(err);
+         }
+     });
+	
+	
 	$(".heart-click").click(function() {
 	
 	    // 게시물 번호(no)를 idx로 전달받아 저장합니다.
-	    let no = $(this).attr('idx');
+	    let no = $(this).attr('id');
 	    console.log("heart-click");
-	
+	    
 	    // 빈하트를 눌렀을때
-	    if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
+	    if(!heartCheak){
 	        console.log("빈하트 클릭" + no);
 	
 	        $.ajax({
 	            url : 'saveHeart.do',
 	            type : 'get',
 	            data : {
-	                no : no,
+	                listNumber : no,
 	            },
-	            success : function(pto) {
+	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	            success : function(likeCount) {
 	                //페이지 새로고침
-	                //document.location.reload(true);
+						//alert(likeCount);
+	                /* let heart = likeCount.listLike; */
 	
-	                let heart = pto.heart;
-	
-	                // 페이지, 모달창에 하트수 갱신
-	                $('#m_heart'+no).text(heart);
-	                $('#heart'+no).text(heart);
+	                // 페이지에 하트수 갱신
+	                
+	                $('#heart'+no).text(likeCount);
 	
 	                console.log("하트추가 성공");
+	                console.log(likeCount);
 	            },
-	            error : function() {
-	                alert('서버 에러');
+	            error : function(err) {
+	                //alert('서버 에러');
+	               // console.log(err);
 	            }
 	        });
 	        console.log("꽉찬하트로 바껴라!");
 	
 	        // 꽉찬하트로 바꾸기
-	        $(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
-	        $('.heart_icon'+no).html("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
-	
+	        $(this).children('span').attr('class','glyphicon glyphicon-heart')
+	        heartCheak = true;
+	        
 	    // 꽉찬 하트를 눌렀을 때
-	    }else if($(this).children('svg').attr('class') == "bi bi-suit-heart-fill"){
+	    }else if($(this).children('span').attr('class') == "glyphicon glyphicon-heart"){
 	        console.log("꽉찬하트 클릭" + no);
 	
 	        $.ajax({
 	            url : 'removeHeart.do',
 	            type : 'get',
 	            data : {
-	                no : no,
+	            	listNumber : no,
 	            },
-	            success : function(pto) {
+	        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	            success : function(likeCount) {
 	                //페이지 새로고침
 	                //document.location.reload(true);
-	
-	                let heart = pto.heart;
-	                // 페이지, 모달창에 하트수 갱신
-	                $('#m_heart'+no).text(heart);
-	                $('#heart'+no).text(heart);
+					//alert(likeCount);
+	                /* let heart = likeCount.listLike; */
+	                // 페이지에 하트수 갱신
+	                if(likeCount <= 0){
+		                $('#heart'+no).text("");
+	                }else{
+		                $('#heart'+no).text(likeCount);
+	                }
 	
 	                console.log("하트삭제 성공");
 	            },
-	            error : function() {
-	                alert('서버 에러');
+	            error : function(err) {
+	               // alert('서버 에러');
+	                //console.log(err);
 	            }
 	        });
 	        console.log("빈하트로 바껴라!");
 	
 	        // 빈하트로 바꾸기
-	        $(this).html('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16"><path d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" /></svg>');
-	
-	        $('.heart_icon'+no).html('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16"><path d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" /></svg>');
+	        $(this).children('span').attr('class','glyphicon glyphicon-heart-empty')
+	        heartCheak = false;
 	    }
 	
 	
@@ -153,6 +214,7 @@ $(document).ready(function() {
 	$(".heart-notlogin").unbind('click');
 	$(".heart-notlogin ").click(function() {
 	    alert('로그인 하셔야 하트를 누를수 있습니다!');
+	    
 	});
 });
 </script>
@@ -180,7 +242,8 @@ $(document).ready(function() {
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="about.html" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -194,68 +257,60 @@ $(document).ready(function() {
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
-<!-------------------------------------------------------------------------------------------------------------  -->	
-	    <%-- <div id='btnl'>
-		 <a href="UpdateLike.do?listNumber=<%=number %>  " name="btn1" class="btn1">
-					<span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
-		</div> --%>
+
 <!-------------------------------------------------------------------------------------------------------  -->		
-	<c:forEach var="tmp" items="${likeCount }">
+	<c:forEach var="tmp" items="${bookmarkList }" begin='0' end='0'>
 	<c:choose>
     <%-- 로그인 상태일때 - 하트 클릭 되게 --%>
     <c:when test="${not empty sessionScope.lognick}">
         <c:choose>
-            <c:when test="${empty tmp.likeNumber}">
+            <c:when test="${empty tmp.hno}">
                 <%-- 빈 하트일때 --%>
-                <span> <a idx="${tmp.listNumber }" href="javascript:"
-                    class="heart-click heart_icon${tmp.listNumber }"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-suit-heart"
-                            viewBox="0 0 16 16">
-                                  <path
-                                d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
-                                </svg></a>
-                </span>
+                <div id='btnl'>  <a id="${tmp.listNumber }" href="javascript:"
+                	
+                    class="heart-click heart_icon${tmp.listNumber }"><span class="heart glyphicon glyphicon-heart-empty" aria-hidden="true" ></span></a>좋아요
+                </div>
             </c:when>
             <c:otherwise>
                 <%-- 꽉찬 하트일때 --%>
-                <span> <a idx="${tmp.listNumber }" href="javascript:"
-                    class="heart-click heart_icon${tmp.listNumber }"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-suit-heart-fill"
-                            viewBox="0 0 16 16">
-                                  <path
-                                d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-                                </svg></a>
-                </span>
+                <div id='btnl'> <a id="${tmp.listNumber }" href="javascript:"
+                    class="heart-click heart_icon${tmp.listNumber }"><span class="glyphicon glyphicon-heart" aria-hidden="true" ></span></a>
+                </div>
             </c:otherwise>
         </c:choose>
     </c:when>
     <%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
     <c:otherwise>
-        <span> <a href="javascript:" class="heart-notlogin">
-                <svg class="heart3" xmlns="http://www.w3.org/2000/svg"
-                    width="16" height="16" fill="currentColor"
-                    class="bi bi-suit-heart" viewBox="0 0 16 16">
-                          <path
-                        d="M8 6.236l-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z" />
-                        </svg>
+        <div id='btnl'> <a href="javascript:" class="heart-notlogin">
+          <span class="glyphicon glyphicon-heart-empty" aria-hidden="true" ></span>      
         </a>
-        </span>
+       </div>
     </c:otherwise>
 </c:choose>
-<span id="heart${tmp.listNumber }">${tmp.listLike }</span>	
+<span class="haha" id="heart${tmp.listNumber }">${tmp.hno }</span>	
 </c:forEach>
 <!--------------------------------------------------------------------------------------------------------------  -->		
 		<section class="blog-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row">
+                    <div class="row" >
+                     <c:choose>
+						<c:when test="${listCount eq 0 }">
+							<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
+								<div >
+									<div style="font-weight: bold; font-size: 3em;"class="shop_name noReview" >
+										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> <div id="addcoment">추가하신 맛집이 없습니다.<br/>&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!</div>
+									</div>
+								</div>
+							</div>
+						</c:when>	
+					</c:choose>                    
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
+                    			
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+                                <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">  
                                         <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
@@ -271,13 +326,17 @@ $(document).ready(function() {
                         </div>
                       </c:forEach>
                     </div>
-                <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="bookmarkDetail.do?listNumber=<%=number %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
                 
             </div>

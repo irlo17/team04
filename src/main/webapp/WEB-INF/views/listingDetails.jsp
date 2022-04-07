@@ -21,141 +21,13 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <!-- <meta http-equiv="refresh" content="1"> -->
 
+
+
 <title>Directing | Template</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
-<style type="text/css">
-
-/*----------모달관련된거--------신고기능 */
-html, body {
-	height: 100%;
-	margin: 0;
-	display: block;
-	z-index: 100;
-}
-
-.mw {
-	position: fixed; /* position:static */;
-	top: 30%;
-	left: 30%;
-	width: 100%;
-	height: 100%;
-	display: none;
-	z-index: 99999;
-}
-
-.mw .bg {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	opacity: .5; /* filter:alpha(opacity=50) */;
-	z-index: 105000;
-}
-
-.mw .fg {
-	position: absolute;
-	top: 40%;
-	left: 40%;
-	width: 400px;
-	height: 260px;
-	margin: -100px 0 0 -200px;
-	padding: 20px;
-	border: 3px solid #ccc;
-	background: #fff;
-	z-index: 105000;
-}
-
-.modal-button {
-	background: #fff;
-	border: 0;
-	outline: 0;
-	font-size: 15px;
-	color: #323232;
-}
-
-.report {
-	height: 400px;
-}
-
-.modalchang {
-	height: 400px;
-	width: 600px;
-}
-
-.report_op {
-	width: 365px;
-	height: 150px;
-}
-
-/*----------모달관련된거--------신고기능 */
-</style>
-
-
-<script type="text/javascript">
-	$(function() {
-
-		$('.modal-button').click(function() {
-			$('this').css({
-				'z-index' : 105000
-			})
-		});
-
-		/* 마이페이지 이동*/
-		/* 	$('.login-btn').click(function() {
-
-				location.href = 'review.html';
-
-			}) */
-
-		$('#listAdd2').click(function() {
-			alert('이미 추가된 가게입니다.');
-		})
-
-		/*	가게 상세페이지에서 추가하기 버튼을 눌렀을때	
-				가게 번호를 가져오고 처리
-				type : 포스트방식
-				datatype: text
-				
-		 */
-		$('#listAdd').click(function() {
-			var shopNumber = $(this).attr('value');
-			/* 	alert(shopNumber); */
-
-			let param = {
-				shopNumber : shopNumber
-			}
-			$.ajax({
-				url : 'listingDetailsAddList.do',
-
-				type : 'post',
-				datatype : 'text',
-				data : param,
-				success : function(data) {
-
-					alert("추가 되었습니다.")
-					$('#listAdd').html(data)
-
-				},
-
-				error : function(err) {
-
-					alert('이미 추가된 가게입니다.');
-
-				}
-			});
-
-		});
-	});
-
-	/*    var selected = $('#gradeSelect option:selected').val(); */
-
-	/*    console.log($('#gradeSelect option:selected').val()); */
-</script>
 
 
 
@@ -185,6 +57,7 @@ html, body {
 <link rel="stylesheet" href="resources/css/slicknav.min.css"
 	type="text/css">
 <link rel="stylesheet" href="resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="resources/css/choi.css" type="text/css">
 
 
 
@@ -204,6 +77,7 @@ html, body {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
+				<a href="main.do"><img src="resources/img/footer-logo.png" alt=""></a>
 						<a href="./index.html"><img src="resources/img/logo.png"
 							alt=""></a>
 					</div>
@@ -212,8 +86,8 @@ html, body {
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="#" class="primary-btn"><i class="fa fa-plus"></i>맛집리스트</a>
-							<a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -252,13 +126,6 @@ html, body {
 					<div class="col-lg-4">
 						<div class="listing__hero__btns">
 
-
-
-
-
-
-							<!--  <button class="primary-btn" id="listAdd" value= "${shopInfoList.SHOPNUMBER }" ><i class="fa fa-bookmark"></i>추가하기</button> -->
-
 							<c:forEach items="${totalList }" var="totalList">
 
 
@@ -296,10 +163,6 @@ html, body {
 		</c:forEach>
 
 
-
-
-
-
 	</section>
 	<!-- Listing Section End -->
 
@@ -321,7 +184,9 @@ html, body {
 						<div class="listing__details__gallery">
 							<h4>Gallery</h4>
 
-
+				
+				
+								<!-- 가게 정보 시작  -->
 							<div class="listing__details__gallery__pic">
 								<c:forEach items="${shopInfoList}" var='shopInfoList'>
 									<div class="listing__details__gallery__item">
@@ -337,21 +202,18 @@ html, body {
 													alt="">
 											</c:when>
 											<c:otherwise>
-											
+
 											</c:otherwise>
 										</c:choose>
 
-
-
-
 									</div>
 								</c:forEach>
-								
-								
-									<div class="listing__details__gallery__slider owl-carousel">
+
+
+								<div class="listing__details__gallery__slider owl-carousel">
 									<c:forEach items="${fromReviewRealFname}"
-									var="fromReviewRealFname">
-									
+										var="fromReviewRealFname">
+
 										<c:choose>
 											<c:when
 												test="${ fromReviewRealFname.REVIEWREALFNAME != '0' }">
@@ -361,32 +223,54 @@ html, body {
 												<img
 													data-imgbigurl="./resources/reviewUpload/${fromReviewRealFname.REVIEWREALFNAME }"
 													src="./resources/reviewUpload/${fromReviewRealFname.REVIEWREALFNAME }"
-													width="100%" height="160px"
-													alt="">
+													width="100%" height="160px" alt="">
 											</c:when>
-											 <c:otherwise>
-											 	<c:if test="${fromReviewRealFname.REVIEWREALFNAME == '0' }">
-												<img
-													data-imgbigurl="./resources/pageSpinner/notExist.png"
-													src="./resources/pageSpinner/notExist.png"
-													width="100%" height="160px"
-													 alt="">
-													</c:if>
-											</c:otherwise> 
-											
+											<c:otherwise>
+												<c:if test="${fromReviewRealFname.REVIEWREALFNAME == '0' }">
+													<img data-imgbigurl="./resources/pageSpinner/notExist.png"
+														src="./resources/pageSpinner/notExist.png" width="100%"
+														height="160px" alt="">
+												</c:if>
+											</c:otherwise>
+
 										</c:choose>
-											</c:forEach>
-										
-									</div>
+									</c:forEach>
+
+								</div>
 
 
-							</div>
+							</div> <!-- 가게 사진 끝 -->
 
 						</div>
+						
+						<!-- 리뷰작성 시작 -->
+						<div class="listing__details__review">
+							<h>리뷰 작성</h>
+							<form action="reviewInsert.do?" method="post"
+								enctype="multipart/form-data">
+								<input type='hidden' name='shopNumber' value='<%=shopNumber%>' />
+								<!-- <input type="text" placeholder="Name">
+                                <input type="text" placeholder="Email">-->
+								<textarea placeholder="Review" name='reviewContent'></textarea>
 
 
+								<select name='reviewGrade' id='gradeSelect'>
+									<option value='맛있어요' selected>-- 맛평가 --</option>
+									<option value='맛있어요'>맛있어요</option>
+									<option value='보통이에요'>보통이에요</option>
+									<option value='맛없어요'>맛없어요</option>
+								</select> <br /> <br /> <br /> <br />
+
+								<h4>add image</h4>
+								<input type="file" name='file' value="" accept='image/*' />
+
+								<button type="submit" style="margin-left: 44%;"
+									class="site-btn reviewBTN">작성</button>
+							</form>
+						</div> <!-- 리뷰 작성 끝 -->
 
 
+						<!--  리뷰 작성 목록 정보 시작-->
 						<c:forEach items="${reviewInfo}" var='reviewInfo' varStatus="vs">
 
 							<c:choose>
@@ -450,10 +334,6 @@ html, body {
 													</c:otherwise>
 												</c:choose>
 
-
-
-
-
 												<ul>
 													<!-- <li><i class="fa fa-hand-o-right"></i> Like</li>-->
 													<li><i class="fa fa-share-square-o"></i>
@@ -466,7 +346,7 @@ html, body {
 															<form
 																action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }"
 																method="post">
-																
+
 																<input type="hidden" name="shopNumber"
 																	value="${reviewInfo.SHOPNUMBER }" />
 																<div class="fg modalchang">
@@ -510,50 +390,24 @@ html, body {
 														<h5>리뷰 내용</h5>
 														<p>리뷰남긴 손님이 없습니다.</p>
 
-
-
-
 													</div>
 												</div>
 											</div>
 										</c:when>
 									</c:choose>
 								</c:otherwise>
-
 							</c:choose>
 						</c:forEach>
+					<!-- ajax 실패작 -->
+					<%-- 	<div id="oldList"></div>
+						<a href="listingDetails.do?shopNumber=<%= shopNumber%>"><button id="searchMoreNotify"
+							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-10 mx-auto">더
+							보기</button></a> --%>
 
-
-						<div class="listing__details__review">
-							<h>리뷰 작성</h>
-							<form action="reviewInsert.do?" method="post"
-								enctype="multipart/form-data">
-								<input type='hidden' name='shopNumber' value='<%=shopNumber%>' />
-								<!-- <input type="text" placeholder="Name">
-                                <input type="text" placeholder="Email">-->
-								<textarea placeholder="Review" name='reviewContent'></textarea>
-
-
-								<select name='reviewGrade' id='gradeSelect'>
-									<option value='맛있어요' selected>-- 맛평가 --</option>
-									<option value='맛있어요'>맛있어요</option>
-									<option value='보통이에요'>보통이에요</option>
-									<option value='맛없어요'>맛없어요</option>
-								</select> <br /> <br /> <br /> <br />
-
-								<h4>add image</h4>
-								<input type="file" name='file' value="" accept='image/*' />
-
-								<button type="submit" class="site-btn reviewBTN">작성</button>
-							</form>
-						</div>
 					</div>
 				</div>
 
-
-
-
-
+			
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
@@ -565,6 +419,7 @@ html, body {
 								<script type="text/javascript"
 									src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"></script>
 								<c:forEach items="${shopInfoList}" var='shopInfoList'>
+							
 									<script>
 										var mapContainer = document
 												.getElementById("map"), // 지도를 표시할 div
@@ -582,7 +437,7 @@ html, body {
 										geocoder
 												.addressSearch(
 
-														"서울시 강남구 일원동 광평로 10길 15",
+															"${shopInfoList.SHOPADDRESS}"	,
 														function(result, status) {
 															// 정상적으로 검색이 완료됐으면
 															if (status === kakao.maps.services.Status.OK) {
@@ -598,18 +453,40 @@ html, body {
 																		});
 
 																// 인포윈도우로 장소에 대한 설명을 표시합니다
-																var infowindow = new kakao.maps.InfoWindow(
+														/* 		var infowindow = new kakao.maps.InfoWindow(
 																		{
 																			content : '<div style="width:150px;text-align:center;padding:6px 0;">집</div>',
 																		});
 																infowindow
 																		.open(
 																				map,
-																				marker);
+																				marker); */
 
 																// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																map
-																		.setCenter(coords);
+																map.setCenter(coords);
+																				
+																				
+															       var content =
+															              '<div class="customoverlay">' +
+															              '  <a href="" target="_blank">' +
+															              '    <span class="title">' +
+															              "${shopInfoList.SHOPTITLE}" +
+															              "</span>" +
+															              "  </a>" +
+															              "</div>";
+
+															            var position = new kakao.maps.LatLng(result[0].y, result[0].x);
+															            // 커스텀 오버레이를 생성합니다
+															            var customOverlay = new kakao.maps.CustomOverlay({
+															              map: map,
+															              position: position,
+															              content: content,
+															              yAnchor: 0.5,
+															            });
+																				
+																				
+																				
+																				
 															}
 														});
 									</script>
@@ -617,8 +494,6 @@ html, body {
 
 
 							</div>
-
-
 
 							<div class="listing__sidebar__contact__text">
 								<c:forEach items="${shopInfoList}" var='shopInfoList'>
@@ -667,20 +542,10 @@ html, body {
 								</c:forEach>
 							</div>
 						</div>
-
-
-
 					</div>
-
-
 				</div>
-
-
-
 			</div>
 		</div>
-
-
 	</section>
 	<hr />
 
@@ -692,7 +557,7 @@ html, body {
 				<div class="col-lg-3 col-md-6">
 					<div class="footer__about">
 						<div class="footer__about__logo">
-							<a href="./index.html"><img
+							<a href="main.do"><img
 								src="resources/img/footer-logo.png" alt=""></a>
 						</div>
 						<p>Challenging the way things have always been done can lead
@@ -763,6 +628,9 @@ html, body {
 		</div>
 	</footer>
 	<!-- Footer Section End -->
+		<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
+	
+	
 
 	<!-- Js Plugins -->
 	<script src="resources/js/jquery-3.3.1.min.js"></script>
@@ -775,6 +643,7 @@ html, body {
 	<script src="resources/js/jquery.slicknav.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	<script src="resources/js/choi.js"></script>
 
 </body>
 

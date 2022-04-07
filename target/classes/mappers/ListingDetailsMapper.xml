@@ -216,6 +216,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			]]>
 	</select>
 
+	<!--  총 게시글 갯수 출력-->
+<!-- 	 <select id="reviewTotalCount" parameterType="PagingVO" resultType="int">
+	
+	Select count(*) from review where shop_number = #{shopNumber}
+	
+	</select>
+	 -->
+	 
+	<!-- ajax 페이징 실패작 -->
+<!-- 	<select id="reviewPaging" parameterType="hashmap" resultType="hashmap">
+	
+	 SELECT REVIEW_NUMBER reviewNumber, REVIEW_DATE
+		reviewDate, REVIEW_GRADE reviewGrade
+		,REVIEW_CONTENT
+		reviewContent ,SHOP_NUMBER shopNumber ,MEMBER_EMAIL memberEmail
+		,REVIEW_FNAME reviewFname, REVIEW_REALFNAME reviewRealfname
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM review 
+                        where shop_number =  #{shopNumber}
+						ORDER BY REVIEW_DATE DESC
+						) A
+				)
+	WHERE RN BETWEEN #{reviewStartRow} AND #{reviewEndRow}
+	</select>
+ -->
+
 
 
 </mapper>

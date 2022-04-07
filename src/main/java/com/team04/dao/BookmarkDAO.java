@@ -13,28 +13,15 @@ import com.team04.domain.PagingVO;
 
 
 	
-	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	/** 공개 여부가 "yes" 이고 키워드 검색 후 레코드 전체 검색 
 	 */
-	public int bookmarkListCount();
+	public int bookmarkListCount(HashMap map);
 	
-	/**즐겨찾기 목록 출력 
-	 * 1.기본 출력: 공개된 즐겨찾기 전체 목록 출력.
-	 * 2.검색시 출력: 제목과 닉네임으로 검색.
-	 * @param HashMap map
-	 * @return List<BookmarkVO>
-	 */
 
 	//즐겨찾기 공개 리스트 출력 및 검색
 
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
 
-
-	//좋아요 +1 (미완)
-	public void bookmarkUpdateLike(int num);
-
-
-	//좋아요-1 (미완)
-	public void bookmarkUpdateLikeMa(int num);
 
 	//공개리스트 베스트 순으로 뽑기
 	public List<BookmarkVO> bookmarkGetBestList();
@@ -80,4 +67,16 @@ import com.team04.domain.PagingVO;
 	
 	//좋아요 하트 수 감소
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//즐겨찾기 상세 목록 가게 수
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
+	public HeartVO heartCheak(HeartVO vo);
+	
+	public BookmarkVO pictureHeartCount(BookmarkVO vo);
+	
 	}
+	
+	

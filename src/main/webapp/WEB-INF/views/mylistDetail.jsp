@@ -68,7 +68,12 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	padding: 100px;
+	padding: 50px;
+	background-image:url('./resources/images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right:500px;
+	
 }
 
 .ov-hid .blog__pagination {
@@ -83,6 +88,16 @@ position: relative; left:400px; }
 .glyphicon{color:red; font-size:30px; right:20px;}
 
 .blog__item__pic{width:555px;height:310px;}
+
+#jjanggu{
+	width: 300px;
+    height: 300px;
+    position: relative;
+    right:100px;
+    top:50px;
+    }
+#addcoment{position: relative; bottom:150px;left: 350px;}
+#listTitle{margin-bottom:20px;}
 </style>
 <script type="text/javascript">
 
@@ -112,7 +127,7 @@ position: relative; left:400px; }
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -126,33 +141,24 @@ position: relative; left:400px; }
 	<div class="filter nice-scroll ">
 		<div class="filter__title">
 			<div class="box">
-				<memberFile:choose>
-					<memberFile:when test="${ empty MemberVO.memberFname }">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
 						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
-					</memberFile:when>
-					<memberFile:otherwise>
+					</c:when>
+					<c:otherwise>
 						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
-					</memberFile:otherwise>
-				</memberFile:choose>
+					</c:otherwise>
+				</c:choose>
 
 			</div>
 			<h5 class="nick">
 			${sessionScope.lognick }
-				${MemberVO.memberNickname }
+				
 			</h5>
 		</div>
 
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-
-		<div class="">
+		<div id="realNav">
+		<div class="categori">
 			<h4>
 				<a href="mypageMember.do">회원정보</a>
 			</h4>
@@ -161,33 +167,22 @@ position: relative; left:400px; }
 		<hr />
 
 
-		<div class="">
+		<div class="categori" id="check">
 			<h4>
-				<a href="mylist.do">즐겨찾기</a>
+				<a href="mylist.do?page=1">즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
 
-		<div class="">
+		<div class="categori">
 			<h4>
 				<a href="review.do">리뷰관리</a>
 		</h4>
 		</div>
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+</div>
+			
+			<div class="categori" id="outlog">
 			<hr />
-			<div class="cate_4">
 				<!--  <h4>로그아웃</h4>-->
 				<a href="logout.do">로그아웃</a>
 
@@ -197,22 +192,36 @@ position: relative; left:400px; }
 	<!-- Filter End -->
 
 	<!-- Listing Section Begin -->
-	<section class=" nice-scroll nuguri">
+<section class=" nice-scroll nuguri">
 	<div id='btnl'>
-	<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
-	<a href="detailModify.do?listNumber=<%=number %>"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
+		<a href="modify1.do?listNumber=<%=number %>"><input type="button" value='리스트 수정' class="btn btn-success"> </a>
+		<a href="detailModify.do?listNumber=<%=number %>&page=1"><input type="button" value='가게목록 편집' class="btn btn-primary"></a>
 
 	 </div>
-			<section class="blog-section spad">
+	<section class="blog-section spad">
         <div class="container">
+        <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status" begin="0" end="0">
+						<h4 id="listTitle">리스트 제목: ${bookmark.listName }</h4>
+					</c:forEach>
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="row">
+                    <c:choose>
+						<c:when test="${listCount eq 0 }">
+							<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
+								<div >
+									<div style="font-weight: bold; font-size: 3em;"class="shop_name noReview" >
+										<img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> <div id="addcoment">추가하신 맛집이 없습니다.<br/>&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!</div>
+									</div>
+								</div>
+							</div>
+						</c:when>	
+					</c:choose>
+					
                     <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
                         <div class="col-lg-6 col-md-6">
                             <div class="blog__item">
-                                <div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+                             <a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>   
                                 <div class="blog__item__text">
                                     <ul class="blog__item__tags">
                                         <li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
@@ -231,14 +240,17 @@ position: relative; left:400px; }
                 
 		
                     
-                <div class="blog__pagination">
-                       <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                        
-                    </div>
+				<div class="blog__pagination">
+					<c:if test="${paging.page > 1 }">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${paging.page-1 }"></i> Pre</a> 
+					</c:if>
+					<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${pageNum }">${pageNum }</a>
+					</c:forEach>
+					<c:if test="${paging.page <paging.pageTotalCount}">
+						<a href="mylistDetail.do?listNumber=<%=number %>&page=${paging.page+1 }">Next<i class="fa fa-long-arrow-right"></i></a>
+					</c:if>
+              	 </div>
                 </div>
 
             </div>

@@ -13,13 +13,9 @@ public interface BookmarkService {
 	public List<BookmarkVO> bookmarkGetList(HashMap map);
 	
 	
-	/** 공개 여부가 "yes"인 즐겨찾기 전체 개수
+	/** 공개 여부가 "yes" 이고 키워드 검색 후 레코드 전체 검색 
 	 */
-	public int bookmarkListCount();
-		
-	public void bookmarkUpdateLike(int listNum);
-	
-	public void bookmarkUpdateLikeMa(int listNum);
+	public int bookmarkListCount(HashMap map);
 	
 	public List<BookmarkVO> bookmarkGetBestList();
 	
@@ -53,4 +49,13 @@ public interface BookmarkService {
 	public BookmarkVO pictureSaveHeart(HeartVO vo);
 	
 	public BookmarkVO pictureRemoveHeart(HeartVO vo);
+	
+	//리스트 안 가게 총 개수 구하기
+	public int bookmarkGetMylistTotalCount(PagingVO paging);
+	
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
+	
+	public HeartVO heartCheak(HeartVO vo);
+	
+	public BookmarkVO pictureHeartCount(BookmarkVO vo);
 }

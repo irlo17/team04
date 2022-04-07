@@ -18,6 +18,7 @@ public class MemberVO {
 	private String memberRealfname; // 저장된 파일이름
 	
 	private String memberDate;		// 회원가입 날짜
+	private boolean rememberEmail;	// 이메일 기억하기 여부
 	
 	MultipartFile memberFile;		// 회원의 프로필 사진 mypageMember.jsp <input type="file" name="memberFile">
 	
@@ -141,6 +142,14 @@ public class MemberVO {
 	}
 	public void setMemberRealfname(String memberRealfname) {
 		this.memberRealfname = memberRealfname;
+	}
+	
+	public boolean isRememberEmail() {
+		return rememberEmail;
+	}
+
+	public void setRememberEmail(boolean rememberEmail) {
+		this.rememberEmail = rememberEmail;
 	}
 	
 }

@@ -26,13 +26,15 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/flaticon.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/barfiller.css" type="text/css">
+<!-- userStyle : 안정은 -->
+<link rel="stylesheet" href="./resources/member/css/userStyle.css">
 <link rel="stylesheet" href="./resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
@@ -49,7 +51,7 @@
             margin-left: 100px;
             margin-right: 100px; */
 	/* text-align: center;*/
-	 padding: 100px; 
+	 padding: 100px;
 }
 
 .inline-block {
@@ -65,20 +67,19 @@
 .dogdog {
 	/* display: flex;
             align-items: center; */
-	 padding: 100px; 
+	 padding: 100px;
 }
 
 .ov-hid .blog__pagination {
 	text-align: center;
 
-} 
+}
 #my{text-align: center;
 margin-bottom:50px;
 }
 
 .table{width:100%; }
 .btn-success{position: relative; left:90%;}
-
 </style>
 
 </head>
@@ -89,7 +90,7 @@ margin-bottom:50px;
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-		
+
 	<!-- Header Section Begin -->
 	<header class="header header--normal">
 		<div class="container-fluid" >
@@ -103,7 +104,7 @@ margin-bottom:50px;
 					<div class="header__nav" >
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -112,64 +113,87 @@ margin-bottom:50px;
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
-	
+
 	<!-- Header Section End -->
 
 	<!-- Filter Begin -->
-	<div class="filter nice-scroll col-md-3">
+	<div class="filter nice-scroll ">
 		<div class="filter__title">
-			<h5>
-				<i class="fa fa-user"></i> 닉네임
+			<div class="box">
+				<c:choose>
+					<c:when test="${ empty MemberVO.memberFname }">
+						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+					</c:when>
+					<c:otherwise>
+						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+					</c:otherwise>
+				</c:choose>
+
+			</div>
+			<h5 class="nick">
+			${sessionScope.lognick }
 			</h5>
 		</div>
-		<hr />
-		<br />
-		<div class="">
+	<div id="realNav">
+		<div class="categori">
 			<h4>
-				<a href="mypageMember.do">회원정보</a>
+				<a class="haha" href="mypageMember.do">회원정보</a>
+			</h4>
+
+		</div>
+		<hr />
+
+
+		<div class="categori" id="check">
+			<h4>
+				<a class="haha" href="mylist.do?page=1" >즐겨찾기</a>
 			</h4>
 		</div>
 		<hr />
-		<div class="">
+
+		<div class="categori">
 			<h4>
-				<a href="mylist.do">즐겨찾기</a>
-			</h4>
-		</div>
-		<hr />
-		<div class="">
-		<h4>
-				<a href="review.do">리뷰관리</a>
+				<a class="haha" href="review.do">리뷰관리</a>
 		</h4>
 		</div>
+	</div>
+
+			<div class="categori" id="outlog">
+			<hr />
+
+				<a href="logout.do">로그아웃</a>
+
+			</div>
+
 	</div>
 	<!-- Filter End -->
 
 
 	<!-- Listing Section Begin -->
 	<section class="nice-scroll nuguri">
-			
+
 		<div class="listing__text__top col-md-12 dogdog">
 		<div id="my"><h4 id='ga'><i class="fa-solid fa-apple-whole"></i>  나만의 즐겨찾기 목록</h4></div>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>번호</th>
 						<th>리스트제목</th>
 						<th>공개여부</th>
 						<th>좋아요 수</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach items="${bookmarkList }" var="bookmark" varStatus="status">
-					<tr class="active">
+					<tr >
 						<th scope="row">${status.count+((paging.page-1)*10)}</th>
-						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
+						<td><a href="mylistDetail.do?listNumber=${bookmark.listNumber}&page=1">${bookmark.listName }</a></td>
 						<td>${bookmark.listDisplay }</td>
 						<td>${bookmark.listLike}</td>
 					</tr>
 				</c:forEach>
-				
+
 				</tbody>
 			</table>
 
@@ -177,7 +201,7 @@ margin-bottom:50px;
 
 			<div class="blog__pagination">
 			<c:if test="${paging.page != 1 }">
-				<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a> 
+				<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a>
 			</c:if>
 			<c:forEach begin="1" end="${paging.pageTotalCount  }" var="pageNum">
 					<a href="mylist.do?page=${pageNum }">${pageNum }</a>

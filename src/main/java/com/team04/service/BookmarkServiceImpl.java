@@ -24,8 +24,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 	 * @return int
 	 */
 	@Override
-	public int bookmarkListCount() {
-		return bookmarkDAO.bookmarkListCount();
+	public int bookmarkListCount(HashMap map) {
+		return bookmarkDAO.bookmarkListCount(map);
 	}
 	
 	 @Override 
@@ -33,18 +33,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 		 return bookmarkDAO.bookmarkGetList( map ); }
 
-
-	@Override
-	public void bookmarkUpdateLike(int listNum) {
-		bookmarkDAO.bookmarkUpdateLike(listNum);
-
-	}
-
-	@Override
-	public void bookmarkUpdateLikeMa(int listNum) {
-		bookmarkDAO.bookmarkUpdateLike(listNum);
-
-	}
+	 
 
 	@Override
 	public List<BookmarkVO> bookmarkGetBestList(){
@@ -63,7 +52,9 @@ public class BookmarkServiceImpl implements BookmarkService {
 
 	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging){
 		return bookmarkDAO.bookmarkGetMylistPaging(paging);
+		
 	}
+	
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail){
 		return bookmarkDAO.bookmarkGetMylist(memberEmail);
 	}
@@ -105,6 +96,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 		return bookmarkDAO.imageSelectBestBookmark(listNumber);
 	}
 
+
 	public BookmarkVO pictureSaveHeart(HeartVO vo) {
 	
 		return bookmarkDAO.pictureSaveHeart(vo);
@@ -113,7 +105,28 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public BookmarkVO pictureRemoveHeart(HeartVO vo) {
 		
 		return bookmarkDAO.pictureRemoveHeart(vo);
+
 	}
 	
+	//리스트 안 가게 총 개수 구하기
+	@Override
+	public int bookmarkGetMylistTotalCount(PagingVO paging) {
+		return bookmarkDAO.bookmarkGetMylistTotalCount(paging);
+	}
 
+	@Override
+	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging) {
+		return bookmarkDAO.bookmarkGetMylistDetailPaging(paging);
+	}
+
+	@Override
+	public HeartVO heartCheak(HeartVO vo) {
+		return bookmarkDAO.heartCheak(vo);
+	}
+
+	@Override
+	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
+		return bookmarkDAO.pictureHeartCount(vo);
+	}
+	
 }
