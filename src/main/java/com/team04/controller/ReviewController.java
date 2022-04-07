@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team04.domain.MemberVO;
 import com.team04.domain.ReviewVO;
+import com.team04.service.MemberService;
 import com.team04.service.ReviewService;
 
 
@@ -19,6 +21,8 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private MemberService memberService;
 	
 	// 리뷰 보기 클릭시 리뷰페이지 보여주기
 	 /*		
@@ -27,13 +31,21 @@ public class ReviewController {
 	  *  	값을 list에 넣는다. 로그인하면 세션저장후 세션을 가져와 값을 구해온다.
 	  * */
 	@RequestMapping("review.do")   
-	public String reviewShow(Model m, HttpSession session) {
+	public String reviewShow(Model m, HttpSession session, MemberVO vo) {
 		//System.out.println(session.getAttribute("logemail"));  세션을 잘 가져옵니다.
 		
 		String logemail = (String) session.getAttribute("logemail");
-		
+		vo.setMemberEmail(logemail);
+		MemberVO member = memberService.memberSearch(vo);
 		List<ReviewVO> list = reviewService.reviewGetList(logemail);
+		int listCount= list.size();
+		System.out.println(listCount);
 		m.addAttribute("reviewList",list);
+
+		m.addAttribute("MemberVO", member);
+
+		m.addAttribute("listCount",listCount);
+		
 		return "review";
 	}
 	

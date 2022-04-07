@@ -149,7 +149,7 @@
 								<tr class="row100 body">
 									<td class="cell100 column1"> ${status.count+((paging.page-1)*10)} </td>
 									<input type="hidden" name="listnumber" value=${bookmark.listNumber}/>
-									<td class="cell100 column2"><a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}">${bookmark.listName }</a></td>
+									<td class="cell100 column2"><a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1">${bookmark.listName }</a></td>
 									<td class="cell100 column3">${bookmark.memberNickname }</td>
 									<td class="cell100 column4">${bookmark.listLike }</td>
 								</tr>

@@ -17,12 +17,7 @@ import com.team04.domain.PagingVO;
 	 */
 	public int bookmarkListCount();
 	
-	/**즐겨찾기 목록 출력 
-	 * 1.기본 출력: 공개된 즐겨찾기 전체 목록 출력.
-	 * 2.검색시 출력: 제목과 닉네임으로 검색.
-	 * @param HashMap map
-	 * @return List<BookmarkVO>
-	 */
+	
 
 	//즐겨찾기 공개 리스트 출력 및 검색
 
@@ -82,6 +77,7 @@ import com.team04.domain.PagingVO;
 	public HeartVO heartCheak(HeartVO vo);
 	
 	public BookmarkVO pictureHeartCount(BookmarkVO vo);
+	
 	}
 	
 	

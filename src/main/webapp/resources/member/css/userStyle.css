@@ -142,3 +142,29 @@ input[type="file"]{
 .form-group.first {
 	margin-bottom: 30px;
 }
+
+.categori{
+	text-align: center;
+	
+}
+.categori h4 a{
+	color : black;
+}
+.categori h4 a:hover{
+	color: #dc3545;
+}
+
+#check h4 a{
+	color: #dc3545;
+}
+
+#realNav{
+	padding-top: 230px;
+}
+
+#outlog{
+	padding-top: 315px;
+}
+#outlog>a{
+	color: black;
+}
