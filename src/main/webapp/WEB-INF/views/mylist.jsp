@@ -80,6 +80,7 @@ margin-bottom:50px;
 
 .table{width:100%; }
 .btn-success{position: relative; left:90%;}
+ .header__logo{padding:1%}
 </style>
 
 </head>
@@ -97,7 +98,7 @@ margin-bottom:50px;
 			<div class="row" >
 				<div class="col-lg-3 col-md-3" >
 					<div class="header__logo" >
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9" >

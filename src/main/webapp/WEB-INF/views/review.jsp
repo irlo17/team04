@@ -78,8 +78,8 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img
-							src="resources/img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img
+								src="resources/pageSpinner/logo/mypageLogo.png"  width="50%" height="70px" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">

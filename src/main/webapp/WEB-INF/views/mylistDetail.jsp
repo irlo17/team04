@@ -96,6 +96,7 @@ position: relative; left:400px; }
     right:100px;
     top:50px;
     }
+ .header__logo{padding:1%}
 #addcoment{position: relative; bottom:150px;left: 350px;}
 #listTitle{margin-bottom:20px;}
 </style>
@@ -119,7 +120,7 @@ position: relative; left:400px; }
 
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 
@@ -200,9 +201,9 @@ position: relative; left:400px; }
 	 </div>
 	<section class="blog-section spad">
         <div class="container">
-        <c:forEach items="${bookmarkList }" var="bookmark" varStatus="status" begin="0" end="0">
-						<h4 id="listTitle">리스트 제목: ${bookmark.listName }</h4>
-					</c:forEach>
+        
+						<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
+					
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
