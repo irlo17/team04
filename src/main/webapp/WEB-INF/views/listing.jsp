@@ -148,20 +148,16 @@ prefix="c"%>
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="header__logo">
-              <a href="./index.html"
-                ><img src="./resources/img/footer-logo.png" alt=""
+              <a href="main.do"
+                ><img id="shopListLogo" src="./resources/images/mucksanglogo.png" alt=""
               /></a>
             </div>
           </div>
           <div class="col-lg-9 col-md-9">
             <div class="header__nav">
               <div class="header__menu__right">
-                <a href="#" class="primary-btn"
-                  ><i class="fa"></i>맛집 리스트</a
-                >
-                <a href="dashboard.html" class="login-btn"
-                  ><i class="fa fa-user"></i
-                ></a>
+                <a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+                <a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
               </div>
             </div>
           </div>
@@ -257,8 +253,8 @@ prefix="c"%>
       <!-- 주소 value 들어가는곳 -->
       <input name="shopAddressSi"  value="${param.shopAddressSi}" hidden="hidden"/>
       <input name="shopAddressGu"  value="${param.shopAddressGu}" hidden="hidden"/>
-      <input name="parking" id="parkinInput"/>
-      <input name="open" id="openInput"/>
+      <!-- <input name="parking" id="parkinInput"/>
+      <input name="open" id="openInput"/> -->
       </form>
     </div>
     <!-- Filter End -->
@@ -1744,17 +1740,18 @@ prefix="c"%>
         <div class="listing__text__top__left">
           <h5>Restaurants</h5>
            
-          <span>검색 수 : <input id="listSize" value="${listSize}"/></span>
+          
         </div>
         <div class="listing__text__top__right">
-          Nearby <i class="fa fa-sort-amount-asc"></i>
+          <!-- Nearby <i class="fa fa-sort-amount-asc"></i> -->
+          검색 수 : <input id="listSize" value="${listSize}"/>
         </div>
       </div>
 
       <div class="listing__list">
         <c:forEach items="${shopPageList}" var="shop">
-        
-          <div class="listing__item">
+        	
+          <div class="listing__item shopClick">
             <!-- 여기에 img값 가지고와야함 동적으로 -->
             <div
               class="listing__item__pic set-bg"
@@ -1801,7 +1798,9 @@ prefix="c"%>
                 </div>
               </div>
             </div>
+            <input value="${shop.shopNumber}" hidden="hidden"/>
           </div>
+          
         </c:forEach>
         
       </div>
@@ -1836,6 +1835,7 @@ prefix="c"%>
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=50853ea4c563d3b84d44fed07758d510&libraries=services"
     ></script>
+    <script src="https://kit.fontawesome.com/2173f645ed.js"></script>
     <script>
       var mapContainer = document.getElementById("map");
       mapOption = {
@@ -1922,14 +1922,16 @@ prefix="c"%>
             map.setCenter(coords);
 
             // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            <c:forEach items="${shopPageList}" var="shop">
             var content =
               '<div class="customoverlay">' +
-              '  <a href="" target="_blank">' +
+              '  <a href="https://map.kakao.com/link/map/${shop.shopTitle},${shop.shopLat},${shop.shopLon}" target="_blank">' +
               '    <span class="title">' +
               listShop[index] +
               "</span>" +
               "  </a>" +
               "</div>";
+              </c:forEach>
 
             var position = new kakao.maps.LatLng(result[0].y, result[0].x);
             // 커스텀 오버레이를 생성합니다
@@ -1984,6 +1986,20 @@ prefix="c"%>
         const walk = (x - startX) * 1;
         slider.scrollLeft = scrollLeft - walk;
       });
+    </script>
+    
+    <script type="text/javascript">
+    /* <c:forEach items="${shopPageList}" var="shop"> */
+    
+    	$(".shopClick").each(function() {
+    		$(this).click(function() {
+    			const shopNumber = $(this).find('input[hidden]').val();
+    			location.href="listingDetails.do?shopNumber="+shopNumber;	
+			})
+			
+		})	
+			/* </c:forEach> */
+    
     </script>
     	<!-- form tag 지연시간 설정 -->
 	<script type="text/javascript">
