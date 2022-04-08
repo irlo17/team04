@@ -102,8 +102,8 @@ WHERE rnum between #{startRow} and #{endRow}
 </select>
 
 <select id="bookmarkGetMylistDetail" resultType="MylistVO" parameterType="String">
-SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,
-s.shop_realfname,b.list_name,s.shop_number
+SELECT m.list_number, s.shop_title,s.shop_food,s.shop_address_si,s.shop_price_range,s.shop_tel,b.list_name,
+s.shop_realfname,s.shop_number
 FROM shop s inner join mylist m
 ON s.shop_number=m.shop_number  inner join bookmark b on m.list_number=b.list_number
 Where m.list_number=#{listNumber}
@@ -154,8 +154,8 @@ order by  list_date desc
 
 
 <insert id="MylistInsert" parameterType="BookmarkVO">
-insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list)
-values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no')
+insert into bookmark(list_number,list_name,list_display,member_email,list_date,defult_list,list_like)
+values(list_number_seq.nextval,#{listName},#{listDisplay},#{memberEmail},sysdate,'no',0)
 </insert>
 
 <select id="ImageSelectBestBookmark" parameterType="Int" resultType="BookmarkVO">

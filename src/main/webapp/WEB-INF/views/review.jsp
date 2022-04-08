@@ -229,7 +229,7 @@
 
 					<div class="col-md-8 inline-block">
 						<div style="font-weight: bold; font-size: 3em;"
-							class="shop_name noReview" >가게명: 등록하신 리뷰가 없습니다.</div>
+							class="shop_name noReview" ><img id="jjanggu" src="./resources/images/jjanggu2.PNG"/> <div id="addcoment">등록하신 리뷰가 없습니다.<br/>&nbsp;&nbsp;&nbsp;리뷰를 등록해주세요!</div></div>
 							</div>
 							</div>
 							

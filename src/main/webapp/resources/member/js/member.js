@@ -9,8 +9,6 @@ var RegexPW = /^[a-z0-9_-]{6,18}$/;
 var RegexName = /^[가-힣]+$/;
 var RegexTel = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{3,4})$/;
 
-// 이메일 중복검사 확인 여부
-var emailCheak = false;
 
 // 에러박스 문구
 var blank = "필수 입력 사항입니다.";
@@ -19,7 +17,10 @@ var blank = "필수 입력 사항입니다.";
 	[ 회원가입 페이지 ]
 	이메일 중복 버튼 클릭 이벤트
 */
+var emailCheak = false;
 $('#btn_emailCheak').click(function(){
+	// 이메일 중복검사 확인 여부
+	
 	$('label[for="memberEmail"] .error_box').html("");
 	var memberEmail = $.trim($("#memberEmail").val());
 	
@@ -47,11 +48,13 @@ $('#btn_emailCheak').click(function(){
     		
     		// 중복 검사 후 나오는 결과 에러박스에 출력
     		if(result == 'Y'){
-	        		$('label[for="memberEmail"] .error_box').css('color','#28a745');
+	        		$('label[for="memberEmail"] .error_box').css('color','#4ABA99');
 	        		$('label[for="memberEmail"] .error_box').html("사용 가능한 이메일입니다.");
 	        		emailCheak = true;
 				}else{
+	        		$('label[for="memberEmail"] .error_box').css('color','#ED7A64');
 	        		$('label[for="memberEmail"] .error_box').html("사용할 수 없는 이메일입니다.");
+	        		emailCheak = false;
 				}
     	},
     	error : function(err){
@@ -183,7 +186,7 @@ $('#btn_signUp').click(function(){
 		}
 	if( !RegexTel.test(memberTel) ){
 
-		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다.");
+		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
 		return;
 	}else{
 		$('label[for="memberTel"] .error_box').html("");
@@ -194,19 +197,42 @@ $('#btn_signUp').click(function(){
 	if( !emailCheak ){
 		$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
 		return;
-	}else{
+	}else {
 		$('label[for="memberEmail"] .error_box').html("");
 	}
 	
+	
 	//이용약관에 체크 했는지 확인
-	if( !$("#termsService").is(':checked') ){
+	if( !$("#termsService").is(':checked')){
 		// 체크 X
 		$('#termsService').next().html("이용 약관에 동의해주세요.");
 		return;
 	}else{
 		// 체크 O
-		alert("회원가입이 되었습니다.");
-		document.member_frm.submit();
+		$('#termsService').next().html("");
+		$.ajax({
+			    	type : 'post',
+			    	url : 'emailCheck.do',
+			    	data : { memberEmail : $('#memberEmail').val() },
+			    	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			    	success : function(result){
+			    		
+			    		// 중복 검사 후 나오는 결과 에러박스에 출력
+			    		if(result == 'Y'){
+			    			$('label[for="memberEmail"] .error_box').html("");
+				        		document.member_frm.submit();
+				        		alert("회원가입이 되었습니다.");
+							}else{
+				        		$('label[for="memberEmail"] .error_box').css('color','#ED7A64');
+								$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
+				        		return;
+							}
+			    	},
+			    	error : function(err){
+						alert('실패');
+			    		console.log(err);
+			    	}
+			    }); //end of ajax			
 	}
 });
 
@@ -260,8 +286,8 @@ $('#btnLogin').click(function(){
 			
 			}else{
 			// 결과가 result = "Y"이면 로그인 성공 -> loginMove.do로 이동
-				alert("로그인 성공");
         		document.loginForm.submit();
+				alert("로그인 성공");
 			}
 	},
 	error : function(err){
@@ -295,7 +321,6 @@ $('#btnPwSearch').click(function(){
     	 		},
     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
     	success : function(result){
-    		
     		// 중복 검사 후 나오는 결과 에러박스에 출력
     		if(result == 'N'){
 	        		$('.error_box.pwSearch').html("존재하는 회원이 아닙니다.");
@@ -352,6 +377,7 @@ $('#btnPwChange').click(function(){
 		return;
 	}
 	document.pwChangeForm.submit();
+	alert("비밀번호가 변경되었습니다.");
 	
 }); // end of #btnPwChange
 
@@ -463,18 +489,29 @@ $('#btnMemberUpdate').click(function(){
 	
 	
 	 document.memberUpdateForm.submit();
+	 alert("회원 정보 수정이 완료되었습니다.");
 }) //end of #btnMemberUpdate
+$('#btnAgree').click(function(){
+	$('#agreeForm').toggle();
+});
+$('#btnMemberDelete').click(function(){
+	var result = confirm("정말 탈퇴하시겠습니까?");
+	if(result){
+		document.memberDelete.submit();
+	}
+
+})
 
 
 // 생년월일 max를 오늘 날짜로 지정하기
  	var date = new Date();
- 	var day = today.getDate();
- 	var monty = today.getMonth()+1;
- 	var year = today.getFullYear();
+ 	var day = date.getDate();
+ 	var month = date.getMonth()+1;
+ 	var year = date.getFullYear();
 
 	if(day<10){ day = '0'+ day}
-	if(monty<10){ monty = '0' + monty}
-	var today = year + "-" + monty + "-" + day;
+	if(month<10){ month = '0' + month}
+	var today = year + "-" + month + "-" + day;
 	document.getElementById('memberBirth').setAttribute("max", today);
 
 

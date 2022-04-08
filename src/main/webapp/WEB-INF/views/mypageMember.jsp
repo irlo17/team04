@@ -73,15 +73,15 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
-					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+					<div class="header__logo mucksanglogo" id="mucksanglogo">
+						<a href="main.do"><img id="logoImg"src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 			 			<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -166,7 +166,7 @@
 								</memberFile:otherwise>
 							</memberFile:choose>
 						</div>
-							<label class="label mFile" for="memberFile">프로필 사진 수정</label> 
+							<label class="label mFile btn-danger" for="memberFile">프로필 사진 수정</label> 
 							<input type="file" class="form-control formInt" id="memberFile" name="memberFile" required> <span class="error_box"></span>
 					</div>
 					
@@ -184,13 +184,13 @@
 
 					<!-- PW -->
 					<div class="form-group first">
-						<label class="label" for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="memberPassword">비밀번호 변경&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="memberPassword" name="memberPassword">
 					</div>
 
 					<!-- PW CHECK -->
 					<div class="form-group first">
-						<label class="label" for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
+						<label class="label" for="passwordCheck">변경된 비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="passwordCheck">
 					</div>
 
@@ -221,10 +221,10 @@
 					<br/>
 				</form>
 				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
-					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
-					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
+					<input type="hidden" class="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
+					<input type="hidden" class="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
 					<div class="btnMemberDelete">
-					<input type="submit" value="회원탈퇴" id="btnMemberDelete">
+					<input type="button" value="회원탈퇴" id="btnMemberDelete" name="btnMemberDelete">
 					</div>
 				</form>
 			</div>

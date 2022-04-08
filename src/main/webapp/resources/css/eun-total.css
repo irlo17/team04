@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.glyphicon{color:red; font-size:20px; }
+	.column5{margin-left: 500px}
+	
+	
+	#search{height:40px;background: lightgray; font-size: 18px;}
+	#searchb{width:60px;height:40px; font-size: 15px;}
+	.limiter .blog__pagination{position: relative;
+	left:35%; width:500px; margin-top:300px;}
+	.form{position:relative; left:35%}
+	td{text-align: center;}
+	.row100 head{font-size: 20px;}
+	

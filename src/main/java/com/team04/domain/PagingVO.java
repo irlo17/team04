@@ -9,7 +9,7 @@ public class PagingVO {
 	private int endRow;				// 끝나는 행
 	private int page;				// 현재 페이지
 	private String memberEmail;		// 회원 이메일
-
+	
 
 	private int reviewTotalRecCount;	//리뷰 전체 레코드수
 	private int reviewPageTotalCount; 	// 리뷰 전체페이지수
