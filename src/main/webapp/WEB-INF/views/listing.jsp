@@ -128,6 +128,9 @@ prefix="c"%>
         height: 12px;
         background: url("https://t1.daumcdn.net/local./resources/img/localimages/07/mapapidoc/vertex_white.png");
       }
+      header.header--normal{
+			padding-left: 1%;
+	  }
     </style>
   </head>
 
