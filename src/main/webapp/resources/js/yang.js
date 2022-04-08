@@ -178,5 +178,9 @@ $("#fiveManwonMore").on("click", function name(params) {
 });
 
 
+$("#parking").on("click", function name(params) {
+	$("#parkingInput").val("주차 가능")
+});
+
 
 
