@@ -18,7 +18,7 @@ $("#closeImg").click(function name(params) {
   // css("display", "none");
 });
 
-//모달 음식종류
+//필터 음식종류
 $("#koreanFood").on("click", function name(params) {
   if ($(this).attr("src") == "./resources/img/modal/koreanFood.png") {
     $("#koreanFood").attr("src", "./resources/img/modal/koreanFoodClick.png");
@@ -102,23 +102,114 @@ $("#pup").on("click", function name(params) {
   }
 });
 
-//모달 지역
+//필터 주소
 $("#seoul").click(function name(params) {
-  $(".addressGu > .gyeonggido").css("display", "none");
+  $(".addressGu > div").css("display", "none");
+  $(".seoul").css("display", "block");
   $(".seoul").css("display", "block");
 });
 
 $("#gyeonggido").click(function name(params) {
-  $(".addressGu > .seoul").css("display", "none");
+  $(".addressGu > div").css("display", "none");
   $(".gyeonggido").css("display", "block");
 });
 
-$(".addressSi > input").click(function name(params) {
-  $("#addressSi").val($(this).val());
-  $("#addressGu").val("");
+$("#incheon").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".incheon").css("display", "block");
+});
+
+$("#daegu").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".daegu").css("display", "block");
+});
+
+$("#busan").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".busan").css("display", "block");
+});
+
+$("#jeju").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".jeju").css("display", "block");
+});
+
+$("#daejeon").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".daejeon").css("display", "block");
+});
+
+$("#gwangju").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".gwangju").css("display", "block");
+});
+
+$("#gangwondo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".gangwondo").css("display", "block");
+});
+
+$("#gyeongsangnamdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".gyeongsangnamdo").css("display", "block");
+});
+
+$("#gyeongsangbukdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".gyeongsangbukdo").css("display", "block");
+});
+
+$("#jeollanamdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".jeollanamdo").css("display", "block");
+});
+
+$("#jeollabukdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".jeollabukdo").css("display", "block");
+});
+
+$("#chungcheongnamdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".chungcheongnamdo").css("display", "block");
+});
+
+$("#chungcheongbukdo").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".chungcheongbukdo").css("display", "block");
+});
+
+$("#ulsan").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".ulsan").css("display", "block");
+});
+
+$("#sejong").click(function name(params) {
+  $(".addressGu > div").css("display", "none");
+  $(".sejong").css("display", "block");
+});
+
+$(".squares > div > input").click(function name(params) {
+  if ($(this).hasClass("btnClcik")) {
+    $(".pop-up-area").removeClass("btnClcik");
+  } else {
+    $(".pop-up-area").removeClass("btnClcik");
+    $(this).addClass("btnClcik");
+  }
+  if ($("#addressSi").val() == $(this).val()) {
+    $("#addressSi").val("");
+  } else {
+    $("#addressSi").val($(this).val());
+  }
 });
 
 $(".addressGu > div > input").click(function name(params) {
+  if ($(this).hasClass("btnClcik")) {
+    $(".pop-up-dongnae").removeClass("btnClcik");
+  } else {
+    $(".pop-up-dongnae").removeClass("btnClcik");
+    $(this).addClass("btnClcik");
+  }
   if ($("#addressGu").val() == $(this).val()) {
     $("#addressGu").val("");
   } else {
@@ -176,6 +267,7 @@ $("#fiveManwonMore").on("click", function name(params) {
     $("#fiveManwonMoreInput").val("");
   }
 });
+
 
 
 $("#parking").on("click", function name(params) {
