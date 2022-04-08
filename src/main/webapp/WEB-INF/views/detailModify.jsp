@@ -72,6 +72,8 @@ $(function(){
 			var lnum= $("#listNumber:checked").val();	
 			$(location).attr('href', "mylistUpdate.do?shopNumber="+snum+"&listNumber="+lnum+"&listNumber2="+<%=listNumber2%>);
 	 	 }  
+   		 
+   		 
 	});
 	
 	$("#btnDelete").click(function(){
@@ -84,6 +86,10 @@ $(function(){
 			 $(location).attr('href', "mylistDelete.do?shopNumber="+snum+"&listNumber="+<%=listNumber2%>);
 		 }
 	});
+	
+	/* if(${result}!=0){
+			 alert("선택한 목록에 이미 해당 가게가 추가되어 있습니다.")
+		 } */
 })
 
 </script>

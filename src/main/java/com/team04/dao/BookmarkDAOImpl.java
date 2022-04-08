@@ -146,9 +146,9 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	 *  @return x
 	 *  사용: 즐겨찾기 목록에 있는 가게 다른 목록으로 이동
 	 */
-	public void mylistUpdate(MylistVO vo) {
+	public int mylistUpdate(MylistVO vo) {
 		System.out.println("===> Mybatis mylistUpdate() 호출");
-		mybatis.update("BookmarkDAO.mylistUpdate",vo);
+		return mybatis.update("BookmarkDAO.mylistUpdate",vo);
 	}
 
 
@@ -279,6 +279,13 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	   System.out.println("===> Mybatis pictureHeartCount() 호출");
 	   return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
 	}
+
+	   
+	   @Override
+	   public MylistVO overlapSearch(MylistVO vo) {
+		   System.out.println("===> Mybatis overlapSearch() 호출");
+		   return  mybatis.selectOne("BookmarkDAO.overlapSearch",vo );
+	   }
 
 	
 }

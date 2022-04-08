@@ -103,13 +103,14 @@
 						//if(	data[i].REVIEWGRADE == '맛있어요'){	
 						//	newNode += "<i class='fa fa-thumbs-up tasteGrade' aria-hidden='true'></i></span>";
 						//}
-						newNode += "<div class='col-mb-5 box'><p id='reviewText'>"+data[i].REVIEWCONTENT+"</p></div>";
+						newNode += "<div class='col-mb-5 box'><h4>리뷰내용 : </h4></br>";
+						newNode += "<p id='reviewText'>"+data[i].REVIEWCONTENT+"</p></div>";
 						newNode += "<div class='text-muted ml-auto listing__details__comment__item__rating'>"+data[i].REVIEWGRADE+"</div>";
 						newNode += "</div><span><i class='fa fa-share-square-o'></i></span><button value='"+data[i].REVIEWNUMBER+"' class = 'reportReview report_button'>신고하기</button>";
 						newNode += "<div class='dateReview'><span>작성일: "+data[i].REVIEWDATE+"<span></div></div></div>";
 						NodeList += newNode;
 						
-						//newNode += "<div><h5>"+data[i].REVIEWDATE+"님</h5></div>";
+					
 					}
 					
 					$(NodeList).appendTo($("#oldList")).slideDown();
