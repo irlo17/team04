@@ -9,7 +9,7 @@
 <body>
 <%
 int shopNumber= Integer.valueOf(request.getParameter("shopNumber"));
-response.sendRedirect("listingDetails.do?shopNumber="+shopNumber	);
+response.sendRedirect("listingDetails.do?shopNumber="+shopNumber);
 
 
 %>

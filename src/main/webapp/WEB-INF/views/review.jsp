@@ -224,7 +224,7 @@
 	
 	<c:choose>
 		<c:when test="${listCount eq 0 }">
-					<c:out value='"등록하신 리뷰가"+${listCount  }+"개입니다"'></c:out>
+				
 									<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
 
 					<div class="col-md-8 inline-block">

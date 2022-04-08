@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team04.domain.MemberVO;
 import com.team04.domain.MylistVO;
@@ -80,8 +81,16 @@ public class ListingDetailsController {
 		m.addAttribute("fromReviewRealFname",fromReviewRealFname);
 		
 		/* 가게 전체 리뷰를 가져오기위해 */
-		List<ShopVO> list = listingDetailsService.listingDetailsGetList(shopNumber);
-		m.addAttribute("reviewInfo", list);
+		/*
+		 * int reviewStartRow = 1; int reviewEndRow = 2; HashMap map5 = new HashMap();
+		 * 
+		 * 
+		 * 
+		 * map.put("shopNumber", shopNumber); map.put("reviewStartRow", reviewStartRow);
+		 * map.put("reviewEndRow", reviewEndRow); List<ReviewVO> list =
+		 * listingDetailsService.listingDetailsGetList(map5);
+		 * m.addAttribute("reviewInfo", list);
+		 */
 		
 		//페이징 작업  ajax 도전 실패함
 		/*
@@ -189,25 +198,34 @@ public class ListingDetailsController {
 		return "listingDetails3";
 	}
 	// ajax 페이징 실패작
-/*	@RequestMapping(value = "listingDetails", produces = "application/text;charset=UTF-8", method=RequestMethod.GET)
+	@RequestMapping(value = "/listingDetails4.do", produces = "application/text;charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String searchMoreNotify(@RequestParam Map<String,String> param , HttpServletRequest httpServletRequest) throws Exception {
+	public String searchMoreNotify(@RequestParam Map<String,String> param , HttpServletRequest httpServletRequest ,  HttpSession sess) throws Exception {
+		
+		String logemail = (String) sess.getAttribute("logemail");
 		
 		
 		HashMap<String, String> searchParam = new HashMap<String, String>();	// search 파라미터 생성
 		String shopNumber =  httpServletRequest.getParameter("shopNumber");
+		searchParam.put("logemail", logemail);
 		searchParam.put("reviewStartRow", param.get("startIndex"));	
 		searchParam.put("reviewEndRow", param.get("endIndex"));
-		searchParam.put("shopNumber", param.get("shopNumber"));
+		searchParam.put("shopNumber", shopNumber);
 		// startIndex ~ endIndex 범위에 해당하는 list 조회 
 		List<ReviewVO> addList = listingDetailsService.reviewPaging(searchParam);
 		
 		
 		
 		
+		
+			
 		ObjectMapper mapper = new ObjectMapper();
+		
 		String jsonStr = mapper.writeValueAsString(addList);
-		return jsonStr.toString();		
-	}   */
+		
+		
+		
+		return jsonStr;		
+	}   
 
 }
