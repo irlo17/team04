@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>       
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -10,94 +10,45 @@
 <meta name="keywords" content="Directing, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 
 <title>Directing | Template</title>
 
-
-
+<!--제이쿼리 라이브러리  -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
 	rel="stylesheet">
-
 <!-- Css Styles -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/flaticon.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/barfiller.css" type="text/css">
-<!-- userStyle : 안정은 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="./resources/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/elegant-icons.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/flaticon.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/nice-select.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/barfiller.css"
+	type="text/css">
 <link rel="stylesheet" href="./resources/member/css/userStyle.css">
-<link rel="stylesheet" href="./resources/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="./resources/css/magnific-popup.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/jquery-ui.min.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/owl.carousel.min.css"
+	type="text/css">
+<link rel="stylesheet" href="./resources/css/slicknav.min.css"
+	type="text/css">
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
-
-
-
-
-<style type="text/css">
-.nuguri {
-	/*  margin-top: 150px;
-            margin-left: 100px;
-            margin-right: 100px; */
-	/* text-align: center;*/
-	padding: 200px;
-}
-
-.inline-block {
-	display: inline-block;
-	margin-top: 30px;
-}
-
-.hb300 {
-	height: 300px;
-	resize: none
-}
-
-.dogdog {
-	/* display: flex;
-            align-items: center; */
-	padding: 100px;
-}
-
-.ov-hid .blog__pagination {
-	padding: 50px;
-	position: relative;
-	left:250px;
-}
-#my{margin-top:50px; 
-position: relative; left:400px; }
-
-#mo{text-align: center;}
-	
-	
-#frm{border:1px solid gray; 
-box-shadow: 5px 5px 5px 5px lightgray;
-width:600px; 
-height:400px; 
-margin-left:200px; 
-text-align: center; 
-padding:50px;
-font-size: 15px;
-}
-
-#tx{width:400px; text-align:left; background-color: #f8fafb;}
-#tb{width:600px;height:100px; }
-tr{text-align:left;}
- .header__logo{padding:1%}
-</style>
-
+<link rel="stylesheet" href="./resources/css/eun-mylistadd.css"
+	type="text/css">
 </head>
-
 <body class="ov-hid">
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -108,21 +59,23 @@ tr{text-align:left;}
 	<header class="header header--normal">
 
 		<div class="container-fluid">
-		
+
 			<div class="row">
-			
+
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="main.do"><img src="./resources/images/mucksanglogo.png" alt=""></a>
+						<a href="main.do"><img
+							src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
-				
+
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> 
-							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do?page=1" class="primary-btn"><i
+								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
+								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -138,88 +91,82 @@ tr{text-align:left;}
 			<div class="box">
 				<c:choose>
 					<c:when test="${ empty MemberVO.memberFname }">
-						<img class="memberFile" src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
+						<img class="memberFile"
+							src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
 					</c:when>
-					
+
 					<c:otherwise>
-						<img class="memberFile" src="./resources/upload/${MemberVO.memberRealfname }">
+						<img class="memberFile"
+							src="./resources/upload/${MemberVO.memberRealfname }">
 					</c:otherwise>
 				</c:choose>
-			
+
 			</div>
-			<h5 class="nick">
-			${sessionScope.lognick }
-				
-			</h5>
+			<h5 class="nick">${sessionScope.lognick }</h5>
 		</div>
 		<div id="realNav">
-		<div class="categori">
-			<h4>
-            <a href="mypageMember.do">회원정보</a>
-         	</h4>
-
-		</div>
-		<hr />
-
-
-		<div class="categori" id="check">
-			<h4><a href='mylist.do?page=1'>즐겨찾기</a></h4>
-
-		</div>
-		<hr />
-
-		<div class="categori">
-			<h4>
-            <a href="review.do">리뷰관리</a>
-      		</h4>
-
-		</div>
-</div>
-		
-			
-			<div class="categori" id="outlog">
-			<hr />
-				<!--  <h4>로그아웃</h4>-->
-				<a href="logout.do">로그아웃</a>
+			<div class="categori">
+				<h4>
+					<a href="mypageMember.do">회원정보</a>
+				</h4>
 
 			</div>
+			<hr />
+
+
+			<div class="categori" id="check">
+				<h4>
+					<a href='mylist.do?page=1'>즐겨찾기</a>
+				</h4>
+
+			</div>
+			<hr />
+
+			<div class="categori">
+				<h4>
+					<a href="review.do">리뷰관리</a>
+				</h4>
+			</div>
+		</div>
+
+
+		<div class="categori" id="outlog">
+			<hr />
+			<!--  <h4>로그아웃</h4>-->
+			<a href="logout.do">로그아웃</a>
+		</div>
 
 	</div>
 	<!-- Filter End -->
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
-			
-			
-	<form id='frm' name='frm' method='post' action= "mylistadd.do">
-	<h4 id='mo'> <span class="glyphicon glyphicon-check" aria-hidden="true"></span> 리스트 추가하기 </h4><br/><br/>
-	<table id='tb'>
-	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-	&nbsp;&nbsp;제  목 : </td><td>&nbsp;<input id='tx' name="listName" type='text'  /></td></tr>
-																					
-	<tr><td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;공개여부 : </td><td>&nbsp;&nbsp;<input type="radio" value='yes' name='listDisplay' checked>공개&nbsp;&nbsp;
-			 <input type="radio" value='no' name='listDisplay'>비공개</td></tr>
-	</table> 
-	<br/><br/>
-			
-	<input type='submit' value='추가' class="btn btn-warning"> 
-	
-	
-	</form>
-			
-			
-			
+		<form id='frm' name='frm' method='post' action="mylistadd.do">
+			<h4 id='mo'>
+				<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+				리스트 추가하기
+			</h4>
+			<br />
+			<br />
+			<table id='tb'>
+				<tr>
+					<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						&nbsp;&nbsp;제 목 :</td>
+					<td>&nbsp;<input id='tx' name="listName" type='text' /></td>
+				</tr>
+				<tr>
+					<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;공개여부
+						:</td>
+					<td>&nbsp;&nbsp;<input type="radio" value='yes'
+						name='listDisplay' checked>공개&nbsp;&nbsp; <input
+						type="radio" value='no' name='listDisplay'>비공개
+					</td>
+				</tr>
+			</table>
+			<br />
+			<br /> <input type='submit' value='추가' class="btn btn-warning">
+		</form>
 	</section>
-
-
-
-
-
-
-
-
-
-
 
 	<!-- Js Plugins -->
 	<script src="./resources/js/jquery-3.3.1.min.js"></script>
@@ -232,10 +179,7 @@ tr{text-align:left;}
 	<script src="./resources/js/jquery.slicknav.js"></script>
 	<script src="./resources/js/owl.carousel.min.js"></script>
 	<script src="./resources/js/main.js"></script>
-<script src="https://kit.fontawesome.com/2173f645ed.js" crossorigin="anonymous"></script>
-
-
+	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
 
 </body>
-
 </html>

@@ -3106,13 +3106,13 @@ textarea.form-control-lg {
 
 .btn-success {
   color: #fff;
-  background-color: #198754;
-  border-color: #198754;
+  background-color: #4ABA99;
+  border-color: #4ABA99;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #157347;
-  border-color: #146c43;
+  background-color: #3E805F;
+  border-color: #3E805F;
 }
 .btn-check:focus + .btn-success, .btn-success:focus {
   color: #fff;
@@ -3166,13 +3166,13 @@ textarea.form-control-lg {
 
 .btn-warning {
   color: #000;
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: #FFDB69;
+  border-color: #FFDB69;
 }
 .btn-warning:hover {
   color: #000;
-  background-color: #ffca2c;
-  border-color: #ffc720;
+  background-color: #FFEEB5;
+  border-color: #FFEEB5;
 }
 .btn-check:focus + .btn-warning, .btn-warning:focus {
   color: #000;
@@ -3196,13 +3196,13 @@ textarea.form-control-lg {
 
 .btn-danger {
   color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #ED7A64;
+  border-color: #ED7A64;
 }
 .btn-danger:hover {
   color: #fff;
-  background-color: #bb2d3b;
-  border-color: #b02a37;
+  background-color: #D6524F;
+  border-color: #D6524F;
 }
 .btn-check:focus + .btn-danger, .btn-danger:focus {
   color: #fff;
@@ -11525,10 +11525,10 @@ body {
   color: #adb5bd;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
-  color: #0d6efd;
+  color: #D6524F;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link#check {
-  color: #0d6efd;
+  color: #D6524F;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link.active {
   color: #0d6efd;

@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.nuguri {
+	padding: 100px;
+}
+
+.inline-block {
+	display: inline-block;
+	margin-top: 30px;
+}
+
+.hb300 {
+	height: 300px;
+	resize: none
+}
+
+.dogdog {
+	padding: 50px;
+	background-image: url('../images/pa.png');
+	border-radius: 8%;
+	text-align: center;
+	padding-right: 500px;
+}
+
+.ov-hid .blog__pagination {
+	padding: 50px;
+	position: relative;
+	left: 30%;
+}
+
+#my {
+	margin-top: 50px;
+	position: relative;
+	left: 400px;
+}
+
+#btnl {
+	padding-top: 100px;
+	position: relative;
+	left: 70%;
+	font-size: 20px;
+}
+
+.fa-solid {
+	font-size: 20px;
+}
+
+.glyphicon {
+	color: red;
+	font-size: 30px;
+}
+
+.blog__item__pic {
+	width: 555px;
+	height: 310px;
+}
+
+.spad {
+	position: relative;
+	right: 100px;
+}
+
+.haha {
+	position: relative;
+	left: 69%;
+	bottom: 2%
+}
+
+#jjanggu {
+	width: 300px;
+	height: 300px;
+	position: relative;
+	right: 100px;
+	top: 50px;
+}
+
+#addcoment {
+	position: relative;
+	bottom: 150px;
+	left: 350px;
+}
+
+#listTitle {
+	margin-bottom: 20px;
+}
