@@ -133,6 +133,8 @@ prefix="c"%>
 
   <!--직접 만든 css-->
   <link rel="stylesheet" href="./resources/css/yang.css" type="text/css" />
+  <!-- 모달창 슬라이드 기능  -->
+  <link rel="stylesheet" href="./resources/css/slide2.css" />
 
   <body class="ov-hid">
     <!-- Page Preloder -->
@@ -350,37 +352,153 @@ prefix="c"%>
             </div>
             <hr />
             <!--모달창 지역 구분-->
-            <div class="pop-up-area-container addressSi">
-              <input
-                class="btn btn-pop-up pop-up-area"
-                id="seoul"
-                type="button"
-                value="서울"
-              />
-              <input
-                class="btn btn-pop-up pop-up-area"
-                id="gyeonggido"
-                type="button"
-                value="경기도"
-              />
-              <input
-                class="btn btn-pop-up pop-up-area"
-                type="button"
-                value="경기도"
-              />
-              <input
-                class="btn btn-pop-up pop-up-area"
-                type="button"
-                value="인천"
-              />
-              <input
-                class="btn btn-pop-up pop-up-area"
-                type="button"
-                value="대구"
-              />
+            <div
+              class="horizontal-scroll-wrapper squares pop-up-area-container addressSi"
+            >
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="seoul"
+                  type="button"
+                  value="서울"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="gyeonggido"
+                  type="button"
+                  value="경기도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="incheon"
+                  type="button"
+                  value="인천"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="daegu"
+                  type="button"
+                  value="대구"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="busan"
+                  type="button"
+                  value="부산"
+                />
+              </div>
+
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="jeju"
+                  type="button"
+                  value="제주"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="daejeon"
+                  type="button"
+                  value="대전"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="gwangju"
+                  type="button"
+                  value="광주"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="gangwondo"
+                  type="button"
+                  value="강원도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="gyeongsangnamdo"
+                  type="button"
+                  value="경상남도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="gyeongsangbukdo"
+                  type="button"
+                  value="경상북도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="jeollanamdo"
+                  type="button"
+                  value="전라남도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="jeollabukdo"
+                  type="button"
+                  value="전라북도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="chungcheongnamdo"
+                  type="button"
+                  value="충청남도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="chungcheongbukdo"
+                  type="button"
+                  value="충청북도"
+                />
+              </div>
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="ulsan"
+                  type="button"
+                  value="울산"
+                />
+              </div>
+
+              <div>
+                <input
+                  class="btn btn-pop-up pop-up-area"
+                  id="sejong"
+                  type="button"
+                  value="세종"
+                />
+              </div>
             </div>
+
+            <br />
+
             <hr />
-            <div class="addressGu">
+            <div class="addressGu" id="addressGu">
               <div class="seoul">
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
@@ -490,17 +608,17 @@ prefix="c"%>
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
+                  value="송파구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
                   value="서초구"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
                   value="강남구"
-                />
-                <input
-                  class="btn btn-pop-up pop-up-dongnae"
-                  type="button"
-                  value="송파구"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
@@ -512,50 +630,1066 @@ prefix="c"%>
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="양천구"
+                  value="가평군"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="강서구"
+                  value="고양시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="금천구"
+                  value="과천시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="광명시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="광주시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="구리시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="군포시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="김포시"
                 />
                 <input
                   class="btn btn-pop-up pop-up-dongnae"
                   type="button"
-                  value="안암"
+                  value="남양주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="동두천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="성남시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="수원시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="시흥시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안성시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="안양시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="양주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="양평시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="여주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="연천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="오산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="용인시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="의왕시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="의정부시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="이천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="파주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="평택시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="포천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="하남시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="화성시"
+                />
+              </div>
+              <div class="incheon">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 강화군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 계양구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 남동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 미추홀구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 부평구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 연수구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 옹진군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="인천 중구"
+                />
+              </div>
+              <div class="daegu">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 남구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 달서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 달성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 수성구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대구 중구"
+                />
+              </div>
+
+              <div class="busan">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 강서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 금정구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 기장군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 남구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 동래구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 부산진구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 사상구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 사하구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="부산 서구"
+                />
+              </div>
+              <div class="jeju">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 모슬포/화순"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 서귀포시내"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 성산/우도"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 제주시내"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 중문단지"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 표선/성읍"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 한림/애월"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="제주 함덕/김녕"
+                />
+              </div>
+              <div class="daejeon">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대전 대덕구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대전 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대전 서구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대전 유성구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="대전 중구"
+                />
+              </div>
+              <div class="gwangju">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광주 광산구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광주 남구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광주 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광주 북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="광주 서구"
+                />
+              </div>
+              <div class="gangwondo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 강릉시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 고성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 동해시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 삼척시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 속초시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 양구군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 양양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 영월군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 원주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 인제군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 정선군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 철원군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 춘천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 태백시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 평창군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 홍천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 화천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="강원 횡성군"
+                />
+              </div>
+              <div class="gyeongsangnamdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 거제시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 거창군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 고성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 김해시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 남해군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 밀양시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 사천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 산청군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 양산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 의령군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 진주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 창녕군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 창원시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 통영시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 하동군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 함안군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 함양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경남 합천군"
+                />
+              </div>
+
+              <div class="gyeongsangbukdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 경산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 경주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 고령군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 구미시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 군위군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 김천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 문경시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 봉화군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 상주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 성주군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 안동시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 영덕군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 영양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 영주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 영천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 예천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 울릉군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 울진군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 의성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 청도군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 청송군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 칠곡군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="경북 포항시"
+                />
+              </div>
+
+              <div class="jeollanamdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 강진군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 고흥군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 곡성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 광양시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 구례군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 나주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 담양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 목포시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 무안군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 보성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 순천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 신안군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 여수시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 영광군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 영암군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 완도군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 장성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 장흥군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 진도군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 함평군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 해남군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전남 화순군"
+                />
+              </div>
+
+              <div class="jeollabukdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 고창군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 군산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 김제시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 남원시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 무주군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 부안군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 순창군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 완주군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 익산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 임실군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 장수군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 전주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 정읍시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="전북 진안군"
+                />
+              </div>
+
+              <div class="chungcheongnamdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 계룡시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 공주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 금산군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 논산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 당진시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 보령시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 부여군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 서산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 서천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 아산시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 예산군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 천안시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 청양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 태안군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충남 홍성군"
+                />
+              </div>
+              <div class="chungcheongbukdo">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 괴산군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 단양군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 보은군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 영동군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 옥천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 음성군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 제천시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 증평군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 진천군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 청주시"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="충북 충주시"
+                />
+              </div>
+              <div class="ulsan">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="울산 남구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="울산 동구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="울산 북구"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="울산 울주군"
+                />
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="울산 중구"
+                />
+              </div>
+              <div class="sejong">
+                <input
+                  class="btn btn-pop-up pop-up-dongnae"
+                  type="button"
+                  value="세종시"
                 />
               </div>
             </div>
+
             <hr />
             <form action="listingFilter.do">
               <input
@@ -816,6 +1950,39 @@ prefix="c"%>
         var result = $("#radius").val().replace(regex, "");
         $("#radiusInput").val(result);
         console.log(result);
+      });
+    </script>
+    
+    <script>
+      const slider = document.querySelector(".items");
+      let isMouseDown = false;
+      let startX, scrollLeft;
+
+      slider.addEventListener("mousedown", (e) => {
+        isMouseDown = true;
+        slider.classList.add("active");
+
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isMouseDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mouseup", () => {
+        isMouseDown = false;
+        slider.classList.remove("active");
+      });
+
+      slider.addEventListener("mousemove", (e) => {
+        if (!isMouseDown) return;
+
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1;
+        slider.scrollLeft = scrollLeft - walk;
       });
     </script>
     	<!-- form tag 지연시간 설정 -->
