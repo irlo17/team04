@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<=#{radius}
 		]]>
 			and s.SHOP_NUMBER = #{sVO.shopNumber}
-			<trim prefixOverrides="AND |OR">
+			
 
 				<if test="query2 != '' ">
 					AND s.shop_food LIKE '%'||#{query2}||'%' or
@@ -136,8 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					s.shop_title LIKE
 					'%'||#{query2}||'%'
 				</if>
-			</trim>
-
+			
 			<if
 				test="filterFood.koreanFood != '' or filterFood.japaneseFood != '' or filterFood.chineseFood != '' or filterFood.westernFood != '' or filterFood.worldFood != '' or filterFood.buffet != '' or filterFood.cafe != '' or filterFood.pup != ''">
 				AND (
