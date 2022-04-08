@@ -85,7 +85,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+						<a href="totalbookmark.do?page=1" class="primary-btn color_chang"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 									<c:when test="${  totalList.SHOPNUMBER eq '0'   }">
 
 
-										<button class="primary-btn" id="listAdd"
+										<button class="primary-btn color_chang" id="listAdd"
 											value="${shopInfoList.SHOPNUMBER }">
 											<i class="fa fa-bookmark"></i>추가하기
 										</button>
@@ -143,7 +143,7 @@
 									<c:when
 										test="${totalList.SHOPNUMBER eq shopInfoList.SHOPNUMBER }">
 
-										<button class="primary-btn" id="listAdd2"
+										<button class="primary-btn color_chang" id="listAdd2"
 											value="${shopInfoList.SHOPNUMBER }">
 											<i class="fa fa-bookmark"></i>추가완료
 										</button>
@@ -264,7 +264,7 @@
 								<input type="file" name='file' value="" accept='image/*' />
 
 								<button type="submit" style="margin-left: 44%;"
-									class="site-btn reviewBTN">작성</button>
+									class="site-btn reviewBTN color_chang">작성</button>
 							</form>
 						</div> <!-- 리뷰 작성 끝 -->
 
@@ -384,7 +384,7 @@
 					 	
 					 	</div>
 						<button id="searchMoreNotify"
-							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-12 mx-auto">더
+							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-12 mx-auto color_chang">더
 							보기</button>
 
 					</div>
