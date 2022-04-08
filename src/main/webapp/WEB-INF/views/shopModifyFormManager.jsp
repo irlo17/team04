@@ -173,14 +173,14 @@
                                             <div class="row mb-3">
                                                 <label class="radio-inline" for="shopFood">
                                                 <label class="jb-600">음식유형</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood" /> 한식&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 양식&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 중식&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 일식&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 세계음식&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 뷔페&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 카페&nbsp;&nbsp;&nbsp;
-	                                                <input type="radio" name="shopFood"/> 주점&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="한식"/> 한식&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="양식"/> 양식&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="중식"/> 중식&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="일식"/> 일식&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="세계음식"/> 세계음식&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="뷔페"/> 뷔페&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="카페"/> 카페&nbsp;&nbsp;&nbsp;
+	                                                <input type="radio" name="shopFood" value="주점"/> 주점&nbsp;&nbsp;&nbsp;
                                                 </label>
                                             </div>
                                             <div class="mb-3">
