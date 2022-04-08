@@ -26,15 +26,6 @@
             <a class="navbar-brand px-sm-4" href="main.do"><img src="${path}/resources/manager/img/logo.png" alt="" width="100%" height="50px"></a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- 로그인 버튼 위치때문에 유지 -- 원래는 검색바 -->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <i class="fas fa-user fa-fw"></i>
-                </li>
-            </ul>
         </nav>
         <!-- 왼쪽 슬라이드 네비바 -->
         <div id="layoutSidenav">
@@ -94,8 +85,9 @@
                                     <thead>
                                         <tr>
                                             <th>신고번호</th>
-                                            <th>리뷰번호</th>
                                             <th>신고내용</th>
+                                            <th>리뷰번호</th>
+                                            <th>리뷰내용</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
@@ -105,8 +97,9 @@
                                     <c:forEach items="${reportListManager}" var="reportManager">
                                         <tr>
                                             <td>${ reportManager.reportNumber }</td>
-                                            <td>${ reportManager.reviewNumber }</td>
                                             <td>${ reportManager.reportContent }</td>
+                                            <td>${ reportManager.reviewNumber }</td>
+                                            <td>${ reportManager.reviewContent }</td>
                                             <td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn(${reportManager.reportNumber})"/></td>
                                         </tr>
                                     </c:forEach>
