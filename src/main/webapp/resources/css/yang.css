@@ -1,6 +1,6 @@
 .filter-modal {
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -13,9 +13,9 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
+  width: 800px;
   height: 800px;
-  z-index: 100;
+  z-index: 10;
   padding: 30px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -38,6 +38,51 @@
 .gyeonggido {
   display: none;
 }
+.incheon {
+  display: none;
+}
+.daegu {
+  display: none;
+}
+.busan {
+  display: none;
+}
+.jeju {
+  display: none;
+}
+.daejeon {
+  display: none;
+}
+.gwangju {
+  display: none;
+}
+.gangwondo {
+  display: none;
+}
+.gyeongsangnamdo {
+  display: none;
+}
+.gyeongsangbukdo {
+  display: none;
+}
+.jeollanamdo {
+  display: none;
+}
+.jeollabukdo {
+  display: none;
+}
+.chungcheongnamdo {
+  display: none;
+}
+.chungcheongbukdo {
+  display: none;
+}
+.ulsan {
+  display: none;
+}
+.sejong {
+  display: none;
+}
 
 #pop-up-filter {
   position: fixed;
@@ -51,14 +96,16 @@
 }
 
 .btn-pop-up {
-  background-color: RGB(215, 76, 95);
   border-width: 0px;
   color: #ffffff;
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+  background-color: #ed7a64;
+  border-color: #ed7a64;
 }
 
 .btn-pop-up:hover {
-  background: RGB(215, 67, 82);
+  background-color: #d6524f;
+  border-color: #d6524f;
 }
 
 /* .btn-pop-up-area:focus {
@@ -77,9 +124,45 @@
 .foodPrice > img {
   width: 70px;
   height: 70px;
+  margin-inline: 20px;
 }
+
+.addressSi > div > input {
+  width: 100px;
+}
+
+.addressGu > div > input {
+  width: 150px;
+}
+
+.addressGu {
+  height: 330px;
+}
+
+.btnClcik {
+  background-color: #d6524f;
+}
+
 
 #listSize {
 	border:none;
 }
+
+#filter-search {
+	background-color: #ed7a64;
+	color : white;
+}
+
+#radius {
+	color: #ed7a64;
+}
+
+.header__logo {
+	padding : 1%;
+}
+
+/* #shopListLogo {
+	padding : 10px;
+} */
+
 

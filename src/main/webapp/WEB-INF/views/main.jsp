@@ -50,20 +50,20 @@
 	</div>
 
 	<!-- Header Section Begin -->
-	<header class="header">
+	<header class="header header--normal">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="./resources/img/logo.png"
-							alt=""></a>
+						<a href="main.do"><img
+							src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
@@ -77,29 +77,20 @@
 
 	<!-- Hero Section Begin 즐겨찾기 베스트-->
 	<section class="hero set-bg"
-		data-setbg="./resources/img/main/foodbackground.jpg">
+		data-setbg="./resources/img/main/foodbackground2.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="hero__text">
 						<div class="section-title">
-							<h2>오늘은 무엇을 먹으러 갈까요??</h2>
+							<h2>오늘은 무엇을 먹으러 갈까요?</h2>
 							<p>나만의 맛집을 리스트로 ! 아.. 이걸 내가 먹어보았나?</p>
 						</div>
 						<div class="hero__search__form">
-							<form action="#">
-								<input type="text" placeholder="Search...">
-								<div class="select__option">
-									<select>
-										<option value="">Choose Categories</option>
-									</select>
-								</div>
-								<div class="select__option">
-									<select>
-										<option value="">Choose Location</option>
-									</select>
-								</div>
-								<button type="submit">Explore Now</button>
+							<form action="listing.do">
+								<input type="text" name="query" id="mainsearch" placeholder="지역,식당 또는 음식">
+								
+								<button type="submit" class="btn btn-danger">검색</button>
 							</form>
 						</div>
 					</div>
@@ -128,9 +119,9 @@
 						<c:forEach items="${fileName }" var="bookmark" begin="0" end="5">
 							<div class="col-lg-4 col-md-6">
 								<div class="listing__item">
-									<a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1"><div
-											class="listing__item__pic set-bg"
-											data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div></a>
+									<a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1">
+									<div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div>
+									</a>
 									<div class="listing__item__pic__btns"></div>
 
 									<div class="listing__item__text">

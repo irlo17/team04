@@ -72,19 +72,20 @@
 	</div>
 
 	<!-- Header Section Begin -->
-	<header class="header">
+	<header class="header header--normal">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+						<a href="main.do"><img
+							src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do" class="primary-btn"><i
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>

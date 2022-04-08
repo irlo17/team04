@@ -73,7 +73,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>

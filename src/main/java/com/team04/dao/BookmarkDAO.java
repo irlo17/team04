@@ -48,7 +48,7 @@ import com.team04.domain.PagingVO;
 	public void bookmarkDelete(String listNumber);
 
 	//즐겨찾기 상세 목록 가게 수정
-	public void mylistUpdate(MylistVO vo);
+	public int mylistUpdate(MylistVO vo);
 
 	//즐겨찾기 상세 목록 가게 삭제
 	public void mylistDelete(MylistVO vo);
@@ -76,6 +76,8 @@ import com.team04.domain.PagingVO;
 	public HeartVO heartCheak(HeartVO vo);
 	
 	public BookmarkVO pictureHeartCount(BookmarkVO vo);
+	
+	public MylistVO overlapSearch(MylistVO vo);
 	
 	}
 	
