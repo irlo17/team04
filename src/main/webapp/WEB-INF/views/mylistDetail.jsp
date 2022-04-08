@@ -53,6 +53,13 @@
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
 <link rel="stylesheet" href="./resources/css/eun-detailModify.css"
 	type="text/css">
+<script type="text/javascript">
+$(function(){
+	if($("#defaultnum").val()=="yes"){
+		$("#sujung").attr('type','hidden');
+	}
+})
+</script>	
 </head>
 
 <body class="ov-hid">
@@ -137,7 +144,7 @@
 	<section class=" nice-scroll nuguri">
 		<div id='btnl'>
 			<a href="modify1.do?listNumber=<%=number%>"><input type="button"
-				value='리스트 수정' class="btn btn-warning"> </a> <a
+				value='리스트 수정' class="btn btn-warning" id="sujung"> </a> <a
 				href="detailModify.do?listNumber=<%=number%>&page=1"><input
 				type="button" value='가게목록 편집' class="btn btn-danger"></a>
 
@@ -146,6 +153,7 @@
 			<div class="container">
 
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
+					<input type="hidden" id="defaultnum" value="${BookmarkVO.defultList }">				
 				<hr />
 				<div class="row">
 					<div class="col-lg-12">

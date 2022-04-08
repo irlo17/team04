@@ -36,7 +36,7 @@ public interface BookmarkService {
 	
 	public void bookmarkDelete(String listNumber);
 	
-	public void mylistUpdate(MylistVO vo);
+	public int mylistUpdate(MylistVO vo);
 	
 	public void mylistDelete(MylistVO vo);
 	
@@ -58,4 +58,7 @@ public interface BookmarkService {
 	public HeartVO heartCheak(HeartVO vo);
 	
 	public BookmarkVO pictureHeartCount(BookmarkVO vo);
+	public MylistVO overlapSearch(MylistVO vo);
+	
+	
 }

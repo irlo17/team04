@@ -76,8 +76,8 @@ public class BookmarkServiceImpl implements BookmarkService {
 		bookmarkDAO.bookmarkDelete(listNumber);
 	}
 
-	public void mylistUpdate(MylistVO vo) {
-		bookmarkDAO.mylistUpdate(vo);
+	public int mylistUpdate(MylistVO vo) {
+		return bookmarkDAO.mylistUpdate(vo);
 	}
 
 	public void mylistDelete(MylistVO vo) {
@@ -127,6 +127,11 @@ public class BookmarkServiceImpl implements BookmarkService {
 	@Override
 	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
 		return bookmarkDAO.pictureHeartCount(vo);
+	}
+	
+	public MylistVO overlapSearch(MylistVO vo) {
+		return bookmarkDAO.overlapSearch(vo);
+		
 	}
 	
 }

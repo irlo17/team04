@@ -70,7 +70,7 @@ WHERE rnum between #{startRow} and #{endRow}
 
 <select id="bookmarkGetMylist" resultType="BookmarkVO" parameterType="String">
 
-  SELECT  list_Number, list_name , list_display , list_like
+  SELECT  list_Number, list_name , list_display , list_like 
 FROM bookmark
 WHERE member_email=#{memberEmail}<!-- #{memberEmail} -->
 </select>
@@ -111,7 +111,7 @@ Where m.list_number=#{listNumber}
 
 
 <select id="bookmarkGetDetail" resultType="BookmarkVO" parameterType="String">
-SELECT list_number,list_name,list_display
+SELECT list_number,list_name,list_display,defult_list
 FROM bookmark
 WHERE list_number=#{listNumber}
 </select>
@@ -204,6 +204,12 @@ WHERE rnum =1
 select *
 from liketb
 where member_email=#{memberEmail} and list_number=#{listNumber}
+</select>
+
+<select id="overlapSearch" parameterType="MylistVO" resultType="MylistVO">
+SELECT *
+FROM mylist
+WHERE list_number = #{listNumber} AND shop_number=#{shopNumber}
 </select>
 
 </mapper>
