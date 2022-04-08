@@ -3,7 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<%String number=request.getParameter("listNumber"); %>
+<%
+	String number = request.getParameter("listNumber");
+%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -27,8 +29,8 @@
 <!-- Css Styles -->
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css"
 	type="text/css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css"
 	type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css"
@@ -49,7 +51,7 @@
 <link rel="stylesheet" href="./resources/css/slicknav.min.css"
 	type="text/css">
 <link rel="stylesheet" href="./resources/css/style.css" type="text/css">
-<link rel="stylesheet" href="./resources/css/eun-mylistDetail.css"
+<link rel="stylesheet" href="./resources/css/eun-detailModify.css"
 	type="text/css">
 </head>
 
@@ -134,17 +136,17 @@
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 		<div id='btnl'>
-			<a href="modify1.do?listNumber=<%=number %>"><input type="button"
+			<a href="modify1.do?listNumber=<%=number%>"><input type="button"
 				value='리스트 수정' class="btn btn-warning"> </a> <a
-				href="detailModify.do?listNumber=<%=number %>&page=1"><input
-				type="button" value='가게목록 편집' class="btn btn-info"></a>
+				href="detailModify.do?listNumber=<%=number%>&page=1"><input
+				type="button" value='가게목록 편집' class="btn btn-danger"></a>
 
 		</div>
 		<section class="blog-section spad">
 			<div class="container">
 
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
-					<hr/>
+				<hr />
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
@@ -170,7 +172,8 @@
 								<div class="col-lg-6 col-md-6">
 									<div class="blog__item">
 										<a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div
-												class="blog__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
+												class="blog__item__pic set-bg"
+												data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
 										<div class="blog__item__text">
 											<ul class="blog__item__tags">
 												<li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>

@@ -10,4 +10,7 @@
 	.form{position:relative; left:35%}
 	td{text-align: center;}
 	.row100 head{font-size: 20px;}
+	.header__logo {
+	padding: 1%
+}
 	

@@ -30,20 +30,13 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
-html,
-body {
+html, body {
 	height: 100%;
 	font-family: "Cairo", sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
@@ -87,22 +80,17 @@ img {
 	max-width: 100%;
 }
 
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
+input:focus, select:focus, button:focus, textarea:focus {
 	outline: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
 	color: #ffffff;
 }
 
-ul,
-ol {
+ul, ol {
 	padding: 0;
 	margin: 0;
 }
@@ -110,7 +98,6 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
-
 .section-title {
 	margin-bottom: 40px;
 	text-align: center;
@@ -138,21 +125,13 @@ ol {
 	padding-bottom: 100px;
 }
 
-.text-white h1,
-.text-white h2,
-.text-white h3,
-.text-white h4,
-.text-white h5,
-.text-white h6,
-.text-white p,
-.text-white span,
-.text-white li,
-.text-white a {
+.text-white h1, .text-white h2, .text-white h3, .text-white h4,
+	.text-white h5, .text-white h6, .text-white p, .text-white span,
+	.text-white li, .text-white a {
 	color: #fff;
 }
 
 /* buttons */
-
 .primary-btn {
 	display: inline-block;
 	font-size: 14px;
@@ -176,7 +155,6 @@ ol {
 }
 
 /* Preloder */
-
 #preloder {
 	position: fixed;
 	width: 100%;
@@ -200,49 +178,257 @@ ol {
 	-webkit-animation: loader 0.8s linear infinite;
 }
 
-@keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+@
+keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
 }
 
-@-webkit-keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
+50
+
+
+%
+{
+-webkit-transform
+
+
+:
+
+
+rotate
+(
+
+
+180deg
+
+
+)
+;
+
+
+transform
+
+
+:
+
+
+rotate
+(
+
+
+180deg
+
+
+)
+;
+
+
+border
+
+
+:
+
+
+4px
+
+
+solid
+
+
+#673ab7
+;
+
+
+border-left-color
+
+
+:
+
+
+transparent
+;
+
+
+}
+100
+
+
+%
+{
+-webkit-transform
+
+
+:
+
+
+rotate
+(
+
+
+360deg
+
+
+)
+;
+
+
+transform
+
+
+:
+
+
+rotate
+(
+
+
+360deg
+
+
+)
+;
+
+
+border
+
+
+:
+
+
+4px
+
+
+solid
+
+
+#f44336
+;
+
+
+border-left-color
+
+
+:
+
+
+transparent
+;
+
+
+}
+}
+@
+-webkit-keyframes loader { 0% {
+	-webkit-transform: rotate(0deg);
+	border: 4px solid #f44336;
+	border-left-color: transparent;
+}
+
+50
+
+
+%
+{
+-webkit-transform
+
+
+:
+
+
+rotate
+(
+
+
+180deg
+
+
+)
+;
+
+
+border
+
+
+:
+
+
+4px
+
+
+solid
+
+
+#673ab7
+;
+
+
+border-left-color
+
+
+:
+
+
+transparent
+;
+
+
+}
+100
+
+
+%
+{
+-webkit-transform
+
+
+:
+
+
+rotate
+(
+
+
+360deg
+
+
+)
+;
+
+
+border
+
+
+:
+
+
+4px
+
+
+solid
+
+
+#f44336
+;
+
+
+border-left-color
+
+
+:
+
+
+transparent
+;
+
+
+}
 }
 
 /*---------------------
   Header
 -----------------------*/
-
 .header {
 	position: absolute;
 	left: 0;
@@ -387,7 +573,6 @@ ol {
 /*---------------------
   Hero
 -----------------------*/
-
 .hero {
 	padding: 300px 0;
 }
@@ -526,7 +711,6 @@ ol {
 /*---------------------
   Most Search Tab
 -----------------------*/
-
 .most-search {
 	padding-bottom: 70px;
 }
@@ -592,7 +776,6 @@ ol {
 /*---------------------
   Work section
 -----------------------*/
-
 .work {
 	padding-bottom: 70px;
 	padding-top: 90px;
@@ -642,7 +825,6 @@ ol {
 /*---------------------
   Feature Location
 -----------------------*/
-
 .feature-location {
 	padding-bottom: 70px;
 	padding-top: 90px;
@@ -664,7 +846,8 @@ ol {
 	margin-bottom: 6px;
 }
 
-.feature__location__item.large-item .feature__location__item__text ul li {
+.feature__location__item.large-item .feature__location__item__text ul li
+	{
 	list-style: none;
 	font-size: 14px;
 	color: #a8a8a8;
@@ -689,7 +872,6 @@ ol {
 /*---------------------
   Testimonial
 -----------------------*/
-
 .testimonial .section-title {
 	position: relative;
 	margin-bottom: 60px;
@@ -817,7 +999,6 @@ ol {
 /*---------------------
   Newalatter 
 -----------------------*/
-
 .newslatter {
 	background: #f9f9f9;
 	padding: 50px 0 40px;
@@ -872,7 +1053,6 @@ ol {
 /*---------------------
   Footer
 -----------------------*/
-
 .footer {
 	padding-top: 70px;
 	padding-bottom: 0;
@@ -968,9 +1148,8 @@ ol {
 	float: left;
 }
 
-.footer__copyright__text span,
-.footer__copyright__text i,
-.footer__copyright__text a {
+.footer__copyright__text span, .footer__copyright__text i,
+	.footer__copyright__text a {
 	color: #f03250;
 }
 
@@ -999,7 +1178,6 @@ ol {
 /*---------------------
   Filter
 -----------------------*/
-
 .filter {
 	position: fixed;
 	left: 0;
@@ -1295,7 +1473,7 @@ ol {
 	visibility: hidden;
 }
 
-.filter__tags label input:checked~.checkmark {
+.filter__tags label input:checked ~.checkmark {
 	background: #a8a8a8;
 }
 
@@ -1331,7 +1509,6 @@ ol {
 /*---------------------
   Listing
 -----------------------*/
-
 .nice-scroll {
 	height: 100%;
 	overflow-y: hidden;
@@ -1512,7 +1689,8 @@ ol {
 	margin-right: -3px;
 }
 
-.listing__item__text__rating .listing__item__rating__star span:last-child {
+.listing__item__text__rating .listing__item__rating__star span:last-child
+	{
 	margin-right: 0;
 }
 
@@ -1576,7 +1754,6 @@ ol {
 /*---------------------
   Listing Hero
 -----------------------*/
-
 .listing-hero {
 	padding-top: 230px;
 	padding-bottom: 40px;
@@ -1659,7 +1836,6 @@ ol {
 /*---------------------
   Listing Details
 -----------------------*/
-
 .listing__details__about {
 	margin-bottom: 35px;
 }
@@ -1766,7 +1942,8 @@ ol {
 	margin-bottom: 6px;
 }
 
-.listing__details__rating__overall .listing__details__rating__star span {
+.listing__details__rating__overall .listing__details__rating__star span
+	{
 	font-size: 16px;
 	color: #F09D17;
 	margin-right: -2px;
@@ -1845,13 +2022,15 @@ ol {
 	position: relative;
 }
 
-.listing__details__comment__item__text .listing__details__comment__item__rating {
+.listing__details__comment__item__text .listing__details__comment__item__rating
+	{
 	position: absolute;
 	right: 0;
 	top: 0;
 }
 
-.listing__details__comment__item__text .listing__details__comment__item__rating i {
+.listing__details__comment__item__text .listing__details__comment__item__rating i
+	{
 	font-size: 16px;
 	color: #E9AA13;
 	margin-left: -2px;
@@ -1974,7 +2153,6 @@ ol {
 /*---------------------
   Listing Sidebar
 -----------------------*/
-
 .listing__sidebar__contact {
 	-webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.05);
 	box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.05);
@@ -2099,7 +2277,6 @@ ol {
 /*---------------------
   Breadcrumb
 -----------------------*/
-
 .breadcrumb-area {
 	padding-top: 200px;
 	padding-bottom: 120px;
@@ -2144,7 +2321,6 @@ ol {
 /*---------------------
   Checkout
 -----------------------*/
-
 .categories {
 	padding-bottom: 70px;
 	background: #f9f9f9;
@@ -2186,7 +2362,6 @@ ol {
 /*---------------------
   Blog
 -----------------------*/
-
 .blog__item {
 	margin-bottom: 30px;
 	-webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
@@ -2263,13 +2438,11 @@ ol {
 	margin-right: 5px;
 }
 
-.blog__item__text h5,
-.blog__item__text h3 {
+.blog__item__text h5, .blog__item__text h3 {
 	margin-bottom: 10px;
 }
 
-.blog__item__text h5 a,
-.blog__item__text h3 a {
+.blog__item__text h5 a, .blog__item__text h3 a {
 	font-size: 20px;
 	color: #323232;
 	font-weight: 700;
@@ -2359,7 +2532,6 @@ ol {
 /*---------------------
   Blog Sidebar
 -----------------------*/
-
 .blog__sidebar__search {
 	margin-bottom: 50px;
 }
@@ -2538,7 +2710,6 @@ ol {
 /*---------------------
   Blog Details Hero
 -----------------------*/
-
 .blog-details-hero {
 	padding-top: 170px;
 	padding-bottom: 30px;
@@ -2708,14 +2879,12 @@ ol {
 	margin-bottom: 35px;
 }
 
-.blog__details__new__post__title,
-.blog__details__comment__title {
+.blog__details__new__post__title, .blog__details__comment__title {
 	margin-bottom: 30px;
 	text-align: center;
 }
 
-.blog__details__new__post__title h4,
-.blog__details__comment__title h4 {
+.blog__details__new__post__title h4, .blog__details__comment__title h4 {
 	color: #323232;
 	font-weight: 700;
 }
@@ -2779,7 +2948,6 @@ ol {
 /*---------------------
   About
 -----------------------*/
-
 .about__title h2 {
 	font-size: 40px;
 	font-weight: 700;
@@ -2830,7 +2998,6 @@ ol {
 /*---------------------
   Team
 -----------------------*/
-
 .team {
 	padding-bottom: 70px;
 }
@@ -2892,7 +3059,6 @@ ol {
 /*---------------------
   Contact
 -----------------------*/
-
 .contact__map {
 	height: 550px;
 	-webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
@@ -2905,28 +3071,24 @@ ol {
 	width: 100%;
 }
 
-.contact__widget__address,
-.contact__widget__time {
+.contact__widget__address, .contact__widget__time {
 	margin-bottom: 45px;
 }
 
-.contact__widget__address h4,
-.contact__widget__time h4 {
+.contact__widget__address h4, .contact__widget__time h4 {
 	color: #323232;
 	font-weight: 700;
 	margin-bottom: 18px;
 }
 
-.contact__widget__address ul li,
-.contact__widget__time ul li {
+.contact__widget__address ul li, .contact__widget__time ul li {
 	list-style: none;
 	font-size: 18px;
 	color: #323232;
 	line-height: 34px;
 }
 
-.contact__widget__address ul li i,
-.contact__widget__time ul li i {
+.contact__widget__address ul li i, .contact__widget__time ul li i {
 	color: #a8a8a8;
 	margin-right: 5px;
 }
@@ -3006,7 +3168,6 @@ ol {
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
-
 @media only screen and (min-width: 1400px) and (max-width: 1920px) {
 	.header {
 		padding: 0 60px;
@@ -3029,7 +3190,6 @@ ol {
 }
 
 /* Medium Device = 1200px */
-
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	.header__menu ul li {
 		margin-right: 26px;
@@ -3056,7 +3216,6 @@ ol {
 }
 
 /* Tablet Device = 768px */
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.header__menu__right .primary-btn {
 		display: none;
@@ -3128,7 +3287,6 @@ ol {
 }
 
 /* Wide Mobile = 480px */
-
 @media only screen and (max-width: 767px) {
 	.header .container-fluid {
 		position: relative;
@@ -3155,8 +3313,7 @@ ol {
 	.slicknav_nav ul {
 		margin: 5px 0;
 	}
-	.slicknav_nav .slicknav_row,
-	.slicknav_nav a {
+	.slicknav_nav .slicknav_row, .slicknav_nav a {
 		padding: 10px 25px;
 		margin: 0;
 	}
@@ -3275,7 +3432,6 @@ ol {
 }
 
 /* Small Device = 320px */
-
 @media only screen and (max-width: 479px) {
 	.header__logo {
 		padding: 38px 0 30px;
@@ -3329,3 +3485,18 @@ ol {
 		margin-bottom: 5px;
 	}
 }
+
+.header__logo {
+	padding: 1%
+}
+
+#mainsearch {
+	width: 600px;
+}
+
+.hero__search__form {
+	position: relative;
+	left: 200px;
+}
+
+.hero__text{position: relative; top:100px;}

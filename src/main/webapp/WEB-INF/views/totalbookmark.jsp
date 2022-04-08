@@ -72,12 +72,13 @@
 	</div>
 
 	<!-- Header Section Begin -->
-	<header class="header">
+	<header class="header header--normal">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+						<a href="main.do"><img
+							src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">

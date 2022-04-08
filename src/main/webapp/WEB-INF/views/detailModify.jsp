@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%String listNumber2=request.getParameter("listNumber"); %>
+<%
+	String listNumber2 = request.getParameter("listNumber");
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,6 +27,7 @@
 <!-- Css Styles -->
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css"
 	type="text/css">
+
 <link rel="stylesheet" href="./resources/css/font-awesome.min.css"
 	type="text/css">
 <link rel="stylesheet" href="./resources/css/elegant-icons.css"
@@ -48,8 +51,6 @@
 <link rel="stylesheet" href="./resources/css/eun-detailModify.css"
 	type="text/css">
 
-<style type="text/css">
-</style>
 <script type="text/javascript">
 $(function(){
 	//모달 창 띄우기
@@ -104,12 +105,10 @@ $(function(){
 							src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
-
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-
 							<a href="totalbookmark.do?page=1" class="primary-btn"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
@@ -131,7 +130,6 @@ $(function(){
 						<img class="memberFile"
 							src="./resources/upload/KakaoTalk_20220107_103421413_01.jpg">
 					</c:when>
-
 					<c:otherwise>
 						<img class="memberFile"
 							src="./resources/upload/${MemberVO.memberRealfname }">
@@ -147,47 +145,39 @@ $(function(){
 				<h4>
 					<a href="mypageMember.do">회원정보</a>
 				</h4>
-
 			</div>
 			<hr />
-
 			<div class="categori" id="check">
 				<h4>
-					<a href='mylist.do?page=1'>즐겨찾기</a>
+					<a href="mylist.do?page=1">즐겨찾기</a>
 				</h4>
-
 			</div>
 			<hr />
-
 			<div class="categori">
 				<h4>
 					<a href="review.do">리뷰관리</a>
 				</h4>
-
 			</div>
 		</div>
-
-
 		<div class="categori" id="outlog">
 			<hr />
 			<!--  <h4>로그아웃</h4>-->
 			<a href="logout.do">로그아웃</a>
 		</div>
 	</div>
-
 	<!-- Filter End -->
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
 		<div id='btnl'>
 			<button id="btnDelete" class='btn btn-warning'>가게목록 삭제</button>
-			<button class="btn btn-info" id="btnShopList" data-target="#layerpop"
-				data-toggle="modal">가게목록 이동</button>
+			<button class="btn btn-danger" id="btnShopList"
+				data-target="#layerpop" data-toggle="modal">가게목록 이동</button>
 		</div>
 		<section class="blog-section spad">
 			<div class="container">
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
-					<hr/>
+				<hr />
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
@@ -236,6 +226,8 @@ $(function(){
 								</div>
 							</c:forEach>
 						</div>
+						
+						
 						<div class="blog__pagination">
 							<c:if test="${paging.page > 1 }">
 								<a
