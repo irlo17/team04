@@ -73,21 +73,34 @@ public class BookmarkController {
 	 * @return
 	 */
 	@RequestMapping("mylist.do")
-	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo, MemberVO mvo) {
+	  private String bookmarkGetMylistPaging(Model model,HttpSession session,PagingVO vo, MemberVO mvo, BookmarkVO bvo) {
 		vo.setMemberEmail((String)session.getAttribute("logemail"));
 		mvo.setMemberEmail((String)session.getAttribute("logemail"));
+		
+		// 디폴트 즐겨찾기 검색
+		bvo.setMemberEmail((String)session.getAttribute("logemail"));
+		BookmarkVO defultList = bookmarkService.defultListSearch(bvo);
+		
 		MemberVO member = memberService.memberSearch(mvo);
 		model.addAttribute("MemberVO", member);
+		
 		vo.setCountPerPage(10);
 		vo.setPageTotalCount(bookmarkService.bookmarkMylistTotalCount(vo));
 		vo.setStartRow(vo.getPage());
 		vo.setEndRow(vo.getPage());
+		
 		List<BookmarkVO> list= bookmarkService.bookmarkGetMylistPaging(vo);
+		
 		model.addAttribute("paging", vo);
 		model.addAttribute("bookmarkList", list);
-		  return "mylist";
+		model.addAttribute("defultList", defultList);
+		
+	
+		return "mylist";
 	  }
 
+	
+	
 	  @RequestMapping("bookmarkDetail.do")
 	  private String bookmarkGetDetail(String listNumber,Model model, PagingVO vo) {
 		  vo.setListNumber(listNumber);

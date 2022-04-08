@@ -90,7 +90,6 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println("===> MemberMapper pwChange 호출");
 		return memberMybatis.update("memberDAO.pwChange", vo);
 	}
-
 	
 
 	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
@@ -165,5 +164,6 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println("===> MemberMapper memberDefaultList 호출");	
 		return memberMybatis.insert("memberDAO.memberDefaultList", vo);
 	}
+
 
 }

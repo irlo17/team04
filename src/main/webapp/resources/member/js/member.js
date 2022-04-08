@@ -5,7 +5,7 @@
  */
 var RegexNick = /^[가-힣a-zA-Z0-9]{1,10}$/;
 var RegexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-var RegexPW = /^[a-z0-9_-]{6,18}$/;
+var RegexPW =/^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$/;
 var RegexName = /^[가-힣]+$/;
 var RegexTel = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{3,4})$/;
 
@@ -125,7 +125,7 @@ $('#btn_signUp').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~18자로 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -216,7 +216,6 @@ $('#btn_signUp').click(function(){
 			    	data : { memberEmail : $('#memberEmail').val() },
 			    	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			    	success : function(result){
-			    		
 			    		// 중복 검사 후 나오는 결과 에러박스에 출력
 			    		if(result == 'Y'){
 			    			$('label[for="memberEmail"] .error_box').html("");
@@ -225,6 +224,7 @@ $('#btn_signUp').click(function(){
 							}else{
 				        		$('label[for="memberEmail"] .error_box').css('color','#ED7A64');
 								$('label[for="memberEmail"] .error_box').html("이메일 중복 여부를 확인해주세요.");
+				        		emailCheak = false;
 				        		return;
 							}
 			    	},
@@ -287,7 +287,6 @@ $('#btnLogin').click(function(){
 			}else{
 			// 결과가 result = "Y"이면 로그인 성공 -> loginMove.do로 이동
         		document.loginForm.submit();
-				alert("로그인 성공");
 			}
 	},
 	error : function(err){

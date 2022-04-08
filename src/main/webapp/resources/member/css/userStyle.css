@@ -30,6 +30,10 @@ form-group .form-control.form-nickname {
 	color:#ED7A64;
 }
 
+.errorBox{
+	text-align: center;
+}
+
 .formBlock{
 	margin-top : 150px;
 	margin-right : 300px;
@@ -102,7 +106,7 @@ input[type="file"]{
 }
 
 .memberTitle{
-	margin-bottom: 100px;
+	margin-bottom: 80px;
 	text-align: center;
 	font-weight : bold;
 }
@@ -214,4 +218,16 @@ header.header--normal{
 .control:hover input:not([disabled]):checked ~ .control__indicator,
 .control input:checked:focus ~ .control__indicator {
   background: #ED7A64; }
-  
+ 
+#titleCenter{
+	text-align: center;
+}
+#homeGO{
+	margin-left: -30px;
+	margin-top: 10px;
+	margin-bottom: -40px;
+}
+.colorChange{
+	color : #888888;
+}
+ 

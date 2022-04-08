@@ -33,32 +33,33 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                  <h3><strong>비밀번호 재설정</strong></h3>
+                  <h3  id="titleCenter"><strong>비밀번호 재설정</strong></h3>
                  <span class="error_box pwSearch"></span>
                   <p class="mb-4"></p>
                 </div>
                 <form id="pwChangeForm" action="pwChange.do" method="post" name="pwChangeForm">
                 
                 <!-- PW -->
-                  <div class="form-group">
+                  <div class="form-group first field--not-empty">
                     <label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="password" class="form-control" id="memberPassword" name="memberPassword" >
                   </div>
                   
                  <!-- PW CHECK -->
-                  <div class="form-group last mb-4">
+                  <div class="form-group first field--not-empty">
                     <label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="password" class="form-control" id="passwordCheck" >
                   </div>
                   
                   <!-- BTN PW CHANGE -->              
                   <input type="button" id="btnPwChange" value="비밀번호 재설정" class="btn btn-pill text-white btn-block btn-danger">
-                  <div class="d-flex mb-5 align-items-center">
+                  <div class="d-flex mb-5 align-items-center" id="homeGO">
                     <label class="control control--checkbox mb-0">
                     	<span class="caption"></span>
                     </label>
                     
                     <!-- BTN LOGIN -->
+                    <span class=""><a href="main.do" class="forgot-pass">홈 화면으로 가기</a></span>
                     <span class="ml-auto"><a href="loginForm.do" class="forgot-pass">로그인 하기</a></span> 
                   </div>
 
