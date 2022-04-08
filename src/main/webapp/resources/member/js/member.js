@@ -468,6 +468,14 @@ $('#btnMemberUpdate').click(function(){
 $('#btnAgree').click(function(){
 	$('#agreeForm').toggle();
 });
+$('#btnMemberDelete').click(function(){
+	var result = confirm("정말 탈퇴하시겠습니까?");
+	if(result){
+		document.memberDelete.submit();
+	}
+
+})
+
 
 // 생년월일 max를 오늘 날짜로 지정하기
  	var date = new Date();

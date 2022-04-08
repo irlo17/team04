@@ -3,7 +3,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-  
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -93,7 +92,8 @@
                   </div>
                   
                   <div class="d-flex mb-5 align-items-center" id="agree">
-                    <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption"><button type="button" class="btn_check" id="btnAgree">이용약관</button>에 동의합니다.</span>
+                    <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption"><a href="#" id="btnAgree">이용약관</a>에 동의합니다.</span>
+                    <input type="checkbox" id="termsService"/>
                     <span class="error_box"></span>
                     <div class="control__indicator"></div>
                   </label>
@@ -212,8 +212,8 @@
 						   9) 기타 관계법령에 위배된다고 판단되는 경우
                   </div>
                   <input type="button" value="가입하기" id="btn_signUp" class="btn btn-pill text-white btn-block btn-danger">
-                  <!-- <span class="d-block text-center my-4 text-muted"> or register with</span>
-                  
+ <!--                 <span class="d-block text-center my-4 text-muted"> or register with</span>
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
                   <div class="social-login text-center">
                     <a href="#" class="facebook">
                       <span class="icon-facebook mr-3"></span> 
@@ -235,7 +235,7 @@
       </div>
     </div>
   </div>
-
+	
   	<!-- 안정은 : js추가 -->
     <script src="./resources/member/js/jquery-3.3.1.min.js"></script>
     <script src="./resources/member/js/popper.min.js"></script>

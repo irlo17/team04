@@ -1,7 +1,5 @@
 package com.team04.controller;
 
-import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.team04.domain.ChartsVO;
 import com.team04.domain.MemberVO;
 import com.team04.service.MemberService;
 
@@ -78,52 +71,7 @@ public class MemberController {
 		return message;
 	}//end of emailCheck()
 	
-	
-	
-	@RequestMapping(value="rememberEmail.do", produces="application/text;charset=utf-8")
-	@ResponseBody
-	public String rememberEmail(MemberVO vo, HttpServletResponse response,HttpServletRequest request) {
-		String message = "";
-			
-		if(vo.isRememberEmail()) {
-			// 체크박스에 체크가 되어있다면
-			Cookie[] getCookie = request.getCookies();
-			
-			// 저장되어 있는 쿠키값이 없으면 새로 생성
-			if(getCookie == null) {
-				Cookie rememberEmail = new Cookie("rememberEmail", vo.getMemberEmail());
-				rememberEmail.setMaxAge(60*60*24); 	// 30일 지정
-				response.addCookie(rememberEmail);
-				message = "Y";
-			}else {
-				// 저장되어 있는 쿠키값이 있으면 삭제하고 다시 생성
-				for(int i=0; i<getCookie.length; i++) {
-					getCookie[i].setMaxAge(0); // 유효시간을 0으로 설정
-					response.addCookie(getCookie[i]); // 응답 헤더에 추가
-				}//end of for-i
-				
-				Cookie rememberEmail = new Cookie("rememberEmail", vo.getMemberEmail());
-				rememberEmail.setMaxAge(60*60*24*30); 	// 30일 지정
-				response.addCookie(rememberEmail);
-				message = "Y";
-			}//end of if
-			
-			
-		}else {
-			// 체크 박스에 체크가 안되어 있을 때 
-			Cookie[] getCookie = request.getCookies(); // 쿠키를 얻어오고
-			
-			if(getCookie != null) { // 쿠키값이 null이 아니면 쿠키 삭제
-				for(int i=0; i<getCookie.length; i++) {
-					getCookie[i].setMaxAge(0); // 유효시간을 0으로 설정
-					response.addCookie(getCookie[i]); // 응답 헤더에 추가
-				}//end of for
-			}//end of if - 쿠키값이 null값인지 검사
-			message = "N";
-		}//end of if - 체크박스에 체크가 되어있는지
-		return message;
-	}
-	
+
 
 	/**	로그인 하기
 	 * 	- DB에 입력된 레코드 중에서 이메일과 패스워드가 같은 레코드 검색
@@ -208,7 +156,6 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		System.out.println("마지막 확인" + session.getAttribute("logemail"));
 		if(session.getAttribute("lognick") == null) {
 			return "redirect:loginForm.do";
 		}else if(session.getAttribute("admin").toString().equals("N")){
@@ -327,18 +274,32 @@ public class MemberController {
 	 * @return 메인페이지로 이동
 	 */
 	@RequestMapping("memberDelete.do")
-	public String memberDelete(MemberVO vo,HttpServletRequest request) {
+	public String memberDelete(MemberVO vo,HttpServletRequest request,HttpServletResponse response) {
 		memberService.memberDelete(vo);
+		// 쿠키가 있다면
+		Cookie[] getCookie = request.getCookies();
+		if(getCookie != null) {
+			for(Cookie c : getCookie) {
+				String value = c.getValue();
+				
+				if(value.equals(vo.getMemberEmail())) {
+					Cookie removeEmail = new Cookie("rememberEmail", null);
+					removeEmail.setMaxAge(0);
+					response.addCookie(removeEmail);
+				}//end of if
+			}//end of for
+		}//end of if
+
 		System.out.println(vo.getMemberEmail() + "님 회원 탈퇴 성공");
 		HttpSession session = request.getSession();
 		
 		session.invalidate(); // 세션에 저장된 로그인 정보를 삭제
+		
 
 		return "main";	// 회원 탈퇴 시 메인 페이지로 이동
 
 	}//end of memberDelete()
 
-	
 	
 	
 	// ----- 관리자 -----

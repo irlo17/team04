@@ -188,6 +188,11 @@ input[type="file"]{
 	background-color : white;
 	color : #888888;
 	border: 0;
-	border-bottom: 1px solid; 
 	outline: 0;
 }
+
+.header__logo {
+	padding : 1%;
+}
+
+

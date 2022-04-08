@@ -73,8 +73,8 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
-					<div class="header__logo">
-						<a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+					<div class="header__logo mucksanglogo" id="mucksanglogo">
+						<a href="main.do"><img id="logoImg"src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
@@ -221,10 +221,10 @@
 					<br/>
 				</form>
 				<form action="memberDelete.do" method="post" id="memberDelete" name="memberDelete">
-					<input type="hidden" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
-					<input type="hidden" id="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
+					<input type="hidden" class="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }">
+					<input type="hidden" class="memberPassword" name="memberPassword" value="${MemberVO.memberPassword }">
 					<div class="btnMemberDelete">
-					<input type="submit" value="회원탈퇴" id="btnMemberDelete">
+					<input type="button" value="회원탈퇴" id="btnMemberDelete" name="btnMemberDelete">
 					</div>
 				</form>
 			</div>
