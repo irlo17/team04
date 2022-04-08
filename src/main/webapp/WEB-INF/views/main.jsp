@@ -63,7 +63,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
@@ -90,7 +90,7 @@
 							<form action="#">
 								<input type="text" id="mainsearch" placeholder="지역,식당 또는 음식">
 								
-								<button type="submit">검색</button>
+								<button type="submit" class="btn btn-danger">검색</button>
 							</form>
 						</div>
 					</div>
