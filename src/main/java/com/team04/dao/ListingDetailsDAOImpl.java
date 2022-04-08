@@ -25,7 +25,7 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO {
 
 	// 0 4 8 12 16 1*4 2*4 3*4 (페이지 뺴기1 ) 곱하기 보여줄 수 보여줄거 변수로 지정하기
 	// 0 3 6 9 12 15 1*3 2*3 3*3
-	public List<ShopVO> listingDetailsGetList(String shopNumber) {
+	/* public List<ReviewVO> listingDetailsGetList(HashMap shopNumber) { */
 		/*
 		 * PagingVO vo = new PagingVO(); vo.setReviewTotalRecCount(mybatis.selectOne(
 		 * "listingDetailsDAO.reviewTotalCount"));
@@ -33,10 +33,12 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO {
 		 */
 		/* RowBounds row = new RowBounds(0, 1); */
 
-		return mybatis.selectList("listingDetailsDAO.listingDetailsGetList", shopNumber);
-
-	}
-
+		/*
+		 * return mybatis.selectList("listingDetailsDAO.listingDetailsGetList",
+		 * shopNumber);
+		 * 
+		 * }
+		 */
 	public List<ShopVO> listingDetailsShopInfo(String shopNumber) {
 
 		return mybatis.selectList("listingDetailsDAO.listingDetailsShopInfo", shopNumber);
@@ -82,9 +84,9 @@ public class ListingDetailsDAOImpl implements ListingDetailsDAO {
 	 * mybatis.selectOne("listingDetailsDAO.reviewTotalCount",paging); }
 	 */
 	
-	/*
-	 * public List<ReviewVO> reviewPaging(Map<String, String> searchParam) { return
-	 * mybatis.selectList("listingDetailsDAO.reviewPaging",searchParam); }
-	 */
+	
+	  public List<ReviewVO> reviewPaging(Map<String, String> searchParam) { return
+	  mybatis.selectList("listingDetailsDAO.listingDetailsGetList2",searchParam); }
+
 
 }

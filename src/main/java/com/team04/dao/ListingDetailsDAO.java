@@ -16,7 +16,7 @@ import com.team04.domain.ShopVO;
 
 public interface ListingDetailsDAO {
 
-	public List<ShopVO> listingDetailsGetList(String shopNumber);
+	/* public List<ReviewVO> listingDetailsGetList(HashMap shopNumber); */
 	
 	public List<ShopVO> listingDetailsShopInfo(String shopNumber);
 	
@@ -39,7 +39,7 @@ public interface ListingDetailsDAO {
 	/*
 	 * public int reviewTotalCount(PagingVO paging);*/
 
-	/* public List<ReviewVO> reviewPaging(Map<String, String> searchParam); */
+	public List<ReviewVO> reviewPaging(Map<String, String> searchParam);
 	 
 	
 

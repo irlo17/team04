@@ -63,6 +63,13 @@ html, body {
 	width: 365px;
 	height: 150px;
 }
+
+.report_button{
+	border: 0;
+	outline: 0;
+	background-color: #fff;
+}
+
 /* 
 .listing__details__comment>div, h4 {
 	display: none;
@@ -72,6 +79,47 @@ html, body {
 
 /*----------모달관련된거--------신고기능 */
 
+
+
+/* 리뷰 목록 아작스  */
+div.box {
+
+	height: 200px;
+
+	width: 400px;
+	
+	margin-left: 30px;
+	}
+
+
+
+.listing__details__comment__item__picccc {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.reviewChang{
+    margin-top: 40px;
+}
+
+.dateReview{
+	margin-left: 595px;
+
+}
+
+.dateReview span{
+		 font-size: 13px;
+  		color: #f03250;
+}
+
+div h5{
+	font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* ************************ 지도  */
 
 
  	.customoverlay {

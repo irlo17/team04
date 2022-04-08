@@ -47,10 +47,17 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public void shopInsertManager(ShopVO shopVO) {
 		
-		// 작성된 지번주소를 변수에 담기
-		String jibunManager = shopVO.getShopAddrJibunManager();
+		// 지번주소가 없을 경우가 있을 수 있음!
+		String jusoManager = null;
+		// 지번주소가 아무것도 들어오지 않을 경우 도로명주소로,
+		// 그렇지 않을 경우는 지번주소로
+		if (shopVO.getShopAddrJibunManager().equals("")) {
+			jusoManager = shopVO.getShopAddrDoroManager();
+		}else {
+			jusoManager = shopVO.getShopAddrJibunManager();
+		}
 		// 지번주소의 공백으로 자른 문자열을 배열에 하나씩 담기
-		String[] addrManager = jibunManager.split(" ");
+		String[] addrManager = jusoManager.split(" ");
 		// 시 = 광역시, 도(addr배열의 첫번째)
 		shopVO.setShopAddressSi(addrManager[0]);
 		// 구 = 도에 속한 시, 광역시의 구(addr배열의 두번째)
