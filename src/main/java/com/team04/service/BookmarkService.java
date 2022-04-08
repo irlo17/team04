@@ -24,6 +24,10 @@ public interface BookmarkService {
 	 */
 	public int bookmarkMylistTotalCount(PagingVO paging);
 	
+	// 디폴트 리스트 구하기
+	public BookmarkVO defultListSearch(BookmarkVO vo);
+	
+	
 	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging);	
 
 	public List<BookmarkVO> bookmarkGetMylist(String memberEmail);	

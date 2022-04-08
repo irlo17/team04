@@ -70,7 +70,14 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		System.out.println("===> Mybatis bookmarkGetMylistPaging() 호출");
 		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistPaging",paging );
 	}
-
+	
+	//디폴트 리스트 구하기
+	@Override
+	public BookmarkVO defultListSearch(BookmarkVO vo) {
+		System.out.println("===> Mybatis defultListSearch() 호출");
+		return mybatis.selectOne("BookmarkDAO.defultListSearch", vo);
+	}
+	
 	/**나의 즐겨찾기 목록 보기 (미완성)
 	 *
 
@@ -272,5 +279,6 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	   System.out.println("===> Mybatis pictureHeartCount() 호출");
 	   return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
 	}
+
 	
 }

@@ -30,6 +30,9 @@ import com.team04.domain.PagingVO;
 	 * 	- 페이징을 위해 DB에 입력된 회원의 즐겨찾기 총 개수를 구함
 	 */
 	public int bookmarkMylistTotalCount(PagingVO paging);
+	
+	// 디폴트 리스트 구하기
+	public BookmarkVO defultListSearch(BookmarkVO vo);
 
 	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging);
 

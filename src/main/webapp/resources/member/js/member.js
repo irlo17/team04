@@ -287,7 +287,6 @@ $('#btnLogin').click(function(){
 			}else{
 			// 결과가 result = "Y"이면 로그인 성공 -> loginMove.do로 이동
         		document.loginForm.submit();
-				alert("로그인 성공");
 			}
 	},
 	error : function(err){

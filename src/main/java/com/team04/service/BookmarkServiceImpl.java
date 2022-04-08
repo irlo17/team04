@@ -49,6 +49,12 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public int bookmarkMylistTotalCount(PagingVO paging) {
 		return bookmarkDAO.bookmarkMylistTotalCount(paging);
 	}
+	
+	//디폴트 리스트 구하기
+	@Override
+	public BookmarkVO defultListSearch(BookmarkVO vo) {
+		return bookmarkDAO.defultListSearch(vo);
+	}
 
 	public List<BookmarkVO> bookmarkGetMylistPaging(PagingVO paging){
 		return bookmarkDAO.bookmarkGetMylistPaging(paging);
@@ -128,5 +134,6 @@ public class BookmarkServiceImpl implements BookmarkService {
 	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
 		return bookmarkDAO.pictureHeartCount(vo);
 	}
+
 	
 }

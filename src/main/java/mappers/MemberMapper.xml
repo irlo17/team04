@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO bookmark(LIST_NUMBER, LIST_NAME, LIST_DISPLAY
 							, LIST_LIKE, MEMBER_EMAIL, LIST_DATE
 							, DEFULT_LIST) 
-		VALUES (list_number_seq.nextval, #{memberNickname},'no'
+		VALUES (list_number_seq.nextval, '즐겨찾기한 가게','no'
 				,0,#{memberEmail},sysdate
 				,'yes')
 	
