@@ -195,9 +195,8 @@ public class BookmarkController {
 	  @RequestMapping("mylistUpdate.do")
 	  public String mylistUpdate(MylistVO vo, Model model ) {
 		  MylistVO mvo=bookmarkService.overlapSearch(vo);
-		  System.out.println(mvo.getShopNumber());
 		  int result = 0;
-		  if(mvo.getShopNumber()==0){
+		  if(mvo==null){
 		  result = bookmarkService.mylistUpdate(vo);}
 		  model.addAttribute("result", result);
 		 
