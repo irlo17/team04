@@ -206,7 +206,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					s.SHOP_ADDRESS_SI LIKE
 					'%'||#{filterFood.shopAddressSi}||'%'
 				</if>
-				<if test="shopAddressGu != '' ">
+				<if test="filterFood.shopAddressGu != '' ">
 					AND s.SHOP_ADDRESS_GU LIKE
 					'%'||#{filterFood.shopAddressGu}||'%'
 				</if>

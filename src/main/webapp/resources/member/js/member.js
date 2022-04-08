@@ -186,7 +186,7 @@ $('#btn_signUp').click(function(){
 		}
 	if( !RegexTel.test(memberTel) ){
 
-		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다.");
+		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
 		return;
 	}else{
 		$('label[for="memberTel"] .error_box').html("");
