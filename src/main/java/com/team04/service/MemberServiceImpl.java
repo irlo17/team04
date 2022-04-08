@@ -86,8 +86,6 @@ public class MemberServiceImpl implements MemberService{
 	public int pwChange(MemberVO vo) {
 		return memberDAO.pwChange(vo);
 	}
-
-	
 	
 	
 	/** 마이페이지 회원 정보에 출력될 회원 레코드 검색
@@ -152,5 +150,6 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> memberGetListManager() {
 		return memberDAO.memberGetListManager();
 	}
+
 	
 }

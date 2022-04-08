@@ -72,7 +72,7 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-3 col-md-3">
+				<div class="col-lg-3 col-md-3 ">
 					<div class="header__logo mucksanglogo" id="mucksanglogo">
 						<a href="main.do"><img id="logoImg"src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
@@ -171,44 +171,44 @@
 					</div>
 					
 					<!-- NICKNAME -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberNickname">닉네임&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="text" class="form-control form_nick formInt" id="memberNickname" name="memberNickname" value="${MemberVO.memberNickname }" >
 					</div>
 
 					<!-- EMAIL -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberEmail">이메일</label> 
 						<input type="text" class="form-control formInt" id="memberEmail" name="memberEmail" value="${MemberVO.memberEmail }" readonly>
 					</div>
 
 					<!-- PW -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberPassword">비밀번호 변경&nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="memberPassword" name="memberPassword">
 					</div>
 
 					<!-- PW CHECK -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="passwordCheck">변경된 비밀번호 재확인 &nbsp; &nbsp; &nbsp;&nbsp;<span class="error_box"></span></label> 
 						<input type="password" class="form-control formInt" id="passwordCheck">
 					</div>
 
 					<!-- NAME -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
 					</div>
 
 					<!-- BIRTH -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="date" class="form-control formInt" id="memberBirth" name="memberBirth" value="${MemberVO.memberBirth }" readonly> 
 					</div>
 
 
 					<!-- TEL -->
-					<div class="form-group first">
+					<div class="form-group first field--not-empty">
 						<label class="label" for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
 						<input type="tel" class="form-control formInt" id="memberTel" name="memberTel" value="${MemberVO.memberTel }"> 
 					</div>
