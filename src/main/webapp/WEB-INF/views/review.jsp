@@ -78,15 +78,14 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="main.do"><img
-								src="resources/pageSpinner/logo/mypageLogo.png"  width="50%" height="70px" alt=""></a>
+						<a href="main.do"><img id="logoImg"src="./resources/images/mucksanglogo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -185,7 +184,8 @@
                                         <img width="350" height="300"   src="resources/reviewUpload/${review.REVIEWREALFNAME }">
                                         </c:when>
                                         <c:otherwise>
-                                      
+                                      	 <img width="350" height="300"   src="resources/reviewUpload/${review.REVIEWREALFNAME }">
+                                      	
                                         </c:otherwise>
                                    </c:choose>
 						
@@ -197,13 +197,28 @@
 						<form action= 'reviewUpdate.do?reviewNumber=${review.REVIEWNUMBER }' method="post">
 							<!-- to-do 이미지 사용자마다 다르게 해야함 -->
 							<div class="text-left img_button">
-								<div><img src="resources/img/face/1.png" width="25" height="auto">
-								${review.REVIEWGRADE }
+								<div>
+								
+								
+									<div class="listing__details__comment__item__rating">
+													${review.REVIEWGRADE }
+													<c:if test="${review.REVIEWGRADE eq '맛있어요' }">
+														<i class="fa fa-thumbs-up tasteGrade" aria-hidden="true"></i>
+													</c:if>
+													<c:if test="${review.REVIEWGRADE eq '보통이에요' }">
+														<i class="fa fa-meh-o tasteGrade" aria-hidden="true"></i>
+													</c:if>
+													<c:if test="${review.REVIEWGRADE eq '맛없어요' }">
+														<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+													</c:if>
+
+
+												</div>
 								</div>
 
 								<div>
 								 <button type="submit" 
-									class="btn btn-primary modi_dele_button1 modi_dele_button" > 수정</button> 
+									class="btn btn-primary modi_dele_button1 modi_dele_button modify_button" > 수정</button> 
 									 <a href="reviewDelete.do?reviewNumber=${review.REVIEWNUMBER }"><input type='button'class="btn btn-danger modi_dele_button" size='6' value="삭제"></a>
 									 </div>
 							</div>
@@ -224,7 +239,7 @@
 	
 	<c:choose>
 		<c:when test="${listCount eq 0 }">
-					<c:out value='"등록하신 리뷰가"+${listCount  }+"개입니다"'></c:out>
+				
 									<div class="listing__item dogdog"> <!--리뷰 목록 시작-->
 
 					<div class="col-md-8 inline-block">

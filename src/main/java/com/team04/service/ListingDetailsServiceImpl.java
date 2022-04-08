@@ -23,11 +23,12 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 	private ListingDetailsDAO listingDetailsDAO;
 	
 	
-	public List<ShopVO> listingDetailsGetList(String shopNumber) {
-		
-	
-		return listingDetailsDAO.listingDetailsGetList(shopNumber);
-	}	
+	/*
+	 * public List<ReviewVO> listingDetailsGetList(HashMap shopNumber) {
+	 * 
+	 * 
+	 * return listingDetailsDAO.listingDetailsGetList(shopNumber); }
+	 */
 		
 	 public List<ShopVO> listingDetailsShopInfo(String shopNumber){
 		 
@@ -73,10 +74,10 @@ public class ListingDetailsServiceImpl implements ListingDetailsService{
 	 * listingDetailsDAO.reviewTotalCount(paging); }
 	 */
 
-	/*
-	 * public List<ReviewVO> reviewPaging(Map<String, String> searchParam ) { return
-	 * listingDetailsDAO.reviewPaging(searchParam); }
-	 */	
+	
+	  public List<ReviewVO> reviewPaging(Map<String, String> searchParam ) { return
+	  listingDetailsDAO.reviewPaging(searchParam); }
+		
 
 	
 

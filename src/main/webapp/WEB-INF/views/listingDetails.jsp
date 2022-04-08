@@ -85,7 +85,7 @@
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="totalbookmark.do?page=1" class="primary-btn"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
+						<a href="totalbookmark.do?page=1" class="primary-btn color_chang"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
 							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 									<c:when test="${  totalList.SHOPNUMBER eq '0'   }">
 
 
-										<button class="primary-btn" id="listAdd"
+										<button class="primary-btn color_chang" id="listAdd"
 											value="${shopInfoList.SHOPNUMBER }">
 											<i class="fa fa-bookmark"></i>추가하기
 										</button>
@@ -143,7 +143,7 @@
 									<c:when
 										test="${totalList.SHOPNUMBER eq shopInfoList.SHOPNUMBER }">
 
-										<button class="primary-btn" id="listAdd2"
+										<button class="primary-btn color_chang" id="listAdd2"
 											value="${shopInfoList.SHOPNUMBER }">
 											<i class="fa fa-bookmark"></i>추가완료
 										</button>
@@ -183,7 +183,7 @@
 						<div class="listing__details__gallery">
 							<h4>Gallery</h4>
 
-				
+			
 				
 								<!-- 가게 정보 시작  -->
 							<div class="listing__details__gallery__pic">
@@ -264,13 +264,13 @@
 								<input type="file" name='file' value="" accept='image/*' />
 
 								<button type="submit" style="margin-left: 44%;"
-									class="site-btn reviewBTN">작성</button>
+									class="site-btn reviewBTN color_chang">작성</button>
 							</form>
 						</div> <!-- 리뷰 작성 끝 -->
 
 
 						<!--  리뷰 작성 목록 정보 시작-->
-						<c:forEach items="${reviewInfo}" var='reviewInfo' varStatus="vs">
+						<%-- <c:forEach items="${reviewInfo}" var='reviewInfo' varStatus="vs">
 
 							<c:choose>
 								<c:when test="${ reviewInfo.REVIEWNUMBER != '0'  }">
@@ -338,34 +338,13 @@
 												<ul>
 													<!-- <li><i class="fa fa-hand-o-right"></i> Like</li>-->
 													<li><i class="fa fa-share-square-o"></i>
-														<button type="text" class="modal-button"
-															onClick="document.getElementById('mw_temp${vs.index}').style.display='block'">신고하기</button>
-														<div id="mw_temp${vs.index}" class="mw modalchang">
-															<div class="bg">
-																<!--이란에는 내용을 넣지 마십시오.-->
-															</div>
-															<form
-																action="reviewReport.do?reviewNumber=${reviewInfo.REVIEWNUMBER }"
-																method="post">
-
-																<input type="hidden" name="shopNumber"
-																	value="${reviewInfo.SHOPNUMBER }" />
-																<div class="fg modalchang">
-																	<p>신고하실 내용을 적어주세요.</p>
-																	<textarea class="report_op" name="reportContent"> </textarea>
-																	<button type="submit" class="btn btn-info">제출</button>
-																	<button
-																		onclick="document.getElementById('mw_temp${vs.index}').style.display='none'"
-																		type="button" class="btn btn-danger">창닫기</button>
-																</div>
-															</form>
-														</div></li>
+														<button class="modal-button">신고하기</button>
+														</li>
 												</ul>
-
+		 
 											</div>
 										</div>
 									</div>
-
 
 								</c:when>
 
@@ -398,16 +377,37 @@
 									</c:choose>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>
+						</c:forEach> --%>
 					<!-- ajax 실패작 -->
-					<%-- 	<div id="oldList"></div>
-						<a href="listingDetails.do?shopNumber=<%= shopNumber%>"><button id="searchMoreNotify"
-							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-10 mx-auto">더
-							보기</button></a> --%>
+					 	<div id="oldList" class="oollddlist">
+					 	
+					 	
+					 	</div>
+						<button id="searchMoreNotify"
+							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-12 mx-auto color_chang">더
+							보기</button>
 
 					</div>
 				</div>
-
+														<div id="mw_temp" class="mw modalchang">
+															<div class="bg">
+																<!--이란에는 내용을 넣지 마십시오.-->
+															</div>
+															<form
+																action="reviewReport.do"
+																method="post">
+																	<input type="hidden" name="reviewNumber">
+																<input type="hidden" name="shopNumber"
+																	value="${param.shopNumber }" />
+																<div class="fg modalchang">
+																	<p>신고하실 내용을 적어주세요.</p>
+																	<textarea class="report_op" name="reportContent"> </textarea>
+																	<button type="submit" class="btn btn-info">제출</button>
+																	<button
+																		type="button" class="btn btn-danger modalClose">창닫기</button>
+																</div>
+															</form>
+														</div>
 			
 				<div class="col-lg-4">
 					<div class="listing__sidebar">

@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		r.REVIEW_DATE reviewDate
 		,r.REVIEW_GRADE reviewGrade, r.REVIEW_CONTENT reviewContent
 		,r.SHOP_NUMBER shopNumber, r.MEMBER_EMAIL memberEmail
-		,r.REVIEW_FNAME reviewFname, r.REVIEW_REALFNAME reviewRealfname
+		,r.REVIEW_FNAME reviewFname, nvl(r.REVIEW_REALFNAME,'삭제금지.png') reviewRealfname
         , s.shop_title shopTitle
 		FROM review r left outer join shop
 		s

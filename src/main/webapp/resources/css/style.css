@@ -1175,14 +1175,14 @@ ol {
 }
 
 .filter__radius .ui-slider-horizontal .ui-slider-range-min {
-  background: #f03250;
+  background: #ed7a64;
 }
 
 .filter__radius .ui-slider .ui-slider-handle {
   height: 10px;
   width: 10px;
   display: inline-block;
-  background: #f03250;
+  background: #ed7a64;
   cursor: pointer;
   border: 1.5px solid #fff;
   border-radius: 50%;

@@ -110,3 +110,17 @@ li.on {
 	color: #323232;
 	
 }
+
+
+
+
+.modify_button {
+  color: #000;
+  background-color: #FFDB69;
+  border-color: #FFDB69;
+}
+.modify_button:hover {
+  color: #000;
+  background-color: #FFEEB5;
+  border-color: #FFEEB5;
+}

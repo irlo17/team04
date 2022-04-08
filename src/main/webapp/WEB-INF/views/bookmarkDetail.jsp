@@ -208,7 +208,7 @@ $(document).ready(function() {
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-							<a href="totalbookmark.do?page=1" class="primary-btn"><i
+							<a href="totalbookmark.do?page=1" class="primary-btn btn-danger"><i
 								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
 								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
@@ -265,6 +265,7 @@ $(document).ready(function() {
 		<section class="blog-section spad">
 			<div class="container">
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
+				<hr/>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
