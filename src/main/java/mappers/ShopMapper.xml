@@ -115,18 +115,108 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="shopPageFilterGetList2" parameterType="hashmap"
 		resultType="ShopVO">
 
-
 		select *
-		from shop
-		<where>
+		from shop s
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
 
 			#{distance}	
 			
 		<![CDATA[
 		<=#{radius}
-		]]> and SHOP_NUMBER = #{shopNumber}
+		]]>
+			and s.SHOP_NUMBER = #{sVO.shopNumber}
+			<trim prefixOverrides="AND |OR">
 
-		</where>
+				<if test="query2 != '' ">
+					AND s.shop_food LIKE '%'||#{query2}||'%' or
+					s.shop_address
+					LIKE
+					'%'||#{query2}||'%'
+					or
+					s.shop_title LIKE
+					'%'||#{query2}||'%'
+				</if>
+			</trim>
+
+			<if
+				test="filterFood.koreanFood != '' or filterFood.japaneseFood != '' or filterFood.chineseFood != '' or filterFood.westernFood != '' or filterFood.worldFood != '' or filterFood.buffet != '' or filterFood.cafe != '' or filterFood.pup != ''">
+				AND (
+			</if>
+			<trim prefixOverrides="AND |OR">
+				<if test="filterFood.koreanFood != '' ">
+					OR s.shop_food = #{filterFood.koreanFood}
+				</if>
+				<if test="filterFood.japaneseFood != '' ">
+					OR s.shop_food = #{filterFood.japaneseFood}
+				</if>
+				<if test="filterFood.chineseFood != '' ">
+					OR s.shop_food = #{filterFood.chineseFood}
+				</if>
+				<if test="filterFood.westernFood != '' ">
+					OR s.shop_food = #{filterFood.westernFood}
+				</if>
+				<if test="filterFood.worldFood != '' ">
+					OR s.shop_food = #{filterFood.worldFood}
+				</if>
+				<if test="filterFood.buffet != '' ">
+					OR s.shop_food = #{filterFood.buffet}
+				</if>
+				<if test="filterFood.cafe != '' ">
+					OR s.shop_food = #{filterFood.cafe}
+				</if>
+				<if test="filterFood.pup != '' ">
+					OR s.shop_food = #{filterFood.pup}
+				</if>
+			</trim>
+			<if
+				test="filterFood.koreanFood != '' or filterFood.japaneseFood != '' or filterFood.chineseFood != '' or filterFood.westernFood != '' or filterFood.worldFood != '' or filterFood.buffet != '' or filterFood.cafe != '' or filterFood.pup != ''">
+				)
+			</if>
+
+
+			<if
+				test="filterFood.manwonLess != '' or filterFood.manwonMore != '' or filterFood.threeManwonMore != '' or filterFood.fiveManwonMore != '' ">
+				AND (
+			</if>
+			<trim prefixOverrides="AND |OR">
+				<if test="filterFood.manwonLess != '' ">
+					OR s.SHOP_PRICE_RANGE = #{filterFood.manwonLess}
+				</if>
+				<if test="filterFood.manwonMore != '' ">
+					OR s.SHOP_PRICE_RANGE = #{filterFood.manwonMore}
+				</if>
+				<if test="filterFood.threeManwonMore != '' ">
+					OR s.SHOP_PRICE_RANGE = #{filterFood.threeManwonMore}
+				</if>
+				<if test="filterFood.fiveManwonMore != '' ">
+					OR s.SHOP_PRICE_RANGE = #{filterFood.fiveManwonMore}
+				</if>
+			</trim>
+			<if
+				test="filterFood.manwonLess != '' or filterFood.manwonMore != '' or filterFood.threeManwonMore != '' or filterFood.fiveManwonMore != '' ">
+				)
+			</if>
+
+			<if
+				test="filterFood.shopAddressSi != '' or filterFood.shopAddressGu != ''">
+				AND (
+			</if>
+			<trim prefixOverrides="AND |OR">
+				<if test="filterFood.shopAddressSi != '' ">
+					s.SHOP_ADDRESS_SI LIKE
+					'%'||#{filterFood.shopAddressSi}||'%'
+				</if>
+				<if test="shopAddressGu != '' ">
+					AND s.SHOP_ADDRESS_GU LIKE
+					'%'||#{filterFood.shopAddressGu}||'%'
+				</if>
+			</trim>
+			<if
+				test="filterFood.shopAddressSi != '' or filterFood.shopAddressGu != ''">
+				)
+			</if>
+
+		</trim>
 
 	</select>
 

@@ -178,32 +178,21 @@ prefix="c"%>
         </h5>
       </div>
       <hr />
+      <form action="listingFilter2.do">
       <div class="filter__search">
         <input
           id="search"
+          name="query2"
           type="text"
           placeholder="검색값"
           value="${param.query}"
         />
       </div>
-      <div class="filter__select">
-        <select>
-          <option value="">음식종류</option>
-          <option value="koreanFood">한식</option>
-          <option value="japaneseFood">일식</option>
-          <option value="chineseFood">중식</option>
-          <option value="westernFood">양식</option>
-          <option value="worldFood">세계음식</option>
-          <option value="buffet">뷔페</option>
-          <option value="cafe">카페</option>
-          <option value="pup">주점</option>
-        </select>
-      </div>
       <div class="filter__location">
         <input type="text" placeholder="위치" />
         <i class="fa fa-map-marker"></i>
       </div>
-      <form action="listingFilter2.do">
+      
       <div class="filter__radius">
         <p>반경 :</p>
         <div class="price-range-wrap">
@@ -223,36 +212,16 @@ prefix="c"%>
           </div>
         </div>
       </div>
-      <div class="filter__price">
-        <p>가격 :</p>
-        <div class="price-range-wrap">
-          <div
-            class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-          >
-            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-            <span
-              tabindex="0"
-              class="ui-slider-handle ui-corner-all ui-state-default"
-            ></span>
-          </div>
-          <div class="range-slider">
-            <div class="price-input">
-              <input type="text" id="minamount" />
-              <input type="text" id="maxamount" value="50000원" />
-            </div>
-          </div>
-        </div>
-      </div>
-     
+
       <div class="filter__tags">
         <h6>선택</h6>
  
         <label for="parking">
-          주차 <input type="checkbox" id="parking" />
+          주차 <input type="checkbox" id="parking"/>
           <span class="checkmark"></span>
         </label>
         <label for="open">
-          영업중 <input type="checkbox" id="open" />
+          영업중 <input type="checkbox" id="open"/>
           <span class="checkmark"></span>
         </label>
       </div>
@@ -265,9 +234,29 @@ prefix="c"%>
 		<div class="filter__btns">
         <button type="submit" class="filter__reset">전체 선택 취소</button>
       </div>
-      <input id="myLat" name="myLat" />
-      <input id="myLon" name="myLon" />
-      <input id="radiusInput" name= "radiusInput" />
+      <input id="myLat" name="myLat" hidden="hidden"/>
+      <input id="myLon" name="myLon" hidden="hidden"/>
+      <input id="radiusInput" name= "radiusInput" hidden="hidden"/>
+      <input name="koreanFood" value="${param.koreanFood}" hidden="hidden"/>
+      <input name="japaneseFood" value="${param.japaneseFood}" hidden="hidden"/>
+      <input name="chineseFood" value="${param.chineseFood}" hidden="hidden"/>
+      <input name="westernFood" value="${param.westernFood}" hidden="hidden"/>
+      <input name="worldFood" value="${param.worldFood}" hidden="hidden"/>
+      <input name="buffet" value="${param.buffet}" hidden="hidden"/>
+      <input name="cafe" value="${param.cafe}" hidden="hidden"/>
+      <input name="pup" value="${param.pup}" hidden="hidden"/>
+    
+      <!--가격대 value 들어가는 곳-->
+      <input name="manwonLess" value="${param.manwonLess}" hidden="hidden"/> 
+      <input name="manwonMore" value="${param.manwonMore}" hidden="hidden"/>
+      <input name="threeManwonMore" value="${param.threeManwonMore}" hidden="hidden"/>
+      <input name="fiveManwonMore"  value="${param.fiveManwonMore}" hidden="hidden"/>
+      
+      <!-- 주소 value 들어가는곳 -->
+      <input name="shopAddressSi"  value="${param.shopAddressSi}" hidden="hidden"/>
+      <input name="shopAddressGu"  value="${param.shopAddressGu}" hidden="hidden"/>
+      <input name="parking" id="parkinInput"/>
+      <input name="open" id="openInput"/>
       </form>
     </div>
     <!-- Filter End -->
@@ -596,7 +585,6 @@ prefix="c"%>
               <input
                 id="addressSi"
                 name="shopAddressSi"
-                value="서울"
                 hidden="hidden"
               />
               <input id="addressGu" name="shopAddressGu" hidden="hidden" />
@@ -621,7 +609,8 @@ prefix="c"%>
       <div class="listing__text__top">
         <div class="listing__text__top__left">
           <h5>Restaurants</h5>
-          <span>18 Results Found</span>
+           
+          <span>검색 수 : <input id="listSize" value="${listSize}"/></span>
         </div>
         <div class="listing__text__top__right">
           Nearby <i class="fa fa-sort-amount-asc"></i>
@@ -630,6 +619,7 @@ prefix="c"%>
 
       <div class="listing__list">
         <c:forEach items="${shopPageList}" var="shop">
+        
           <div class="listing__item">
             <!-- 여기에 img값 가지고와야함 동적으로 -->
             <div
@@ -679,8 +669,10 @@ prefix="c"%>
             </div>
           </div>
         </c:forEach>
+        
       </div>
     </section>
+    
     <!-- Listing Section End -->
 
     <!--카카오 지도 연결-->
@@ -708,7 +700,7 @@ prefix="c"%>
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=50853ea4c563d3b84d44fed07758d510&libraries=services"
     ></script>
     <script>
       var mapContainer = document.getElementById("map");
