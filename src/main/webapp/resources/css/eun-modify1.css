@@ -69,3 +69,14 @@ tr {
 .header__logo {
 	padding: 1%
 }
+
+.btn-danger {
+  color: #fff;
+  background-color: #ED7A64;
+  border-color: #ED7A64;
+}
+.btn-danger:hover {
+  color: #fff;
+  background-color: #D6524F;
+  border-color: #D6524F;
+}

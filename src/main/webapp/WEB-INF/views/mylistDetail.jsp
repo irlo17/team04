@@ -135,16 +135,16 @@
 	<section class=" nice-scroll nuguri">
 		<div id='btnl'>
 			<a href="modify1.do?listNumber=<%=number %>"><input type="button"
-				value='리스트 수정' class="btn btn-success"> </a> <a
+				value='리스트 수정' class="btn btn-warning"> </a> <a
 				href="detailModify.do?listNumber=<%=number %>&page=1"><input
-				type="button" value='가게목록 편집' class="btn btn-primary"></a>
+				type="button" value='가게목록 편집' class="btn btn-info"></a>
 
 		</div>
 		<section class="blog-section spad">
 			<div class="container">
 
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
-
+					<hr/>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">

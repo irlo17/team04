@@ -265,6 +265,7 @@ $(document).ready(function() {
 		<section class="blog-section spad">
 			<div class="container">
 				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName }</h4>
+				<hr/>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
