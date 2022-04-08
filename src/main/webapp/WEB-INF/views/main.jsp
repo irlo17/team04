@@ -87,8 +87,8 @@
 							<p>나만의 맛집을 리스트로 ! 아.. 이걸 내가 먹어보았나?</p>
 						</div>
 						<div class="hero__search__form">
-							<form action="#">
-								<input type="text" id="mainsearch" placeholder="지역,식당 또는 음식">
+							<form action="listing.do">
+								<input type="text" name="query" id="mainsearch" placeholder="지역,식당 또는 음식">
 								
 								<button type="submit">검색</button>
 							</form>
@@ -119,9 +119,9 @@
 						<c:forEach items="${fileName }" var="bookmark" begin="0" end="5">
 							<div class="col-lg-4 col-md-6">
 								<div class="listing__item">
-									<a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1"><div
-											class="listing__item__pic set-bg"
-											data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div></a>
+									<a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1">
+									<div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div>
+									</a>
 									<div class="listing__item__pic__btns"></div>
 
 									<div class="listing__item__text">
