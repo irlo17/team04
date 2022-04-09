@@ -187,7 +187,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 리뷰작성 -->
 	<insert id="listingDetailsReviewInsert" parameterType="hashmap">
 
-		INSERT
+<!-- 		INSERT
 		INTO review ( review_number, review_date, review_grade,
 		review_content
 		, shop_number , member_email
@@ -197,6 +197,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{reviewContent,jdbcType=VARCHAR} ,#{shopNumber} , '${logemail}'
 		,
 		'${reviewFname}' , '${reviewRealfname}' )
+		 -->
+		 <if test="logemail != null">
+		    Insert into review (review_number, review_date, review_grade,
+		review_content
+		, shop_number , member_email
+		, review_fname , review_realfname) 
+        values(review_number_seq.nextval , SYSDATE, '${reviewGrade}' ,
+		#{reviewContent,jdbcType=VARCHAR} ,#{shopNumber} , (Select m.member_email
+                                                             from member m
+                                                             where member_email = '${logemail}')
+		,'${reviewFname}' , '${reviewRealfname}')		
+		</if>
+		
 
 	</insert>
 
@@ -263,11 +276,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="listingDetailsReport" parameterType="hashmap">
+	
+	<if test="logemail != null">
 		insert into
 		report (report_number , report_content , review_number)
 		values
 		(REPORT_NUMBER_SEQ.nextval, '${reportContent}' , #{reviewNumber} )
-
+	</if>
 
 	</insert>
 

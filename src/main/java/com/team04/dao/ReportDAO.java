@@ -21,6 +21,6 @@ public interface ReportDAO {
 	ReportVO reportGet(ReportVO reportVO);
 	
 	// 신고 전체 리스트 조회
-	List<ReportVO> reportGetListManager(ReportVO reportVO);
+	List<ReportVO> reportGetListManager();
 	
 }

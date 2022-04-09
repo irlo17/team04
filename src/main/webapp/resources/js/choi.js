@@ -56,13 +56,16 @@
 		});
 		
 		
-		//실패작 ajax 인데 살짝 성공각
+		
 		var oldListCnt = '${oldListCnt}';
 		// 조회 인덱스
-		var startIndex = 1;	// 인덱스 초기값
-		var searchStep = 2;	// 2개씩 로딩
+		var startIndex = 1;	// 시작
+		var searchStep = 3;	// 2개설정
 		var shopNumber = $('#searchMoreNotify').val();
-		// 페이지 로딩 시 첫 실행
+		
+		
+		
+		// 로딩시 실행
 		readOldNotify(startIndex);
 		
 		// 더보기 클릭시
@@ -75,7 +78,7 @@
 			
 	
 		function readOldNotify(index){
-			let_endIndex = index+searchStep-1;	// endIndex설정
+			let_endIndex = index+searchStep-1;	//인덱스
 			$.ajax({
 				type: "post",
 				async: "false",
@@ -159,12 +162,17 @@ $('.modalClose').click(function(){
 
 
 
+$('.modalClose').click(function(){
+$('.report_op').val('')
+
+});
 
 
 
+$('.modalSubmit').click(function(){
+$('.report_op').val('')
 
-
-
+});
 
 
 

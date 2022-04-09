@@ -219,7 +219,7 @@
 								<div>
 								 <button type="submit" 
 									class="btn btn-primary modi_dele_button1 modi_dele_button modify_button" > 수정</button> 
-									 <a href="reviewDelete.do?reviewNumber=${review.REVIEWNUMBER }"><input type='button'class="btn btn-danger modi_dele_button" size='6' value="삭제"></a>
+									 <a href="reviewDelete.do?reviewNumber=${review.REVIEWNUMBER }"><input type='button'class="btn btn-danger modi_dele_button delete_button" size='6' value="삭제"></a>
 									 </div>
 							</div>
 

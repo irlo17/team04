@@ -18,6 +18,9 @@ public class ReportVO {
 	private String reportContent;
 	private int reviewNumber;
 	
+	// 관리자페이지 리뷰내용 띄우기위한 변수
+	private String reviewContent;
+	
 	// 신고삭제와 함께 리뷰도 삭제하기 위한 변수
 	private String logemail;
 	
@@ -28,13 +31,15 @@ public class ReportVO {
 	}
 	
 	// 생성자 - 인자있는
-	public ReportVO(int reportNumber, String reportContent, int reviewNumber, String logemail) {
+	public ReportVO(int reportNumber, String reportContent, int reviewNumber, String reviewContent, String logemail) {
 		super();
 		this.reportNumber = reportNumber;
 		this.reportContent = reportContent;
 		this.reviewNumber = reviewNumber;
+		this.reviewContent = reviewContent;
 		this.logemail = logemail;
 	}
+	
 	
 	// setter & getter
 	
@@ -42,6 +47,7 @@ public class ReportVO {
 		return logemail;
 	}
 	
+
 	public void setLogemail(String logemail) {
 		this.logemail = logemail;
 	}
@@ -64,6 +70,14 @@ public class ReportVO {
 	}
 	public void setReviewNumber(int reviewNumber) {
 		this.reviewNumber = reviewNumber;
+	}
+
+	public String getReviewContent() {
+		return reviewContent;
+	}
+
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
 	
 	

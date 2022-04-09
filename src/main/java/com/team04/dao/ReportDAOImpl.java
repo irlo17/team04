@@ -1,5 +1,6 @@
 package com.team04.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -55,9 +56,9 @@ public class ReportDAOImpl implements ReportDAO {
 	 * 사용 : 모든 신고 리스트를 조회하여 ReportVO에 담아 List형으로 리턴
 	 */
 	@Override
-	public List<ReportVO> reportGetListManager(ReportVO reportVO) {
+	public List<ReportVO> reportGetListManager() {
 		System.out.println("====> Mybatis reportGetListManager() 호출");
-		return mybatis.selectList("reportDAO.reportGetListManager", reportVO);
+		return mybatis.selectList("reportDAO.reportGetListManager");
 	}
 
 }

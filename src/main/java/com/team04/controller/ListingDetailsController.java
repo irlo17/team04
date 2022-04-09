@@ -115,7 +115,12 @@ public class ListingDetailsController {
 		String shopNumber = (httpServletRequest.getParameter("shopNumber"));
 
 		String path = session.getServletContext().getRealPath("/");
-
+		
+		if ( logemail == null) {
+			return "redirect:loginForm.do";
+			
+		}
+		
 		HashMap map = new HashMap();
 
 		map.put("reviewContent", vo.getReviewContent());
@@ -158,11 +163,19 @@ public class ListingDetailsController {
 	}
 	
 	@RequestMapping("reviewReport.do")
-	public String listingDetailsReport(int reviewNumber, ReportVO vo) {
+	public String listingDetailsReport(int reviewNumber, ReportVO vo, HttpSession session) {
+		String logemail = (String) session.getAttribute("logemail");
+		
+		if ( logemail == null) {
+			return "redirect:loginForm.do";
+			
+		}
+		
 		
 		HashMap map = new HashMap();
 		map.put("reportContent",vo.getReportContent() );
 		map.put("reviewNumber", reviewNumber);
+		map.put("logemail", logemail);
 		System.out.println("************************************************************************************"+reviewNumber);
 		//리뷰 신고기능
 		listingDetailsService.listingDetailsReport(map);

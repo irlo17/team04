@@ -85,8 +85,9 @@
                                     <thead>
                                         <tr>
                                             <th>신고번호</th>
-                                            <th>리뷰번호</th>
                                             <th>신고내용</th>
+                                            <th>리뷰번호</th>
+                                            <th>리뷰내용</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
@@ -96,8 +97,9 @@
                                     <c:forEach items="${reportListManager}" var="reportManager">
                                         <tr>
                                             <td>${ reportManager.reportNumber }</td>
-                                            <td>${ reportManager.reviewNumber }</td>
                                             <td>${ reportManager.reportContent }</td>
+                                            <td>${ reportManager.reviewNumber }</td>
+                                            <td>${ reportManager.reviewContent }</td>
                                             <td><input type="button" value="삭제" class="btn btn-danger btn-sm" onclick="removeBtn(${reportManager.reportNumber})"/></td>
                                         </tr>
                                     </c:forEach>
