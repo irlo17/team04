@@ -219,6 +219,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, #{shopNumber})
 
 
+
+
 	</insert>
 
 
@@ -226,7 +228,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listingDetailsTotalList" parameterType="hashmap"
 		resultType="hashmap">
 
-		SELECT distinct nvl(max(shop_number),0) shopNumber
+		<!-- SELECT distinct nvl(max(shop_number),0) shopNumber
 		FROM
 		mylist
 		WHERE
@@ -236,6 +238,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		member_email = #{logemail}) and shop_number =
 		#{shopNumber,jdbcType=INTEGER}
 		order by shop_number asc
+		 -->
+		
+		SELECT nvl(max(LIST_NUMBER),0) listNumber , max(SHOP_NUMBER) shopNumber
+		FROM mylist 
+		WHERE list_number = (SELECT list_number
+        FROM bookmark
+   		WHERE member_email = #{logemail} and defult_list = 'yes' )
+    	AND shop_number = #{shopNumber}
+		
+		
 	</select>
 
 

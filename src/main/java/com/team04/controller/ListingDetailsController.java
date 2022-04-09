@@ -43,7 +43,7 @@ public class ListingDetailsController {
 	 */
 
 	@RequestMapping("listingDetails.do")
-	public String listingDetailsGetList(String shopNumber, Model m, HttpSession session, PagingVO vo) {
+	public String listingDetailsGetList(String shopNumber, Model m, HttpSession session, PagingVO vo)throws NullPointerException {
 		/* System.out.println("이동완료"); */
 		String logemail = (String) session.getAttribute("logemail");
 		
@@ -58,13 +58,24 @@ public class ListingDetailsController {
 		
 		
 		// 사용자가 그 가게를 추가 했는지 알기위한 쿼리문  즐겨찾기 추가했는지 확인하기위해
-		HashMap map2 = new HashMap();
-		map2.put("shopNumber", shopNumber);
-		map2.put("logemail", logemail);
-		List<MylistVO> totalList = listingDetailsService.listingDetailsTotalList(map2);
-		m.addAttribute("totalList", totalList);
+		
+		if ( logemail == null || logemail.equals("")) {
+			
+			System.out.println(""+"*******************************************************");
+		
+			
+		} else {
+			HashMap map2 = new HashMap();
+			map2.put("shopNumber", shopNumber);
+			map2.put("logemail", logemail);
+			List<MylistVO> totalList = listingDetailsService.listingDetailsTotalList(map2);
+		
+			
+			m.addAttribute("totalList", totalList);
+		}
 		
 		
+	
 		// 이거 사용안했음
 		HashMap map = new HashMap();
 		map.put("logemail", logemail);
@@ -80,33 +91,19 @@ public class ListingDetailsController {
 		List<ReviewVO> fromReviewRealFname = listingDetailsService.listingDetailsFromReviewRealFname(shopNumber);
 		m.addAttribute("fromReviewRealFname",fromReviewRealFname);
 		
-		/* 가게 전체 리뷰를 가져오기위해 */
-		/*
-		 * int reviewStartRow = 1; int reviewEndRow = 2; HashMap map5 = new HashMap();
-		 * 
-		 * 
-		 * 
-		 * map.put("shopNumber", shopNumber); map.put("reviewStartRow", reviewStartRow);
-		 * map.put("reviewEndRow", reviewEndRow); List<ReviewVO> list =
-		 * listingDetailsService.listingDetailsGetList(map5);
-		 * m.addAttribute("reviewInfo", list);
-		 */
-		
-		//페이징 작업  ajax 도전 실패함
-		/*
-		 * vo.setShopNumber( Integer.valueOf(shopNumber) );
-		 * vo.setReviewPageTotalCount(listingDetailsService.reviewTotalCount(vo));
-		 * vo.setReviewStartRow(vo.getPage()); vo.setReviewEndRow(vo.getPage());
-		 * 
-		 * List<ReviewVO> reviewList = listingDetailsService.reviewPaging(vo);
-		 * m.addAttribute("paging",vo); //버튼수 m.addAttribute("reviewList", reviewList);
-		 */
-		  
+	
 		  
 		
 		return "listingDetails";
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("reviewInsert.do")
 	public String listingDetailsReviewInsert(HttpServletRequest httpServletRequest, ReviewVO vo, Model m,
 			HttpSession session) {
@@ -133,30 +130,7 @@ public class ListingDetailsController {
 		//리뷰 작성
 		listingDetailsService.listingDetailsReviewInsert(map);
 
-		/*
-		 * 메뉴판 보여줄려고 사용 List<ShopVO> mlist =
-		 * listingDetailsService.listingDetailsShopInfo(shopNumber);
-		 * m.addAttribute("menuInfo", mlist); 오직 가게정보만 담김 List<ShopVO> shopInfoList =
-		 * listingDetailsService.listingDetailsOnlyShopInfo(shopNumber);
-		 * m.addAttribute("shopInfoList", shopInfoList);
-		 * 
-		 * HashMap map3 = new HashMap(); map3.put("shopNumber", shopNumber);
-		 * map3.put("logemail", logemail); List<MylistVO> totalList=
-		 * listingDetailsService.listingDetailsTotalList(map3);
-		 * m.addAttribute("totalList",totalList);
-		 * 
-		 * 
-		 * 이것은 사용을 안함 HashMap map2 = new HashMap(); map.put("logemail", logemail);
-		 * Integer shopListCount =
-		 * listingDetailsService.listingDetailsShopListCount(map2);
-		 * m.addAttribute("shopListCount",shopListCount);
-		 * 
-		 * 
-		 * 
-		 * // 리뷰 작성후 페이지 이동하면 가게 정보 메뉴판 리뷰 목록이 안보여지기 때문에 한번더 실행해줌 // 이것은 오적 리뷰목록을 보기위해서
-		 * List<ShopVO> list = listingDetailsService.listingDetailsGetList(shopNumber);
-		 * m.addAttribute("reviewInfo", list);
-		 */
+	
 
 		return "listingDetails2";
 	}
