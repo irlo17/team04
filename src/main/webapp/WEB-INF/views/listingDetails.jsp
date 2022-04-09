@@ -77,16 +77,18 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-				<a href="main.do"><img width="50%" height="100px" src="resources/pageSpinner/logo/listingDetailsLogo.png" alt=""></a>
-						
+						<a href="main.do"><img width="50%" height="100px"
+							src="resources/pageSpinner/logo/listingDetailsLogo.png" alt=""></a>
+
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 
 						<div class="header__menu__right">
-						<a href="totalbookmark.do?page=1" class="primary-btn color_chang"><i class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a>
-							<a href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="totalbookmark.do?page=1" class="primary-btn color_chang"><i
+								class="fa-solid fa-utensils"></i>&nbsp;&nbsp;맛집 리스트</a> <a
+								href="login.do" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
@@ -125,32 +127,44 @@
 					<div class="col-lg-4">
 						<div class="listing__hero__btns">
 
+		<!-- 	<script type="text/javascript">
+			
+			alert(${listSize});
+			</script> -->
+						
 							<c:forEach items="${totalList }" var="totalList">
 
 
-								<c:choose>
-									<c:when test="${  totalList.SHOPNUMBER eq '0'   }">
+
+							<c:choose>
+								<c:when test="${ totalList.LISTNUMBER == '0' }">
+
+										
+							
+									<button class="primary-btn color_chang" id="listAdd"
+										value="${shopInfoList.SHOPNUMBER }">
+										<i class="fa fa-bookmark"></i>추가하기
+									</button>
+
+								</c:when>
 
 
-										<button class="primary-btn color_chang" id="listAdd"
-											value="${shopInfoList.SHOPNUMBER }">
-											<i class="fa fa-bookmark"></i>추가하기
-										</button>
+								<c:otherwise>
+
+									<button class="primary-btn color_chang" id="listAdd2"
+										value="${shopInfoList.SHOPNUMBER }">
+										<i class="fa fa-bookmark"></i>추가완료
+									</button>
 
 
-									</c:when>
+								</c:otherwise>
 
-									<c:when
-										test="${totalList.SHOPNUMBER eq shopInfoList.SHOPNUMBER }">
+							</c:choose>
 
-										<button class="primary-btn color_chang" id="listAdd2"
-											value="${shopInfoList.SHOPNUMBER }">
-											<i class="fa fa-bookmark"></i>추가완료
-										</button>
 
-									</c:when>
 
-								</c:choose>
+
+
 							</c:forEach>
 
 
@@ -183,9 +197,9 @@
 						<div class="listing__details__gallery">
 							<h4>Gallery</h4>
 
-			
-				
-								<!-- 가게 정보 시작  -->
+
+
+							<!-- 가게 정보 시작  -->
 							<div class="listing__details__gallery__pic">
 								<c:forEach items="${shopInfoList}" var='shopInfoList'>
 									<div class="listing__details__gallery__item">
@@ -238,10 +252,11 @@
 								</div>
 
 
-							</div> <!-- 가게 사진 끝 -->
+							</div>
+							<!-- 가게 사진 끝 -->
 
 						</div>
-						
+
 						<!-- 리뷰작성 시작 -->
 						<div class="listing__details__review">
 							<h>리뷰 작성</h>
@@ -266,7 +281,8 @@
 								<button type="submit" style="margin-left: 44%;"
 									class="site-btn reviewBTN color_chang">작성</button>
 							</form>
-						</div> <!-- 리뷰 작성 끝 -->
+						</div>
+						<!-- 리뷰 작성 끝 -->
 
 
 						<!--  리뷰 작성 목록 정보 시작-->
@@ -378,37 +394,30 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach> --%>
-					<!-- ajax 실패작 -->
-					 	<div id="oldList" class="oollddlist">
-					 	
-					 	
-					 	</div>
-						<button id="searchMoreNotify"
-							value="<%= shopNumber%>" class="btn btn-outline-primary btn-block col-sm-12 mx-auto color_chang">더
+						<!-- ajax 실패작 -->
+						<div id="oldList" class="oollddlist"></div>
+						<button id="searchMoreNotify" value="<%= shopNumber%>"
+							class="btn btn-outline-primary btn-block col-sm-12 mx-auto color_chang">더
 							보기</button>
 
 					</div>
 				</div>
-														<div id="mw_temp" class="mw modalchang">
-															<div class="bg">
-																<!--이란에는 내용을 넣지 마십시오.-->
-															</div>
-															<form
-																action="reviewReport.do"
-																method="post">
-																	<input type="hidden" name="reviewNumber">
-																<input type="hidden" name="shopNumber"
-																	value="${param.shopNumber }" />
-																<div class="fg modalchang">
-																	<p>신고하실 내용을 적어주세요.</p>
-																	<textarea class="report_op" name="reportContent"> </textarea>
-																	<button type="submit" class="btn btn-info">제출</button>
-																	<button
-																		type="button" class="btn btn-danger modalClose">창닫기</button>
-																</div>
-															</form>
-														</div>
-			
+				<div id="mw_temp" class="mw modalchang">
+					<div class="bg">
+						<!--이란에는 내용을 넣지 마십시오.-->
+					</div>
+					<form action="reviewReport.do" method="post">
+						<input type="hidden" name="reviewNumber"> <input
+							type="hidden" name="shopNumber" value="${param.shopNumber }" />
+						<div class="fg modalchang">
+							<p>신고하실 내용을 적어주세요.</p>
+							<textarea class="report_op" name="reportContent"> </textarea>
+							<button type="submit" class="btn btn-info modalSubmit">제출</button>
+							<button type="button" class="btn btn-danger modalClose">창닫기</button>
+						</div>
+					</form>
+				</div>
+
 				<div class="col-lg-4">
 					<div class="listing__sidebar">
 						<div class="listing__sidebar__contact">
@@ -420,7 +429,7 @@
 								<script type="text/javascript"
 									src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05fe72ea73cecbaa3ca941aad15b2755&libraries=services"></script>
 								<c:forEach items="${shopInfoList}" var='shopInfoList'>
-							
+
 									<script>
 										var mapContainer = document
 												.getElementById("map"), // 지도를 표시할 div
@@ -559,11 +568,10 @@
 					<div class="footer__about">
 						<div class="footer__about__logo">
 							<a href="main.do"><img
-								src="resources/pageSpinner/logo/logo.png" width="100%" height="70px" alt=""></a>
+								src="resources/pageSpinner/logo/logo.png" width="100%"
+								height="70px" alt=""></a>
 						</div>
-						<p> Eat, Share, Be Happy.
-
-						</p>
+						<p>Eat, Share, Be Happy.</p>
 					</div>
 				</div>
 				<div class="col-lg-4 offset-lg-1 col-md-6">
@@ -614,7 +622,7 @@
 								<script>
 									document.write(new Date().getFullYear());
 								</script>
-								 KOSMO. All rights reserved
+								KOSMO. All rights reserved
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
@@ -628,9 +636,9 @@
 		</div>
 	</footer>
 	<!-- Footer Section End -->
-		<script src="https://kit.fontawesome.com/2173f645ed.js" ></script>
-	
-	
+	<script src="https://kit.fontawesome.com/2173f645ed.js"></script>
+
+
 
 	<!-- Js Plugins -->
 	<script src="resources/js/jquery-3.3.1.min.js"></script>

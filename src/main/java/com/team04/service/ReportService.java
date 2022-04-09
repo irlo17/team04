@@ -1,5 +1,6 @@
 package com.team04.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.team04.domain.ReportVO;
@@ -20,6 +21,6 @@ public interface ReportService {
 	ReportVO reportGet(ReportVO reportVO);
 	
 	// 신고 전체 리스트 조회
-	List<ReportVO> reportGetListManager(ReportVO reportVO);
+	List<ReportVO> reportGetListManager();
 	
 }

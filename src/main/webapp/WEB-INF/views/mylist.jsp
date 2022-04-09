@@ -160,9 +160,11 @@
 
 				</tbody>
 			</table>
-
-			<a href="addPageView.do"><input type="button"
-				class="btn btn-success" value="리스트 추가"></a>
+			<div id="btnl">
+			<a href="mylistDetail.do?listNumber=${defultList.listNumber}&page=1"><input type="button" class="btn btn-warning" value="즐겨찾기한 가게"/></a>
+			&nbsp;
+			<a href="addPageView.do"><input type="button" class="btn btn-success" value="리스트 추가"></a>
+			</div>
 			<div class="blog__pagination">
 				<c:if test="${paging.page != 1 }">
 					<a href="mylist.do?page=${paging.page-1 }"></i> Pre</a>

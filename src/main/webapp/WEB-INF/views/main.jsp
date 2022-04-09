@@ -41,6 +41,15 @@
 <link rel="stylesheet" href="./resources/css/slicknav.min.css"
 	type="text/css">
 <link rel="stylesheet" href="./resources/css/style4.css" type="text/css">
+
+<style type="text/css">
+
+header.header--normal{
+	padding-left: 1%;
+}
+
+</style>
+
 </head>
 
 <body>

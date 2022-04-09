@@ -30,13 +30,13 @@
 .table {
 	width: 100%;
 	font-size:20px;
-	
+
 }
 
 .btn-success {
 	position: relative;
 	left: 90%;
-	
+
 }
 
 .header__logo {
@@ -67,12 +67,31 @@
 	border-color: #D6524F;
 }
 
-a { 
+a {
 	color: black
 }
 
 a:hover {
 	color: #D6524F;
+}
+.btnDefultList{
+	padding-right: 10px;
+}
+
+.btn-warning {
+  color: white;
+}
+.btn-warning:hover {
+  color: white;
+}
+
+.btn-warning {
+	position: relative;
+	left: 90%;
+}
+
+#btnl {
+	margin-right: 150px;
 }
 .su{width:5%; font-weight: normal;}
 .openor{width:15%}

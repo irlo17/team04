@@ -56,13 +56,16 @@
 		});
 		
 		
-		//실패작 ajax 인데 살짝 성공각
+		
 		var oldListCnt = '${oldListCnt}';
 		// 조회 인덱스
-		var startIndex = 1;	// 인덱스 초기값
-		var searchStep = 2;	// 2개씩 로딩
+		var startIndex = 1;	// 시작
+		var searchStep = 3;	// 2개설정
 		var shopNumber = $('#searchMoreNotify').val();
-		// 페이지 로딩 시 첫 실행
+		
+		
+		
+		// 로딩시 실행
 		readOldNotify(startIndex);
 		
 		// 더보기 클릭시
@@ -75,7 +78,7 @@
 			
 	
 		function readOldNotify(index){
-			let_endIndex = index+searchStep-1;	// endIndex설정
+			let_endIndex = index+searchStep-1;	//인덱스
 			$.ajax({
 				type: "post",
 				async: "false",
@@ -103,13 +106,14 @@
 						//if(	data[i].REVIEWGRADE == '맛있어요'){	
 						//	newNode += "<i class='fa fa-thumbs-up tasteGrade' aria-hidden='true'></i></span>";
 						//}
-						newNode += "<div class='col-mb-5 box'><p id='reviewText'>"+data[i].REVIEWCONTENT+"</p></div>";
+						newNode += "<div class='col-mb-5 box'><h4>리뷰내용 : </h4></br>";
+						newNode += "<p id='reviewText'>"+data[i].REVIEWCONTENT+"</p></div>";
 						newNode += "<div class='text-muted ml-auto listing__details__comment__item__rating'>"+data[i].REVIEWGRADE+"</div>";
 						newNode += "</div><span><i class='fa fa-share-square-o'></i></span><button value='"+data[i].REVIEWNUMBER+"' class = 'reportReview report_button'>신고하기</button>";
 						newNode += "<div class='dateReview'><span>작성일: "+data[i].REVIEWDATE+"<span></div></div></div>";
 						NodeList += newNode;
 						
-						//newNode += "<div><h5>"+data[i].REVIEWDATE+"님</h5></div>";
+					
 					}
 					
 					$(NodeList).appendTo($("#oldList")).slideDown();
@@ -158,12 +162,17 @@ $('.modalClose').click(function(){
 
 
 
+$('.modalClose').click(function(){
+$('.report_op').val('')
+
+});
 
 
 
+$('.modalSubmit').click(function(){
+$('.report_op').val('')
 
-
-
+});
 
 
 
