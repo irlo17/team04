@@ -202,6 +202,19 @@ public class ShopController {
 	}
 	
 	
+	
+	@RequestMapping("listingCancel.do")
+	public String shopPageListCancel(ModelMap m) {
+		
+		
+		List<ShopVO> list = shopService.shopGetListManager();
+		int size = list.size();
+		m.addAttribute("shopPageList", list);
+		m.addAttribute("listSize", size);
+		return "listing";
+	}
+	
+	
 	//내 현재 좌표와 가게의 좌표를 비교해서 두 지점 사이의 거리를 구하는 함수
     private static double distance(double lat1, double lon1, double lat2, double lon2){
         double theta = lon1 - lon2;

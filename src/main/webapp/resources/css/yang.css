@@ -153,6 +153,11 @@
 	color : white;
 }
 
+#filter-search:hover {
+	background-color: #d6524f;
+	color : white;
+}
+
 #radius {
 	color: #ed7a64;
 }
@@ -161,8 +166,14 @@
 	padding : 1%;
 }
 
-/* #shopListLogo {
-	padding : 10px;
-} */
+.primary-btn{
+	background-color: #ed7a64;
+	color : white;
+}
+
+.primary-btn:hover {
+  background-color: #d6524f;
+  border-color: #d6524f;
+}
 
 
