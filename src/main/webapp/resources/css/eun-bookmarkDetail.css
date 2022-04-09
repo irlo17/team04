@@ -34,11 +34,12 @@
 	left: 400px;
 }
 
-#btnl {
+.haha {
 	padding-top: 100px;
 	position: relative;
-	left: 70%;
+	left: 60%;
 	font-size: 20px;
+	top: 5%
 }
 
 .fa-solid {
@@ -58,12 +59,14 @@
 .spad {
 	position: relative;
 	right: 100px;
+	padding-top: 0px;
 }
 
-.haha {
+.btnl {
 	position: relative;
-	left: 69%;
-	bottom: 2%
+	left: 70.5%;
+	font-size: 20px;
+	top: 1%;
 }
 
 #jjanggu {
@@ -85,16 +88,34 @@
 }
 
 .blog__item__pic {
-	height:350px;
+	height: 350px;
 }
 
 .btn-danger {
-  color: #fff;
-  background-color: #ED7A64;
-  border-color: #ED7A64;
+	color: #fff;
+	background-color: #ED7A64;
+	border-color: #ED7A64;
 }
+
 .btn-danger:hover {
-  color: #fff;
-  background-color: #D6524F;
-  border-color: #D6524F;
+	color: #fff;
+	background-color: #D6524F;
+	border-color: #D6524F;
+}
+
+.glyphicon-heart {
+	top: 5px
+}
+
+.glyphicon-heart-empty {
+	top: 5px
+}
+
+.spad {
+	padding-top: 100px;
+	padding-bottom: 100px
+}
+
+#heart {
+	bottom: 20px;
 }

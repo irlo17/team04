@@ -154,10 +154,37 @@ header.header--normal{
 	</section>
 	<!-- Most Search Section End -->
 
-
-	<!-- Footer Section Begin -->
+<hr/>
+<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="main.do"><img
+								src="resources/pageSpinner/logo/logo.png" width="100%" height="70px" alt=""></a>
+						</div>
+						<p> Eat, Share, Be Happy.
+
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 offset-lg-1 col-md-6">
+					<div class="footer__address">
+						<ul>
+							<li><span>전화번호:</span>
+								<p>02-2025-8523</p></li>
+							<li><span>Email:</span>
+								<p>info.colorlib@gmail .com</p></li>
+							<li><span>주소:</span>
+								<p>서울 금천구 가산디지털2로 123 월드메르디앙벤처센터II 4층 413호</p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 offset-lg-1 col-md-6">
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer__copyright">
@@ -165,14 +192,17 @@ header.header--normal{
 							<p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright &copy;
-								<script>document.write(new Date().getFullYear());</script>
-								All rights reserved | This template is made with <i
-									class="fa fa-heart" aria-hidden="true"></i> by <a
-									href="https://colorlib.com" target="_blank">Colorlib</a>
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								 KOSMO. All rights reserved
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
 						</div>
-
+						<div class="footer__copyright__links">
+							<!-- <a href="#">Terms</a> <a href="#">Privacy Policy</a> <a href="#">Cookie
+								Policy</a> -->
+						</div>
 					</div>
 				</div>
 			</div>

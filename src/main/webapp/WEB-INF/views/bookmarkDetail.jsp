@@ -179,7 +179,7 @@ $(document).ready(function() {
 	$(".heart-notlogin").unbind('click');
 	$(".heart-notlogin ").click(function() {
 	    alert('로그인 하셔야 하트를 누를수 있습니다!');
-	    
+	   
 	});
 });
 </script>
@@ -224,7 +224,7 @@ $(document).ready(function() {
 
 	<!-- Listing Section Begin -->
 	<section class=" nice-scroll nuguri">
-
+		
 		<!-------------------------------------------------------------------------------------------------------  -->
 		<c:forEach var="tmp" items="${bookmarkList }" begin='0' end='0'>
 			<c:choose>
@@ -233,16 +233,16 @@ $(document).ready(function() {
 					<c:choose>
 						<c:when test="${empty tmp.hno}">
 							<%-- 빈 하트일때 --%>
-							<div id='btnl'>
+							<div class='haha'>좋아요 클릭 수 : &nbsp 
 								<a id="${tmp.listNumber }" href="javascript:"
 									class="heart-click heart_icon${tmp.listNumber }"><span
 									class="heart glyphicon glyphicon-heart-empty"
-									aria-hidden="true"></span></a>좋아요
+									aria-hidden="true"></span></a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<%-- 꽉찬 하트일때 --%>
-							<div id='btnl'>
+							<div class='haha'>
 								<a id="${tmp.listNumber }" href="javascript:"
 									class="heart-click heart_icon${tmp.listNumber }"><span
 									class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
@@ -252,14 +252,14 @@ $(document).ready(function() {
 				</c:when>
 				<%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 				<c:otherwise>
-					<div id='btnl'>
+					<div class='haha'>좋아요 클릭 수 : &nbsp 
 						<a href="javascript:" class="heart-notlogin"> <span
 							class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
 						</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<span class="haha" id="heart${tmp.listNumber }">${tmp.hno }</span>
+			<span class="btnl" id="heart${tmp.listNumber }">${tmp.hno }</span>
 		</c:forEach>
 		<!--------------------------------------------------------------------------------------------------------------  -->
 		<section class="blog-section spad">
@@ -271,20 +271,24 @@ $(document).ready(function() {
 						<div class="row">
 							<c:choose>
 								<c:when test="${listCount eq 0 }">
+								
 									<div class="listing__item dogdog">
 										<!--리뷰 목록 시작-->
 										<div>
+												
 											<div style="font-weight: bold; font-size: 3em;"
 												class="shop_name noReview">
+												
 												<img id="jjanggu" src="./resources/images/jjanggu2.PNG" />
 												<div id="addcoment">
-													추가하신 맛집이 없습니다.<br />&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!
+												추가하신 맛집이 없습니다.<br />&nbsp;&nbsp;&nbsp;맛집을 추가해주세요!
 												</div>
 											</div>
 										</div>
 									</div>
 								</c:when>
 							</c:choose>
+							
 							<c:forEach items="${bookmarkList }" var="bookmark"
 								varStatus="status">
 
