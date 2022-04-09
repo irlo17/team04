@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String listNumber2 = request.getParameter("listNumber");
+	
+		
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -71,8 +73,12 @@ $(function(){
    		 for( var snum of chk_arr ){
 			var lnum= $("#listNumber:checked").val();	
 			$(location).attr('href', "mylistUpdate.do?shopNumber="+snum+"&listNumber="+lnum+"&listNumber2="+<%=listNumber2%>);
-	 	 }  
+	 	 
    		 
+   		 }  
+   		
+   	 
+   		
    		 
 	});
 	
@@ -87,9 +93,7 @@ $(function(){
 		 }
 	});
 	
-	/* if(${result}!=0){
-			 alert("선택한 목록에 이미 해당 가게가 추가되어 있습니다.")
-		 } */
+	  
 })
 
 </script>

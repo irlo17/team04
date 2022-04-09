@@ -199,15 +199,15 @@ public class BookmarkController {
 		  int result = 0;
 		  if(mvo==null){
 		  result = bookmarkService.mylistUpdate(vo);}
-		  model.addAttribute("result", result);
+		  model.addAttribute("result1", result);
 		 
-		return "redirect:mylist.do?page=1";
+			return "redirect:mylistDetail.do?listNumber="+vo.getListNumber2()+"&page=1";
 	  }
 
 	  @RequestMapping("mylistDelete.do")
 	  public String mylistDelete(MylistVO vo) {
 		  bookmarkService.mylistDelete(vo);
-			return "redirect:mylist.do?page=1";
+			return "redirect:mylistDetail.do?listNumber="+vo.getListNumber()+"&page=1";
 		  }
 
 	  @RequestMapping("addPageView.do")

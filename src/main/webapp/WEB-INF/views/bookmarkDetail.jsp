@@ -184,7 +184,7 @@ $(document).ready(function() {
 });
 </script>
 </head>
-<body class="ov-hid">
+<body >
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
