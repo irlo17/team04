@@ -25,4 +25,22 @@
   border-color: #D6524F;
 }
 
+a { 
+	color: black;
+
+}
+
+a:hover {
+	color: #D6524F;
+}
+
+tbody>.row100 >.cell100 {
+	font-size: 17px;
+	color:black;
+}
+
+thead>.row100 >.cell100 {
+	font-size: 20px;
+	font-weight: bold;
+}
 	

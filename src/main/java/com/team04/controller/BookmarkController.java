@@ -102,6 +102,7 @@ public class BookmarkController {
 		  model.addAttribute("paging", vo);
 		  model.addAttribute("bookmarkList", list);
 		  model.addAttribute("BookmarkVO", bvo);
+		
 		  return "bookmarkDetail";
 	  }
 
@@ -259,12 +260,15 @@ public class BookmarkController {
 	  @ResponseBody
 	  public String heartCheak(int listNumber, HttpSession session,HeartVO vo) {
 		  String message = "";
-		// 게시물 번호 세팅
+		
+		  //로그인 해야 하트 클릭가능
+		  if(session.getAttribute("logemail")!=null) {
+			// 게시물 번호 세팅
 	      vo.setListNumber(listNumber);
 	      // 좋아요 누른 사람 nick을 userid로 세팅
 	      vo.setMemberEmail((String) session.getAttribute("logemail"));
 		  vo = bookmarkService.heartCheak(vo);
-		  
+		  }
 		  if(vo == null) {
 			  message = "no";
 		  }else {
