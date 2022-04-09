@@ -26,7 +26,9 @@
                $(this).css({"background" :"pink"})
            })
            
-           
+           $('.delete_button').click(function(){
+           	alert('삭제되었습니다.')
+           })
            
            
            

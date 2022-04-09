@@ -412,7 +412,7 @@
 						<div class="fg modalchang">
 							<p>신고하실 내용을 적어주세요.</p>
 							<textarea class="report_op" name="reportContent"> </textarea>
-							<button type="submit" class="btn btn-info">제출</button>
+							<button type="submit" class="btn btn-info modalSubmit">제출</button>
 							<button type="button" class="btn btn-danger modalClose">창닫기</button>
 						</div>
 					</form>
