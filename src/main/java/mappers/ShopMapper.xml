@@ -125,18 +125,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<=#{radius}
 		]]>
 			and s.SHOP_NUMBER = #{sVO.shopNumber}
-			
 
-				<if test="query2 != '' ">
-					AND s.shop_food LIKE '%'||#{query2}||'%' or
-					s.shop_address
-					LIKE
-					'%'||#{query2}||'%'
-					or
-					s.shop_title LIKE
-					'%'||#{query2}||'%'
-				</if>
-			
+
+			<if test="query2 != '' ">
+				AND s.shop_food LIKE '%'||#{query2}||'%' or
+				s.shop_address
+				LIKE
+				'%'||#{query2}||'%'
+				or
+				s.shop_title LIKE
+				'%'||#{query2}||'%'
+			</if>
+
 			<if
 				test="filterFood.koreanFood != '' or filterFood.japaneseFood != '' or filterFood.chineseFood != '' or filterFood.westernFood != '' or filterFood.worldFood != '' or filterFood.buffet != '' or filterFood.cafe != '' or filterFood.pup != ''">
 				AND (
@@ -212,6 +212,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</trim>
 			<if
 				test="filterFood.shopAddressSi != '' or filterFood.shopAddressGu != ''">
+				)
+			</if>
+
+			<if
+				test="filterFood.parking != ''">
+				AND (
+			</if>
+			<trim prefixOverrides="AND |OR">
+				<if test="filterFood.parking != '' ">
+					s.SHOP_PARK = #{filterFood.parking} 
+				</if>
+			</trim>
+			<if
+				test="filterFood.parking != ''">
 				)
 			</if>
 
