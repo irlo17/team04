@@ -65,8 +65,8 @@ public class ReportServiceImpl implements ReportService {
 	 * 사용 : 모든 신고 리스트를 조회하여 ReportVO에 담아 List형으로 리턴된 것을 다시 리턴
 	 */
 	@Override
-	public List<ReportVO> reportGetListManager(ReportVO reportVO) {
-		return reportDAO.reportGetListManager(reportVO);
+	public List<ReportVO> reportGetListManager() {
+		return reportDAO.reportGetListManager();
 	}
 
 }

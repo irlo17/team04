@@ -35,20 +35,20 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                  <h3>SIGN UP</h3>
+                  <h3 id="titleCenter"><strong>SIGN UP</strong></h3>
                	</div>
                	
                	<!-- FORM -->
                 <form id="member_frm" action="memberInsert.do" method="post" name="member_frm">
                 
                 <!-- NICKNAME -->
-                  <div class="form-group first">
+                  <div class="form-group first field--not-empty">
                     <label for="memberNickname">닉네임&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="text" class="form-control form_nick" id="memberNickname" name="memberNickname" autofocus > 
                   </div>
                   
                   <!-- EMAIL -->
-                  <div class="form-group first">
+                  <div class="form-group first field--not-empty">
                   	<div class="email_check col-md-9">
                     	<label for="memberEmail">이메일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     	<input type="email" class="form-control" id="memberEmail" name="memberEmail">
@@ -61,32 +61,32 @@
                   </div>
                   
                   <!-- PW -->
-                  <div class="form-group">
+                  <div class="form-group first field--not-empty">
                     <label for="memberPassword">비밀번호&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="password" class="form-control" id="memberPassword" name="memberPassword" >
                   </div>
                   
                  <!-- PW CHECK -->
-                  <div class="form-group last mb-4">
+                  <div class="form-group first field--not-empty">
                     <label for="passwordCheck">비밀번호 재확인 &nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="password" class="form-control" id="passwordCheck" >
                   </div>
                   
                   <!-- NAME -->
-                  <div class="form-group first">
+                  <div class="form-group first field--not-empty">
                     <label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="text" class="form-control" id="memberName" name="memberName" >
                   </div>
                   
                   <!-- BIRTH -->
-                  <div class="form-group first">
+                  <div class="form-group first field--not-empty">
                     <label for="memberBirth">생년월일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
                     <input type="date" class="form-control" id="memberBirth" name="memberBirth" required>
                   </div>
                   
 
                   <!-- TEL -->
-                  <div class="form-group first">
+                  <div class="form-group first field--not-empty">
                     <label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     <input type="tel" class="form-control" id="memberTel" name="memberTel" >
                   </div>
@@ -97,7 +97,6 @@
                     <span class="error_box"></span>
                     <div class="control__indicator"></div>
                   </label>
-                    <span class="ml-auto"><a href="loginForm.do" class="forgot-pass">로그인하기</a></span> 
                   </div>
                   	<div id="agreeForm" tabindex="0">
 						제 1장 총칙
@@ -225,6 +224,12 @@
                       <span class="icon-google mr-3"></span> 
                     </a>
                   </div> -->
+                  <div class="d-flex mb-5 align-items-center" id="homeGO">
+                    <label class="control control--checkbox mb-0"><span class="caption"></span>
+                    </label>
+                    	<span class=""><a href="main.do" class="forgot-pass">홈 화면으로 가기</a></span>
+                        <span class="ml-auto"><a href="loginForm.do" class="forgot-pass">로그인하기</a></span>  
+                  </div>
                 </form>
               </div>
             </div>
