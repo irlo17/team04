@@ -236,10 +236,10 @@ prefix="c"%>
           주차 <input type="checkbox" id="parking"/>
           <span class="checkmark"></span>
         </label>
-        <label for="open">
+        <!-- <label for="open">
           영업중 <input type="checkbox" id="open"/>
           <span class="checkmark"></span>
-        </label>
+        </label> -->
       </div>
       
 		<div class="filter__btns">
@@ -1803,7 +1803,7 @@ prefix="c"%>
                   <span class="shopPark">${shop.shopPark} </span>
                 </div>
                 <div class="listing__item__text__info__right">
-                  영업중인걸 어케 표시할까
+                  <span >${shop.shopTime} </span>
                 </div>
               </div>
             </div>
