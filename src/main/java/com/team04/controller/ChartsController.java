@@ -42,7 +42,7 @@ public class ChartsController {
 		while (itList.hasNext()) {
 			ChartsVO cVO = itList.next();
 			JsonObject objList = new JsonObject();
-			String monthList = cVO.getList() + "월";
+			String monthList = "22." + cVO.getList() + "월";
 			int cntList = cVO.getCnt();
 			
 			objList.addProperty("MonthList", monthList);
@@ -66,7 +66,7 @@ public class ChartsController {
 		while (it.hasNext()) {
 			ChartsVO cVO = it.next();
 			JsonObject object = new JsonObject();
-			String month = cVO.getList() + "월";
+			String month = "22." + cVO.getList() + "월";
 			int cntMember = cVO.getCnt();
 			
 			object.addProperty("Month", month);
@@ -107,7 +107,7 @@ public class ChartsController {
 		while (itList.hasNext()) {
 			ChartsVO cVO = itList.next();
 			JsonObject objList = new JsonObject();
-			String monthList = cVO.getList() + "월";
+			String monthList = "22." + cVO.getList() + "월";
 			int cntList = cVO.getCnt();
 			
 			objList.addProperty("MonthList", monthList);
@@ -131,7 +131,7 @@ public class ChartsController {
 		while (it.hasNext()) {
 			ChartsVO cVO = it.next();
 			JsonObject object = new JsonObject();
-			String month = cVO.getList() + "월";
+			String month = "22." + cVO.getList() + "월";
 			int cntMember = cVO.getCnt();
 			
 			object.addProperty("Month", month);
