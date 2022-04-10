@@ -32,7 +32,10 @@ public class ShopVO {
 	private String distance; //거리
 	private String radius; //반경
 	
-
+	
+	// 영업시간
+	private String shopOpen; // 가게 여는시간
+	private String shopClose; // 가게 닫는시간
 
 	// 필터용 주소 입력
 	private String shopAddressSi;
@@ -53,19 +56,12 @@ public class ShopVO {
 	}
 	
 	// 생성자 - 인자있는
-	
-
-	// setter & getter
-	public MultipartFile getShopFile() {
-		return shopFile;
-	}
-	
 	public ShopVO(int shopNumber, String shopTitle, String shopTel, String shopPriceRange, String shopFood,
 			String shopPark, String shopTime, String shopHoliday, String shopContent, Date shopCreateDate,
 			Date shopModifyDate, String shopAddress, String shopAddrDoroManager, String shopAddrJibunManager,
 			String shopAddrDetailManager, String shopLat, String shopLon, String distance, String radius,
-			String shopAddressSi, String shopAddressGu, String shopAddressDong, String shopRealfname,
-			MultipartFile shopFile) {
+			String shopOpen, String shopClose, String shopAddressSi, String shopAddressGu, String shopAddressDong,
+			String shopRealfname, MultipartFile shopFile) {
 		super();
 		this.shopNumber = shopNumber;
 		this.shopTitle = shopTitle;
@@ -86,12 +82,23 @@ public class ShopVO {
 		this.shopLon = shopLon;
 		this.distance = distance;
 		this.radius = radius;
+		this.shopOpen = shopOpen;
+		this.shopClose = shopClose;
 		this.shopAddressSi = shopAddressSi;
 		this.shopAddressGu = shopAddressGu;
 		this.shopAddressDong = shopAddressDong;
 		this.shopRealfname = shopRealfname;
 		this.shopFile = shopFile;
 	}
+	
+
+	// setter & getter
+	public MultipartFile getShopFile() {
+		return shopFile;
+	}
+	
+	
+
 
 	public void setShopFile(MultipartFile shopFile) {
 		this.shopFile = shopFile;
@@ -270,6 +277,24 @@ public class ShopVO {
 	public void setRadius(String radius) {
 		this.radius = radius;
 	}
+
+	public String getShopOpen() {
+		return shopOpen;
+	}
+
+	public void setShopOpen(String shopOpen) {
+		this.shopOpen = shopOpen;
+	}
+
+	public String getShopClose() {
+		return shopClose;
+	}
+
+	public void setShopClose(String shopClose) {
+		this.shopClose = shopClose;
+	}
+	
+	
 
 
 }
