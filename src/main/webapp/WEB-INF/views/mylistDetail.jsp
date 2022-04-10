@@ -59,9 +59,7 @@ $(function(){
 		$("#sujung").attr('type','hidden');
 	}
 	
-	 /* if($("#resulthi").val()==0){
-	alert("중복되어 이동 못한 가게가 있습니다."); */
-}
+	
 })
 </script>	
 </head>
@@ -156,7 +154,7 @@ $(function(){
 		<section class="blog-section spad">
 			<div class="container">
 
-				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName } </h4>
+				<h4 id="listTitle">리스트 제목: ${BookmarkVO.listName } ${result }</h4>
 					<input type="hidden" id="defaultnum" value="${BookmarkVO.defultList }">				
 				<hr />
 				

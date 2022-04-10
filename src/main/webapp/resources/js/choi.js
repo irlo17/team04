@@ -169,10 +169,6 @@ $('.report_op').val('')
 
 
 
-$('.modalSubmit').click(function(){
-$('.report_op').val('')
-
-});
 
 
 
