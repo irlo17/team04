@@ -85,7 +85,13 @@
         	}
         	
         	function menuDeleteManager(sNum, mName) {
-        		location.href="menuDeleteManager.do?shopNumber="+ sNum +"&menuName=" + mName;
+        		if(confirm("삭제하시겠습니까?")) {
+        			location.href="menuDeleteManager.do?shopNumber="+ sNum +"&menuName=" + mName;
+        			alert("메뉴가 삭제되었습니다.");
+        		} else {
+        			return;
+        		}
+        		
         	}
         </script>
     </head>
