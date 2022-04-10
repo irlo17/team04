@@ -63,7 +63,8 @@ $(document).ready(function() {
          },
      	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
          success : function(result) {
-        	 $('#heart'+no).text(result);
+        	 /* $('#heart'+no).text(result); */
+        	 $('.hwana').text(result);
          },
          error : function(err) {
              //alert('서버 에러');
@@ -116,8 +117,8 @@ $(document).ready(function() {
 	
 	                // 페이지에 하트수 갱신
 	                
-	                $('#heart'+no).text(likeCount);
-	
+	                /* $('#heart'+no).text(likeCount); */
+	                $('.hwana').text(likeCount);
 	                console.log("하트추가 성공");
 	                console.log(likeCount);
 	            },
@@ -150,9 +151,11 @@ $(document).ready(function() {
 	                /* let heart = likeCount.listLike; */
 	                // 페이지에 하트수 갱신
 	                if(likeCount <= 0){
-		                $('#heart'+no).text("");
+		              /*   $('#heart'+no).text(""); */
+		                $('.hwana').text("");
 	                }else{
-		                $('#heart'+no).text(likeCount);
+		               /*  $('#heart'+no).text(likeCount); */
+		                $('.hwana').text(likeCount);
 	                }
 	
 	                console.log("하트삭제 성공");
@@ -233,16 +236,16 @@ $(document).ready(function() {
 					<c:choose>
 						<c:when test="${empty tmp.hno}">
 							<%-- 빈 하트일때 --%>
-							<div class='haha'>좋아요 클릭 수 : &nbsp 
+							<div class='haha'>좋아요 클릭 수 : <span class="hwana"></span>
 								<a id="${tmp.listNumber }" href="javascript:"
 									class="heart-click heart_icon${tmp.listNumber }"><span
 									class="heart glyphicon glyphicon-heart-empty"
-									aria-hidden="true"></span></a>
+									aria-hidden="true">${tmp.hno }</span></a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<%-- 꽉찬 하트일때 --%>
-							<div class='haha'>
+							<div class='haha'>좋아요 클릭 수 : <span class="hwana"></span>
 								<a id="${tmp.listNumber }" href="javascript:"
 									class="heart-click heart_icon${tmp.listNumber }"><span
 									class="glyphicon glyphicon-heart" aria-hidden="true"></span></a>
@@ -252,14 +255,14 @@ $(document).ready(function() {
 				</c:when>
 				<%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 				<c:otherwise>
-					<div class='haha'>좋아요 클릭 수 : &nbsp 
+					<div class='haha'>좋아요 클릭 수 : <span class="hwana"></span>
 						<a href="javascript:" class="heart-notlogin"> <span
 							class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
 						</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<span class="btnl" id="heart${tmp.listNumber }">${tmp.hno }</span>
+			<%-- <div class="haha" ><span class="hidden" id="heart${tmp.listNumber }">${tmp.hno }</span></div> --%>
 		</c:forEach>
 		<!--------------------------------------------------------------------------------------------------------------  -->
 		<section class="blog-section spad">

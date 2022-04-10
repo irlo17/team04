@@ -21,7 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,
 		SHOP_MODIFY_DATE shopModifyDate , SHOP_ADDRESS shopAddress ,
 		SHOP_ADDRESS_SI shopAddressSi , SHOP_ADDRESS_GU shopAddressGu ,
-		SHOP_ADDRESS_DONG shopAddressDong , SHOP_REALFNAME shopRealfname
+		SHOP_ADDRESS_DONG shopAddressDong , SHOP_REALFNAME shopRealfname,
+		SHOP_LAT shopLat, SHOP_LON shopLon
 		from
 		shop
 		where SHOP_NUMBER= #{shopNumber,jdbcType=INTEGER}

@@ -478,7 +478,8 @@
 																				
 															       var content =
 															              '<div class="customoverlay">' +
-															              '  <a href="" target="_blank">' +
+															              '  <a href="https://map.kakao.com/link/map/'
+            															  +"${shopInfoList.SHOPTITLE}"+','+"${shopInfoList.SHOPLAT}"+','+"${shopInfoList.SHOPLON}"+'" target="_blank">' +
 															              '    <span class="title">' +
 															              "${shopInfoList.SHOPTITLE}" +
 															              "</span>" +
