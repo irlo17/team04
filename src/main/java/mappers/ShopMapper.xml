@@ -259,6 +259,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, shop_realfname
 		, shop_lat
 		, shop_lon
+		, shop_open
+		, shop_close
 		)
 		VALUES(shop_number_seq.nextval,
 		#{shopTitle}, #{shopTel}
@@ -276,6 +278,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{shopRealfname, jdbcType=VARCHAR}
 		, #{shopLat}
 		, #{shopLon}
+		, #{shopOpen}
+		, #{shopClose}
 		)
 	</insert>
 
