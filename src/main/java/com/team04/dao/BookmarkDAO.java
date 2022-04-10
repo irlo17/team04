@@ -11,10 +11,8 @@ import com.team04.domain.PagingVO;
 
 	public interface BookmarkDAO {
 
-
 	
-	/** 공개 여부가 "yes" 이고 키워드 검색 후 레코드 전체 검색 
-	 */
+	//공개 여부가 "yes" 이고 키워드 검색 후 레코드 전체 검색 
 	public int bookmarkListCount(HashMap map);
 	
 
@@ -56,8 +54,9 @@ import com.team04.domain.PagingVO;
 	//즐겨찾기 상세 목록 가게 삭제
 	public void mylistDelete(MylistVO vo);
 
-	//즐겨찾기 페이징(미완)
-	public int totalbookmarkCount();
+	/*
+	 * //즐겨찾기 페이징(미완) public int totalbookmarkCount();
+	 */
 
 	//즐겨찾기 제목 추가
 	public void mylistAdd(BookmarkVO vo);
@@ -73,13 +72,17 @@ import com.team04.domain.PagingVO;
 	
 	//즐겨찾기 상세 목록 가게 수
 	public int bookmarkGetMylistTotalCount(PagingVO paging);
-
+	
+	//페이징
 	public List<MylistVO> bookmarkGetMylistDetailPaging(PagingVO paging);
 	
+	//하트 클릭 여부 조회
 	public HeartVO heartCheak(HeartVO vo);
 	
+	//좋아요 수 체크
 	public BookmarkVO pictureHeartCount(BookmarkVO vo);
 	
+	//즐겨찾기 상세 편집시 가게 중복 여부 체크
 	public MylistVO overlapSearch(MylistVO vo);
 	
 	}
