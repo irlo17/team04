@@ -237,12 +237,16 @@ public class MemberController {
 
 	/**	회원 정보 수정
 	 * - DB에 동일한 이메일을 가진 회원의 정보를 수정
+	 * - 수정 후 닉네임이 변경되었다면 세션에 저장된 닉네임도 변경한다.
 	 * @param MemberVO vo
 	 * @return mypageMember.do
 	 */
 	@RequestMapping("memberUpdate.do")
-	public String memberUpdate(MemberVO vo) {
+	public String memberUpdate(MemberVO vo, HttpSession session) {
 		memberService.memberUpdate(vo);
+		if(session.getAttribute("lognick")!=vo.getMemberNickname()) {
+			session.setAttribute("lognick", vo.getMemberNickname());
+		}
 
 		return "redirect:mypageMember.do";
 

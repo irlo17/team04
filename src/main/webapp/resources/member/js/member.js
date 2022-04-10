@@ -33,7 +33,7 @@ $('#btn_emailCheak').click(function(){
 	}
 	// 형식에 맞지 않을 때 나오는 에러박스
 	if( !RegexEmail.test(memberEmail) ){
-
+		$('label[for="memberEmail"] .error_box').css('color','#ED7A64');
 		$('label[for="memberEmail"] .error_box').html("이메일 형식이 올바르지 않습니다.");
 		return;
 	}
@@ -353,7 +353,7 @@ $('#btnPwChange').click(function(){
 	
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문(대소문자)과 숫자를 혼합하여 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -415,7 +415,7 @@ $('#btnMemberUpdate').click(function(){
 
 	if( !RegexPW.test(memberPassword) ){
 
-		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문(대소문자)과 숫자를 혼합하여 작성해 주십시오.");
+		$('label[for="memberPassword"] .error_box').html("비밀번호는 영문자와 숫자를 사용하여 6~15자로 작성해 주십시오.");
 		return;
 	}else{
 		$('label[for="memberPassword"] .error_box').html("");
@@ -480,7 +480,7 @@ $('#btnMemberUpdate').click(function(){
 		
 	if( !RegexTel.test(memberTel) ){
 
-		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다.");
+		$('label[for="memberTel"] .error_box').html("전화번호 형식이 올바르지 않습니다. ex)010-000~0-000~0");
 		return;
 	}else{
 		$('label[for="memberTel"] .error_box').html("");

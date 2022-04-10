@@ -197,7 +197,7 @@
 					<!-- NAME -->
 					<div class="form-group first field--not-empty">
 						<label class="label" for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label> 
-						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" > 
+						<input type="text" class="form-control formInt" id="memberName" name="memberName" value="${MemberVO.memberName }" readonly> 
 					</div>
 
 					<!-- BIRTH -->
