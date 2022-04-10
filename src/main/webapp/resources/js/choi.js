@@ -60,7 +60,7 @@
 		var oldListCnt = '${oldListCnt}';
 		// 조회 인덱스
 		var startIndex = 1;	// 시작
-		var searchStep = 3;	// 2개설정
+		var searchStep = 2;	// 2개설정
 		var shopNumber = $('#searchMoreNotify').val();
 		
 		

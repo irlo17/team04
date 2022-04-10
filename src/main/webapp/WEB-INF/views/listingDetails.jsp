@@ -247,7 +247,13 @@
 								</select> <br /> <br /> <br /> <br />
 
 								<h4>add image</h4>
-								<input type="file" name='file' value="" accept='image/*' />
+								<div>
+								<!-- <label class="label mFile btn-danger chch" for="file">파일선택</label> 
+								 -->
+								<input type="file" class="" id="file" name='file' value="" accept='image/*'
+								style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+								"/>
+								</div>
 
 								<button type="submit" style="margin-left: 44%;"
 									class="site-btn reviewBTN color_chang">작성</button>
