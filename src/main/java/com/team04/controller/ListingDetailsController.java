@@ -173,10 +173,10 @@ public class ListingDetailsController {
 		
 		
 		HashMap map = new HashMap();
-		map.put("reportContent",vo.getReportContent() );
+		map.put("reportContent",vo.getReportContent());
 		map.put("reviewNumber", reviewNumber);
 		map.put("logemail", logemail);
-		System.out.println("************************************************************************************"+reviewNumber);
+		System.out.println("************************************************************************************"+vo.getReportContent());
 		//리뷰 신고기능
 		listingDetailsService.listingDetailsReport(map);
 		
