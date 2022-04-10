@@ -72,6 +72,20 @@ public class ShopServiceImpl implements ShopService{
 			shopVO.setShopAddress(shopVO.getShopAddrDoroManager());
 		}
 		
+		
+		// ***************************************************
+		// 가게 영업시간
+		String shopTime = shopVO.getShopTime();
+		
+		String[] time = shopTime.split(" - ");
+		
+		for(int i=0; i<time.length; i++) {
+			System.out.println(time[i]);
+		}
+		
+		shopVO.setShopOpen(time[0]);
+		shopVO.setShopClose(time[1]);
+		
 		// shopDAO에서 shopInsert함수 호출
 		shopDAO.shopInsertManager(shopVO);
 	}

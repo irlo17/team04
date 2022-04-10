@@ -186,6 +186,7 @@ input[type="file"]{
 	margin-top : -30px; 
 	margin-bottom : 50px;
 	line-height: 20px;
+	font-size: 12px;
 }
 #btnAgree{
 	background-color : white;

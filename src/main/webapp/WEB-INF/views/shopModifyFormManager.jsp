@@ -84,6 +84,8 @@
         		
         	}
         	
+        	
+        	
         	/* function menuDeleteManager(sNum, mName) {
         		if(confirm("삭제하시겠습니까?")) {
         			location.href="menuDeleteManager.do?shopNumber="+ sNum +"&menuName=" + mName;
@@ -93,6 +95,42 @@
         		}
         		
         	} */
+        	
+        	
+        	
+        	$(document).ready(function(){
+        		
+        		// 가게 수정 시, 가격대/음식유형/주차/휴일 선택지 골라져있도록 설정
+        		
+        		// Controller에서 받아온 값을 변수에 저장
+        		let shopPriceRange = "${shopManager.shopPriceRange}";
+            	let shopFood = "${shopManager.shopFood}";
+            	let shopPark = "${shopManager.shopPark}";
+            	let shopHoliday = "${shopManager.shopHoliday}";
+            	
+            	// 휴일은 여러개가 들어갈 수 있기 때문에 ','로 잘라줌
+            	let shopHolidayList = shopHoliday.split(",");
+            	
+            	// 확인작업
+            	console.log("가격대 : " + shopPriceRange); // 확인
+            	console.log("음식유형 : " + shopFood); // 확인
+            	console.log("주차 : " + shopPark); // 확인
+            	console.log("휴일 : " + shopHoliday); // 확인
+            	
+            	console.log("휴일이 여러개일 경우 : " + shopHolidayList[0]);
+            	console.log("휴일이 여러개일 경우 : " + shopHolidayList[1]);
+            	
+            	// 각 value값에 맞춰 설정
+            	$('select[name="shopPriceRange"]').val(shopPriceRange);
+            	$('input:radio[name="shopFood"]:radio[value='+shopFood+']').prop('checked',true);
+            	$('select[name="shopPark"]').val(shopPark);
+            	
+            	for(let i=0; i<shopHolidayList.length; i++) {
+            		$('input:checkbox[name="shopHoliday"]:checkbox[value='+shopHolidayList[i]+']').prop('checked',true);
+            	}
+            	
+        	});
+        	
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -160,11 +198,11 @@
                                             </div>
                                             <div class="mb-3">
                                                 <select class="form-select ps-2" name="shopPriceRange">
-                                                	<option>가격대</option>
-                                                	<option>1만원 미만</option>
-                                                	<option>1만원 이상</option>
-                                                	<option>3만원 이상</option>
-                                                	<option>5만원 이상</option>
+                                                	<option value="0">가격대</option>
+                                                	<option value="1만원 미만">1만원 미만</option>
+                                                	<option value="1만원 이상">1만원 이상</option>
+                                                	<option value="3만원 이상">3만원 이상</option>
+                                                	<option value="5만원 이상">5만원 이상</option>
                                                 </select>
                                             </div>
                                             <div class="row mb-3">
