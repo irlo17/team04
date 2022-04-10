@@ -215,7 +215,7 @@ $(function(){
 										<a
 											href="listingDetails.do?shopNumber=${bookmark.shopNumber }&page=1">
 											<div class="blog__item__pic set-bg"
-												data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div>
+												data-setbg="./resources/manager/upload/${bookmark.shopRealfname }"></div>
 										</a>
 										<div class="blog__item__text">
 											<ul class="blog__item__tags">

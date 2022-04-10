@@ -143,9 +143,6 @@ public class BookmarkController {
 		model.addAttribute("bookmarkList", list);
 		model.addAttribute("paging", vo);
 		model.addAttribute("BookmarkVO", bvo);
-
-
-
 		return "mylistDetail";
 	}
 
@@ -198,10 +195,10 @@ public class BookmarkController {
 	@RequestMapping("mylistUpdate.do")
 	public String mylistUpdate(MylistVO vo, Model model ) {
 		MylistVO mvo=bookmarkService.overlapSearch(vo);
-		String result = "";
-		result="ok";
+		int result = 0;
+		
 		if(mvo==null){
-			result = Integer.toString(bookmarkService.mylistUpdate(vo));
+			result = bookmarkService.mylistUpdate(vo);
 
 		}
 		model.addAttribute("result", result);
@@ -237,39 +234,28 @@ public class BookmarkController {
 	@ResponseBody
 	@RequestMapping(value = "saveHeart.do" ,produces="application/text;charset=utf-8")
 	public String save_heart(int listNumber, HttpSession session) {
-
-
 		HeartVO hvo = new HeartVO();
 		// 게시물 번호 세팅
 		hvo.setListNumber(listNumber);
 		// 좋아요 누른 사람 nick을 userid로 세팅
 		hvo.setMemberEmail((String) session.getAttribute("logemail"));
-
 		// +1된 하트 갯수를 담아오기위함
 		BookmarkVO bvo= bookmarkService.pictureSaveHeart(hvo);
 		String like =  Integer.toString(bvo.getListLike());
-
 		return like;
 	}
-
-
-
 	// 꽉찬하트 클릭시 하트 해제
 	@ResponseBody
 	@RequestMapping(value = "removeHeart.do",produces="application/text;charset=utf-8")
 	public String remove_heart( int listNumber, HttpSession session) {
-
 		HeartVO hvo = new HeartVO();
 		// 게시물 번호 세팅
 		hvo.setListNumber(listNumber);
 		// 좋아요 누른 사람 nick을 userid로 세팅
 		hvo.setMemberEmail((String) session.getAttribute("logemail"));
-
 		// -1된 하트 갯수를 담아오기위함
 		BookmarkVO bvo=  bookmarkService.pictureRemoveHeart(hvo);
 		String like =  Integer.toString(bvo.getListLike());
-
-
 		return like;
 	}
 
@@ -277,7 +263,6 @@ public class BookmarkController {
 	@ResponseBody
 	public String heartCheak(int listNumber, HttpSession session,HeartVO vo) {
 		String message = "";
-
 		//로그인 해야 하트 클릭가능
 		if(session.getAttribute("logemail")!=null) {
 			// 게시물 번호 세팅

@@ -84,7 +84,7 @@
 
 		SELECT list_Number, list_name , list_display , list_like
 		FROM bookmark
-		WHERE member_email=#{memberEmail} and defult_list='no'<!-- #{memberEmail} -->
+		WHERE member_email=#{memberEmail} and defult_list='no'
 	</select>
 
 	<!-- 리스트 안 가게 총 개수 -->

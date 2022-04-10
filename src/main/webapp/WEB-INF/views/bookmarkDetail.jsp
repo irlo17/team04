@@ -299,7 +299,7 @@ $(document).ready(function() {
 									<div class="blog__item">
 										<a href="listingDetails.do?shopNumber=${bookmark.shopNumber }"><div
 												class="blog__item__pic set-bg"
-												data-setbg="./resources/img/shop/${bookmark.shopRealfname }"></div></a>
+												data-setbg="./resources/manager/upload/${bookmark.shopRealfname }"></div></a>
 										<div class="blog__item__text">
 											<ul class="blog__item__tags">
 												<li><i class="fa-solid fa-utensils"></i></span>${bookmark.shopAddressSi}</li>
