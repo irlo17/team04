@@ -84,7 +84,7 @@
         		
         	}
         	
-        	function menuDeleteManager(sNum, mName) {
+        	/* function menuDeleteManager(sNum, mName) {
         		if(confirm("삭제하시겠습니까?")) {
         			location.href="menuDeleteManager.do?shopNumber="+ sNum +"&menuName=" + mName;
         			alert("메뉴가 삭제되었습니다.");
@@ -92,7 +92,7 @@
         			return;
         		}
         		
-        	}
+        	} */
         </script>
     </head>
     <body class="sb-nav-fixed">
@@ -253,7 +253,7 @@
 	                                                   </div>
 	                                               </div>
 	                                               <div class="col-md-2">
-	                                                   <div class="d-grid"><input type="button" class="btn btn-warning btn-lg btn-block" value="삭제" onclick="menuDeleteManager(${menuManager.shopNumber}, ${ menuManager.menuName })"/></div>
+	                                                   <div class="d-grid"><a class="btn btn-warning btn-lg btn-block" href="menuDeleteManager.do?shopNumber=${menuManager.shopNumber}&menuName=${ menuManager.menuName }">삭제</a></div>
 	                                               </div>
 	                                           </div>
 	                                           </c:forEach>
