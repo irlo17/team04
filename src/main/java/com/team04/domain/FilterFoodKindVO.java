@@ -21,6 +21,9 @@ public class FilterFoodKindVO {
 	private String shopAddressSi;
 	private String shopAddressGu;
 	
+	private String parking;
+	private String open;
+	
 	public FilterFoodKindVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,7 +31,8 @@ public class FilterFoodKindVO {
 
 	public FilterFoodKindVO(String koreanFood, String japaneseFood, String chineseFood, String westernFood,
 			String worldFood, String buffet, String cafe, String pup, String manwonLess, String manwonMore,
-			String threeManwonMore, String fiveManwonMore, String shopAddressSi, String shopAddressGu) {
+			String threeManwonMore, String fiveManwonMore, String shopAddressSi, String shopAddressGu, String parking,
+			String open) {
 		super();
 		this.koreanFood = koreanFood;
 		this.japaneseFood = japaneseFood;
@@ -44,7 +48,11 @@ public class FilterFoodKindVO {
 		this.fiveManwonMore = fiveManwonMore;
 		this.shopAddressSi = shopAddressSi;
 		this.shopAddressGu = shopAddressGu;
+		this.parking = parking;
+		this.open = open;
 	}
+
+
 
 
 
@@ -164,6 +172,22 @@ public class FilterFoodKindVO {
 
 	public void setShopAddressGu(String shopAddressGu) {
 		this.shopAddressGu = shopAddressGu;
+	}
+
+	public String getParking() {
+		return parking;
+	}
+
+	public void setParking(String parking) {
+		this.parking = parking;
+	}
+
+	public String getOpen() {
+		return open;
+	}
+
+	public void setOpen(String open) {
+		this.open = open;
 	}
 
 	

@@ -270,9 +270,21 @@ $("#fiveManwonMore").on("click", function name(params) {
 
 
 
-$("#parking").on("click", function name(params) {
-	$("#parkingInput").val("주차 가능")
-});
-
+    $("#parking").on("click", function name(params) {
+        var park = $("#parkingInput").val();
+        if (park == "") {
+          $("#parkingInput").val("주차 가능");
+        } else {
+          $("#parkingInput").val("");
+        }
+      });
+      
+      
+      
+if($(".shopPark").attr("value")=="주차 가능") {
+	$(".shopPark").css("color", "blue");
+}else{
+$(".shopPark").css("color", "red");
+}
 
 

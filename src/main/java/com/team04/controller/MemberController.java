@@ -261,7 +261,7 @@ public class MemberController {
 			System.out.println(session.getAttribute("logemail") + "님 로그아웃");
 			session.invalidate();
 			
-			return "main";
+			return "redirect:main.do";
 	}//end of logout()
 
 

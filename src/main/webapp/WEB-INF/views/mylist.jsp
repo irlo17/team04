@@ -141,7 +141,7 @@
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>리스트제목</th>
+						<th >리스트제목</th>
 						<th>공개여부</th>
 						<th>좋아요 수</th>
 					</tr>
@@ -150,11 +150,11 @@
 					<c:forEach items="${bookmarkList }" var="bookmark"
 						varStatus="status">
 						<tr>
-							<th scope="row">${status.count+((paging.page-1)*10)}</th>
-							<td><a
+							<th class="su" scope="row">${status.count+((paging.page-1)*10)}</th>
+							<td class="tei"><a
 								href="mylistDetail.do?listNumber=${bookmark.listNumber}&page=1">${bookmark.listName }</a></td>
-							<td>${bookmark.listDisplay }</td>
-							<td>${bookmark.listLike}</td>
+							<td class="openor">${bookmark.listDisplay }</td>
+							<td class="likesu">${bookmark.listLike}</td>
 						</tr>
 					</c:forEach>
 
