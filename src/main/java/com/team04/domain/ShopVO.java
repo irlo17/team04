@@ -109,7 +109,7 @@ public class ShopVO {
 			shopRealfname = shopFile.getOriginalFilename();
 			
 			// 저장
-			File shopF = new File("C:\\study\\spring\\semi\\semi\\src\\main\\webapp\\resources\\manager\\upload\\" + shopRealfname);
+			File shopF = new File("C:\\Users\\yangj\\spring\\webSpring\\team04\\src\\main\\webapp\\resources\\manager\\upload\\" + shopRealfname);
 			
 			// 예외처리
 			try {
