@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		'%'||#{query}||'%' or s.shop_address LIKE
 		'%'||#{query}||'%' or
 		s.shop_title LIKE '%'||#{query}||'%'
+		or SHOP_ADDRESS_DONG LIKE '%'||#{query}||'%'
 
 	</select>
 
@@ -33,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				LIKE '%'||#{query}||'%'
 				or
 				s.shop_title LIKE '%'||#{query}||'%'
+				or SHOP_ADDRESS_DONG LIKE '%'||#{query}||'%'
 			</if>
 
 			<if
@@ -128,13 +130,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 			<if test="query2 != '' ">
-				AND s.shop_food LIKE '%'||#{query2}||'%' or
+				AND (s.shop_food LIKE '%'||#{query2}||'%' or
 				s.shop_address
 				LIKE
 				'%'||#{query2}||'%'
 				or
 				s.shop_title LIKE
 				'%'||#{query2}||'%'
+				or SHOP_ADDRESS_DONG LIKE '%'||#{query2}||'%')
 			</if>
 
 			<if
