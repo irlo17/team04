@@ -129,7 +129,7 @@ header.header--normal{
 							<div class="col-lg-4 col-md-6">
 								<div class="listing__item">
 									<a href="bookmarkDetail.do?listNumber=${bookmark.listNumber}&page=1">
-									<div class="listing__item__pic set-bg" data-setbg="./resources/img/shop/${bookmark.shopRealfname}"></div>
+									<div class="listing__item__pic set-bg" data-setbg="./resources/manager/upload/${bookmark.shopRealfname}"></div>
 									</a>
 									<div class="listing__item__pic__btns"></div>
 
