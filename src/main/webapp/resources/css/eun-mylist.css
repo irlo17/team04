@@ -19,7 +19,8 @@
 }
 
 .ov-hid .blog__pagination {
-	text-align: center;
+	position: relative;
+	left:45%;
 }
 
 #my {
@@ -29,14 +30,12 @@
 
 .table {
 	width: 100%;
-	font-size:20px;
-
+	font-size: 20px;
 }
 
 .btn-success {
 	position: relative;
 	left: 90%;
-
 }
 
 .header__logo {
@@ -74,15 +73,17 @@ a {
 a:hover {
 	color: #D6524F;
 }
-.btnDefultList{
+
+.btnDefultList {
 	padding-right: 10px;
 }
 
 .btn-warning {
-  color: white;
+	color: white;
 }
+
 .btn-warning:hover {
-  color: white;
+	color: white;
 }
 
 .btn-warning {
@@ -93,9 +94,30 @@ a:hover {
 #btnl {
 	margin-right: 150px;
 }
-.su{width:5%; font-weight: normal;}
-.openor{width:15%}
-.likesu{width:10%}
-th{text-align: center;}
-td{text-align: center;}
-#ga{font-weight: bold; font-size: 30px; padding-bottom:50px; }
+
+.su {
+	width: 5%;
+	font-weight: normal;
+}
+
+.openor {
+	width: 15%
+}
+
+.likesu {
+	width: 10%
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+
+#ga {
+	font-weight: bold;
+	font-size: 30px;
+	padding-bottom: 50px;
+}

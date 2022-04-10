@@ -59,12 +59,7 @@
 
 
 
-.btnl {
-	position: relative;
-	left: 69%;
-	font-size: 20px;
-	top: 21%;
-}
+
 
 #jjanggu {
 	width: 300px;
@@ -118,3 +113,10 @@
 #heart {
 	bottom: 20px;
 }
+
+/* .btnl {
+	position:absolute;
+	left: 15%;
+	font-size: 20px;
+	top: 15%;
+}  */
