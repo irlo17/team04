@@ -1776,7 +1776,7 @@ prefix="c"%>
             <!-- 여기에 img값 가지고와야함 동적으로 -->
             <div
               class="listing__item__pic set-bg"
-              data-setbg="./resources/img/listing/list-1.jpg"
+              data-setbg="./resources/manager/upload/${shop.shopRealfname}"
             >
               
             </div>
