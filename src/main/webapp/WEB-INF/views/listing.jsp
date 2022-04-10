@@ -102,8 +102,23 @@ prefix="c"%>
         font-size: 14px;
         font-weight: bold;
         overflow: hidden;
-        background: #d95050;
-        background: #d95050
+        background: #ed7a64;
+        background: #ed7a64
+          url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
+          no-repeat right 14px center;
+      }
+      
+        .customoverlay a:hover {
+        display: block;
+        text-decoration: none;
+        color: #000;
+        text-align: center;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        background: #d6524f;
+        background: #d6524f
           url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
           no-repeat right 14px center;
       }
@@ -185,12 +200,12 @@ prefix="c"%>
           id="search"
           name="query2"
           type="text"
-          placeholder="검색값"
+          placeholder="검색어를 입력하세요"
           value="${param.query}"
         />
       </div>
       <div class="filter__location">
-        <input type="text" placeholder="위치" />
+        <input id="myLocation" type="text" placeholder="내 위치" readonly="readonly"/>
         <i class="fa fa-map-marker"></i>
       </div>
       
@@ -232,9 +247,7 @@ prefix="c"%>
 				검색
 			</button>
 		</div>
-		<div class="filter__btns">
-        <button type="submit" class="filter__reset">전체 선택 취소</button>
-      </div>
+		
       <input id="myLat" name="myLat" hidden="hidden"/>
       <input id="myLon" name="myLon" hidden="hidden"/>
       <input id="radiusInput" name= "radiusInput" hidden="hidden"/>
@@ -256,9 +269,12 @@ prefix="c"%>
       <!-- 주소 value 들어가는곳 -->
       <input name="shopAddressSi"  value="${param.shopAddressSi}" hidden="hidden"/>
       <input name="shopAddressGu"  value="${param.shopAddressGu}" hidden="hidden"/>
-      <!-- <input name="parking" id="parkinInput"/>
-      <input name="open" id="openInput"/> -->
+      <input name="parking" id="parkingInput" hidden="hidden"/>
+      <input name="open" id="openInput" hidden="hidden"/>
       </form>
+      <div class="filter__btns">
+        <a href="listingCancel.do"><button type="submit" class="filter__reset">전체 선택 취소</button></a>
+      </div>
     </div>
     <!-- Filter End -->
 
@@ -1750,6 +1766,8 @@ prefix="c"%>
           검색 수 : <input id="listSize" value="${listSize}"/>
         </div>
       </div>
+      
+      <!-- <input type="button" id="locate" value="변환" /> -->
 
       <div class="listing__list">
         <c:forEach items="${shopPageList}" var="shop">
@@ -1760,22 +1778,14 @@ prefix="c"%>
               class="listing__item__pic set-bg"
               data-setbg="./resources/img/listing/list-1.jpg"
             >
-              <div class="listing__item__pic__btns">
-                <a href="#"><span class="icon_zoom-in_alt"></span></a>
-                <a href="#"><span class="icon_heart_alt"></span></a>
-              </div>
+              
             </div>
             <div class="listing__item__text">
               <div class="listing__item__text__inside">
                 <h5 class="shopTitle">${shop.shopTitle}</h5>
                 <div class="listing__item__text__rating">
-                  <!-- 이쪽에 별 대신 맛평가 들어가야함-->
-                  <div class="listing__item__rating__star">
-                    <span class="icon_star"></span>
-                    <span class="icon_star"></span>
-                    <span class="icon_star"></span>
-                    <span class="icon_star"></span>
-                    <span class="icon_star-half_alt"></span>
+                  <div class="listing__item__text__info__left">
+                  	<span>${shop.shopFood} </span>
                   </div>
                   <!-- 가격대 가지고와야함-->
                   <h6>${shop.shopPriceRange}</h6>
@@ -1789,12 +1799,8 @@ prefix="c"%>
                 </ul>
               </div>
               <div class="listing__item__text__info">
-                <div class="listing__item__text__info__left">
-                  <img
-                    src="./resources/img/listing/list_small_icon-1.png"
-                    alt=""
-                  />
-                  <span>${shop.shopFood} </span>
+                <div class="listing__item__text__info__left">      
+                  <span class="shopPark">${shop.shopPark} </span>
                 </div>
                 <div class="listing__item__text__info__right">
                   영업중인걸 어케 표시할까
@@ -1802,7 +1808,11 @@ prefix="c"%>
               </div>
             </div>
             <input value="${shop.shopNumber}" hidden="hidden"/>
+            <input class="shopLat" value="${shop.shopLat}" hidden="hidden"/>
+            <input class="shopLon" value="${shop.shopLon}" hidden="hidden"/>
           </div>
+          
+          
           
         </c:forEach>
         
@@ -1854,7 +1864,7 @@ prefix="c"%>
         navigator.geolocation.getCurrentPosition(function (position) {
           var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
-
+            
           var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
           console.log("myLat " + lat);
@@ -1864,6 +1874,8 @@ prefix="c"%>
           // 마커와 인포윈도우를 표시합니다
           displayMarker(locPosition, message);
         });
+        
+        
       } else {
         // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
@@ -1877,11 +1889,31 @@ prefix="c"%>
       //     "https://t1.daumcdn.net/local./resources/img/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
       //   imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
       //   imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+       
+	  
+      //현재 좌표를 구해와서 주소값으로 변환
+	  navigator.geolocation.getCurrentPosition(function(position) { // 좌표추출
+    	var geocoder = new kakao.maps.services.Geocoder();
+
+    	let callback = function(result, status) {
+        	if (status === kakao.maps.services.Status.OK) {
+            	let loc = result[0].address_name; // 좌표를 지역이름으로 변경
+            	$("#myLocation").val(loc);
+      			      	
+        	}
+    	};
+
+    	 geocoder.coord2RegionCode(position.coords.longitude, position.coords.latitude, callback); // 현재위치 좌표 가져오기
+	}); 
+	
 
       var geocoder = new daum.maps.services.Geocoder();
 
       var listData = [];
       var listShop = [];
+      var listLat = [];
+      var listLon = [];
 
       //DB에 있는 shopAddress가 들어옴
       $(".shopAddress").each(function name(params) {
@@ -1896,7 +1928,21 @@ prefix="c"%>
 
         listShop.push(shopTitle);
       });
+      
+      //DB에 있는 shopLat이 들어옴
+      $(".shopLat").each(function name(params) {
+          var shopLat = $(this).val();
 
+          listLat.push(shopLat);
+        });
+      
+      //DB에 있는 shopLon이 들어옴
+      $(".shopLon").each(function name(params) {
+          var shopLon = $(this).val();
+
+          listLon.push(shopLon);
+        });
+     
       listData.forEach(function (addr, index) {
         geocoder.addressSearch(addr, function (result, status) {
           if (status === daum.maps.services.Status.OK) {
@@ -1906,7 +1952,9 @@ prefix="c"%>
             //   imageOption
             // );
             var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
+		
+            console.log(result)
+            console.log(result[0].y);
             var marker = new daum.maps.Marker({
               map: map,
               position: coords,
@@ -1925,16 +1973,16 @@ prefix="c"%>
             map.setCenter(coords);
 
             // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            <c:forEach items="${shopPageList}" var="shop">
             var content =
               '<div class="customoverlay">' +
-              '  <a href="https://map.kakao.com/link/map/${shop.shopTitle},${shop.shopLat},${shop.shopLon}" target="_blank">' +
+              '  <a href="https://map.kakao.com/link/map/'
+              +listShop[index]+','+listLat[index]+','+listLon[index]+'">' + 
               '    <span class="title">' +
               listShop[index] +
               "</span>" +
               "  </a>" +
               "</div>";
-              </c:forEach>
+            
 
             var position = new kakao.maps.LatLng(result[0].y, result[0].x);
             // 커스텀 오버레이를 생성합니다
@@ -1947,62 +1995,26 @@ prefix="c"%>
           }
         });
       });
+     
     </script>
-    
-       <script>
-      $("#filter-search").click(function name(params) {
-        var regex = /[^0-9.;\-]/g;
-        var result = $("#radius").val().replace(regex, "");
-        $("#radiusInput").val(result);
-        console.log(result);
-      });
-    </script>
-    
-    <script>
-      const slider = document.querySelector(".items");
-      let isMouseDown = false;
-      let startX, scrollLeft;
 
-      slider.addEventListener("mousedown", (e) => {
-        isMouseDown = true;
-        slider.classList.add("active");
+	<!-- 반경거리에서 숫자와 특수문자만 뽑는 정규식 -->
+	<script>
+		$("#filter-search").click(function name(params) {
+			var regex = /[^0-9.;\-]/g;
+			var result = $("#radius").val().replace(regex, "");
+			$("#radiusInput").val(result);
+		});
+	</script>
 
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      });
 
-      slider.addEventListener("mouseleave", () => {
-        isMouseDown = false;
-        slider.classList.remove("active");
-      });
-
-      slider.addEventListener("mouseup", () => {
-        isMouseDown = false;
-        slider.classList.remove("active");
-      });
-
-      slider.addEventListener("mousemove", (e) => {
-        if (!isMouseDown) return;
-
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1;
-        slider.scrollLeft = scrollLeft - walk;
-      });
-    </script>
-    
-    <script type="text/javascript">
-    /* <c:forEach items="${shopPageList}" var="shop"> */
-    
+	<script type="text/javascript">
     	$(".shopClick").each(function() {
     		$(this).click(function() {
     			const shopNumber = $(this).find('input[hidden]').val();
     			location.href="listingDetails.do?shopNumber="+shopNumber;	
-			})
-			
-		})	
-			/* </c:forEach> */
-    
+			})	
+		})
     </script>
     	<!-- form tag 지연시간 설정 -->
 	<script type="text/javascript">
@@ -2014,5 +2026,6 @@ prefix="c"%>
 			}, 1000); //1초 설정
 		});
 	</script>
+	
   </body>
 </html>
