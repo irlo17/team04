@@ -168,10 +168,11 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	 * @return int
 	 * 사용: 공개 게시판 칼럼 수 가져오기
 	 */
-	public int totalbookmarkCount() {
+	
+	/*public int totalbookmarkCount() {
 
 		return mybatis.selectOne("BookmarkDAO.TotalbookmarkCount");
-	}
+	}*/
 
 
 	/*메소드명: mylistAdd
@@ -198,7 +199,7 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	
 	
 	
-	/**메소드명:pictureSaveHeart
+	/**메소드명: pictureSaveHeart
 	 *인자: HeartVO vo
 	 *리턴형: BookmarkVO
 	 *사용: 좋아요 하트를 클릭하면 +1증가하고 하트가 채워짐
@@ -267,6 +268,13 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 		System.out.println("===> Mybatis bookmarkGetMylistDetailPaging() 호출");
 		return mybatis.selectList("BookmarkDAO.bookmarkGetMylistDetailPaging",paging );
 	}
+	
+	
+	/**메소드명: heartCheak
+	 * 인자: HeartVO 
+	 * 리턴형: HeartVO 
+	 * 사용: 좋아요 하트 클릭 여부 체크
+	 */
 	@Override
 	public HeartVO heartCheak(HeartVO vo) {
 	   System.out.println("===> Mybatis heartCheak() 호출");
@@ -274,14 +282,25 @@ public class BookmarkDAOImpl implements BookmarkDAO {
 	}
 
 
-	   @Override
+	   
+	/**메소드명: pictureHeartCount
+	 * 인자: BookmarkVO
+	 * 리턴형: BookmarkVO
+	 * 사용: 좋아요 수 체크 
+	 */
+	@Override
 	public BookmarkVO pictureHeartCount(BookmarkVO vo) {
 	   System.out.println("===> Mybatis pictureHeartCount() 호출");
 	   return  mybatis.selectOne("BookmarkDAO.pictureHeartCount",vo );
 	}
 
 	   
-	   @Override
+	 /**메소드명: overlapSearch
+	  * 인자: MylistVO
+	  * 리턴형: MylistVO
+	  * 사용: 즐겨찾기 상세 페이지에서 편집시 가게 이동할 때 중복여부 체크
+	  */
+	@Override
 	   public MylistVO overlapSearch(MylistVO vo) {
 		   System.out.println("===> Mybatis overlapSearch() 호출");
 		   return  mybatis.selectOne("BookmarkDAO.overlapSearch",vo );
