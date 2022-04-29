@@ -302,30 +302,20 @@ $('#btnLogin').click(function(){
 	[ 비밀번호 재설정 페이지(1) ]
 	비밀번호 찾기 버튼 클릭
 */
-
-$('#btnPwSearch').click(function(){
+let ramdom;
+$('#btn_emailSend').click(function(){
 	
-	// input에 입력된 값을 공백제거하고 변수에 담기
-	var memberEmail = $.trim($("#memberEmail").val());
-	var memberTel = $.trim($("#memberTel").val());	
-	var memberName = $.trim($("#memberName").val());
 	
-	// 회원 정보가 있는지 확인
+	
+	// 인증번호 전송
  	  $.ajax({
     	type : 'post',
-    	url : 'pwSearch.do',
+    	url : 'emailSend.do',
     	data : { memberEmail : $('#memberEmail').val(),
-    			memberTel : $('#memberTel').val(),
-    			memberName : $('#memberName').val(),
     	 		},
     	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
     	success : function(result){
-    		// 중복 검사 후 나오는 결과 에러박스에 출력
-    		if(result == 'N'){
-	        		$('.error_box.pwSearch').html("존재하는 회원이 아닙니다.");
-				}else{
-	        		document.pwSearchForm.submit();
-				}
+    		ramdom = result;
     	},
     	error : function(err){
 	        
@@ -333,6 +323,22 @@ $('#btnPwSearch').click(function(){
     		console.log(err);
     	}
     }); //end of ajax
+
+})
+
+
+$('#btnPwSearch').click(function(){
+	
+	// input에 입력된 값을 공백제거하고 변수에 담기
+	var authenticationNumber = $.trim($("#authenticationNumber").val());
+	
+	// 인증번호와 입력한 문자열이 같을 때 폼 전송
+	if(document.writeln(ramdom === authenticationNumber)){
+		document.pwSearchForm.submit();
+	}else{
+		$('.error_box.pwSearch').html("인증번호가 일치하지 않습니다.");
+	}
+	
 }) // end of #btnPwSearch
 
 
