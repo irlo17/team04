@@ -39,25 +39,28 @@
                   </div>
                   <p class="mb-4"></p>
                 </div>
-                <form id="pwSearchForm" action="pwChangeForm.do" method="post" name="pwSearchForm">
+                <form id="pwSearchForm" action="pwSearch.do" method="post" name="pwSearchForm">
                 
-                <!-- EMAIL -->
+                  <!-- EMAIL -->
                   <div class="form-group first field--not-empty">
-                    	<label for="memberEmail">이메일</label>
+                  	<div class="email_check col-md-9">
+                    	<label for="memberEmail">이메일&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
                     	<input type="email" class="form-control" id="memberEmail" name="memberEmail">
+                    </div>
+                    <!-- email_check는 css에서 사용됨 -->
+                    <div class='email_Send col-md-3'>
+                    	<!-- emailCheck.do로 넘어간다. -->
+                    	<button type="button" id="btn_emailSend"class="btn_check btn-pill btn-danger"><span class="text-white btn_text">인증번호</span></button>
+                   	</div>
                   </div>
                   
-                 <!-- NAME -->
+                 <!--  -->
                   <div class="form-group first field--not-empty">
-                    <label for="memberName">이름&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
-                    <input type="text" class="form-control" id="memberName" name="memberName">
+                    <label for="authenticationNumber">인증번호 확인&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
+                    <input type="text" class="form-control" id="authenticationNumber" >
                   </div>
                   
-                  <!-- TEL -->
-                  <div class="form-group first field--not-empty">
-                    	<label for="memberTel">휴대전화&nbsp; &nbsp; &nbsp; &nbsp;<span class="error_box"></span></label>
-                    	<input type="tel" class="form-control" id="memberTel" name="memberTel">
-                  </div>
+
                   
                   <!-- BTN PW CHANGE -->              
                   <input type="button" id="btnPwSearch" value="비밀번호 찾기" class="btn btn-pill text-white btn-block btn-danger">

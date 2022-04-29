@@ -1,6 +1,17 @@
 package com.team04.controller;
 
 
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -167,14 +178,71 @@ public class MemberController {
 		}
 
 	}// end of login()
-
+	
+	
+	
 
 
 	/** 비밀번호 찾기
-	 * 	- DB에 입력한 이메일, 이름, 휴대전화와 값이 같은 레코드가 있는지 검색
-	 * @param MemberVO vo
-	 * @return String message : "N"이면 존재하지 않는 회원 -> 비밀번호 재설정 불가능
+	 * 	- 사용자가 입력한 정보가 DB에 있는지 확인
 	 */
+	@RequestMapping(value="emailSend.do", produces="application/text;charset=utf-8")
+	@ResponseBody
+	public String emailSend(MemberVO vo) {
+		
+		final String user = "memp35@naver.com";
+		final String password = "UYMTWG2KVGBH";
+		
+		// 인증번호 변수
+		 String random = "";
+		
+		// SMTP 서버 정보를 설정함
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.naver.com"); 
+		prop.put("mail.smtp.port", 587); 
+		prop.put("mail.smtp.auth", "true"); 
+		prop.put("mail.smtp.ssl.enable", "false"); 
+		prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
+		
+      Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        });
+      
+      try {
+          MimeMessage message = new MimeMessage(session);
+          message.setFrom(new InternetAddress(user));
+
+          //수신자메일주소
+          message.addRecipient(Message.RecipientType.TO, new InternetAddress(vo.getMemberEmail())); 
+
+          // Subject - 제목
+          message.setSubject("먹생먹사 비밀번호 찾기 인증번호입니다.");
+          
+          Random ran = new Random();
+          
+          random = Integer.toString(ran.nextInt());
+          System.out.println(random);
+          
+          // Text - 내용
+          message.setText("인증번호는 [ " + random + " ] 입니다.");
+
+          // send the message
+          Transport.send(message);
+          System.out.println("메시지 전송 성공");
+      } catch (AddressException e) {
+          e.printStackTrace();
+      } catch (MessagingException e) {
+          e.printStackTrace();
+      }
+		
+		
+		return random;
+		
+	}//end of pwSearch()
+	
+	
 	@RequestMapping(value="pwSearch.do", produces="application/text;charset=utf-8")
 	@ResponseBody
 	public String pwSearch(MemberVO vo, HttpSession session) {
